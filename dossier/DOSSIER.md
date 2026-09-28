@@ -1,8 +1,20 @@
 # DOSSIER — Fluids Parallel Discovery Program
 
-**Leading result (P02):** *The ladder of unstable self-similar singularities of the Córdoba–Córdoba–Fontelos
-equation is finite. All known profiles lie on one connected branch, which ends in a universal
-log-periodic square-root cusp.*
+**Leading result (P03, see `dossier/P03_DOSSIER.md`):** *The self-similar blow-up ladder of the 2D Boussinesq
+equations with boundary (the Hou–Luo scenario for 3D Euler) is infinite.*
+- Seven smooth profiles (λ₀ … λ₆) were computed with a classical solver. All lie on one branch, and they are the
+  zeros of m(λ) − 2.
+- As λ → 1 a quasi-stagnant boundary region forms, bounded by a front that becomes a square-root cusp.
+- The smoothness condition reduces to a WKB quantisation: the phase gained between consecutive profiles → π,
+  and the asymptotic spacing of 1/(λ_n−1) is ≈ 1.50.
+- This explains, and corrects, the empirical law found with PINNs.
+
+**Companion result (P02, this document):** *The ladder of unstable self-similar singularities of the
+Córdoba–Córdoba–Fontelos equation is finite. All known profiles lie on one connected branch, which ends in a
+universal log-periodic square-root cusp.*
+
+**Together:** a ladder terminates when its sonic cusp forms at finite λ (CCF). It is infinite when the cusp forms
+only in the limit λ → 1 behind a quasi-stagnant region that supports WKB standing waves (Boussinesq, Hou–Luo).
 
 Status keys used below: VERIFIED = reproduced by ≥2 independent numerical routes and converged in all
 discretisation parameters; DERIVED = analytic argument, numerically confirmed; PRELIMINARY = single route.

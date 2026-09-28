@@ -199,3 +199,14 @@ Costs are wall-clock on the 4-core container (CPU-h = cores × hours).
   Δz = 1.269 (observed 1.264, 0.4 %); phase per crossing 3.08–3.11 (π). 2D: εΦ = 1.139−0.568i (z 2.5), 1.087−0.577i (z 4),
   1.054−0.588i (z 6.7) → local spacing predictions 1.38–1.49 vs observed 1.42–1.47. Decay per half period larger than
   e^{π|Im a|/Re a}; consistent with an algebraic prefactor ∝ z^{−1.5}.
+
+### R026 — P03: refined ladder λ₀…λ₇, WKB phase verification, amplitude law, λ → 1 structure
+- Refined crossings (Nb 32, hs 0.025): λ₃ = 1.1842533, λ₄ = 1.1449864, λ₅ = 1.1194818, λ₆ = 1.1015235, λ₇ = 1.0890078
+  (λ₇ amplitude ~1e-7; hs-refinement running). Spacings in z: 1.41937, 1.45711, 1.46455, 1.46985, 1.47322, 1.47959.
+- Resolution at λ₆: Nb 48 changes m by −4.6e-10, hs 0.0125 by +4.4e-9 (δλ ≈ 2e-5).
+- WKB phase (2D local eigenproblem, integrated to the front) at the refined crossings: ΔRe Φ = 2.74, 2.98, 3.03, 3.07, 3.11 → π;
+  εΦ → a ≈ 1.05 − 0.6i ⇒ asymptotic spacing π/(2 Re a) ≈ 1.50. HL: ΔRe Φ = 3.02–3.09 over 6 intervals.
+- Amplitude law (HL, 8 extrema to |m−2| = 1.8e-8): |m−2| e^{−ImΦ} ∝ z^{−1.58}; 2D local p = 1.0 → 1.3 (pre-asymptotic).
+- λ → 1 structure: front at x_c ≈ 0.72 (2D) / 0.61 (HL) becomes a square-root cusp D ≈ k(x−x_c)^{1/2} on the outer side;
+  the dip closes only as ε → 0 (D̂_min ∝ ε^{0.18} in 2D, ε^{0.35} in HL; no sonic point down to λ = 1.075 (2D) / 1.04 (HL)).
+- Caveat: DeepMind's tabulated λ₂, λ₃ not accessible; our values are 2.5e-3/2.9e-3 below their two-point law.

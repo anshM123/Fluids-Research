@@ -110,8 +110,13 @@ stagnation point to the front (first point beyond the dip with D/ε > 3).
   so Δz_∞ = π/(2 Re a) ≈ 1.27. Observed spacings 1.2538 → 1.2674.
 
 **Amplitude.** The per-interval WKB factor e^{|ΔIm Φ|} is ≈ 6 in 2D (|ΔIm Φ| = 1.65 → 1.84) and ≈ 3.5 in Hou–Luo
-(≈ 1.24). The observed extremum ratios (2D: 10.9, 9.4, 8.7, …; HL: 6.7 → 4.55) are larger and decrease towards
-these values, consistent with an algebraic prefactor ∝ z^{−p}, p ≈ 1.3–1.5.
+(≈ 1.24). The observed extremum ratios (2D: 10.9, 9.4, 8.7, …; HL: 6.7 → 4.55) are larger. After dividing the
+extrema by the computed WKB factor e^{Im Φ(z)}, what remains is a clean power law:
+- Hou–Luo, 8 extrema (z = 5.2–14.1, |m−2| from 5.5e-4 to 1.8e-8): |m − 2| e^{−Im Φ} ∝ z^{−p}, with p = 1.58 overall
+  (local values 1.48–1.76).
+- 2D, extrema at z = 1.5–7.4: local p = 1.01, 1.23, 1.33, 1.29, not yet asymptotic.
+
+Hence, empirically, m(λ) − 2 ≈ C (λ−1)^{p} Re[e^{iΦ(λ) + iφ}] with p ≈ 3/2.
 
 **Consequence.** Both models have an infinite ladder of smooth self-similar profiles accumulating at λ = 1, with
 1/(λ_n − 1) growing linearly in n. The empirical law of Wang et al. is the leading-order WKB quantisation of the

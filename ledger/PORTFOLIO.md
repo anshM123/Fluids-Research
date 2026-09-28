@@ -1,5 +1,9 @@
 # ACTIVE PORTFOLIO & COMPUTE ALLOCATION  (v2, 2026-09-28, final state; v1 after literature death audit A–G)
 
+**Update (P03, 2D Boussinesq ladder):** new Tier-A program (folder `programs/P03_boussinesq_ladder`; the earlier
+queued "P03 Couette threshold" is renamed P16). Result: 7 smooth profiles on one branch and a WKB-quantisation
+theory of the infinite ladder (dossier/P03_DOSSIER.md; RLOG R023–R026).
+
 **Final status:** P02 → VERIFIED main result (dossier/DOSSIER.md): the CCF self-similar branch carries exactly three smooth
 profiles (λ₀, λ₁, λ₂) and terminates at a square-root cusp (λ* = 0.4535845, p* = 2.005772) approached with
 log-periodic oscillations of universal frequency 2τ, τ tanh(πτ/2) = ½ — no λ₃ on the branch. P05 remains the
@@ -20,7 +24,7 @@ Budget accounting: 4 cores. "CPU-h" = core-hours. Reconnaissance phase target �
 
 ## TIER B
 - **P05 — Vortex merger as a dynamic saddle-node** (IDEA005). Target: (a/b)_onset(Re) − (a/b)_c(∞) ∝ Re^{−2/3}, merger delay ∝ Re^{1/3}, prefactor from normal form. Test: 2D pseudo-spectral pairs Re=10³–6×10⁴ (running). ~20 CPU-h. Upside: moderate (JFM Rapids).
-- **P03 — Sharp 2D Couette threshold γ** (IDEA003/T5). Target: ε_c ∼ Re^{−γ*} for H^s data; test Masmoudi–Zhao 1/3. Test: shearing-frame spectral solver, echo-seeded data, Re=10³–10⁶. ~60 CPU-h. Upside: moderate (math community).
+- **P16 (formerly P03) — Sharp 2D Couette threshold γ** (IDEA003/T5). Target: ε_c ∼ Re^{−γ*} for H^s data; test Masmoudi–Zhao 1/3. Test: shearing-frame spectral solver, echo-seeded data, Re=10³–10⁶. ~60 CPU-h. Upside: moderate (math community).
 - **P06 — Maximal Lagrangian chaos per unit enstrophy R*** (IDEA066). Target: sharp constant in [0.36, 0.5] and optimal protocol structure. Test: time-periodic shear maps, adjoint/gradient optimisation. ~10 CPU-h. Upside: moderate.
 - **P07 — Certified trust horizon for chaotic PDE simulations** (IDEA027). Target: computable shadowing distance for KS/2D NS; identify shadowing-breakdown events. ~30 CPU-h. Upside: moderate–high (method).
 - **P08 — Thermal-noise point rupture of thin films** (IDEA109/T8). Target: new noise-dominated self-similar rupture law & crossover. ~20 CPU-h. Upside: moderate–high (novelty unverified).
