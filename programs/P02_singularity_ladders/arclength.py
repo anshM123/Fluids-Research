@@ -70,7 +70,7 @@ def continue_branch(S, phi, lam, ds, nsteps, phi0=None, tol=1e-11, verbose=True,
         if verbose:
             print(f"step {step}: lam={lam:.8f} p={p:.8f} min_den={den.min():.5f} dlam/ds={tl:+.3f} ds={ds:.3e}", flush=True)
         if it < 4:
-            ds = min(ds * 1.5, 0.02)
+            ds = min(ds * 1.5, 0.08)
         if not (lam_stop[0] < lam < lam_stop[1]):
             break
     return np.array(out), sols

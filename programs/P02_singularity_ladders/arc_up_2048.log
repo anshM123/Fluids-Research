@@ -1,2 +1,6 @@
 step 0: lam=0.60181454 p=1.99404655 min_den=0.15385 dlam/ds=+0.182 ds=1.000e-02
 step 1: lam=0.60455394 p=1.99823784 min_den=0.15511 dlam/ds=+0.183 ds=1.500e-02
+step 2: lam=0.60824247 p=2.00393205 min_den=0.15718 dlam/ds=+0.186 ds=2.000e-02
+step 3: lam=0.61197690 p=2.00974398 min_den=0.15968 dlam/ds=+0.188 ds=2.000e-02
+step 4: lam=0.61576318 p=2.01567004 min_den=0.16259 dlam/ds=+0.191 ds=2.000e-02
+step 5: lam=0.61960803 p=2.02170676 min_den=0.16591 dlam/ds=+0.194 ds=2.000e-02

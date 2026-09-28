@@ -1,0 +1,10 @@
+start True 1.9912253455663118
+step 0: lam=0.5964131514 p=1.9858337858 min_den=0.146015 eta_min=-1.436 dlam/ds=-0.1787 ds=2.00e-02
+step 1: lam=0.5914313572 p=1.9785071220 min_den=0.141896 eta_min=-1.417 dlam/ds=-0.1773 ds=2.80e-02
+step 2: lam=0.5845033887 p=1.9687148210 min_den=0.135947 eta_min=-1.399 dlam/ds=-0.1764 ds=3.92e-02
+step 3: lam=0.5748013906 p=1.9560273978 min_den=0.127287 eta_min=-1.381 dlam/ds=-0.1776 ds=5.49e-02
+step 4: lam=0.5608894011 p=1.9407283826 min_den=0.115060 eta_min=-1.344 dlam/ds=-0.1858 ds=7.68e-02
+step 5: lam=0.5408650301 p=1.9273796880 min_den=0.097218 eta_min=-1.289 dlam/ds=-0.2196 ds=1.00e-01
+   corrector failed, ds -> 5.00e-02
+step 6: lam=0.5288644655 p=1.9259838501 min_den=0.086881 eta_min=-1.252 dlam/ds=-0.2621 ds=5.00e-02
+   corrector failed, ds -> 3.50e-02

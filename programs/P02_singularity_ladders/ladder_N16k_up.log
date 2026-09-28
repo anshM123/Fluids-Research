@@ -1,0 +1,14 @@
+step 0: lam=0.6036065715 p=1.9967255052 min_den=1.522e-01 eta_min=-1.445 dlam/ds=+0.1812 ds=2.00e-02 t=0s
+*** CROSSING 1: lam=0.6057337012024 ok=True min_den=0.15402 (between λ=0.603607 p=1.996726 and λ=0.608719 p=2.004627)
+step 10: lam=0.8624203985 p=2.1934338271 min_den=3.580e-01 eta_min=-2.086 dlam/ds=+0.4021 ds=1.00e-01 t=3s
+step 20: lam=0.8657762588 p=2.1926932691 min_den=3.606e-01 eta_min=-1.170 dlam/ds=-0.2058 ds=1.00e-01 t=4s
+*** CROSSING 2: lam=0.6057337012023 ok=True min_den=0.15398 (between λ=0.615258 p=2.014849 and λ=0.600613 p=1.992154)
+step 30: lam=0.6006125561 p=1.9921543898 min_den=1.496e-01 eta_min=-0.145 dlam/ds=-0.1427 ds=1.00e-01 t=33s
+*** CROSSING 3: lam=0.4715167690402 ok=True min_den=0.03199 (between λ=0.476899 p=1.988972 and λ=0.470671 p=2.002405)
+step 40: lam=0.4704246479 p=2.0114074867 min_den=2.531e-02 eta_min=0.002 dlam/ds=+0.0821 ds=3.43e-02 t=61s
+*** CROSSING 4: lam=0.3637098543012 ok=True min_den=0.00507 (between λ=0.366240 p=2.006933 and λ=0.356157 p=1.979441)
+step 50: lam=0.3561567812 p=1.9794406978 min_den=4.919e-03 eta_min=0.002 dlam/ds=-0.0972 ds=1.00e-01 t=90s
+step 60: lam=0.2859272994 p=1.9900588327 min_den=3.728e-03 eta_min=0.002 dlam/ds=-0.0821 ds=1.75e-02 t=93s
+*** CROSSING 5: lam=0.2831189335492 ok=True min_den=0.00368 (between λ=0.283684 p=1.998056 and λ=0.282586 p=2.001732)
+step 70: lam=0.2773960863 p=2.0194174830 min_den=3.597e-03 eta_min=0.002 dlam/ds=-0.3127 ds=2.02e-03 t=129s
+step 80: lam=0.3121545353 p=2.0219823247 min_den=4.155e-03 eta_min=0.002 dlam/ds=+0.1387 ds=5.84e-02 t=131s
