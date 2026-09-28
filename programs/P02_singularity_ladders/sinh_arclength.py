@@ -174,9 +174,9 @@ def run(start, tag, direction=-1.0, ds=2e-3, nsteps=400, pts=24, hs=0.03, dsmax=
                 print("STOP: regrid re-solve failed", flush=True)
                 break
             tphi, tl = tangent(M, phi, lam, target, tphi, tl, W)
-        if nit <= 2:
-            ds = min(ds * 1.5, dsmax)
-        elif nit >= 5:
+        if nit <= 4:
+            ds = min(ds * 1.3, dsmax)
+        elif nit >= 7:
             ds *= 0.7
         step += 1
     json.dump(crossings, open(f"sac_{tag}_crossings.json", "w"), indent=1)
