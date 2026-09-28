@@ -1,3 +1,2 @@
-/home/user/Fluids-Research/programs/P03_boussinesq_ladder/bq_solver.py:172: RuntimeWarning: divide by zero encountered in power
-  Omega = Om * cpow[None, :] ** (m - 1)
-  λ=1.0900000000: ok=False A=2.050000002296 m=2.250000129136 vrmin=0.02212 t=489s
+  λ=1.0890078000: ok=True A=2.044503900216 m=2.000000009685 vrmin=0.02803 t=161s
+  λ=1.0800000000: ok=True A=2.039999999888 m=1.999999994411 vrmin=0.02473 t=324s

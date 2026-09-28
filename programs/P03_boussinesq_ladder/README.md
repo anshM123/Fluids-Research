@@ -47,12 +47,12 @@ Gauss–Legendre march is A-stable.
 | n | λ_n | z_n = 1/(λ_n − 1) | notes |
 |---|---|---|---|
 | 0 | 1.9205593 | 1.08630 | stable (Chen–Hou; Wang et al. 1.9205) |
-| 1 | 1.3990961 | 2.50566 | Nb 48: 1.3990961; hs 0.0125: 1.3990960; Nb 64 running |
+| 1 | 1.3990961 | 2.50566 | Nb 32/48/64: 1.39909599/1.39909609/1.39909609; hs 0.0125: 1.39909601 |
 | 2 | 1.2523487 | 3.96278 | Nb 48 agrees to 9e-8 |
 | 3 | 1.1842533 | 5.42733 | |
 | 4 | 1.1449864 | 6.89718 | candidate 4th unstable profile in Wang et al. (their line gives 1.1479) |
 | 5 | 1.1194818 | 8.37040 | new |
-| 6 | 1.1015235 | 9.84999 | new; Nb 48 changes m by −4.6e-10, hs 0.0125 by +4.4e-9 (δλ ≈ 2e-5) |
+| 6 | 1.1015817 | 9.84428 | new; hs 0.0125 value (hs 0.025 gave 1.1015235); Nb 48 changes m by −4.6e-10; hs 0.00625 running |
 | 7 | 1.0890078 | 11.2350 | new; amplitude of m − 2 here ≈ 1e-7, hs refinement running |
 
 - Extrema of m − 2: +7.41e-2, −6.80e-3, +7.24e-4, −8.34e-5, +1.0e-5, …
