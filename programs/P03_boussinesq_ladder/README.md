@@ -41,12 +41,40 @@ Stiffness: near the stagnation point the angular transport rate is w/(V_r/r) ≈
 λ → 1 on smooth profiles. The explicit RK4 march (h = 0.025) is unstable for λ ≲ 1.3 at Nb = 32. The implicit
 Gauss–Legendre march is A-stable.
 
-## Results so far (Nb = 32, hs = 0.025)
-- λ₀ (stable): m = 2 at λ = 1.92056 (DeepMind: 1.9205).
-- λ₁: m = 2 at λ ≈ 1.39903 (DeepMind fit: 1.3992).
-- m(λ) has a maximum ≈ 2.0740 near λ ≈ 1.68 between λ₀ and λ₁. For λ > λ₀, m decreases monotonically
-  (1.533 at λ = 3); a scan to λ = 8 is running.
-- Below λ ≈ 1.9 a dip develops in V_r/r along the boundary at r ≈ 0.03–0.3 (min/ε = 0.83 at λ = 1.40). This is the
-  2D analogue of the sonic-point mechanism that terminates the CCF branch (P02).
+## Results (Nb = 32, hs = 0.025 unless stated)
+**The ladder.** Smooth profiles are the zeros of m(λ) − 2 along one branch (`bq_crossing.py`, `cross_l*_nb32.log`):
 
-(Scans continuing; see `scan2_*.log`.)
+| n | λ_n | z_n = 1/(λ_n − 1) | notes |
+|---|---|---|---|
+| 0 | 1.9205593 | 1.08630 | stable (Chen–Hou; Wang et al. 1.9205) |
+| 1 | 1.3990961 | 2.50566 | Nb 48: 1.3990961; hs 0.0125: 1.3990960; Nb 64 running |
+| 2 | 1.2523487 | 3.96278 | Nb 48 agrees to 9e-8 |
+| 3 | 1.1842533 | 5.42733 | |
+| 4 | 1.1449864 | 6.89718 | candidate 4th unstable profile in Wang et al. (their line gives 1.1479) |
+| 5 | 1.1194818 | 8.37040 | new |
+| 6 | 1.1015235 | 9.84999 | new; Nb 48 changes m by −4.6e-10, hs 0.0125 by +4.4e-9 (δλ ≈ 2e-5) |
+| 7 | 1.0890078 | 11.2350 | new; amplitude of m − 2 here ≈ 1e-7, hs refinement running |
+
+- Extrema of m − 2: +7.41e-2, −6.80e-3, +7.24e-4, −8.34e-5, +1.0e-5, …
+- For λ > λ₀, m decreases monotonically (1.34 at λ = 4.1), so there are no further profiles.
+- The branch continues at least to λ = 1.069 (scan D), with no sign of termination.
+
+**Mechanism** (THEORY.md): a quasi-stagnant boundary region x < x_c ≈ 0.72, where D = V₁/x = O(ε), bounded by a front
+that becomes a square-root cusp as λ → 1. The WKB phase Φ = ε⁻¹∫κ ds, from the local 2D eigenproblem
+(`bq_local_eig.py`, `bq_wkb2d.py`), gains 2.98, 3.03, 3.07, 3.11 between consecutive profiles, tending to π.
+The asymptotic spacing is π/(2 Re a) ≈ 1.50 with a ≈ 1.05 − 0.6i.
+
+**Hou–Luo** (`hl_solver.py`, `hl_scan_*.log`): 12 crossings up to z = 15.
+- λ_n^{HL} = 1.99871, 1.44767, 1.28676, 1.21092, 1.16668, 1.13772, 1.11731, 1.10215, 1.09046, …
+- Phase gained per profile 3.02–3.09, tending to π.
+- Amplitude |m − 2| e^{−Im Φ} ∝ z^{−1.58}.
+- The dip closes only as ε → 0 (D̂_min = 0.285 at z = 30.8).
+
+**Figure:** `fig_bq_ladder.png`.
+
+**Independent residual check** (`check_residual.py`: equations evaluated with 6th-order finite differences in s):
+- Near the origin (r < 0.14) the relative residual is ~1e-7.
+- Across the front region at λ₁ it is 1.6e-4 (Nb 32) and 1.7e-6 (Nb 48).
+- The outer region (r ≳ 3) has angular structure that Nb = 32–48 under-resolves (residual 1e-3–1e-2).
+- The λ_n themselves are insensitive to this (Nb 32/48 agree to ≤ 1e-7 in λ₁, λ₂ and 5e-10 in m at λ₆). The strain
+  at the origin sees only low angular modes, and the boundary transport is resolved to 1e-11.
