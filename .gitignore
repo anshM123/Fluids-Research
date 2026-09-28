@@ -15,3 +15,5 @@ programs/P02_singularity_ladders/gclm_q1_a*.npy
 programs/P02_singularity_ladders/dac_*_last.npy
 programs/P02_singularity_ladders/dpc_last.npy
 programs/P02_singularity_ladders/delta_last.npy
+programs/P02_singularity_ladders/sac_*_last.npy
+programs/P02_singularity_ladders/diag_svd_vecs.npy
