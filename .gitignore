@@ -3,3 +3,5 @@ __pycache__/
 *.h5
 *.nc
 big_data/
+programs/P02_singularity_ladders/pcont_sol_*.npy
+programs/P02_singularity_ladders/*_sols*.npy
