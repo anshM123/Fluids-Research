@@ -79,3 +79,9 @@ Costs are wall-clock on the 4-core container (CPU-h = cores × hours).
 - **Result:** λ₀: top rate 1.0000 (trivial time translation), no ν=1 crossing for μ∈[0.2,2] → **0 unstable modes (stable)**. λ₁: top rate 1.0000; T_μ crossing μ≈0.366 (lit. 0.36525) → **1 unstable mode**. λ₂: dense spectrum real eigenvalues **μ = 0.72285, 0.34312** (+ trivial 1.00017); T_μ crossings 0.715, 0.345 → **2 unstable modes**.
 - **Interpretation:** instability order increases by one at each successive p=2 crossing along the single branch — the ladder index is the crossing number along the branch.
 - **Status:** VERIFIED (λ₀–λ₂)
+
+### R012 — P02: full converged branch p(λ), λ∈[0.4625, 2] (figure `programs/P02_singularity_ladders/fig_branch.png`)
+- **Computation:** natural continuation in λ on the adaptive mapped grid (196 points), re-gridding at the sonic layer.
+- **Result:** p(λ) performs a damped oscillation about 2 as λ decreases: max 2.1974 (λ≈0.83), min 1.926 (λ≈0.53), max 2.0134 (λ≈0.459); p=2 crossings at λ = 1.180779, 0.605699, 0.471300 (interpolated; refined values in R008). Minimum of the sonic factor decreases monotonically from 1.3 (λ=2) to 0.02 (λ≈0.46). Natural continuation fails at λ≈0.4625 (fold); dense-Jacobian arclength continuation (Krylov stalls: 1172 GMRES iterations per bordered solve) now following the branch through the fold.
+- **Interpretation:** the unstable-singularity ladder of CCF = successive p=2 crossings of a damped oscillation of the local exponent along a single branch that approaches a sonic limit.
+- **Status:** DISCOVERY (structure); ladder continuation beyond λ₂ in progress
