@@ -16,8 +16,8 @@ condition p = 2 on the local exponent at the origin; the instability order equal
 
 Beyond the second unstable profile, the branch develops a self-induced sonic layer and terminates at a profile
 with an interior square-root cusp. We derive that the linearisation about this cusp reduces to a universal
-Hilbert-transform operator, whose imaginary exponents ±iτ, τ tanh(πτ/2) = 1/2, predict a log-periodic spiral
-of the branch; this is confirmed numerically to 1%. Because the spiral centre has p* = 2.0058 > 2, no third
+Hilbert-transform operator, whose imaginary exponents ±iτ, τ tanh(πτ/2) = 1/2, predict a log-periodic oscillation
+of the branch; this is confirmed numerically to 1%. Because the oscillation centre has p* = 2.0058 > 2, no third
 unstable profile exists on the branch.
 
 ## Main text
@@ -63,7 +63,7 @@ multiplier, using an integral formulation and adaptive grids (Methods). The resu
 branch (Fig. 1a):
 - from λ → ∞, where p → 1⁺, p rises through 2 at λ₀ = 1.180777662899;
 - it peaks at 2.197, returns through 2 at λ₁ = 0.6057337012 and dips to 1.926;
-- it crosses again at λ₂ = 0.471324227767, reaches 2.0134 and then spirals into a terminal point.
+- it crosses again at λ₂ = 0.471324227767, reaches 2.0134 and then oscillates into a terminal point.
 
 These are exactly the three known profiles. Our λ₂ agrees with the machine-precision PINN value to all
 published digits. Linear stability analysis (three independent methods, Methods) gives 0, 1 and 2 unstable
@@ -88,7 +88,7 @@ returns the same singularity if and only if B² = 2λΘ_s.
 The measured cusp coefficient and jump of ln Θ agree with this relation to 1%. The branch therefore ends at a
 continuous profile with an interior square-root singularity at (λ*, p*) = (0.45358, 2.00577)†.
 
-**A universal log-periodic spiral.** Linearising the profile equation about the cusp, Θ = Θ_cusp(1+u), all
+**A universal log-periodic approach.** Linearising the profile equation about the cusp, Θ = Θ_cusp(1+u), all
 profile-dependent constants cancel and u obeys the universal nonlocal equation u' = −H[u]/(2|x|). Power
 solutions u = |x|^σ and sgn(x)|x|^σ give two exponent families:
 - even: σ = ½ tan(πσ/2), with roots 0 (scaling) and ±½ (translation);
@@ -97,7 +97,7 @@ solutions u = |x|^σ and sgn(x)|x|^σ give two exponent families:
 Matching to the inner layer, which sits at scale w ∝ δ², excites the marginal pair with amplitude O(δ) and
 phase τ ln w. Hence
   p(δ) − p* = δ [B + C cos(2τ ln δ) + D sin(2τ ln δ)] + o(δ),
-and the same holds for λ. The branch spirals into the cusp in the (λ, p) plane, with successive extrema a
+and the same holds for λ. The branch oscillates into the cusp in the (λ, p) plane, with successive extrema a
 factor e^{π/2τ} = 11.23 apart in δ (Fig. 1b,c).
 
 The computed branch shows exactly this. Extrema of p are 2.0134, then 2.00501 at δ ≈ 1.3e−3, then 2.00584 at
@@ -121,7 +121,7 @@ Two mechanisms generate ladders of self-similar singularities:
 - *Vanishing order* (CLM, generalised CLM, Burgers). The smoothness condition is met by a local exponent that
   grows monotonically along the family (q = 1/c_l for CLM), so the ladder can be infinite.
 - *Self-induced sonic layers* (CCF). The local exponent oscillates along the branch and the branch ends at a
-  singular profile, so the ladder is finite. Its length is set by where the spiral centre p* lies relative
+  singular profile, so the ladder is finite. Its length is set by where the oscillation centre p* lies relative
   to the smoothness values.
 
 The terminal law we derived is local and universal. It applies to any transport equation with Hilbert-
@@ -171,7 +171,7 @@ Limitations:
 - **Fig. 1 | The connected branch of CCF self-similar profiles and its terminal cusp.**
   - (a) Local exponent p at the origin versus λ along the whole branch. Blue dots mark the smooth profiles
     (p = 2): the stable λ₀ and the unstable λ₁, λ₂. The star marks the terminal cusp.
-  - (b) Beyond λ₂ the branch spirals into the cusp without reaching p = 2 again (inset: zoom).
+  - (b) Beyond λ₂ the branch oscillates into the cusp without reaching p = 2 again (inset: zoom).
   - (c) p versus sonic depth δ: computed points and the asymptotic law with the predicted frequency 2τ,
     τ tanh(πτ/2) = ½.
   - (d) Square-root cusp of the sonic factor, den/δ − 1 ∝ X^{1/2} with X = |η − η_s|/w, on both flanks.

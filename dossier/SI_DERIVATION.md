@@ -78,7 +78,7 @@ Insert power laws into (7) and use (2):
 With σ = iτ, the odd equation becomes iτ = −½ cot(iπτ/2) = ½ i coth(πτ/2), which is (8). The equation
 y tanh y = c has no non-zero real root in y for c ≤ 0, and exactly one positive root for c > 0; here c = π/4.
 
-## S1.6 Matching and the log-periodic spiral
+## S1.6 Matching and the log-periodic oscillation
 The inner layer (5) perturbs ln Θ by O(λℓ/δ) = O(δ) at |x| ~ ℓ. Seen from the outer region, it acts as a
 source localised at the cusp.
 
@@ -91,12 +91,13 @@ Global functionals of the solution, in particular p and λ, therefore satisfy
   p(δ) = p* + δ[B_p + C_p cos(2τ ln δ) + D_p sin(2τ ln δ)] + o(δ),                                          (9)
 
 and likewise for λ(δ). Consequences:
-- The branch spirals into (λ*, p*) in the (λ, p) plane.
+- λ(δ) decreases monotonically to λ* (its oscillatory part, amplitude ≈ 0.21δ, never overcomes the monotone part 0.40δ, so there are no folds), while p(δ) oscillates about p* infinitely often.
 - Consecutive extrema of p(δ) are separated by the factor e^{π/(2τ)} = 11.2318 in δ.
 - Their deviations from p* decrease by the same factor.
 
-No δ ln δ term arises at this order because no exponent is degenerate; fits confirm a coefficient
-consistent with zero.
+A δ ln δ term could arise from logarithmic terms in the far field of the inner solution (5); the fits bound its
+coefficient to |A| ≲ 0.01, compared with an oscillation amplitude ≈ 0.59, and all conclusions are unchanged if it is
+included (p* shifts by < 1e−6).
 
 Numerical confirmation:
 - With 2τ free, fits over δ ≤ 3e−3 give 1.302 (from p) and 1.286–1.292 (from λ), against 2τ = 1.2988.
@@ -117,6 +118,6 @@ For θ_t + (HΛ^sθ)θ_x = 0, 0 ≤ s < 1, the same argument gives:
 - Universal operator: u' = −(a/c_s(a)) HΛ^s[u]/|x|^{1−s}, where HΛ^s[sgn|x|^σ] = c_s(σ)|x|^{σ−s} and
     c_s(σ) = cot(π(σ−s)/2) · 2^s Γ(1+σ/2)Γ((1+s−σ)/2)/[Γ((1−σ)/2)Γ(1+(σ−s)/2)].
 - Odd roots: σ = s/2 ± iτ(s), with τ = 0.6494, 0.7046, 0.7594, 0.7872 at s = 0, 0.2, 0.5, 0.8.
-- Spiral: layer width ∝ δ^{2/(1−s)}, oscillation amplitude ∝ δ^{1/(1−s)}, log-frequency 2τ(s)/(1−s).
-- As s → 1, the operator becomes local (HΛ = −∂_x) and the spiral disappears, consistent with the monotone
+- Oscillation: layer width ∝ δ^{2/(1−s)}, oscillation amplitude ∝ δ^{1/(1−s)}, log-frequency 2τ(s)/(1−s).
+- As s → 1, the operator becomes local (HΛ = −∂_x) and the oscillation disappears, consistent with the monotone
   vanishing-order ladder of Burgers.

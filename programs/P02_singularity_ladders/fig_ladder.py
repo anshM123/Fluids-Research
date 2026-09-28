@@ -62,7 +62,7 @@ ins = b.inset_axes([0.08, 0.50, 0.40, 0.45])
 ins.plot(arc[:, 1], arc[:, 2], "k.-", lw=0.8, ms=3)
 ins.plot(lstar, pstar, "*", color="tab:orange", ms=10)
 ins.set_xlim(lstar - 2e-5, lstar + 3.5e-4); ins.set_ylim(pstar - 9e-4, pstar + 2.5e-4)
-ins.tick_params(labelsize=6); ins.set_title("spiral into the cusp (zoom)", fontsize=7)
+ins.tick_params(labelsize=6); ins.set_title("log-periodic approach to the cusp (zoom)", fontsize=7)
 
 c = ax[1, 0]
 dd = np.logspace(np.log10(dall.min()), np.log10(3e-2), 500)

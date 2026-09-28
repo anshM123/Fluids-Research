@@ -57,7 +57,7 @@ All numbers below come from files in this repository (paths given in N/O).
     - Fix 1: a geometric grid.
     - Fix 2: pinning the layer using the scaling symmetry.
     - With these, Newton converges quadratically.
-11. **R015 and this dossier.** The sonic limit is a square-root cusp, and the branch spirals into it log-periodically.
+11. **R015 and this dossier.** The sonic limit is a square-root cusp, and the branch approaches it with log-periodic oscillations.
     - The universal exponent was derived and confirmed.
     - p* > 2, so there is no third profile on the branch.
     - The large-λ end has no crossing either.
@@ -93,14 +93,14 @@ origin. Smooth (analytic) profiles are exactly the points where p = 2.
    - The instability order equals the crossing order.
 2. **The branch ends at both sides without further crossings:**
    - λ → ∞: p decreases monotonically from 2 to ≈ 1.13 at λ = 7.85 (p − 1 ≈ 1/λ). VERIFIED up to λ ≈ 8.
-   - Small-λ end: after λ₂, p rises to 2.0134 and then spirals into a **terminal cusp profile** at
+   - Small-λ end: after λ₂, p rises to 2.0134 and then approaches a **terminal cusp profile** with log-periodic oscillations of p at
      **λ* = 0.4535845 ± 5e−7, p* = 2.005772 ± 1e−6** (VERIFIED).
 3. **Terminal cusp** (DERIVED + VERIFIED). As the sonic depth δ = min(1+λ+HΘ/ξ) → 0:
    - the sonic factor develops a square-root cusp, den ≈ δ + k|η−η_s|^{1/2};
    - the profile develops an interior square-root singularity Θ − Θ_s ≈ B sgn(ξ−ξ_s)|ξ−ξ_s|^{1/2};
    - the amplitude is fixed locally by **B² = 2λΘ_s** (checked to 1 %);
    - the layer width scales as **w = 9.10 δ²**. The universal inner-layer problem predicts w/δ² = 4.7405/k² = 9.00–9.17, with no free parameter (R020).
-4. **Universal log-periodic spiral** (DERIVED + VERIFIED). Near the cusp, the linearised profile equation is the universal nonlocal operator u' = −H[u]/(2|x|).
+4. **Universal log-periodic approach** (DERIVED + VERIFIED). Near the cusp, the linearised profile equation is the universal nonlocal operator u' = −H[u]/(2|x|).
    - Its odd modes have purely imaginary exponents ±iτ, with **τ tanh(πτ/2) = 1/2, so τ = 0.649424**.
    - Hence λ(δ) and p(δ) oscillate log-periodically, with frequency 2τ = 1.2988 in ln δ and amplitude ∝ δ.
    - Fitted frequencies: 1.286 to 1.302, with the frequency left free, for δ ≤ 3e−3 (within 1 % of the prediction).
@@ -124,13 +124,13 @@ origin. Smooth (analytic) profiles are exactly the points where p = 2.
   - Chen–Huang–Li, arXiv:2604.01868 (Hou–Luo, Boussinesq).
   - Difference: our CCF family is used to organise the smooth ladder, and its termination is new.
 - **Hoang–Radosz, ARMA 2017.** Time-dependent cusp or needle formation in a CCF-inspired equation. This is a related phenomenon in a different object.
-- **Classical spirals of branches approaching singular solutions:** Joseph–Lundgren 1973 (the Gelfand problem) and Emden–Fowler-type problems.
+- **Classical spirals of branches approaching singular solutions (with infinitely many folds; here λ stays monotone and only p oscillates):** Joseph–Lundgren 1973 (the Gelfand problem) and Emden–Fowler-type problems.
   - Difference: here the operator is nonlocal (Hilbert transform), and the exponent equation τ tanh(πτ/2) = 1/2 is new.
 
 ## H. Novelty claim
 1. First global solution-branch picture of CCF self-similar blow-up. All known smooth profiles are the p = 2 crossings of one connected branch, and the instability order equals the crossing order.
 2. First identification of how the branch terminates: a self-similar profile with an interior square-root cusp, fixed by B² = 2λΘ_s. Its universal inner layer predicts the layer-width constant.
-3. A derived universal law for the approach to the cusp: a log-periodic spiral with τ tanh(πτ/2) = 1/2, confirmed numerically to 1 %.
+3. A derived universal law for the approach to the cusp: a log-periodic oscillation with τ tanh(πτ/2) = 1/2, confirmed numerically to 1 %.
 4. A negative answer, for the principal branch, to the open question whether a third unstable CCF profile exists. The ladder is finite, with exactly three members.
 5. A classical, ML-free numerical method that resolves sharp-layer self-similar profiles to 12 digits in seconds on a single CPU core. It follows the branch to sonic depths δ ~ 1e−5, where the layer width is 1e−9.
 
@@ -193,7 +193,7 @@ origin. Smooth (analytic) profiles are exactly the points where p = 2.
 | w/δ² constant (cusp scaling) | 9.052 … 9.099 over δ ∈ [8e−5, 1e−2] |
 | B² = 2λΘ_s (predicted k = 0.72575) | measured 0.7182–0.7192 (1 %, O(δ/√x) corrections) |
 | ln Θ jump coefficient 2λ/k = 1.2502 | measured 1.243–1.247 |
-| Spiral frequency 2τ = 1.2988 | free fits 1.286–1.302 (p and λ, δ ≤ 3e−3) |
+| Oscillation frequency 2τ = 1.2988 | free fits 1.286–1.302 (p and λ, δ ≤ 3e−3) |
 | Layer-width constant (universal inner problem, f''(0) = 0.08900) | predicted 9.00–9.17 vs computed 9.098 |
 | Operator accuracy on extreme grids (h_c down to 1e−11) | ‖Hm·Ψ − exact‖ ≤ 1.4e−14 |
 | Large-λ end | p monotone decreasing, no crossing, up to λ = 7.85 (arclength, domain-converged) |
@@ -207,7 +207,7 @@ origin. Smooth (analytic) profiles are exactly the points where p = 2.
   - the sonic-point singularity is Θ − Θ_s ∝ sgn(x)|x|^{(1+s)/2};
   - the linearisation is u' = −(a/c_s(a)) HΛ^s[u]/|x|^{1−s}, with a = (1+s)/2;
   - its odd roots are σ = s/2 ± iτ(s), with τ = 0.6494, 0.7046, 0.7594, 0.7872 at s = 0, 0.2, 0.5, 0.8;
-  - so the spiral has log-frequency ω(s) = 2τ(s)/(1−s) and amplitude ∝ δ^{1/(1−s)};
+  - so the oscillation has log-frequency ω(s) = 2τ(s)/(1−s) and amplitude ∝ δ^{1/(1−s)};
   - the s = 0 case is the CCF result above.
 - **Two ladder mechanisms.**
   - Vanishing order: gCLM/CLM, where q = 1/c_l is monotone (R013). The ladder can be infinite.
@@ -255,7 +255,7 @@ origin. Smooth (analytic) profiles are exactly the points where p = 2.
 ## P. Figures
 - **Fig. 1 (`fig_ladder.png`)**:
   - (a) the whole branch, p(λ), with the three smooth profiles and the cusp end;
-  - (b) the spiral end in the (λ, p) plane;
+  - (b) the oscillating end in the (λ, p) plane;
   - (c) p(δ) with the log-periodic asymptotic law;
   - (d) the square-root cusp of den.
 - **Fig. 2 (`fig_profiles.png`)**: the profiles Θ(ξ) of λ₀, λ₁ and λ₂, and the near-cusp profile.
@@ -277,8 +277,8 @@ branch of self-similar solutions through the smoothness condition p = 2 on the l
 the instability order equals the crossing order. Beyond the second unstable profile, the branch develops a
 self-induced sonic layer and terminates at a profile with an interior square-root cusp. We derive that the
 linearisation about this cusp reduces to a universal Hilbert-transform operator, whose imaginary exponents
-±iτ, τ tanh(πτ/2) = 1/2, predict a log-periodic spiral of the branch; this is confirmed numerically to 1%.
-Because the spiral centre has p* = 2.00577 > 2, no third unstable profile exists on the branch.
+±iτ, τ tanh(πτ/2) = 1/2, predict a log-periodic oscillation of the branch; this is confirmed numerically to 1%.
+Because the oscillation centre has p* = 2.00577 > 2, no third unstable profile exists on the branch.
 
 ## S. Outline (Nature Computational Science Article format)
 1. **Introduction.** Unstable singularities, the PINN discovery pipeline, empirical ladders, and the open CCF question.
@@ -286,7 +286,7 @@ Because the spiral centre has p* = 2.00577 > 2, no third unstable profile exists
    - 2.1 One branch, three smooth profiles (Fig. 1a, profiles in Fig. 2);
    - 2.2 Instability order = crossing order (Fig. 3);
    - 2.3 The sonic layer and the terminal cusp (Fig. 1d, B² = 2λΘ_s, w ∝ δ²);
-   - 2.4 Universal log-periodic spiral (derivation, Fig. 1b,c);
+   - 2.4 Universal log-periodic approach (derivation, Fig. 1b,c);
    - 2.5 Consequences: no λ₃, capped dissipative thresholds, and why ML searches struggled (layers of width 1e−6 to 1e−9 at the cusp end).
 3. **Discussion.** Two ladder mechanisms (vanishing order vs sonic layer); how to predict ladder length; classical vs ML discovery; outlook (fractional family, IPM and Boussinesq reductions, computer-assisted proof).
 4. **Methods.** Log-variable Mellin formulation; integral form; geometric grids and the alternating-point rule; layer pinning; stability; error control.

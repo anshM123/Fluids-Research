@@ -1,4 +1,10 @@
-# ACTIVE PORTFOLIO & COMPUTE ALLOCATION  (v1, 2026-09-28, after literature death audit A–G)
+# ACTIVE PORTFOLIO & COMPUTE ALLOCATION  (v2, 2026-09-28, final state; v1 after literature death audit A–G)
+
+**Final status:** P02 → VERIFIED main result (dossier/DOSSIER.md): the CCF self-similar branch carries exactly three smooth
+profiles (λ₀, λ₁, λ₂) and terminates at a square-root cusp (λ* = 0.4535845, p* = 2.005772) approached with
+log-periodic oscillations of universal frequency 2τ, τ tanh(πτ/2) = ½ — no λ₃ on the branch. P05 remains the
+strongest backup (3 Re points). Other Tier B/C programs were not run (compute concentrated on P02 verification).
+
 
 Budget accounting: 4 cores. "CPU-h" = core-hours. Reconnaissance phase target ≤ 15% of effort.
 
