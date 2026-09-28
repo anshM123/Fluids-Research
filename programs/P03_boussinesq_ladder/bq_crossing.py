@@ -28,12 +28,27 @@ def solve(lam, Yg, from_grid=None):
 gin = lambda lam: BQLogPolar(lam, hs=hsi, Nb=nbi)
 Ya, ma = solve(la, np.load(fa), gin(la))
 Yb, mb = solve(lb, np.load(fb), gin(lb))
-for it in range(8):
-    lc = lb + (2 - mb) * (lb - la) / (mb - ma)
-    Yc = Yb + (Yb - Ya) * (lc - lb) / (lb - la)
-    Yc, mc = solve(lc, Yc)
-    la, ma, Ya, lb, mb, Yb = lb, mb, Yb, lc, mc, Yc
-    if abs(mc - 2) < 1e-10:
+bracket = (ma - 2) * (mb - 2) < 0
+states = {la: Ya, lb: Yb}
+for it in range(12):
+    if bracket:                                   # Illinois (safeguarded regula falsi)
+        lc = lb - (mb - 2) * (lb - la) / (mb - ma)
+        Yg = states[la] + (states[lb] - states[la]) * (lc - la) / (lb - la)
+        Yc, mc = solve(lc, Yg)
+        if (mc - 2) * (mb - 2) < 0:
+            la, ma = lb, mb
+        else:
+            ma = 2 + (ma - 2) / 2
+        states[lc] = Yc
+        lb, mb = lc, mc
+        states = {la: states[la], lb: states[lb]}
+    else:
+        lc = lb + (2 - mb) * (lb - la) / (mb - ma)
+        Yc = Yb + (Yb - Ya) * (lc - lb) / (lb - la)
+        Yc, mc = solve(lc, Yc)
+        la, ma, Ya, lb, mb, Yb = lb, mb, Yb, lc, mc, Yc
+    if abs(mc - 2) < 1e-12:
         break
+Yb = states[lb] if bracket else Yb
 print(f"CROSSING {tag}: λ = {lb:.10f} (m−2 = {mb-2:+.2e})", flush=True)
 np.save(f"Ycross_{tag}_lam{lb:.6f}.npy", Yb)

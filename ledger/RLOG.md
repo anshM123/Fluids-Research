@@ -176,3 +176,26 @@ Costs are wall-clock on the 4-core container (CPU-h = cores × hours).
 - **Final dense data (E complete, δ → 6.9e−6; 59 points):** extrema of p: max 2.013429 (δ 1.51e−2), min 2.004945 (1.68e−3),
   max 2.005840 (1.46e−4), min 2.005765 (1.34e−5); spacing ratios 11.52, 10.88 (B-term alternation predicted 11.53/10.95;
   mean 11.23). Free-ω fits 1.2983–1.3009; (p−p*)/δ and (λ−λ*)/δ are pure sinusoids in ln δ over 3.4 decades (fig_ladder.png c).
+
+### R023 — P03: classical solver for 2D Boussinesq self-similar profiles (log-polar Newton–Krylov)
+- Formulation: exact stagnation-point structure factored out (Θ = cos^m β Θ̂), march in s = ln r from the local solution,
+  spectral Biot–Savart, unknown X = Ψ/r². Two numerical pitfalls removed: FFT-derivative Gibbs contamination of the Jacobian
+  (Newton directions non-decaying in s) and roundoff-level Jacobian-vector products (central differences with scaled
+  perturbations) → quadratic Newton convergence to 1e-13. Implicit Gauss–Legendre march near the origin (stiff as λ → 1).
+- λ₀ = 1.9205593 (stable; DeepMind/Chen–Hou 1.9205). Status: VERIFIED (Nb 32/48, hs 0.025/0.0125, s_start −12/−20, s_max 100/130).
+
+### R024 — P03: the branch m(λ) and the ladder
+- m(λ) has a maximum 2.0740 at λ ≈ 1.67, then oscillates about 2 with crossings λ₁ = 1.3990961, λ₂ = 1.2523487 (Nb 32/48 agree
+  to 1e-7), λ₃ ≈ 1.184, λ₄ ≈ 1.146, λ₅ ≈ 1.118 (coarse scan; refinement running). Extrema of m − 2: +7.41e-2, −6.80e-3, +7.24e-4,
+  −8.34e-5 (ratios 10.9, 9.4, 8.7). Crossings equally spaced in z = 1/(λ−1) (1.419, 1.457, 1.467, …).
+- Resolution at λ = 1.15: hs 0.025 → 0.0125 changes m by 7e-11; Nb 32 → 48 by 1.3e-10.
+- For λ > λ₀, m decreases monotonically (1.34 at λ = 4.1): no further crossings.
+
+### R025 — P03: Hou–Luo proxy and WKB theory
+- `hl_solver.py`: 1D Hou–Luo self-similar branch (same local condition). λ₀^HL = 1.99871, λ₁^HL = 1.44767, λ₂^HL = 1.28676,
+  λ₃^HL = 1.21092, λ₄^HL = 1.16668, … (8+ crossings); spacing in z → 1.2634–1.2653; extrema ratios 6.7 → 4.55.
+- Structure as λ → 1: quasi-stagnant boundary region (D = O(ε)) up to a front at x ≈ 0.55 whose width shrinks ∝ ε.
+- WKB theory (THEORY.md): complex local wavenumber; spacing Δz = π/(m Re a), a = lim ε∫κ ds. HL: a ≈ 1.238 − 0.506i →
+  Δz = 1.269 (observed 1.264, 0.4 %); phase per crossing 3.08–3.11 (π). 2D: εΦ = 1.139−0.568i (z 2.5), 1.087−0.577i (z 4),
+  1.054−0.588i (z 6.7) → local spacing predictions 1.38–1.49 vs observed 1.42–1.47. Decay per half period larger than
+  e^{π|Im a|/Re a}; consistent with an algebraic prefactor ∝ z^{−1.5}.

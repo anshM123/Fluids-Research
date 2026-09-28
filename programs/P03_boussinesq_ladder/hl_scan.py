@@ -7,7 +7,10 @@ lam0, lam1, dz, tag = float(sys.argv[1]), float(sys.argv[2]), float(sys.argv[3])
 N = int(sys.argv[5]) if len(sys.argv) > 5 else 8192
 L1 = float(sys.argv[6]) if len(sys.argv) > 6 else 40.0
 L2 = float(sys.argv[7]) if len(sys.argv) > 7 else 160.0
-start = sys.argv[8] if len(sys.argv) > 8 else None      # optional start state (any N; interpolated)
+start = sys.argv[8] if len(sys.argv) > 8 and sys.argv[8] != '-' else None      # optional start state (interpolated)
+eta_start = float(sys.argv[9]) if len(sys.argv) > 9 else -30.0
+sL1 = float(sys.argv[10]) if len(sys.argv) > 10 else 40.0        # domain of the start state
+sL2 = float(sys.argv[11]) if len(sys.argv) > 11 else 160.0
 log = open(f"hl_scan_{tag}.log", "a")
 def out(s):
     print(s, flush=True); log.write(s + "\n"); log.flush()
@@ -15,14 +18,14 @@ out(f"# HL scan {tag}: {lam0} -> {lam1}, dz={dz}, N={N}, L1={L1}, L2={L2}")
 acc, rows, t0 = [], [], time.time()
 lam = lam0; fac = 1.0
 while (lam >= lam1 - 1e-12) if (dz > 0 or lam1 < lam0) else (lam <= lam1 + 1e-12):
-    S = HL(lam, L1=L1, L2=L2, N=N)
+    S = HL(lam, L1=L1, L2=L2, N=N, eta_start=eta_start)
     if len(acc) >= 2:
         (la, qa), (lb, qb) = acc[-2], acc[-1]
         qg = qb + (qb - qa) * (lam - lb) / (lb - la)
     elif acc:
         qg = acc[-1][1]
     elif start is not None:
-        q8 = np.load(start); S8 = HL(lam, N=len(q8), L1=L1, L2=L2)
+        q8 = np.load(start); S8 = HL(lam, N=len(q8), L1=sL1, L2=sL2)
         qg = np.interp(S.eta, S8.eta, q8)
     else:
         qg = S.guess((3 + lam) / 2)
@@ -39,6 +42,7 @@ while (lam >= lam1 - 1e-12) if (dz > 0 or lam1 < lam0) else (lam <= lam1 + 1e-12
     rows.append((lam, info['A'], info['m'], info['Dmin']))
     np.save(f"hl_scan_{tag}.npy", np.array(rows))
     out(f"λ={lam:.8f} z={1/(lam-1):.5f}: A={info['A']:.12f} m={info['m']:.12f} (m−2={info['m']-2:+.5e}) Dmin/ε={info['Dmin']/info['eps']:.5f} t={time.time()-t0:.0f}s")
+    np.save(f"hl_q_{tag}_last.npy", q)
     if len(rows) > 1 and (rows[-2][2] - 2) * (rows[-1][2] - 2) < 0:
         out(f"*** m=2 CROSSING between λ={rows[-2][0]:.8f} and {rows[-1][0]:.8f}")
     if len(rows) % 10 == 0:

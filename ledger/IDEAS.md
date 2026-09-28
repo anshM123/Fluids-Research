@@ -128,3 +128,8 @@ Each entry: **question** → *positive target* · cheapest decisive test.
 - **IDEA116** Computer-assisted proof (interval Newton–Kantorovich) of the λ₂ profile using the integral formulation + alternating-point quadrature error bounds. → PAUSED (next step for rigour).
 - **IDEA117** Universal inner-layer problem f(X) = 1 + ½(H[F](X) − H[F](0)), F' = 1/f (fixes w/δ² ≈ 9.1 and the matching constants of the cusp spiral).
 - **IDEA118** Cusp exponent family for fractional velocities HΛ^s: sonic-point singularity |x|^{(1+s)/2}, τ(s) from the Mellin symbol — test with the pinned method.
+
+### Third-generation ideas (P03, 2D Boussinesq ladder)
+- **IDEA119** The 2D Boussinesq (Hou–Luo scenario) ladder as level crossings m(λ) = 2 of ONE least-singular branch, computed with a classical log-polar Newton–Krylov solver (no PINN). → **ACTIVE / VERIFIED for λ₀–λ₂** (R023–R025): λ₀ = 1.9205593, λ₁ = 1.3990961, λ₂ = 1.2523487 (Nb/hs converged to 1e-7), λ₃ ≈ 1.184, λ₄ ≈ 1.146, λ₅ ≈ 1.118 (new).
+- **IDEA120** Hou–Luo 1D boundary model as a cheap proxy: same local smoothness condition (m = 2 ⇔ A = (3+λ)/2), same oscillating branch; 8+ smooth profiles accumulating at λ = 1 (spacing in 1/(λ−1) → 1.264). → ACTIVE (R025).
+- **IDEA121** WKB quantisation of the quasi-stagnant boundary region as λ → 1 (D = V₁/x = O(ε), ε = 1+λ−A): complex local wavenumber (HL closed form iD̂κ² + κ − Ω/D̂ = 0; 2D vertical eigenproblem); smooth profiles ⇔ Re[K e^{iΦ}] = 0, Φ = ε⁻¹∫κ ds ⇒ 1/(λ_n−1) linear in n (explains the DeepMind empirical law) and exponentially decaying smoothness defect. → ACTIVE: spacing predicted to 0.4 % (HL); 2D to a few % (R025).
