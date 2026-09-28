@@ -54,3 +54,11 @@ Costs are wall-clock on the 4-core container (CPU-h = cores × hours).
   - Beyond λ₃ the branch approaches a sonic limit (min(1+λ+G) → 0) while λ oscillates over [0.38, 1.95].
 - **Interpretation:** stable + 1st + 2nd unstable profiles are p=2 points of one connected family; the ladder is non-monotone in λ (λ₃ > λ₂) — explains why searches below λ₂ (arXiv:2511.22819) found nothing. Increasingly thin internal sonic layers explain the difficulty of PINN approaches.
 - **Cost:** ≈4 CPU-h · **Status:** DISCOVERY (λ₃ pending high-resolution confirmation)
+
+### R008 — P02: converged values with an adaptive (mapped) spectral solver
+- **Computation:** new solver `ccf_mapped.py`: grid map η=g(s) clustering points in the internal sonic layer; Hilbert convolution by Sidi–Israeli alternating-point rule (spectral for p.v. kernels, dense N≈5–8k); 8th-order cumulative quadrature in s. Validation vs FFT solver: λ₀ identical to 13 digits; λ₁ 8th-order convergence.
+- **Result (all digits stable under h_s, ε, L₁∈{30,45}, L₂∈{120,170}, weight c∈{0.62,…,0.78}):**
+  - λ₀ = 1.180777662899 (β₀ = 0.5414479811; lit. γ=0.5414465 "6 digits" → lit. error ≈1.5e−6)
+  - λ₁ = 0.60573370 (lit. 0.6057)
+  - **λ₂ = 0.471324227767** (lit. 0.4703 from Wang et al. 2025; later scan in arXiv:2511.22819 used upper limit 0.4713). Three different uniform-grid candidates (0.47036, 0.47124, 0.47188) all converge to this single value → earlier scatter = under-resolution of a layer of width ≈0.009 in η.
+- **Cost:** ≈1 CPU-h · **Status:** VERIFIED (λ₀, λ₂ to 12 digits)

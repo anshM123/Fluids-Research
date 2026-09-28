@@ -7,9 +7,18 @@ from scipy.sparse.linalg import LinearOperator, gmres
 
 def run(N=16384, c=0.7, L1=30.0, L2=120.0, nsteps=1500, ptarget=2.0, dsmax=0.1, tag="run", lam_start=0.6, direction=-1.0):
     S = CCFNK(L1, L2, N, c)
-    phi = S.guess(lam_start, 2.0)
-    phi, ok = S.picard(phi, lam_start, tol=1e-6)
+    if N > 16384:
+        # initialise by interpolating a converged coarse solution (Picard is slow at large N)
+        S0 = CCFNK(L1, L2, 16384, c)
+        p0 = S0.guess(lam_start, 2.0)
+        p0, ok = S0.picard(p0, lam_start, tol=1e-6)
+        p0, ok = S0.solve_fixed(p0, lam_start)
+        phi = np.interp(S.eta, S0.eta, p0)
+    else:
+        phi = S.guess(lam_start, 2.0)
+        phi, ok = S.picard(phi, lam_start, tol=1e-6)
     phi, ok = S.solve_fixed(phi, lam_start)
+    print("init ok", ok, flush=True)
     phi0 = S.normval(phi, lam_start)
     lam = lam_start
     w = (np.abs(S.eta) < 10.0) * S.h / 20.0

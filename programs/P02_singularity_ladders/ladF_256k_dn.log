@@ -1,0 +1,6 @@
+init ok True
+step 0: lam=0.5960508332 p=1.9852941718 min_den=1.457e-01 eta_min=-1.420 dlam/ds=-0.1964 ds=2.00e-02 t=4s
+step 10: lam=0.5565415223 p=1.9368416722 min_den=1.112e-01 eta_min=-1.280 dlam/ds=-0.2079 ds=9.80e-03 t=96s
+step 20: lam=0.5452523079 p=1.9292338139 min_den=1.011e-01 eta_min=-1.240 dlam/ds=-0.2298 ds=2.40e-03 t=263s
+step 30: lam=0.5425625009 p=1.9280177541 min_den=9.871e-02 eta_min=-1.231 dlam/ds=-0.2372 ds=8.40e-04 t=410s
+step 40: lam=0.5424476545 p=1.9279713885 min_den=9.861e-02 eta_min=-1.230 dlam/ds=-0.2376 ds=8.04e-07 t=661s

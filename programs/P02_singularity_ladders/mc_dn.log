@@ -1,0 +1,6 @@
+start: lam=0.471324227698 ok=True N=5132 eps=1.513e-02 layer at -0.997 w=9.08e-03 min_den=3.058e-02
+step 0: lam=0.4699371464 p=2.0023503687 min_den=2.889e-02 layer=-0.9933 w=7.89e-03 h_loc=4.5e-04 dlam/ds=-0.1383 ds=1.00e-02 N=5132 t=6s
+step 5: lam=0.4676838673 p=2.0058839755 min_den=2.640e-02 layer=-0.9869 w=6.65e-03 h_loc=4.5e-04 dlam/ds=-0.1384 ds=2.11e-03 N=5132 t=26s
+step 10: lam=0.4658114979 p=2.0084758662 min_den=2.437e-02 layer=-0.9817 w=5.84e-03 h_loc=4.5e-04 dlam/ds=-0.1387 ds=3.02e-03 N=5132 t=46s
+   regrid: layer -0.9796 w=5.38e-03 -> eps=8.96e-03 N=5134 resolve_ok=True
+step 15: lam=0.4641671535 p=2.0104149789 min_den=2.208e-02 layer=-0.9781 w=4.61e-03 h_loc=2.7e-04 dlam/ds=-0.1442 ds=2.55e-03 N=5134 t=78s

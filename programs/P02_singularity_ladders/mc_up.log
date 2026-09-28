@@ -1,0 +1,8 @@
+start: lam=0.471324227698 ok=True N=5132 eps=1.513e-02 layer at -0.997 w=9.08e-03 min_den=3.058e-02
+*** CROSSING 1: lam=0.471324227698 ok=True min_den=3.039e-02 w=8.80e-03 (λ 0.471324→0.472022, p 2.000000→1.998777) N=5132 eps=1.51e-02
+step 0: lam=0.4720218746 p=1.9987771623 min_den=3.116e-02 layer=-0.9998 w=9.32e-03 h_loc=4.5e-04 dlam/ds=+0.1399 ds=5.00e-03 N=5132 t=5s
+step 5: lam=0.4772697576 p=1.9889932984 min_den=3.703e-02 layer=-1.0163 w=1.38e-02 h_loc=4.5e-04 dlam/ds=+0.1498 ds=8.45e-03 N=5132 t=19s
+   regrid: layer -1.0276 w=1.66e-02 -> eps=2.77e-02 N=5130 resolve_ok=True
+step 10: lam=0.4849434497 p=1.9741047600 min_den=4.464e-02 layer=-1.0389 w=1.95e-02 h_loc=8.3e-04 dlam/ds=+0.1779 ds=1.10e-02 N=5130 t=44s
+   regrid: layer -1.0597 w=2.59e-02 -> eps=4.31e-02 N=5128 resolve_ok=True
+step 15: lam=0.4973614998 p=1.9523533151 min_den=5.687e-02 layer=-1.0799 w=3.26e-02 h_loc=1.3e-03 dlam/ds=+0.2617 ds=1.43e-02 N=5128 t=71s
