@@ -89,17 +89,20 @@ stagnation point to the front (first point beyond the dip with D/ε > 3).
 | n | λ_n | z_n = 1/(λ_n−1) | spacing | εΦ (to the front) | Re Φ = 2z εΦ | ΔRe Φ |
 |---|---|---|---|---|---|---|
 | 0 | 1.9205593 | 1.08630 | — | 1.2271 − 0.4984i | 2.666 | — |
-| 1 | 1.3990960 | 2.50566 | 1.41937 | 1.0793 − 0.5443i | 5.409 | 2.743 |
-| 2 | 1.2523486 | 3.96278 | 1.45711 | 1.0586 − 0.5612i | 8.390 | 2.981 |
+| 1 | 1.3990961 | 2.50566 | 1.41937 | 1.0793 − 0.5443i | 5.409 | 2.743 |
+| 2 | 1.2523487 | 3.96277 | 1.45711 | 1.0586 − 0.5612i | 8.390 | 2.981 |
 | 3 | 1.1842533 | 5.42733 | 1.46455 | 1.0521 − 0.5722i | 11.420 | 3.030 |
-| 4 | 1.1449864 | 6.89718 | 1.46985 | 1.0505 − 0.5809i | 14.492 | 3.072 |
-| 5 | 1.1194818 | 8.37040 | 1.47322 | 1.0516 − 0.5883i | 17.602 | 3.110 |
-| 6 | 1.1015235 | 9.84999 | 1.47959 | | | |
+| 4 | 1.1449857 | 6.89723 | 1.46991 | 1.0505 − 0.5809i | 14.490 | 3.070 |
+| 5 | 1.1194738 | 8.37004 | 1.47281 | 1.0491 − 0.5866i | 17.562 | 3.071 |
+| 6 | 1.1015817 | 9.84429 | 1.47426 | 1.0502 − 0.5924i | 20.677 | 3.115 |
+| 7 | 1.0883384 | 11.32010 | 1.47581 | 1.0511 − 0.5970i | 23.797 | 3.121 |
 
-- The phase gained between consecutive smooth profiles, 2.98, 3.03, 3.07, 3.11, tends to π. This is the
+(λ₄–λ₇ at hs = 0.0125, the rest at hs = 0.025; λ₁ converged in Nb 32/48/64 to 1e-9.)
+
+- The phase gained between consecutive smooth profiles, 2.98, 3.03, 3.07, 3.07, 3.115, 3.12, tends to π. This is the
   quantisation condition Re Φ(λ_n) = Φ₀ + nπ.
-- εΦ levels off at a ≈ 1.05 − 0.6i, so the asymptotic spacing is Δz = π/(2 Re a) ≈ 1.50. The observed spacings
-  (1.457 → 1.480) increase towards it.
+- εΦ levels off at a ≈ 1.05 − 0.6i (Re εΦ = 1.0505, 1.0491, 1.0502, 1.0511 for n = 4–7), so the asymptotic
+  spacing is Δz = π/(2 Re a) ≈ 1.50. The observed spacings (1.457 → 1.4758) increase monotonically towards it.
 - The two-point law of Wang et al. (slope 1.4187, the line through λ₀ and λ₁) therefore underestimates the
   asymptotic slope by about 5 %.
 

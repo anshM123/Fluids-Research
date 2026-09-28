@@ -2,7 +2,7 @@
 
 **Leading result (P03, see `dossier/P03_DOSSIER.md`):** *The self-similar blow-up ladder of the 2D Boussinesq
 equations with boundary (the Hou–Luo scenario for 3D Euler) is infinite.*
-- Seven smooth profiles (λ₀ … λ₆) were computed with a classical solver. All lie on one branch, and they are the
+- Eight smooth profiles (λ₀ … λ₇) were computed with a classical solver. All lie on one branch, and they are the
   zeros of m(λ) − 2.
 - As λ → 1 a quasi-stagnant boundary region forms, bounded by a front that becomes a square-root cusp.
 - The smoothness condition reduces to a WKB quantisation: the phase gained between consecutive profiles → π,

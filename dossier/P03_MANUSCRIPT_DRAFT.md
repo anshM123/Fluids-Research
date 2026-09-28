@@ -10,7 +10,7 @@ which found four smooth profiles whose blow-up rates λ_n follow an empirical la
 Here we show with a classical, neural-network-free continuation method that:
 - all these profiles lie on a single continuous branch of least-singular self-similar solutions, and are the
   zeros of one scalar smoothness function;
-- the branch carries at least eight smooth profiles (λ₀ = 1.9205593 … λ₇ = 1.0890078), four more than
+- the branch carries at least eight smooth profiles (λ₀ = 1.9205593 … λ₇ = 1.0883384), four more than
   previously known.
 
 As λ → 1, the profiles develop a quasi-stagnant boundary layer, bounded by a front that tends to a
@@ -49,8 +49,8 @@ when unstable-singularity ladders terminate.
 ## 4. WKB quantisation
 - Local problem: perturbations exp(i∫κ ds/ε) with vertical scale εx satisfy a transport–Biot–Savart
   eigenproblem. The Hou–Luo analogue has the closed form iD̂κ² + κ − Ω/D̂ = 0.
-- Quantisation: Re Φ(λ_n) = Φ₀ + nπ with Φ = ε⁻¹∫κ ds. Verified: ΔRe Φ = 2.98, 3.03, 3.07, 3.11 (2D) and
-  3.02–3.09 (Hou–Luo).
+- Quantisation: Re Φ(λ_n) = Φ₀ + nπ with Φ = ε⁻¹∫κ ds. Verified: ΔRe Φ = 2.98, 3.03, 3.07, 3.07, 3.115, 3.12
+  (2D) and 3.02–3.09 (Hou–Luo).
 - Consequences:
   - 1/(λ_n − 1) ≈ z_* + n π/(2 Re a);
   - smoothness defect m − 2 ≈ C(λ−1)^{3/2} e^{−Im Φ} cos(Re Φ + φ₀), with the exponent from the Hou–Luo fit
@@ -81,9 +81,9 @@ when unstable-singularity ladders terminate.
 |---|---|---|
 | 0 | 1.9205593 | 1.08630 |
 | 1 | 1.3990961 | 2.50566 |
-| 2 | 1.2523487 | 3.96278 |
+| 2 | 1.2523487 | 3.96277 |
 | 3 | 1.1842533 | 5.42733 |
-| 4 | 1.1449864 | 6.89718 |
-| 5 | 1.1194818 | 8.37040 |
-| 6 | 1.1015235 | 9.84999 |
-| 7 | 1.0890078 | 11.2350 |
+| 4 | 1.1449857 | 6.89723 |
+| 5 | 1.1194738 | 8.37004 |
+| 6 | 1.1015817 | 9.84429 |
+| 7 | 1.0883384 | 11.32010 |

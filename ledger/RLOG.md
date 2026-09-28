@@ -210,3 +210,12 @@ Costs are wall-clock on the 4-core container (CPU-h = cores × hours).
 - λ → 1 structure: front at x_c ≈ 0.72 (2D) / 0.61 (HL) becomes a square-root cusp D ≈ k(x−x_c)^{1/2} on the outer side;
   the dip closes only as ε → 0 (D̂_min ∝ ε^{0.18} in 2D, ε^{0.35} in HL; no sonic point down to λ = 1.075 (2D) / 1.04 (HL)).
 - Caveat: DeepMind's tabulated λ₂, λ₃ not accessible; our values are 2.5e-3/2.9e-3 below their two-point law.
+
+### R027 — P03: converged ladder table (hs = 0.0125 for the deep crossings; Nb 64 for λ₁)
+- λ₁: Nb 32/48/64 = 1.39909599 / 1.39909609 / 1.39909609 (angular convergence to 4e-10).
+- hs 0.025 → 0.0125 shifts: λ₄ −7e-7, λ₅ −8e-6, λ₆ +6e-5, λ₇ −7e-4 (the front sharpens as λ → 1).
+  Refined: λ₄ = 1.1449857, λ₅ = 1.1194738, λ₆ = 1.1015817, λ₇ = 1.0883384.
+- Spacings in z: 1.41937, 1.45711, 1.46455, 1.46991, 1.47281, 1.47426, 1.47581 (monotone, → WKB value ≈ 1.50).
+- WKB phase per interval (to the front): 2.743, 2.981, 3.030, 3.070, 3.071, 3.115, 3.121 → π; Re εΦ = 1.050 ± 0.001 for n = 4–7.
+- HL dip D̂_min ∝ ε^{0.34} down to ε = 0.0142 (z = 35–40): no termination.
+- Status: VERIFIED (λ₀–λ₅); λ₆–λ₇ converged at hs 0.0125 (hs 0.00625 check of λ₆ running).

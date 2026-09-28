@@ -8,7 +8,9 @@ from bq_local_eig import local_root, hl_root
 
 def boundary_params(f):
     lam = float(re.search(r'lam([0-9.]+?)(?:_|\.npy)', f).group(1))
-    B = BQ(lam); Y = np.load(f); X = full(B, Y)
+    mNb = re.search(r'Nb(\d+)_hs([0-9.]+?)_', f)
+    Nb, hs = (int(mNb.group(1)), float(mNb.group(2))) if mNb else (32, 0.025)
+    B = BQ(lam, Nb=Nb, hs=hs); Y = np.load(f); X = full(B, Y)
     r = B.march(X / B.ea2[:, None], return_all=True)
     m, A = r['m'], r['A']; eps = 1 + lam - A
     s = B.s

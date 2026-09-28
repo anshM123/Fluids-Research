@@ -24,12 +24,15 @@ def crossings(D):
 
 
 refined = {}
-for f in glob.glob("cross_l*_nb32.log"):
+for f in sorted(glob.glob("cross_l*_nb32.log")) + sorted(glob.glob("cross_l*_hs0125.log")):
     for line in open(f):
-        mm = re.search(r"CROSSING Nb32_hs0.025_ss-20.0_sm100.0: λ = ([0-9.]+)", line)
+        mm = re.search(r"CROSSING Nb32_hs(0.025|0.0125)_ss-20.0_sm100.0: λ = ([0-9.]+)", line)
         if mm:
-            refined[int(re.search(r"cross_l(\d)", f).group(1))] = float(mm.group(1))
-Bq = load_scans("scan2_*.npy")
+            n = int(re.search(r"cross_l(\d)", f).group(1))
+            # hs = 0.0125 values supersede hs = 0.025 values (the deep crossings are hs-sensitive)
+            if mm.group(1) == "0.0125" or n not in refined:
+                refined[n] = float(mm.group(2))
+Bq = load_scans("scan2_[ABC].npy")
 H = load_scans("hl_scan_E.npy")
 Hd = load_scans("hl_scan_D.npy")
 fig, ax = plt.subplots(2, 2, figsize=(13, 9.5))

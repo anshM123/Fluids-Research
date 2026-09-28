@@ -1,6 +1,6 @@
 # DOSSIER P03 — The infinite ladder of self-similar blow-ups of the 2D Boussinesq equations
 
-**Result.** Seven smooth self-similar blow-up profiles of 2D Boussinesq with boundary (the Hou–Luo scenario of
+**Result.** Eight smooth self-similar blow-up profiles of 2D Boussinesq with boundary (the Hou–Luo scenario of
 3D axisymmetric Euler) were computed with a classical solver. All of them lie on **one continuous branch** of
 least-singular profiles; the smooth ones are the zeros of a single scalar function m(λ) − 2.
 - λ₀ is the known stable profile; λ₁, λ₂, λ₃ (and presumably λ₄) correspond to the unstable profiles found with
@@ -44,21 +44,24 @@ numerical confirmation), PRELIMINARY.
 - **Cost.** One solve takes 20–60 s on one core (Ns × Nb = 8800 × 33 unknowns). No GPU and no neural network.
 
 ## 3. Results
-### 3.1 The ladder (VERIFIED for n ≤ 3; n = 4–6 converged at Nb = 32, hs = 0.025, resolution check running)
+### 3.1 The ladder (λ₀–λ₃ VERIFIED in Nb/hs; λ₄–λ₇ at hs = 0.0125, hs = 0.00625 check of λ₆ running)
 | n | λ_n (this work) | z_n = 1/(λ_n − 1) | z_{n}−z_{n−1} | two-point law of Wang et al. |
 |---|---|---|---|---|
 | 0 | 1.9205593 | 1.08630 | — | 1.9206 (stable; Chen–Hou, Wang et al. 1.9205) |
 | 1 | 1.3990961 | 2.50566 | 1.41937 | 1.3992 |
-| 2 | 1.2523487 | 3.96278 | 1.45711 | 1.2549 |
+| 2 | 1.2523487 | 3.96277 | 1.45711 | 1.2549 |
 | 3 | 1.1842533 | 5.42733 | 1.46455 | 1.1872 |
-| 4 | 1.1449864 | 6.89718 | 1.46985 | 1.1479 (candidate in Wang et al.) |
-| 5 | 1.1194818 | 8.37040 | 1.47322 | 1.1223 |
-| 6 | 1.1015235 | 9.84999 | 1.47959 | 1.1042 |
+| 4 | 1.1449857 | 6.89723 | 1.46991 | 1.1479 (candidate in Wang et al.) |
+| 5 | 1.1194738 | 8.37004 | 1.47281 | 1.1223 |
+| 6 | 1.1015817 | 9.84429 | 1.47426 | 1.1042 |
+| 7 | 1.0883384 | 11.32010 | 1.47581 | 1.0908 |
 
 - **Resolution** (m at fixed λ):
-  - λ₁: Nb 32 → 48 moves λ₁ by 9.5e-8; hs 0.025 → 0.0125 by 2e-8; s_start −20 → −12 by 2e-6 (an O(e^{s_start}) effect; −20 is used).
+  - λ₁: Nb 32/48/64 give 1.39909599/1.39909609/1.39909609; hs 0.025 → 0.0125 moves it by 2e-8; s_start −20 → −12 by 2e-6 (an O(e^{s_start}) effect; −20 is used).
   - λ₂: Nb 32/48 agree to 9e-8.
   - λ = 1.15: hs change 7e-11, Nb change 1.3e-10.
+  - Deep crossings are hs-sensitive because the front sharpens: 0.025 → 0.0125 moves λ₄, λ₅, λ₆, λ₇ by
+    −7e-7, −8e-6, +6e-5, −7e-4. The table uses hs = 0.0125.
 - **Branch shape.**
   - m(λ) − 2 alternates in sign between consecutive crossings. Extrema: +7.41e-2, −6.80e-3, +7.24e-4, −8.34e-5, …
   - For λ > λ₀, m decreases monotonically (m = 1.34 at λ = 4.1), so there are no further crossings.
@@ -79,8 +82,9 @@ numerical confirmation), PRELIMINARY.
   closed form κ = (−1 + √(1+4iΩ))/(2iD̂).
 - **Quantisation.**
   - m(λ) − 2 ≈ Re[K e^{iΦ(λ)}], so Re Φ(λ_n) = Φ₀ + nπ.
-  - Computed phase gains between consecutive smooth profiles: 2.98, 3.03, 3.07, 3.11 (→ π).
-  - εΦ → a ≈ 1.05 − 0.6i, so the asymptotic spacing is π/(2 Re a) ≈ 1.50. The observed spacings are 1.457 → 1.480.
+  - Computed phase gains between consecutive smooth profiles: 2.98, 3.03, 3.07, 3.07, 3.115, 3.12 (→ π).
+  - εΦ → a ≈ 1.05 − 0.6i, so the asymptotic spacing is π/(2 Re a) ≈ 1.50. The observed spacings increase
+    monotonically, 1.457 → 1.4758.
 - **Amplitude.** The oscillation amplitude decays like e^{−Im Φ} times an algebraic factor (≈ z^{−1.4}).
 
 ### 3.4 Cross-check: Hou–Luo boundary model (hl_solver.py; VERIFIED)
@@ -97,8 +101,8 @@ numerical confirmation), PRELIMINARY.
   - 7 computed crossings and the continuation of the branch to λ ≈ 1.08 (2D) / 1.04 (HL);
   - the WKB mechanism, whose ingredients (stagnant region, front, local eigenproblem) are verified on the
     computed profiles.
-- Deep crossings have tiny amplitudes (|m − 2| ~ 1e-6 near λ₆, ~1e-8 near λ₇). Their location relies on
-  discretisation errors ≤ 1e-10, which are checked at λ = 1.15 and being checked at λ₆.
+- Deep crossings have tiny amplitudes (|m − 2| ~ 1e-6 near λ₆, ~1e-7 near λ₇). Their existence (the sign change) is
+  robust, but their location is hs-sensitive (see 3.1). λ₇ is uncertain at about 5e-5 even at hs = 0.0125.
 - **Exact values of Wang et al.** were not accessible (arXiv blocked in this environment). The comparison uses
   their stated λ₀ and their two-point law. Our λ₂ and λ₃ lie 2.6e-3 and 2.9e-3 below the law, which is consistent
   with the law being a line through λ₀ and λ₁.
