@@ -103,3 +103,26 @@ Each entry: **question** → *positive target* · cheapest decisive test.
 - **IDEA072** Sharp enhanced-dissipation laws for shear/cellular flows.
 
 (Registry continues in literature/triage once audits return; second-generation ideas are appended as IDEA1xx.)
+
+---------------------------------------------------------------------------------------------------
+## STATUS TABLE (after audit A–G and first-generation experiments, 2026-09-28)
+
+| Idea | Status | Note |
+|---|---|---|
+| IDEA028 (+T1–T3, IDEA044) | **PROMOTED → P02 (Tier A) → DISCOVERY** | classical solver reproduces λ₀,λ₁,λ₂ of CCF to 8–12 digits; all lie on one connected branch; ladder = p(λ)=2 crossings; sonic-layer mechanism |
+| IDEA005 | ACTIVE (P05, Tier B) | merger ratio vs Re measured at Re=10³, 4×10³; 1.6×10⁴ running |
+| IDEA003 | ACTIVE-queued (P03) | shearing-frame solver not yet built |
+| IDEA066 | ACTIVE-queued (P06) | cheap maps |
+| IDEA027 | ACTIVE-queued (P07) | |
+| IDEA109 | ACTIVE-queued (P08) | novelty unverified |
+| IDEA002 | PAUSED (P04) | crowded (Modin–Viviani) |
+| IDEA016, 101, 058, 108, 104, 021, 110 | Tier C | cheap probes pending |
+| IDEA001, 008, 011, 012(as posed), 014, 017, 023, 034, 040, 048, 049, 053, 059, 061, 063, 069, 071, 072 | KILLED | see PORTFOLIO.md |
+| IDEA038, 009, 007, 037, 073, 057, 004, 041, 026, 029, 103, 047, 031, 032, 111 | PAUSED | |
+
+### Second-generation ideas spawned by P02
+- **IDEA112** Spiral/ladder structure of self-similar solution families: log-periodic approach to a sonic (dead-zone) limit; universal ratio?
+- **IDEA113** Two mechanisms for unstable-singularity ladders: degenerate vanishing order (Burgers, gCLM) vs self-induced sonic layers (CCF). Test gCLM(a), Burgers–Hilbert, fractional-velocity CCF family.
+- **IDEA114** "Number of smooth self-similar profiles" as a function of a model parameter (fractional CCF / gSQG-1D): phase diagram of ladder length.
+- **IDEA115** Classical adaptive spectral solvers vs PINNs for singular self-similar profiles: cost/accuracy benchmark (seconds on 1 core, 12 digits).
+- **IDEA116** Computer-assisted proof (interval Newton–Kantorovich) of the λ₂ profile using the integral formulation + alternating-point quadrature error bounds.

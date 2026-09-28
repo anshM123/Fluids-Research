@@ -62,3 +62,8 @@ Costs are wall-clock on the 4-core container (CPU-h = cores × hours).
   - λ₁ = 0.60573370 (lit. 0.6057)
   - **λ₂ = 0.471324227767** (lit. 0.4703 from Wang et al. 2025; later scan in arXiv:2511.22819 used upper limit 0.4713). Three different uniform-grid candidates (0.47036, 0.47124, 0.47188) all converge to this single value → earlier scatter = under-resolution of a layer of width ≈0.009 in η.
 - **Cost:** ≈1 CPU-h · **Status:** VERIFIED (λ₀, λ₂ to 12 digits)
+
+### R009 — Literature cross-check of λ₂ (second unstable CCF profile)
+- arXiv:2511.22819 (Wang–Léger–Lai–Buckmaster, "Resolving sharp gradients of unstable singularities to machine precision via neural networks", Nov 2025) reports **λ₂ = 0.47132422** (search snippet). Our classical value 0.471324227767 agrees to all 8 published digits; the earlier 0.4703 (arXiv:2509.14185) was imprecise. They required a gradient-normalised PINN loss to resolve the sharp internal layer; our adaptive spectral solver needs ≈20 s on one core.
+- Their λ₃ search window [0.455, 0.4713] "leaves a non-smooth signal at the origin" ↔ our branch has p ≈ 2.005–2.013 ≠ 2 throughout that window.
+- **Status:** VERIFIED (external agreement to 8 digits)
