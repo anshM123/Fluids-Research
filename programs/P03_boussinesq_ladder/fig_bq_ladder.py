@@ -30,7 +30,7 @@ for f in glob.glob("cross_l*_nb32.log"):
         if mm:
             refined[int(re.search(r"cross_l(\d)", f).group(1))] = float(mm.group(1))
 Bq = load_scans("scan2_*.npy")
-H = load_scans("hl_scan_[EF].npy")
+H = load_scans("hl_scan_E.npy")
 Hd = load_scans("hl_scan_D.npy")
 fig, ax = plt.subplots(2, 2, figsize=(13, 9.5))
 a = ax[0, 0]
@@ -77,7 +77,14 @@ zc_H = crossings(Hall)
 d.plot(np.arange(len(zc_H)), zc_H, 's-', color='tab:green', ms=4, label='Hou–Luo (this work)')
 nn = np.arange(0, 12)
 d.plot(nn, 1.0863 + 1.4187 * nn, 'k:', lw=0.8, label='two-point law (Wang et al.)')
-d.set_xlabel('n (instability index)'); d.set_ylabel('1/(λ_n − 1)'); d.legend(fontsize=8)
-d.set_title('(d) the ladder: 1/(λ_n − 1) vs n', fontsize=9)
+d.set_xlabel('n (instability index)'); d.set_ylabel('1/(λ_n − 1)'); d.legend(fontsize=8, loc='upper left')
+d.set_title('(d) the ladder: 1/(λ_n − 1) vs n;  inset: WKB phase gained per profile / π', fontsize=9)
+ins = d.inset_axes([0.58, 0.1, 0.38, 0.35])
+dphi_B = np.array([2.743, 2.981, 3.030, 3.072, 3.110]) / np.pi
+dphi_H = np.array([3.025, 3.052, 3.074, 3.069, 3.092, 3.094]) / np.pi
+ins.plot(np.arange(1, len(dphi_B) + 1), dphi_B, 'o-', color='tab:blue', ms=4)
+ins.plot(np.arange(3, 3 + len(dphi_H)), dphi_H, 's-', color='tab:green', ms=3)
+ins.axhline(1, color='r', lw=0.7); ins.set_ylim(0.85, 1.03); ins.tick_params(labelsize=7)
+ins.set_xlabel('interval n → n+1', fontsize=7); ins.set_ylabel('ΔReΦ/π', fontsize=7)
 plt.tight_layout(); plt.savefig('fig_bq_ladder.png', dpi=150)
 print("refined:", refined); print("HL crossings z:", np.round(zc_H, 4))
