@@ -98,7 +98,7 @@ origin. Smooth (analytic) profiles are exactly the points where p = 2.
 3. **Terminal cusp** (DERIVED + VERIFIED). As the sonic depth δ = min(1+λ+HΘ/ξ) → 0:
    - the sonic factor develops a square-root cusp, den ≈ δ + k|η−η_s|^{1/2};
    - the profile develops an interior square-root singularity Θ − Θ_s ≈ B sgn(ξ−ξ_s)|ξ−ξ_s|^{1/2};
-   - the amplitude is fixed locally by **B² = 2λΘ_s** (checked to 1 %);
+   - the amplitude is fixed locally by **B² = 2λΘ_s** (checked to 1e−4 at δ = 1.3e−6);
    - the layer width scales as **w ≈ 9.0 δ²**. The universal inner-layer problem predicts w/δ² = 4.7405/k² with no free parameter: 8.9893 against a computed 8.9908 (0.02 %, R020/R022).
 4. **Universal log-periodic approach** (DERIVED + VERIFIED). Near the cusp, the linearised profile equation is the universal nonlocal operator u' = −H[u]/(2|x|).
    - Its odd modes have purely imaginary exponents ±iτ, with **τ tanh(πτ/2) = 1/2, so τ = 0.649424**.
@@ -192,8 +192,8 @@ origin. Smooth (analytic) profiles are exactly the points where p = 2.
 | Independent runs (C vs D at 36 pts/width, h_s = 0.02; A vs C: old vs new grid construction) | agree to ≤ 1e−10 (δ ≥ 5e−3) and ≤ 1e−9 (δ ≥ 3e−4) |
 | Re-gridding test at every step (run C, δ = 1e−2 … 1.3e−6) | Δλ ≤ 7e−9, Δp ≤ 3e−9 |
 | w/δ² constant (cusp scaling) | 9.00–9.01 over δ ∈ [3e−4, 3e−3] (grids with ≥ 17 pts/width; coarser 6-pt estimates gave 9.10) |
-| B² = 2λΘ_s (predicted k = 0.72575) | measured 0.7182–0.7192 (1 %, O(δ/√x) corrections) |
-| ln Θ jump coefficient 2λ/k = 1.2502 | measured 1.243–1.247 |
+| B² = 2λΘ_s: cusp coefficient, predicted k = √(2λΘ_s/ξ_s) = 0.725820 | measured 0.725749–0.725764 for |x| ∈ [3e−5, 1e−3] at δ = 1.3e−6 (1e−4); 1 % at δ = 1.7e−4 (finite-δ corrections) |
+| ln Θ jump coefficient 2λ/k = 1.249855 | measured 1.249853–1.249967 (δ = 1.3e−6) |
 | Oscillation frequency 2τ = 1.29885 | free fits 1.2983–1.3010 (p and λ, δ ≤ 1e−3 and ≤ 3e−3; 39 branch points) |
 | Layer-width constant (universal inner problem, f''(0) = 0.08900) | predicted 4.7405/k² = 8.98930 (k² = 0.52735 on the same profile) vs computed 8.99076 (48 pts/width), 8.99528 (24 pts/width), at δ = 1.47e−3: 0.02 % |
 | Operator accuracy on extreme grids (h_c down to 1e−11) | ‖Hm·Ψ − exact‖ ≤ 1.4e−14 |
@@ -318,7 +318,7 @@ Because the oscillation centre has p* = 2.00577 > 2 (and p never falls below 2.0
   - Re-gridding at every step changes λ by ≤ 1e−8.
   - Kernel arguments are formed in local coordinates. We removed an earlier round-off effect (a 1.5e−6 shift in λ at h_c ~ 3e−9) and documented it.
   - The fitted frequency matches an a-priori prediction, with no free parameter, to 0.2 %.
-  - The cusp coefficient k and the ln Θ jump agree with B² = 2λΘ_s to 1 %.
+  - The cusp coefficient k and the ln Θ jump agree with B² = 2λΘ_s to 1e−4.
   - w/δ² is constant to 0.5 % over two decades.
   - The fit's conclusion (p* > 2) is also visible directly in the raw data: the minimum of p on the arc is 2.004945.
 - **V3.**

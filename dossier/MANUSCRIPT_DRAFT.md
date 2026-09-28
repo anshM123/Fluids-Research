@@ -85,7 +85,7 @@ explained by a self-consistent local structure. A square-root singularity Θ ≈
 is mapped by H onto B|ξ−ξ_s|^{1/2}, a square-root zero of den. Feeding that zero back through the profile ODE
 returns the same singularity if and only if B² = 2λΘ_s.
 
-The measured cusp coefficient and jump of ln Θ agree with this relation to 1%. The branch therefore ends at a
+The measured cusp coefficient and jump of ln Θ agree with this relation to 1e−4 at δ = 1.3e−6. The branch therefore ends at a
 continuous profile with an interior square-root singularity at (λ*, p*) = (0.4535843, 2.0057717)†.
 
 **A universal log-periodic approach.** Linearising the profile equation about the cusp, Θ = Θ_cusp(1+u), all

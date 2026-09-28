@@ -33,8 +33,9 @@ In η = ln ξ, write x = η − η_s. Then den ≈ k|x|^{1/2} with k = Bξ_s^{�
 and ln Θ − ln Θ_s ≈ (2λ/k) sgn(x)|x|^{1/2}.
 
 - The jump of ln Θ across the cusp is finite, so the terminal profile is continuous with a vertical tangent.
-- (3) and (4) are checked to 1 % on the computed branch at δ = 1.7e−4, where the deviation is dominated by
-  O(δ/√|x|) corrections.
+- (3) and (4) are checked on the computed branch at δ = 1.3e−6. The symmetric part of (den − δ)/√|x| is 0.725749–0.725764,
+  against the predicted k = 0.725820. The ln Θ jump coefficient is 1.249853–1.249967, against 2λ/k = 1.249855. Both
+  agree to 1e−4. At δ = 1.7e−4 the deviation is 1 %, dominated by O(δ/√|x|) corrections.
 
 ## S1.3 Inner layer (δ > 0) and the width law
 For small δ > 0 the cusp is regularised on the scale ℓ at which k|x|^{1/2} = δ, that is ℓ = δ²/k².
