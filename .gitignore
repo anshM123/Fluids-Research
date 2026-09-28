@@ -12,3 +12,4 @@ programs/P02_singularity_ladders/block_*.npy
 programs/P02_singularity_ladders/diag_*.npy
 programs/P05_merger/*.npy
 programs/P02_singularity_ladders/gclm_q1_a*.npy
+programs/P02_singularity_ladders/dac_*_last.npy
