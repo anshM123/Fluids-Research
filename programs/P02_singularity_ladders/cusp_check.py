@@ -8,9 +8,8 @@ from pinned_delta import Fpin, solve, new_grid
 
 f = sys.argv[1] if len(sys.argv) > 1 else "pin_C_last.npy"
 d = np.load(f); eta0, phi0, lam = d[0], d[1], float(d[2][0])
-sp = np.diff(eta0); j = int(np.argmin(sp))
-etac = eta0[j] if sp[j - 1] > sp[j + 1] else eta0[j + 1]
-etac = eta0[int(np.argmin(np.abs(eta0 - etac)))]
+sp = np.diff(eta0)
+etac = eta0[1 + int(np.argmin(sp[:-1] + sp[1:]))]          # centre point: smallest pair of adjacent spacings
 M, ic = new_grid(etac, 24 * sp.min(), 24)
 phi = CubicSpline(eta0, phi0)(M.eta)
 F, den = Fpin(M, phi, lam, ic)

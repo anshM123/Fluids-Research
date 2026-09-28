@@ -10,8 +10,7 @@ for f in sys.argv[1:]:
     d = np.load(f)
     eta0, phi0, lam0 = d[0], d[1], float(d[2][0])
     sp = np.diff(eta0)
-    j = int(np.argmin(sp))
-    ic0 = j if sp[j - 1] >= sp[j + 1] else j + 1          # centre point of the source grid
+    ic0 = 1 + int(np.argmin(sp[:-1] + sp[1:]))            # centre point: smallest pair of adjacent spacings
     etac = eta0[ic0]
     spl = CubicSpline(eta0, phi0)
     res = []

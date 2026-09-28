@@ -11,14 +11,14 @@ All numbers below come from files in this repository (paths given in N/O).
 ---------------------------------------------------------------------------------------------------------
 
 ## A. Initial portfolio
-- 85 first-generation ideas (IDEA001–IDEA085) across six categories (`ledger/IDEAS.md`):
+- 69 first-generation ideas across six categories (IDEA001–IDEA085 with gaps; `ledger/IDEAS.md`):
   - A — new fluid physics (24)
   - B — methods (12)
   - C — sci-ML (6)
-  - D — mathematical fluids (11)
+  - D — mathematical fluids (12)
   - E — computational discovery (3)
-  - F — cross-PDE principles (13)
-- Further ideas were added from literature reconnaissance (IDEA101–111, T1–T10), plus 5 second-generation ideas spawned by P02 (IDEA112–116).
+  - F — cross-PDE principles (12)
+- Further ideas were added from literature reconnaissance (IDEA101–111, T1–T10), plus 7 second-generation ideas spawned by P02 (IDEA112–118).
 - Compute envelope: 4 Xeon cores, 15 GB RAM, no GPU. This steered the program towards 1D/2D problems where a single core can decide a question.
 
 ## B. Literature screen

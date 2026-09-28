@@ -15,7 +15,7 @@ d = np.load("mapped_l2_hs0.02_eps0.025.npy")
 prof.append(("λ₂ (2 unstable)", 0.471324227767, d[0], d[1]))
 tail = sys.argv[1] if len(sys.argv) > 1 else "pin_C_last.npy"
 d = np.load(tail)
-prof.append((f"near-terminal, δ≈1e−4", float(d[2][0]), d[0], d[1]))
+prof.append((sys.argv[2] if len(sys.argv) > 2 else "near-terminal", float(d[2][0]), d[0], d[1]))
 
 fig, ax = plt.subplots(1, 3, figsize=(15, 4.3))
 for lab, lam, eta, phi in prof:
