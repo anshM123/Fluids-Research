@@ -22,3 +22,5 @@ programs/P02_singularity_ladders/pin_*_last.npy
 programs/P02_singularity_ladders/pin_C_snap.npy
 programs/P02_singularity_ladders/pin_C_start.npy
 programs/P02_singularity_ladders/sac_S1_restart.npy
+programs/P02_singularity_ladders/pdense_states/
+programs/P02_singularity_ladders/pdense_*_last.npy

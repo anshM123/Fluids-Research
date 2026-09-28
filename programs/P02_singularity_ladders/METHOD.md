@@ -44,3 +44,19 @@ located by Arnoldi on T_μ along real μ. Checks: trivial time-translation mode 
 
 ## Cost
 Each profile: 2–30 s on one CPU core (N≈5000 mapped points, 12-digit convergence).
+
+## Sonic-limit continuation (added after R014–R019)
+- **Geometric grid** (`ccf_sinhgrid.py`): dη/ds = cosh u/(cosh u + k), u = (s−η_d)/B, k = h_s/h_c − 1. Spacing
+  h_c at the layer, ≈ h_s|η−η_d|/B for h_cB/h_s ≲ |η−η_d| ≲ B (a fixed number of points per e-fold of distance
+  from the layer: resolves the Lorentzian/√-cusp flanks), h_s far away. Extra points ≈ 2B ln(2k)/h_s.
+  The local coordinate x = η−η_d is accumulated from 8-point Gauss–Legendre integrals of dx/du per interval,
+  so that kernel arguments x_i − x_j keep ~1e−15 relative accuracy for h_c down to 1e−11 (the closed-form
+  map loses log₁₀k digits; `hilbert_extreme_test.py`: operator error ≤ 1.4e−14).
+- **Layer pinning** (`pinned_delta.py`): the scaling symmetry Θ→κΘ(ξ/κ) acts as a translation in η; the
+  far-field normalisation row is replaced by den_{c+1} = den_{c−1} (minimum of the sonic factor at the grid
+  centre), and the sonic depth δ = den_c is prescribed. This removes the layer-translation near-null mode
+  (σ_min ≈ 2e−3 of the fixed-λ Jacobian; 2.4e−4 for the δ-bordered system without pinning) and makes δ a
+  regular continuation parameter (quadratic Newton convergence, δ reduced by 20–50 % per step, the grid
+  re-centred and re-refined to 24–36 points per layer width after every step).
+- **Asymptotic fits** (`cusp_fit.py`): y(δ) = y* + δ[B + C cos(2τ ln δ) + D sin(2τ ln δ)] (+ optional A δ ln δ),
+  τ tanh(πτ/2) = ½, with 2τ fixed or free; reference data are the post-regrid values in the run logs.
