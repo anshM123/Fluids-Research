@@ -167,3 +167,9 @@ Costs are wall-clock on the 4-core container (CPU-h = cores × hours).
   Δλ = 9e−13, Δp = 4.5e−12; δ = 1.47e−3: Δλ = 9.9e−13, Δp = 4.5e−14. (A 48-pt/h_s = 0.015 grid, N ≈ 11 600, was
   OOM-killed; replaced by 24/0.02.)
 - **Status:** VERIFIED.
+- **Addendum (precision checks at the smallest δ):** at δ = 1.3e−6 the symmetric part of (den−δ)/√|x| = 0.725749–0.725764
+  vs predicted k = √(2λΘ_s/ξ_s) = 0.725820 (1e−4) and the ln Θ jump coefficient 1.249853–1.249967 vs 2λ/k = 1.249855
+  (⇒ B² = 2λΘ_s to 1e−4; the 1 % of R015 was a finite-δ/unconverged-solve effect). Layer width at δ = 1.47e−3:
+  w/δ² = 8.99528 / 8.99076 / 8.98963 (24/48/96 pts per width) → Richardson 8.98925 vs inner-layer prediction
+  4.7405/k² = 8.98930 (5e−6). Fixed-δ refinement at δ = 1.3e−6 (4 grids): Δλ = 9e−10, Δp = 3.5e−11.
+  (Earlier quoted w/δ² ≈ 9.10 came from 3-point curvature on 6-pt/width grids.)

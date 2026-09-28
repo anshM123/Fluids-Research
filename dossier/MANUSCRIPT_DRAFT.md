@@ -76,7 +76,7 @@ neither λ nor δ is sensitive at first order.
 
 We remove this degeneracy by using the scaling symmetry of the problem, which acts as a translation in
 ln ξ, to pin the layer to the centre of a geometrically graded grid. δ then becomes a regular parameter. The
-branch can be followed to δ ≈ 1e−5, where the layer is 1e−9 wide in ln ξ, with Newton converging
+branch can be followed to δ = 1.3e−6, where the layer is 1.5e−11 wide in ln ξ, with Newton converging
 quadratically at every step.
 
 Near the end of the branch the sonic factor does not have a parabolic minimum. It develops a square-root
@@ -97,8 +97,9 @@ solutions u = |x|^σ and sgn(x)|x|^σ give two exponent families:
 Matching to the inner layer, which sits at scale w ∝ δ², excites the marginal pair with amplitude O(δ) and
 phase τ ln w. Hence
   p(δ) − p* = δ [B + C cos(2τ ln δ) + D sin(2τ ln δ)] + o(δ),
-and the same holds for λ. The branch oscillates into the cusp in the (λ, p) plane, with successive extrema a
-factor e^{π/2τ} = 11.23 apart in δ (Fig. 1b,c).
+and the same holds for λ. For λ the oscillatory part is weaker than the linear part, so λ decreases
+monotonically to λ* and the branch has no folds. p, by contrast, oscillates about p* infinitely often, with
+successive extrema a factor e^{π/2τ} = 11.23 apart in δ (Fig. 1b,c).
 
 The computed branch shows exactly this. Extrema of p are 2.013429 at δ = 1.5e−2, then 2.004945 at δ = 1.7e−3, then 2.005850 at
 δ ≈ 1.0e−4, then 2.005765 at δ ≈ 8e−6. Fits with a free frequency return 1.2983–1.3010, against the predicted
@@ -113,7 +114,7 @@ The computed branch shows exactly this. Extrema of p are 2.013429 at δ = 1.5e�
    with the n-th profile is compatible only with α < 1/(1+λ_n). The thresholds on this branch are 0.4586,
    0.6228 and 0.6797, and the sequence stops.
 3. *Why the problem is hard for neural solvers.* Near the terminal cusp the relevant structures have widths
-   1e−6–1e−9 in ln ξ, five or more orders below what was resolved by PINNs. Classical adaptive discretisations
+   1e−6–1e−11 in ln ξ, five or more orders below what was resolved by PINNs. Classical adaptive discretisations
    handle them at negligible cost.
 
 ### Discussion

@@ -259,7 +259,7 @@ origin. Smooth (analytic) profiles are exactly the points where p = 2.
   - (b) the oscillating end in the (λ, p) plane;
   - (c) p(δ) with the log-periodic asymptotic law;
   - (d) the square-root cusp of den.
-- **Fig. 2 (`fig_profiles.png`)**: the profiles Θ(ξ) of λ₀, λ₁ and λ₂, and the near-cusp profile.
+- **Fig. 2 (`fig_profiles2.png`)**: the profiles Θ(ξ) of λ₀, λ₁ and λ₂, and the near-terminal profile at δ = 1.3e−6. It also shows the local slope λ/den and the sonic factor.
 - **Fig. 3 (planned)**: the instability spectra; dense spectrum and T_μ crossings for λ₀–λ₂.
 - **Fig. 4 (planned)**: method schematic. Log variables and the Mellin multiplier; geometric grid; layer pinning; cost vs accuracy.
 
@@ -288,13 +288,13 @@ Because the oscillation centre has p* = 2.00577 > 2 (and p never falls below 2.0
    - 2.2 Instability order = crossing order (Fig. 3);
    - 2.3 The sonic layer and the terminal cusp (Fig. 1d, B² = 2λΘ_s, w ∝ δ²);
    - 2.4 Universal log-periodic approach (derivation, Fig. 1b,c);
-   - 2.5 Consequences: no λ₃, capped dissipative thresholds, and why ML searches struggled (layers of width 1e−6 to 1e−9 at the cusp end).
+   - 2.5 Consequences: no λ₃, capped dissipative thresholds, and why ML searches struggled (layers of width 1e−6 to 1e−11 at the cusp end).
 3. **Discussion.** Two ladder mechanisms (vanishing order vs sonic layer); how to predict ladder length; classical vs ML discovery; outlook (fractional family, IPM and Boussinesq reductions, computer-assisted proof).
 4. **Methods.** Log-variable Mellin formulation; integral form; geometric grids and the alternating-point rule; layer pinning; stability; error control.
 
 ## T. SI plan
 - **S1:** full derivation of the cusp law, local exponents and matching, including the even and odd families and the resonance discussion.
-- **S2:** convergence tables for λ₀–λ₂ (h_s, ε, L₁, L₂, c) and for the pinned branch (runs C vs D, regrid differences).
+- **S2:** convergence tables for λ₀–λ₂ (h_s, ε, L₁, L₂, c) and for the pinned branch (fixed-δ refinement at δ = 5.4e−3, 1.47e−3 and 1.3e−6; regrid differences; runs A/C/D/E).
 - **S3:** stability methods and spectra, including identification of the loop-mode artefacts.
 - **S4:** the SVD diagnosis of the translation near-null mode, and why λ-, δ- and arclength-parametrisations fail.
 - **S5:** the large-λ end and the multi-start probe.
@@ -303,7 +303,7 @@ Because the oscillation centre has p* = 2.00577 > 2 (and p never falls below 2.0
 
 ## U. Three most dangerous reviewer objections
 - **U1.** "Finite ladder" may be an artefact of following one branch: other smooth profiles may exist on disconnected branches.
-- **U2.** The near-cusp numerics, with layers of width down to 1e−9 in η, could be contaminated by round-off or discretisation, and the log-periodic fit could be over-fitting.
+- **U2.** The near-cusp numerics, with layers of width down to 1e−11 in η, could be contaminated by round-off or discretisation, and the log-periodic fit could be over-fitting.
 - **U3.** Incremental: λ₂ was already known to 8 digits (arXiv:2511.22819), and spirals of solution branches near singular solutions are classical (Joseph–Lundgren).
 
 ## V. Responses
@@ -314,16 +314,17 @@ Because the oscillation centre has p* = 2.00577 > 2 (and p never falls below 2.0
   - The cusp analysis is local and applies to any branch that ends at a sonic point.
   - A deflation search and a computer-assisted proof (IDEA116) are proposed as follow-up.
 - **V2.**
-  - Two resolutions (C and D) agree to ≤ 1e−10.
+  - Fixed-δ grid refinement (24/36/48 points per width, two far-field spacings) agrees to 1e−12 (δ ≥ 1.5e−3) and to 1e−9 (δ = 1.3e−6).
   - Re-gridding at every step changes λ by ≤ 1e−8.
   - Kernel arguments are formed in local coordinates. We removed an earlier round-off effect (a 1.5e−6 shift in λ at h_c ~ 3e−9) and documented it.
   - The fitted frequency matches an a-priori prediction, with no free parameter, to 0.2 %.
   - The cusp coefficient k and the ln Θ jump agree with B² = 2λΘ_s to 1e−4.
-  - w/δ² is constant to 0.5 % over two decades.
+  - The layer-width constant w/δ² agrees with the parameter-free inner-layer prediction to 5e−6.
   - The fit's conclusion (p* > 2) is also visible directly in the raw data: the minimum of p on the arc is 2.004945.
 - **V3.**
   - The contribution is not λ₂. It is the global structure and the mechanism: why the ladder stops, where it ends, and a universal exponent with a new equation, for a nonlocal operator.
   - It is also a negative answer to an explicitly open question, plus a transferable classical method that reaches layers five orders thinner than those resolved by PINNs.
+  - Unlike the Joseph–Lundgren spiral, λ stays monotone (no folds), only p oscillates. The exponent equation τ tanh(πτ/2) = ½ comes from a nonlocal (Hilbert) operator and is new.
 
 ## W. Realistic venue assessment
 - **Nature Computational Science:** possible but uncertain.
