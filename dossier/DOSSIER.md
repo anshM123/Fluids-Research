@@ -203,6 +203,12 @@ origin. Smooth (analytic) profiles are exactly the points where p = 2.
 - **Universality of the cusp law.** The constant ½ in u' = −H[u]/(2|x|) came from B² = 2λΘ_s. So τ is independent of the profile, of λ and of normalisation.
   - It applies to any transport equation θ_t + (Hθ)θ_x = 0 whose self-similar branch ends at a sonic point.
   - It also applies to any model whose sonic factor is regular plus a Hilbert transform of the transported field (the local structure only needs den ∝ HΘ near ξ_s).
+- **Predicted cusp universality classes for fractional velocities** (DERIVED, not yet tested numerically; `cusp_exponents_s.py`). For θ_t + (HΛ^sθ)θ_x = 0:
+  - the sonic-point singularity is Θ − Θ_s ∝ sgn(x)|x|^{(1+s)/2};
+  - the linearisation is u' = −(a/c_s(a)) HΛ^s[u]/|x|^{1−s}, with a = (1+s)/2;
+  - its odd roots are σ = s/2 ± iτ(s), with τ = 0.6494, 0.7046, 0.7594, 0.7872 at s = 0, 0.2, 0.5, 0.8;
+  - so the spiral has log-frequency ω(s) = 2τ(s)/(1−s) and amplitude ∝ δ^{1/(1−s)};
+  - the s = 0 case is the CCF result above.
 - **Two ladder mechanisms.**
   - Vanishing order: gCLM/CLM, where q = 1/c_l is monotone (R013). The ladder can be infinite.
   - Self-induced sonic layer: CCF, where p oscillates and terminates. The ladder is finite.
