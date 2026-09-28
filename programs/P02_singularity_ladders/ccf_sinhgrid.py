@@ -31,16 +31,31 @@ class CCFSinh(CCFMapped):
         # place a grid point exactly at s = eta_d (layer centre)
         j0 = int(round((eta_d - smin) / hs))
         self.s = eta_d + hs * (np.arange(N) - j0)
-        self.eta = g(self.s)
-        u = (self.s - eta_d) / B
-        self.gp = np.cosh(u) / (np.cosh(u) + k)
+        u = (hs / B) * (np.arange(N) - j0)
+        # Local coordinate x = η − η_d, built by summing exact (8-point Gauss–Legendre) integrals of
+        # dx/du = B cosh u/(cosh u + k) over each grid interval, outward from the centre.  The closed form
+        # u − q artanh(r tanh(u/2)) loses ~log10(k) digits (both near the centre and where 1 − r tanh ≈ 1/k);
+        # with k up to 1e9 that corrupted kernel arguments at the 1e−8 level.  Summation keeps every
+        # difference x_i − x_j (the only thing the kernel sees) to ~1e−15 relative accuracy.
+        gpf = lambda v: np.cosh(v) / (np.cosh(v) + k)
+        xg, wg = np.polynomial.legendre.leggauss(8)
+        m = max(j0, N - 1 - j0)
+        a = (hs / B) * np.arange(m)
+        mid, half = a + 0.5 * hs / B, 0.5 * hs / B
+        inc = B * half * (gpf(mid[:, None] + half * xg[None, :]) @ wg)
+        X = np.concatenate([[0.0], np.cumsum(inc)])
+        idx = np.arange(N) - j0
+        self.x = np.sign(idx) * X[np.abs(idx)]
+        self.eta = eta_d + self.x
+        self.s = eta_d + B * u
+        self.gp = gpf(u)
         self.eps = 1.0 / (1.0 + k)          # centre spacing / hs (diagnostic compatibility)
         self.E = np.exp((c - 1) * self.eta)
         self.i0 = int(np.argmin(np.abs(self.eta)))
         self.iR = int(np.argmin(np.abs(self.eta - 50.0)))
         self.etaR = self.eta[self.iR]
         I = np.arange(N)
-        D = self.eta[:, None] - self.eta[None, :]
+        D = self.x[:, None] - self.x[None, :]
         mask = ((I[:, None] - I[None, :]) % 2) == 1
         H = np.where(mask, Kc(np.where(mask, D, 1.0), c), 0.0)
         self.Hm = 2 * hs * H * self.gp[None, :]

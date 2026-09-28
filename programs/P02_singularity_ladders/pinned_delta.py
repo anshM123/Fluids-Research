@@ -63,7 +63,11 @@ def solve(M, phi, lam, ic, delta, tol=1e-11, maxit=12, verbose=False):
     return phi, lam, False, hist, None
 
 
-def new_grid(etac, w, pts, hs=0.03):
+HS = 0.03
+
+
+def new_grid(etac, w, pts, hs=None):
+    hs = HS if hs is None else hs
     M = CCFSinh(30.0, 120.0, hs=hs, eta_d=etac, hc=min(w / pts, hs / 2), B=1.0, c=0.7)
     ic = int(np.argmin(np.abs(M.eta - etac)))
     return M, ic
@@ -132,4 +136,6 @@ def main(start, tag, pts=24, fac=0.8, dmin=1e-6):
 
 
 if __name__ == "__main__":
-    main(sys.argv[1], sys.argv[2])
+    if len(sys.argv) > 4:
+        HS = float(sys.argv[4])
+    main(sys.argv[1], sys.argv[2], pts=int(sys.argv[3]) if len(sys.argv) > 3 else 24)
