@@ -24,26 +24,40 @@ def boundary_params(f):
     return lam, m, eps, s, D, mu, G, Thy, Omb
 
 
+def wkb_phase(f, s_lo=-10.0, ds=0.025, Dcut=3.0, verbose=False):
+    """ε∫κ ds over the quasi-stagnant region, from s_lo up to the front (first s beyond the dip with D/ε > Dcut).
+    The root is tracked from the Hou–Luo closed form at every point (robust against branch jumping)."""
+    lam, m, eps, s, D, mu, G, Thy, Omb = boundary_params(f)
+    Dh_all = D / eps
+    sel = (s > -3) & (s < 2)
+    kd = np.argmax(sel) + np.argmin(Dh_all[sel])                     # dip
+    kc = kd + np.argmax(Dh_all[kd:] > Dcut)                          # front
+    s_cut = s[kc]
+    grid = np.arange(s_lo, s_cut + 1e-12, ds)
+    kap = np.full(len(grid), np.nan, dtype=complex)
+    prev = None
+    for i, sv in enumerate(grid):
+        Dh = np.interp(sv, s, D) / eps; ch = -np.interp(sv, s, Omb)
+        p = (Dh, ch, np.interp(sv, s, mu), np.interp(sv, s, G), np.interp(sv, s, Thy))
+        hl = hl_root(Dh, ch)
+        cands = [hl] if prev is None else [prev, hl]
+        for g in cands:
+            try:
+                k, ok = local_root(*p, g)
+            except Exception:
+                ok = False
+            if ok and np.isfinite(k) and abs(k - hl) < 0.6 * abs(hl) + 1e-6:
+                kap[i] = k; prev = k
+                break
+    good = np.isfinite(kap)
+    # fill isolated failures by interpolation
+    if (~good).any() and good.sum() > 2:
+        kap[~good] = np.interp(grid[~good], grid[good], kap[good].real) + 1j * np.interp(grid[~good], grid[good], kap[good].imag)
+    return lam, m, eps, s_cut, np.trapezoid(kap, grid), (~good).sum()
+
+
 if __name__ == "__main__":
-    s_lo, s_hi, ds = -10.0, 4.0, 0.05
     for f in sys.argv[1:]:
-        lam, m, eps, s, D, mu, G, Thy, Omb = boundary_params(f)
-        grid = np.arange(s_lo, s_hi + 1e-9, ds)
-        kap, kap_hl = [], []
-        guess = None
-        for sv in grid:
-            Dh = np.interp(sv, s, D) / eps; ch = -np.interp(sv, s, Omb)
-            p = (Dh, ch, np.interp(sv, s, mu), np.interp(sv, s, G), np.interp(sv, s, Thy))
-            g = hl_root(Dh, ch) if guess is None else guess
-            k, ok = local_root(*p, g)
-            if not ok or not np.isfinite(k):
-                k = np.nan
-            else:
-                guess = k
-            kap.append(k); kap_hl.append(hl_root(Dh, ch))
-        kap = np.array(kap); good = np.isfinite(kap)
-        Phi = np.trapezoid(kap[good], grid[good]); Phih = np.trapezoid(np.array(kap_hl), grid)
-        print(f"λ={lam:.5f} z={1/(lam-1):.3f} ε={eps:.4f} m={m:.5f}: εΦ_2D = {Phi.real:.5f}{Phi.imag:+.5f}i "
-              f"(HL formula {Phih.real:.5f}{Phih.imag:+.5f}i);  Δz_pred = {np.pi/(m*Phi.real):.4f}, "
-              f"half-period decay ratio = {np.exp(np.pi*abs(Phi.imag)/Phi.real):.3f}; failed points: {np.sum(~good)}", flush=True)
-        np.save(f"wkb2d_lam{lam:.4f}.npy", np.array([grid, kap]))
+        lam, m, eps, s_cut, Phi, nf = wkb_phase(f)
+        print(f"λ={lam:.8f} z={1/(lam-1):.4f} ε={eps:.5f} m={m:.6f}: s_front={s_cut:.3f}  εΦ_cut = {Phi.real:.5f}{Phi.imag:+.5f}i  "
+              f"Φ = m z εΦ = {m/(lam-1)*Phi.real:.5f}{m/(lam-1)*Phi.imag:+.5f}i   (filled {nf})", flush=True)

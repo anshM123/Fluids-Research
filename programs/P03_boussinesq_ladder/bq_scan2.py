@@ -37,7 +37,7 @@ while (dlam < 0 and lam >= lam1 - 1e-12) or (dlam > 0 and lam <= lam1 + 1e-12):
             Yg = transfer(BQLogPolar(lam, hs=shs, Nb=snb), Yg, B)
     ok = False
     try:
-        Y, info, ok = newton(B, Yg, tol=1e-10, maxit=8, verbose=False, t0=t0, fd='central', pert=1e-6)
+        Y, info, ok = newton(B, Yg, tol=1e-10, maxit=16, verbose=False, t0=t0, fd='central', pert=1e-6)
     except RuntimeError as e:
         out(f"λ={lam:.6f}: invalid predictor ({e})")
     if not ok:
