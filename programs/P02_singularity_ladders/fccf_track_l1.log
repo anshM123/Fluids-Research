@@ -1,0 +1,42 @@
+l1 s=0: lam=0.605733701202 ok=True
+   fail at s=0.0200; ds -> 0.0100
+   fail at s=0.0100; ds -> 0.0050
+l1 s=0.0050: lam=0.6074721144 c=0.750 min_den=1.5581e-01 at eta=-1.59 (Burgers-limit ladder 2, 1.5, 1.333…)  t=15s
+l1 s=0.0110: lam=0.6095784844 c=0.750 min_den=1.5803e-01 at eta=-1.76 (Burgers-limit ladder 2, 1.5, 1.333…)  t=16s
+   fail at s=0.0182; ds -> 0.0036
+l1 s=0.0146: lam=0.6108529847 c=0.750 min_den=1.5934e-01 at eta=-1.86 (Burgers-limit ladder 2, 1.5, 1.333…)  t=18s
+l1 s=0.0189: lam=0.6123930159 c=0.750 min_den=1.6093e-01 at eta=-1.98 (Burgers-limit ladder 2, 1.5, 1.333…)  t=19s
+l1 s=0.0241: lam=0.6142564426 c=0.750 min_den=1.6288e-01 at eta=-2.12 (Burgers-limit ladder 2, 1.5, 1.333…)  t=21s
+   fail at s=0.0303; ds -> 0.0031
+l1 s=0.0272: lam=0.6153825984 c=0.750 min_den=1.6403e-01 at eta=-2.20 (Burgers-limit ladder 2, 1.5, 1.333…)  t=23s
+l1 s=0.0309: lam=0.6167420434 c=0.750 min_den=1.6543e-01 at eta=-2.31 (Burgers-limit ladder 2, 1.5, 1.333…)  t=23s
+   fail at s=0.0354; ds -> 0.0022
+l1 s=0.0332: lam=0.6175619455 c=0.750 min_den=1.6631e-01 at eta=-2.36 (Burgers-limit ladder 2, 1.5, 1.333…)  t=26s
+l1 s=0.0359: lam=0.6185500357 c=0.750 min_den=1.6731e-01 at eta=-2.43 (Burgers-limit ladder 2, 1.5, 1.333…)  t=26s
+l1 s=0.0391: lam=0.6197418234 c=0.750 min_den=1.6851e-01 at eta=-2.53 (Burgers-limit ladder 2, 1.5, 1.333…)  t=26s
+l1 s=0.0430: lam=0.6211807582 c=0.750 min_den=1.6999e-01 at eta=-2.63 (Burgers-limit ladder 2, 1.5, 1.333…)  t=26s
+   fail at s=0.0476; ds -> 0.0023
+l1 s=0.0453: lam=0.6220487396 c=0.750 min_den=1.7087e-01 at eta=-2.69 (Burgers-limit ladder 2, 1.5, 1.333…)  t=38s
+l1 s=0.0481: lam=0.6230949086 c=0.750 min_den=1.7194e-01 at eta=-2.76 (Burgers-limit ladder 2, 1.5, 1.333…)  t=38s
+l1 s=0.0514: lam=0.6243569462 c=0.750 min_den=1.7324e-01 at eta=-2.85 (Burgers-limit ladder 2, 1.5, 1.333…)  t=38s
+   fail at s=0.0554; ds -> 0.0020
+l1 s=0.0534: lam=0.6251176547 c=0.750 min_den=1.7403e-01 at eta=-2.91 (Burgers-limit ladder 2, 1.5, 1.333…)  t=41s
+l1 s=0.0558: lam=0.6260339672 c=0.750 min_den=1.7497e-01 at eta=-2.96 (Burgers-limit ladder 2, 1.5, 1.333…)  t=41s
+l1 s=0.0587: lam=0.6271385432 c=0.750 min_den=1.7605e-01 at eta=-3.05 (Burgers-limit ladder 2, 1.5, 1.333…)  t=41s
+l1 s=0.0622: lam=0.6284712621 c=0.750 min_den=1.7741e-01 at eta=-3.14 (Burgers-limit ladder 2, 1.5, 1.333…)  t=43s
+   fail at s=0.0663; ds -> 0.0021
+l1 s=0.0643: lam=0.6292746917 c=0.750 min_den=1.7822e-01 at eta=-3.19 (Burgers-limit ladder 2, 1.5, 1.333…)  t=57s
+l1 s=0.0668: lam=0.6302425801 c=0.750 min_den=1.7919e-01 at eta=-3.26 (Burgers-limit ladder 2, 1.5, 1.333…)  t=58s
+l1 s=0.0698: lam=0.6314094967 c=0.750 min_den=1.8039e-01 at eta=-3.33 (Burgers-limit ladder 2, 1.5, 1.333…)  t=58s
+l1 s=0.0734: lam=0.6328176753 c=0.750 min_den=1.8179e-01 at eta=-3.43 (Burgers-limit ladder 2, 1.5, 1.333…)  t=59s
+l1 s=0.0777: lam=0.5862112030 c=0.750 min_den=1.7959e-02 at eta=-3.12 (Burgers-limit ladder 2, 1.5, 1.333…)  t=60s
+   fail at s=0.0828; ds -> 0.0026
+   fail at s=0.0803; ds -> 0.0013
+l1 s=0.0790: lam=0.5717613015 c=0.750 min_den=2.0257e-02 at eta=-3.12 (Burgers-limit ladder 2, 1.5, 1.333…)  t=65s
+   fail at s=0.0805; ds -> 0.0008
+l1 s=0.0797: lam=0.5647699432 c=0.750 min_den=2.1752e-02 at eta=-3.12 (Burgers-limit ladder 2, 1.5, 1.333…)  t=87s
+   fail at s=0.0807; ds -> 0.0005
+   fail at s=0.0802; ds -> 0.0002
+l1 s=0.0800: lam=0.5637819155 c=0.750 min_den=2.2311e-02 at eta=-3.12 (Burgers-limit ladder 2, 1.5, 1.333…)  t=126s
+   fail at s=0.0802; ds -> 0.0001
+   fail at s=0.0801; ds -> 0.0001

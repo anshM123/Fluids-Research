@@ -1,0 +1,8 @@
+λ=0.500: branch p=1.9484265; 0/18 starts converged; distinct p: []  t=0s
+λ=0.550: branch p=1.9319632; 0/18 starts converged; distinct p: []  t=0s
+λ=0.600: branch p=1.9912253; 3/18 starts converged; distinct p: [1.9912253]  t=2s
+λ=0.700: branch p=2.1332562; 3/18 starts converged; distinct p: [2.1332562]  t=3s
+λ=0.850: branch p=2.1956529; 2/18 starts converged; distinct p: [2.1956529]  t=3s
+λ=1.000: branch p=2.1286015; 2/18 starts converged; distinct p: [2.1286015]  t=4s
+λ=1.300: branch p=1.9163761; 6/18 starts converged; distinct p: [1.9163761]  t=4s
+λ=1.800: branch p=1.6530701; 7/18 starts converged; distinct p: [1.6530694, 1.65307, 1.6530701]  t=5s
