@@ -73,3 +73,9 @@ Costs are wall-clock on the 4-core container (CPU-h = cores × hours).
 - **Result:** a_d/b0 = 0.2983 (Re 10³), 0.2476 (4×10³), 0.2257 (1.6×10⁴). Successive differences ratio 2.31 per ×4 in Re ⇒ fit a_d/b0 ≈ 0.209 + 5.8·Re^{−0.60}.
 - **Interpretation:** approach to an inviscid limit ≈0.21 with exponent ≈0.6, close to the slow-passage-through-a-fold prediction 2/3 (IDEA005). Caveats: completion (not onset) criterion; 3 points; exponent uncertainty ≈±0.1. Needs onset diagnostic, Re=6.4×10⁴, and inviscid fold location from co-rotating equilibria.
 - **Cost:** ≈3 CPU-h · **Status:** ACTIVE (backup program, promising)
+
+### R011 — P02: instability order of the branch members (three independent diagnostics)
+- **Methods:** (i) nonlinear eigen-condition ν(μ)=1 for the smooth-solution operator T_μ (Arnoldi); (ii) linearised evolution in self-similar time (3rd-order upwind, mapped grid) — asymptotic growth rate; (iii) dense spectrum of the method-of-lines generator (contaminated by finite-domain "loop" modes forming a comb at Re μ≈0.33–0.43 with Im spacing ≈2π/L — identified and discarded).
+- **Result:** λ₀: top rate 1.0000 (trivial time translation), no ν=1 crossing for μ∈[0.2,2] → **0 unstable modes (stable)**. λ₁: top rate 1.0000; T_μ crossing μ≈0.366 (lit. 0.36525) → **1 unstable mode**. λ₂: dense spectrum real eigenvalues **μ = 0.72285, 0.34312** (+ trivial 1.00017); T_μ crossings 0.715, 0.345 → **2 unstable modes**.
+- **Interpretation:** instability order increases by one at each successive p=2 crossing along the single branch — the ladder index is the crossing number along the branch.
+- **Status:** VERIFIED (λ₀–λ₂)
