@@ -83,7 +83,7 @@ e.loglog(prof[:, 0], prof[:, 2] - 1, "g-", label="right flank")
 X = np.logspace(0.5, 3.8, 10)
 e.loglog(X, 2.2 * X ** 0.5, "k--", lw=0.8, label="∝ X^{1/2}")
 e.set_xlabel("X = |η − η_s| / w"); e.set_ylabel("den/δ − 1"); e.legend(fontsize=8)
-e.set_title("(d) square-root cusp of the sonic factor, w = 9.1 δ²", fontsize=10)
+e.set_title("(d) square-root cusp of the sonic factor; w ≈ 9.0 δ²", fontsize=10)
 plt.tight_layout()
 plt.savefig("fig_ladder.png", dpi=160)
 print(f"p*={pstar:.10f} (rms {rmsp:.2e}), λ*={lstar:.10f} (rms {rmsl:.2e}); free ω: p {parpf[5]:.4f}, λ {parlf[5]:.4f}; "

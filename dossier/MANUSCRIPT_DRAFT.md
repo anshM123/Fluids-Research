@@ -80,7 +80,7 @@ branch can be followed to δ ≈ 1e−5, where the layer is 1e−9 wide in ln ξ
 quadratically at every step.
 
 Near the end of the branch the sonic factor does not have a parabolic minimum. It develops a square-root
-cusp, den ≈ δ + k|ln ξ − ln ξ_s|^{1/2}, and the layer width scales as w = 9.1 δ² (Fig. 1d). This is
+cusp, den ≈ δ + k|ln ξ − ln ξ_s|^{1/2}, and the layer width scales as w ≈ 9.0 δ² (Fig. 1d). This is
 explained by a self-consistent local structure. A square-root singularity Θ ≈ Θ_s + B sgn(ξ−ξ_s)|ξ−ξ_s|^{1/2}
 is mapped by H onto B|ξ−ξ_s|^{1/2}, a square-root zero of den. Feeding that zero back through the profile ODE
 returns the same singularity if and only if B² = 2λΘ_s.

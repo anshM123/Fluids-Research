@@ -151,3 +151,19 @@ Costs are wall-clock on the 4-core container (CPU-h = cores × hours).
   ≤ 1e−9 in p over the whole range (previously up to 2e−5 below δ = 4e−5 before the R019 fix).
 - Asymptotic fits (δ ≤ 3e−3, free ω): ω = 1.3017/1.3022 (p), 1.2921/1.2856 (λ) vs 2τ = 1.2988;
   **p* = 2.005772 ± 1e−6, λ* = 0.4535845 ± 5e−7**; δ ln δ coefficient consistent with 0.
+
+### R022 — P02: dense sampling of the arc and final verification
+- **Dense sampling** (`pinned_dense.py`, δ ratio 0.85, re-gridded to 24 pts/width every step; runs E: δ 1.04e−2 → 8e−6,
+  G: δ 1.04e−2 → 2.2e−2) + run C below. 39 distinct branch points.
+- **Model-free extrema of p(δ):** max 2.013429 (δ = 1.51e−2), min **2.004945** (δ = 1.68e−3), max 2.005850 (δ ≈ 1.0e−4),
+  min 2.005765 (δ ≈ 8e−6). The minimum of p on the entire arc λ₂ → cusp is 2.004945 > 2.
+- **Asymptotic fits** (`analysis_final.py`): free frequency ω = 1.2983–1.3010 (p and λ; δ ≤ 1e−3 and 3e−3; with/without
+  δ ln δ, whose coefficient is |A| ≤ 1.2e−3) vs predicted 2τ = 1.29885 (0.01–0.2 %); **p* = 2.0057717 ± 5e−8,
+  λ* = 0.4535843 ± 5e−8**.
+- **λ(δ) is monotone** (non-oscillatory part 0.40δ exceeds the oscillatory derivative amplitude ≈ 0.34δ): the branch has no
+  folds near the cusp — p oscillates log-periodically while λ ↓ λ* (a "chirp", not a Gelfand-type spiral). Wording in the
+  dossier corrected accordingly (R015/R018 said "spiral").
+- **Fixed-δ grid refinement** (`verify_points.py`, 3–4 grids: 24/36/48 pts per width, h_s = 0.03/0.02): δ = 5.4e−3:
+  Δλ = 9e−13, Δp = 4.5e−12; δ = 1.47e−3: Δλ = 9.9e−13, Δp = 4.5e−14. (A 48-pt/h_s = 0.015 grid, N ≈ 11 600, was
+  OOM-killed; replaced by 24/0.02.)
+- **Status:** VERIFIED.

@@ -1,0 +1,8 @@
+pdense_states/E_013.npy: δ=1.473199e-03 pts/width=24 h_s=0.03 N=5748: λ=0.4542254010702 p=2.0049709289614 ok=True
+pdense_states/E_013.npy: δ=1.473199e-03 pts/width=36 h_s=0.02 N=8622: λ=0.4542254010696 p=2.0049709289613 ok=True
+pdense_states/E_013.npy: δ=1.473199e-03 pts/width=48 h_s=0.03 N=5794: λ=0.4542254010692 p=2.0049709289613 ok=True
+pdense_states/E_013.npy: δ=1.473199e-03 pts/width=24 h_s=0.02 N=8582: λ=0.4542254010701 p=2.0049709289614 ok=True
+   spread: Δλ=9.94e-13  Δp=4.53e-14
+pin_C_final_state.npy: δ=1.294639e-06 pts/width=24 h_s=0.03 N=6594: λ=0.4535849252833 p=2.0057722552475 ok=True
+pin_C_final_state.npy: δ=1.294639e-06 pts/width=36 h_s=0.02 N=9890: λ=0.4535849249521 p=2.0057722552588 ok=False
+pin_C_final_state.npy: δ=1.294639e-06 pts/width=48 h_s=0.03 N=6640: λ=0.4535849251364 p=2.0057722552507 ok=True

@@ -99,13 +99,13 @@ origin. Smooth (analytic) profiles are exactly the points where p = 2.
    - the sonic factor develops a square-root cusp, den ≈ δ + k|η−η_s|^{1/2};
    - the profile develops an interior square-root singularity Θ − Θ_s ≈ B sgn(ξ−ξ_s)|ξ−ξ_s|^{1/2};
    - the amplitude is fixed locally by **B² = 2λΘ_s** (checked to 1 %);
-   - the layer width scales as **w = 9.10 δ²**. The universal inner-layer problem predicts w/δ² = 4.7405/k² = 9.00–9.17, with no free parameter (R020).
+   - the layer width scales as **w ≈ 9.0 δ²**. The universal inner-layer problem predicts w/δ² = 4.7405/k² with no free parameter: 8.9893 against a computed 8.9908 (0.02 %, R020/R022).
 4. **Universal log-periodic approach** (DERIVED + VERIFIED). Near the cusp, the linearised profile equation is the universal nonlocal operator u' = −H[u]/(2|x|).
    - Its odd modes have purely imaginary exponents ±iτ, with **τ tanh(πτ/2) = 1/2, so τ = 0.649424**.
-   - Hence λ(δ) and p(δ) oscillate log-periodically, with frequency 2τ = 1.2988 in ln δ and amplitude ∝ δ.
+   - Hence p(δ) oscillates log-periodically about p*, with frequency 2τ = 1.2988 in ln δ and amplitude ∝ δ. λ(δ) carries a weaker oscillation on top of a monotone decrease to λ*, so there are no folds.
    - Fitted frequencies with the frequency left free: 1.2983–1.3010 for δ ≤ 1e−3 and δ ≤ 3e−3, from p and from λ, with or without a δ ln δ term. That is within 0.01–0.2 % of the prediction.
    - Successive extrema of p: 2.013429 (max, δ = 1.51e−2), 2.004945 (min, δ = 1.68e−3), 2.005850 (max, δ ≈ 1.0e−4), 2.005765 (min, δ ≈ 8e−6).
-   - The observed ratio 0.0996 of successive amplitudes compares with the predicted e^{−π/2τ} = 0.089.
+   - Successive amplitudes |p − p*| have ratios 0.108, 0.095 and 0.086, approaching the predicted e^{−π/2τ} = 0.089.
 5. **Consequence: no third unstable CCF profile exists on the branch.**
    - p ∈ [2.004945, 2.013429] on the entire arc beyond λ₂, and p → p* > 2.
    - This explains the failed λ₃ search of arXiv:2511.22819: their window [0.455, 0.4713] lies exactly on this arc.
@@ -113,7 +113,7 @@ origin. Smooth (analytic) profiles are exactly the points where p = 2.
      0.4586, 0.6228, **0.6797**, and no more from this branch.
 
 ## G. Closest prior work
-- **Wang, Lai, Gómez-Serrano, Buckmaster et al., arXiv:2509.14185 (2025), "Discovery of unstable singularities".** They found CCF λ₀, λ₁ and λ₂ ≈ 0.4703 using PINNs plus Gauss–Newton, and gave empirical λ_n laws for IPM and Boussinesq.
+- **Wang et al., arXiv:2509.14185 (2025), "Discovery of unstable singularities".** They found CCF λ₀, λ₁ and λ₂ ≈ 0.4703 using PINNs plus Gauss–Newton, and gave empirical λ_n laws for IPM and Boussinesq.
   - Difference: our λ₂ = 0.471324227767 is 12-digit and classical.
   - We give the global branch structure, the termination and the finiteness.
 - **Wang–Léger–Lai–Buckmaster, arXiv:2511.22819 (2025).** They obtained λ₂ = 0.47132422 to machine precision with gradient-normalised PINNs, and failed to find λ₃ in [0.455, 0.4713].
@@ -129,10 +129,10 @@ origin. Smooth (analytic) profiles are exactly the points where p = 2.
 
 ## H. Novelty claim
 1. First global solution-branch picture of CCF self-similar blow-up. All known smooth profiles are the p = 2 crossings of one connected branch, and the instability order equals the crossing order.
-2. First identification of how the branch terminates: a self-similar profile with an interior square-root cusp, fixed by B² = 2λΘ_s. Its universal inner layer predicts the layer-width constant.
+2. First identification of how the branch terminates: a self-similar profile with an interior square-root cusp, fixed by B² = 2λΘ_s. Its universal inner layer predicts the layer-width constant to 0.02 %.
 3. A derived universal law for the approach to the cusp: a log-periodic oscillation with τ tanh(πτ/2) = 1/2, confirmed numerically to 0.2 %.
 4. A negative answer, for the principal branch, to the open question whether a third unstable CCF profile exists. The ladder is finite, with exactly three members.
-5. A classical, ML-free numerical method that resolves sharp-layer self-similar profiles to 12 digits in seconds on a single CPU core. It follows the branch to sonic depths δ ~ 1e−5, where the layer width is 1e−9.
+5. A classical, ML-free numerical method that resolves sharp-layer self-similar profiles to 12 digits in seconds on a single CPU core. It follows the branch to sonic depth δ = 1.3e−6, where the layer width is 1.5e−11 in ln ξ.
 
 ## I. Method (details in `programs/P02_singularity_ladders/METHOD.md`)
 - **Formulation.** Log variables η = ln ξ, with Θ = e^{cη}Ψ and β < c < 1.
@@ -188,13 +188,14 @@ origin. Smooth (analytic) profiles are exactly the points where p = 2.
 | λ₂ grid-independence | 12 digits over h_s, ε, L₁ ∈ {30, 45}, L₂ ∈ {120, 170}, c ∈ [0.62, 0.78] |
 | Two solvers (FFT uniform vs mapped) | λ₀ equal to 13 digits |
 | Instability orders | three methods agree (0, 1, 2 unstable modes); trivial μ = 1 reproduced |
-| Pinned continuation, two resolutions: C (24 pts/width, h_s = 0.03) vs D (36 pts/width, h_s = 0.02) | λ, p agree to ≤ 1e−10 for δ ≥ 5e−3. Fixed-δ refinement checks: see `verify_points.log` |
-| Re-gridding test at every step (run C, δ = 1e−2 … 1e−5) | Δλ ≤ 7e−9, Δp ≤ 3e−9 |
-| w/δ² constant (cusp scaling) | 9.052 … 9.099 over δ ∈ [8e−5, 1e−2] |
+| Fixed-δ grid refinement (`verify_points.py`: 24/36/48 pts per width, h_s = 0.03/0.02) | δ = 5.4e−3: Δλ = 9e−13, Δp = 4.5e−12; δ = 1.47e−3 (the minimum of p): Δλ = 1.0e−12, Δp = 4.5e−14; δ = 1.3e−6: Δλ = 3e−10, Δp = 1e−11 |
+| Independent runs (C vs D at 36 pts/width, h_s = 0.02; A vs C: old vs new grid construction) | agree to ≤ 1e−10 (δ ≥ 5e−3) and ≤ 1e−9 (δ ≥ 3e−4) |
+| Re-gridding test at every step (run C, δ = 1e−2 … 1.3e−6) | Δλ ≤ 7e−9, Δp ≤ 3e−9 |
+| w/δ² constant (cusp scaling) | 9.00–9.01 over δ ∈ [3e−4, 3e−3] (grids with ≥ 17 pts/width; coarser 6-pt estimates gave 9.10) |
 | B² = 2λΘ_s (predicted k = 0.72575) | measured 0.7182–0.7192 (1 %, O(δ/√x) corrections) |
 | ln Θ jump coefficient 2λ/k = 1.2502 | measured 1.243–1.247 |
 | Oscillation frequency 2τ = 1.29885 | free fits 1.2983–1.3010 (p and λ, δ ≤ 1e−3 and ≤ 3e−3; 39 branch points) |
-| Layer-width constant (universal inner problem, f''(0) = 0.08900) | predicted 9.00–9.17 vs computed 9.098 |
+| Layer-width constant (universal inner problem, f''(0) = 0.08900) | predicted 4.7405/k² = 8.98930 (k² = 0.52735 on the same profile) vs computed 8.99076 (48 pts/width), 8.99528 (24 pts/width), at δ = 1.47e−3: 0.02 % |
 | Operator accuracy on extreme grids (h_c down to 1e−11) | ‖Hm·Ψ − exact‖ ≤ 1.4e−14 |
 | Large-λ end | p monotone decreasing, no crossing, up to λ = 7.85 (arclength, domain-converged) |
 | Uniqueness probe (multi-start, 144 starts at 8 values of λ) | every converged start (23) reproduced the branch value of p to ≤ 1e−6 |
@@ -277,8 +278,8 @@ branch of self-similar solutions through the smoothness condition p = 2 on the l
 the instability order equals the crossing order. Beyond the second unstable profile, the branch develops a
 self-induced sonic layer and terminates at a profile with an interior square-root cusp. We derive that the
 linearisation about this cusp reduces to a universal Hilbert-transform operator, whose imaginary exponents
-±iτ, τ tanh(πτ/2) = 1/2, predict a log-periodic oscillation of the branch; this is confirmed numerically to 1%.
-Because the oscillation centre has p* = 2.00577 > 2, no third unstable profile exists on the branch.
+±iτ, τ tanh(πτ/2) = 1/2, predict log-periodic oscillations along the branch; this is confirmed numerically to 0.2%.
+Because the oscillation centre has p* = 2.00577 > 2 (and p never falls below 2.00494 beyond λ₂), no third unstable profile exists on the branch.
 
 ## S. Outline (Nature Computational Science Article format)
 1. **Introduction.** Unstable singularities, the PINN discovery pipeline, empirical ladders, and the open CCF question.

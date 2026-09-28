@@ -51,8 +51,9 @@ The curvature width w = [den_min/(den''/2)]^{1/2} used in the code is therefore
 
   w = ℓ √(2/f''(0)) = 4.7405 δ²/k².                                                                         (6)
 
-- With k² from (4): w/δ² = 9.00 using the cusp value, 9.17 using the value measured at δ = 1.7e−4.
-- Computed: 9.098, constant to 0.5 % for δ ∈ [1e−5, 1e−2].
+- On the same profile at δ = 1.47e−3, the measured k² = 0.52735 gives a prediction w/δ² = 8.98930.
+- Computed: 8.99076 at 48 points per layer width and 8.99528 at 24, a 0.02 % agreement.
+- Earlier estimates of 9.1 came from 3-point curvature on grids with only 6 points per width.
 
 ## S1.4 Linearisation about the cusp: universal operator
 Perturb the terminal profile: Θ = Θ₀(1 + u), den = den₀ + den₁.
