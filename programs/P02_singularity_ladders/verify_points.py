@@ -14,7 +14,7 @@ for f in sys.argv[1:]:
     etac = eta0[ic0]
     spl = CubicSpline(eta0, phi0)
     res = []
-    for pts, hs in ((24, 0.03), (36, 0.02), (48, 0.03), (48, 0.015)):
+    for pts, hs in ((24, 0.03), (36, 0.02), (48, 0.03), (24, 0.02)):
         P.HS = hs
         M, ic = P.new_grid(etac, 24 * sp.min(), pts)
         phi = spl(M.eta)
