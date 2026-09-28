@@ -6,3 +6,8 @@ big_data/
 programs/P02_singularity_ladders/pcont_sol_*.npy
 programs/P02_singularity_ladders/*_sols*.npy
 programs/**/*.log
+programs/P02_singularity_ladders/linevo_*.npy
+programs/P02_singularity_ladders/td_*.npy
+programs/P02_singularity_ladders/block_*.npy
+programs/P02_singularity_ladders/diag_*.npy
+programs/P05_merger/*.npy
