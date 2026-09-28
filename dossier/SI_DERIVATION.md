@@ -53,7 +53,7 @@ The curvature width w = [den_min/(den''/2)]^{1/2} used in the code is therefore
   w = ℓ √(2/f''(0)) = 4.7405 δ²/k².                                                                         (6)
 
 - On the same profile at δ = 1.47e−3, the measured k² = 0.52735 gives a prediction w/δ² = 8.98930.
-- Computed: 8.99076 at 48 points per layer width and 8.99528 at 24, a 0.02 % agreement.
+- Computed: 8.99528, 8.99076 and 8.98963 at 24, 48 and 96 points per layer width. The Richardson limit is 8.98925, a 5e−6 agreement.
 - Earlier estimates of 9.1 came from 3-point curvature on grids with only 6 points per width.
 
 ## S1.4 Linearisation about the cusp: universal operator

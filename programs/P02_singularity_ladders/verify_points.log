@@ -6,3 +6,5 @@ pdense_states/E_013.npy: δ=1.473199e-03 pts/width=24 h_s=0.02 N=8582: λ=0.4542
 pin_C_final_state.npy: δ=1.294639e-06 pts/width=24 h_s=0.03 N=6594: λ=0.4535849252833 p=2.0057722552475 ok=True
 pin_C_final_state.npy: δ=1.294639e-06 pts/width=36 h_s=0.02 N=9890: λ=0.4535849249521 p=2.0057722552588 ok=False
 pin_C_final_state.npy: δ=1.294639e-06 pts/width=48 h_s=0.03 N=6640: λ=0.4535849251364 p=2.0057722552507 ok=True
+pin_C_final_state.npy: δ=1.294639e-06 pts/width=24 h_s=0.02 N=9848: λ=0.4535849258360 p=2.0057722552238 ok=True
+   spread: Δλ=8.84e-10  Δp=3.50e-11

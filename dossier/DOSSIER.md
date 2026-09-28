@@ -99,7 +99,7 @@ origin. Smooth (analytic) profiles are exactly the points where p = 2.
    - the sonic factor develops a square-root cusp, den ≈ δ + k|η−η_s|^{1/2};
    - the profile develops an interior square-root singularity Θ − Θ_s ≈ B sgn(ξ−ξ_s)|ξ−ξ_s|^{1/2};
    - the amplitude is fixed locally by **B² = 2λΘ_s** (checked to 1e−4 at δ = 1.3e−6);
-   - the layer width scales as **w ≈ 9.0 δ²**. The universal inner-layer problem predicts w/δ² = 4.7405/k² with no free parameter: 8.9893 against a computed 8.9908 (0.02 %, R020/R022).
+   - the layer width scales as **w ≈ 9.0 δ²**. The universal inner-layer problem predicts w/δ² = 4.7405/k² with no free parameter: 8.98930 against a computed 8.98925 (grid-extrapolated; 5e−6; R020/R022).
 4. **Universal log-periodic approach** (DERIVED + VERIFIED). Near the cusp, the linearised profile equation is the universal nonlocal operator u' = −H[u]/(2|x|).
    - Its odd modes have purely imaginary exponents ±iτ, with **τ tanh(πτ/2) = 1/2, so τ = 0.649424**.
    - Hence p(δ) oscillates log-periodically about p*, with frequency 2τ = 1.2988 in ln δ and amplitude ∝ δ. λ(δ) carries a weaker oscillation on top of a monotone decrease to λ*, so there are no folds.
@@ -129,7 +129,7 @@ origin. Smooth (analytic) profiles are exactly the points where p = 2.
 
 ## H. Novelty claim
 1. First global solution-branch picture of CCF self-similar blow-up. All known smooth profiles are the p = 2 crossings of one connected branch, and the instability order equals the crossing order.
-2. First identification of how the branch terminates: a self-similar profile with an interior square-root cusp, fixed by B² = 2λΘ_s. Its universal inner layer predicts the layer-width constant to 0.02 %.
+2. First identification of how the branch terminates: a self-similar profile with an interior square-root cusp, fixed by B² = 2λΘ_s. Its universal inner layer predicts the layer-width constant to 5e−6.
 3. A derived universal law for the approach to the cusp: a log-periodic oscillation with τ tanh(πτ/2) = 1/2, confirmed numerically to 0.2 %.
 4. A negative answer, for the principal branch, to the open question whether a third unstable CCF profile exists. The ladder is finite, with exactly three members.
 5. A classical, ML-free numerical method that resolves sharp-layer self-similar profiles to 12 digits in seconds on a single CPU core. It follows the branch to sonic depth δ = 1.3e−6, where the layer width is 1.5e−11 in ln ξ.
@@ -188,14 +188,14 @@ origin. Smooth (analytic) profiles are exactly the points where p = 2.
 | λ₂ grid-independence | 12 digits over h_s, ε, L₁ ∈ {30, 45}, L₂ ∈ {120, 170}, c ∈ [0.62, 0.78] |
 | Two solvers (FFT uniform vs mapped) | λ₀ equal to 13 digits |
 | Instability orders | three methods agree (0, 1, 2 unstable modes); trivial μ = 1 reproduced |
-| Fixed-δ grid refinement (`verify_points.py`: 24/36/48 pts per width, h_s = 0.03/0.02) | δ = 5.4e−3: Δλ = 9e−13, Δp = 4.5e−12; δ = 1.47e−3 (the minimum of p): Δλ = 1.0e−12, Δp = 4.5e−14; δ = 1.3e−6: Δλ = 3e−10, Δp = 1e−11 |
+| Fixed-δ grid refinement (`verify_points.py`: 24/36/48 pts per width, h_s = 0.03/0.02) | δ = 5.4e−3: Δλ = 9e−13, Δp = 4.5e−12; δ = 1.47e−3 (the minimum of p): Δλ = 1.0e−12, Δp = 4.5e−14; δ = 1.3e−6: Δλ = 9e−10, Δp = 3.5e−11 |
 | Independent runs (C vs D at 36 pts/width, h_s = 0.02; A vs C: old vs new grid construction) | agree to ≤ 1e−10 (δ ≥ 5e−3) and ≤ 1e−9 (δ ≥ 3e−4) |
 | Re-gridding test at every step (run C, δ = 1e−2 … 1.3e−6) | Δλ ≤ 7e−9, Δp ≤ 3e−9 |
 | w/δ² constant (cusp scaling) | 9.00–9.01 over δ ∈ [3e−4, 3e−3] (grids with ≥ 17 pts/width; coarser 6-pt estimates gave 9.10) |
 | B² = 2λΘ_s: cusp coefficient, predicted k = √(2λΘ_s/ξ_s) = 0.725820 | measured 0.725749–0.725764 for |x| ∈ [3e−5, 1e−3] at δ = 1.3e−6 (1e−4); 1 % at δ = 1.7e−4 (finite-δ corrections) |
 | ln Θ jump coefficient 2λ/k = 1.249855 | measured 1.249853–1.249967 (δ = 1.3e−6) |
 | Oscillation frequency 2τ = 1.29885 | free fits 1.2983–1.3010 (p and λ, δ ≤ 1e−3 and ≤ 3e−3; 39 branch points) |
-| Layer-width constant (universal inner problem, f''(0) = 0.08900) | predicted 4.7405/k² = 8.98930 (k² = 0.52735 on the same profile) vs computed 8.99076 (48 pts/width), 8.99528 (24 pts/width), at δ = 1.47e−3: 0.02 % |
+| Layer-width constant (universal inner problem, f''(0) = 0.08900) | predicted 4.7405/k² = 8.98930 (k² = 0.52735 on the same profile, δ = 1.47e−3) vs computed 8.99528, 8.99076 and 8.98963 at 24, 48 and 96 pts/width; Richardson limit 8.98925 (5e−6) |
 | Operator accuracy on extreme grids (h_c down to 1e−11) | ‖Hm·Ψ − exact‖ ≤ 1.4e−14 |
 | Large-λ end | p monotone decreasing, no crossing, up to λ = 7.85 (arclength, domain-converged) |
 | Uniqueness probe (multi-start, 144 starts at 8 values of λ) | every converged start (23) reproduced the branch value of p to ≤ 1e−6 |
