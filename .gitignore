@@ -19,3 +19,6 @@ programs/P02_singularity_ladders/sac_*_last.npy
 programs/P02_singularity_ladders/diag_svd_vecs.npy
 programs/P02_singularity_ladders/fccf_l*_s*.npy
 programs/P02_singularity_ladders/pin_*_last.npy
+programs/P02_singularity_ladders/pin_C_snap.npy
+programs/P02_singularity_ladders/pin_C_start.npy
+programs/P02_singularity_ladders/sac_S1_restart.npy
