@@ -1,0 +1,5 @@
+# large intermediate solver states (regenerable: bq_newton.py, bq_scan.py)
+Y_*.npy
+bq_P_*.npy
+bq_X_*.npy
+__pycache__/
