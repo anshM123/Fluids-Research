@@ -103,8 +103,10 @@ included (p* shifts by < 1e−6).
 
 Numerical confirmation:
 - With 2τ free, fits over δ ≤ 1e−3 or ≤ 3e−3 give 1.2983–1.3010 (from p and λ, with or without a δ ln δ term), against 2τ = 1.29885.
-- Extrema of p: maximum 2.013429 at δ = 1.51e−2; minimum 2.004945 at δ = 1.68e−3; maximum 2.005850 at
-  δ ≈ 1.0e−4; minimum 2.005765 at δ ≈ 8e−6.
+- Extrema of p: maximum 2.013429 at δ = 1.51e−2; minimum 2.004945 at δ = 1.68e−3; maximum 2.005840 at
+  δ = 1.46e−4; minimum 2.005765 at δ = 1.34e−5.
+- Spacing ratios: 11.52 and 10.88. With the non-oscillatory term B, extrema alternate between spacings
+  2 arccos(c)/ω and (2π − 2 arccos(c))/ω, where c = −B/(A√(1+ω²)). The fitted B and A predict 11.53 and 10.95.
 - p* = 2.0057717 ± 5e−8 and λ* = 0.4535843 ± 5e−8.
 
 ## S1.7 Finiteness of the ladder

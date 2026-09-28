@@ -173,3 +173,6 @@ Costs are wall-clock on the 4-core container (CPU-h = cores × hours).
   w/δ² = 8.99528 / 8.99076 / 8.98963 (24/48/96 pts per width) → Richardson 8.98925 vs inner-layer prediction
   4.7405/k² = 8.98930 (5e−6). Fixed-δ refinement at δ = 1.3e−6 (4 grids): Δλ = 9e−10, Δp = 3.5e−11.
   (Earlier quoted w/δ² ≈ 9.10 came from 3-point curvature on 6-pt/width grids.)
+- **Final dense data (E complete, δ → 6.9e−6; 59 points):** extrema of p: max 2.013429 (δ 1.51e−2), min 2.004945 (1.68e−3),
+  max 2.005840 (1.46e−4), min 2.005765 (1.34e−5); spacing ratios 11.52, 10.88 (B-term alternation predicted 11.53/10.95;
+  mean 11.23). Free-ω fits 1.2983–1.3009; (p−p*)/δ and (λ−λ*)/δ are pure sinusoids in ln δ over 3.4 decades (fig_ladder.png c).

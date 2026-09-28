@@ -101,8 +101,9 @@ and the same holds for λ. For λ the oscillatory part is weaker than the linear
 monotonically to λ* and the branch has no folds. p, by contrast, oscillates about p* infinitely often, with
 successive extrema a factor e^{π/2τ} = 11.23 apart in δ (Fig. 1b,c).
 
-The computed branch shows exactly this. Extrema of p are 2.013429 at δ = 1.5e−2, then 2.004945 at δ = 1.7e−3, then 2.005850 at
-δ ≈ 1.0e−4, then 2.005765 at δ ≈ 8e−6. Fits with a free frequency return 1.2983–1.3010, against the predicted
+The computed branch shows exactly this. Extrema of p are 2.013429 at δ = 1.5e−2, then 2.004945 at δ = 1.7e−3, then 2.005840 at
+δ = 1.5e−4, then 2.005765 at δ = 1.3e−5. Successive spacing ratios are 11.5 and 10.9, against a predicted 11.23 on
+average. (p − p*)/δ is a pure sinusoid in ln δ over three and a half decades (Fig. 1c). Fits with a free frequency return 1.2983–1.3010, against the predicted
 2τ = 1.29885, with no adjustable parameter in the prediction.
 
 **Consequences.**

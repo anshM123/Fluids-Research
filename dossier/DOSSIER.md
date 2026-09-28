@@ -103,9 +103,10 @@ origin. Smooth (analytic) profiles are exactly the points where p = 2.
 4. **Universal log-periodic approach** (DERIVED + VERIFIED). Near the cusp, the linearised profile equation is the universal nonlocal operator u' = −H[u]/(2|x|).
    - Its odd modes have purely imaginary exponents ±iτ, with **τ tanh(πτ/2) = 1/2, so τ = 0.649424**.
    - Hence p(δ) oscillates log-periodically about p*, with frequency 2τ = 1.2988 in ln δ and amplitude ∝ δ. λ(δ) carries a weaker oscillation on top of a monotone decrease to λ*, so there are no folds.
-   - Fitted frequencies with the frequency left free: 1.2983–1.3010 for δ ≤ 1e−3 and δ ≤ 3e−3, from p and from λ, with or without a δ ln δ term. That is within 0.01–0.2 % of the prediction.
-   - Successive extrema of p: 2.013429 (max, δ = 1.51e−2), 2.004945 (min, δ = 1.68e−3), 2.005850 (max, δ ≈ 1.0e−4), 2.005765 (min, δ ≈ 8e−6).
-   - Successive amplitudes |p − p*| have ratios 0.108, 0.095 and 0.086, approaching the predicted e^{−π/2τ} = 0.089.
+   - Fitted frequencies with the frequency left free: 1.2983–1.3009 for δ ≤ 1e−3 and δ ≤ 3e−3, from p and from λ, with or without a δ ln δ term. That is within 0.004–0.2 % of the prediction (Fig. 1c: (p − p*)/δ is a pure sinusoid in ln δ).
+   - Successive extrema of p (dense sampling, 59 branch points): 2.013429 (max, δ = 1.51e−2), 2.004945 (min, δ = 1.68e−3), 2.005840 (max, δ = 1.46e−4), 2.005765 (min, δ = 1.34e−5).
+   - Spacing ratios in δ are 11.52 and 10.88. The predicted alternation from the non-oscillatory term B is 11.53/10.95, and the mean prediction e^{π/2τ} is 11.23.
+   - Successive amplitudes |p − p*| have ratios 0.108, 0.083 and 0.096. Their geometric mean over the last pair is 0.089, the predicted e^{−π/2τ} = 0.0890.
 5. **Consequence: no third unstable CCF profile exists on the branch.**
    - p ∈ [2.004945, 2.013429] on the entire arc beyond λ₂, and p → p* > 2.
    - This explains the failed λ₃ search of arXiv:2511.22819: their window [0.455, 0.4713] lies exactly on this arc.
