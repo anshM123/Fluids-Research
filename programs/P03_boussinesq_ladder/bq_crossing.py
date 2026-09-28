@@ -1,0 +1,39 @@
+"""Locate a smooth profile (m(λ) = 2) by secant iteration in λ with the Newton–Krylov solver at each λ.
+Usage: bq_crossing.py Y_a.npy lam_a Y_b.npy lam_b [Nb hs s_start s_max] [NB_IN HS_IN]
+The starting states may come from another grid (NB_IN, HS_IN) and are transferred."""
+import numpy as np, sys, time
+from bq_solver import BQ
+from bq_newton import newton
+from bq_regrid import transfer
+from bq_logpolar import BQLogPolar
+
+fa, la, fb, lb = sys.argv[1], float(sys.argv[2]), sys.argv[3], float(sys.argv[4])
+Nb = int(sys.argv[5]) if len(sys.argv) > 5 else 32
+hs = float(sys.argv[6]) if len(sys.argv) > 6 else 0.025
+sst = float(sys.argv[7]) if len(sys.argv) > 7 else -20.0
+smax = float(sys.argv[8]) if len(sys.argv) > 8 else 100.0
+nbi = int(sys.argv[9]) if len(sys.argv) > 9 else 32
+hsi = float(sys.argv[10]) if len(sys.argv) > 10 else 0.025
+tag = f"Nb{Nb}_hs{hs}_ss{sst}_sm{smax}"
+t0 = time.time()
+
+def solve(lam, Yg, from_grid=None):
+    B = BQ(lam, hs=hs, Nb=Nb, s_start=sst, s_max=smax)
+    if from_grid is not None:
+        Yg = transfer(from_grid, Yg, B)
+    Y, info, ok = newton(B, Yg, tol=1e-11, maxit=10, verbose=False, fd='central', pert=1e-6)
+    print(f"  λ={lam:.10f}: ok={ok} A={info['A']:.12f} m={info['m']:.12f} vrmin={info['vrmin']:.5f} t={time.time()-t0:.0f}s", flush=True)
+    return Y, info['m']
+
+gin = lambda lam: BQLogPolar(lam, hs=hsi, Nb=nbi)
+Ya, ma = solve(la, np.load(fa), gin(la))
+Yb, mb = solve(lb, np.load(fb), gin(lb))
+for it in range(8):
+    lc = lb + (2 - mb) * (lb - la) / (mb - ma)
+    Yc = Yb + (Yb - Ya) * (lc - lb) / (lb - la)
+    Yc, mc = solve(lc, Yc)
+    la, ma, Ya, lb, mb, Yb = lb, mb, Yb, lc, mc, Yc
+    if abs(mc - 2) < 1e-10:
+        break
+print(f"CROSSING {tag}: λ = {lb:.10f} (m−2 = {mb-2:+.2e})", flush=True)
+np.save(f"Ycross_{tag}_lam{lb:.6f}.npy", Yb)

@@ -5,6 +5,8 @@ import numpy as np, time
 from scipy.sparse.linalg import LinearOperator, gmres
 from bq_logpolar import BQLogPolar
 
+VRMIN_FLOOR = 1e-3        # reject states whose self-similar flow V_r/r reaches (almost) zero (flow reversal)
+
 
 def full(B, Y):
     """X = Ψ/r² on the whole grid from the unknowns Y = X[i0:] (s ≥ s_start); below s_start the exact local
@@ -19,7 +21,7 @@ def residual(B, Y):
     """unknowns Y = X[i0:], X = Ψ/r² = e^{(a−2)s}Ψ̃ (velocity-gradient scale); residual on s ≥ s_start only"""
     X = full(B, Y)
     Pn, info = B.T(X / B.ea2[:, None])
-    if not np.all(np.isfinite(Pn)) or info['vrmin'] <= 0.02 or info['m'] <= 1.0:
+    if not np.all(np.isfinite(Pn)) or info['vrmin'] <= VRMIN_FLOOR or info['m'] <= 1.0:
         return None, info
     return (X - B.ea2[:, None] * Pn)[B.i0:], info
 

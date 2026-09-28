@@ -3,3 +3,7 @@ Y_*.npy
 bq_P_*.npy
 bq_X_*.npy
 __pycache__/
+Y2_*.npy
+Y3_*.npy
+Yr_*.npy
+viz_profiles.png

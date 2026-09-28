@@ -8,13 +8,16 @@ from bq_newton import newton
 from bq_regrid import transfer
 from bq_logpolar import BQLogPolar
 
-lam0, lam1, dlam, tag, start = float(sys.argv[1]), float(sys.argv[2]), float(sys.argv[3]), sys.argv[4], sys.argv[5]
+lam0, lam1, tag, start = float(sys.argv[1]), float(sys.argv[2]), sys.argv[4], sys.argv[5]
+zstep = sys.argv[3].startswith('z')          # 'z0.1': uniform steps Δz in z = 1/(λ−1) (downward in λ)
+dlam = -float(sys.argv[3][1:]) * (lam0 - 1) ** 2 if zstep else float(sys.argv[3])
 Nb = int(sys.argv[6]) if len(sys.argv) > 6 else 32
 hs = float(sys.argv[7]) if len(sys.argv) > 7 else 0.025
 s_sw = float(sys.argv[8]) if len(sys.argv) > 8 else 12.0
 snb = int(sys.argv[9]) if len(sys.argv) > 9 else Nb
 shs = float(sys.argv[10]) if len(sys.argv) > 10 else hs
 dmax = abs(dlam)
+dz = float(sys.argv[3][1:]) if zstep else None
 acc, rows, t0 = [], [], time.time()
 lam = lam0
 log = open(f"scan2_{tag}.log", "a")
@@ -57,6 +60,10 @@ while (dlam < 0 and lam >= lam1 - 1e-12) or (dlam > 0 and lam <= lam1 + 1e-12):
         l0, m0 = rows[-2][0], rows[-2][2]; l1, m1 = rows[-1][0], rows[-1][2]
         out(f"*** m=2 CROSSING near λ ≈ {l0 + (2 - m0) * (l1 - l0) / (m1 - m0):.7f}")
         np.save(f"Y2_{tag}_cross_lam{lam:.4f}.npy", Y)
+    if zstep:                                   # rescale the maximum step to the local Δz
+        dmax = dz * (lam - 1) ** 2
     if abs(dlam) < dmax:
         dlam = np.sign(dlam) * min(dmax, 1.5 * abs(dlam))
+    else:
+        dlam = np.sign(dlam) * dmax
     lam = lam + dlam
