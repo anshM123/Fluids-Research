@@ -1,0 +1,7 @@
+# Broad reconnaissance G — 2023–26 frontier (returned 2026-09-28; agent had no live search, memory only)
+
+Highlights: Wang–Lai–Gómez-Serrano–Buckmaster PRL 2023 (PINN Hou–Luo profile); Wang et al. 2025 unstable singularities; Chen & Hou CAP Boussinesq/Euler with boundary; de Wit et al. Nature 2024 (odd viscosity cascade arrest); Page et al. PNAS 2024 (UPO statistics); Lellep–Linkmann–Morozov PNAS 2024 (elastic turbulence); Bandak et al. PRL 2024 (thermal noise → integral scale); Deconinck–Dyachenko–Lushnikov–Semenova (Stokes-wave instabilities near limiting wave); Rosti et al. (polymeric turbulence); Mukherjee et al. Nat Phys 2023; Barral & Dubrulle JFM 2023 (log-lattice RB); van Kan et al. 2024; Buaria & Sreenivasan PRL 2023; Gourianov et al. (tensor networks).
+
+Candidate questions proposed (T1–T10). Agent priority: **T1–T3 (unstable-singularity ladders across PDEs; laptop-scale capability; first CAP of an unstable singularity)**, then T8 (thermal-noise thin-film point rupture law), T4 (is Hou–Luo the optimal amplifier), T7 (ergodic optimisation), T5 (Couette γ), T6 (discrete self-similarity in SQG collapse), T9 (QTT χ(Re) during evolution), T10 (CLV physical modes 2D NS).
+
+**Decisions:** T1–T3 MERGED into P02 (Tier A). T8 → IDEA109 (stochastic thin-film point rupture law) Tier B candidate (novelty unverified). T6 → IDEA110 (SQG discrete self-similarity) Tier C. T4 → IDEA111 Tier C (costly). T10 overlaps killed IDEA011 → PAUSED.
