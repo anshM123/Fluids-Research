@@ -94,16 +94,16 @@ origin. Smooth (analytic) profiles are exactly the points where p = 2.
 2. **The branch ends at both sides without further crossings:**
    - λ → ∞: p decreases monotonically from 2 to ≈ 1.13 at λ = 7.85 (p − 1 ≈ 1/λ). VERIFIED up to λ ≈ 8.
    - Small-λ end: after λ₂, p rises to 2.0134 and then spirals into a **terminal cusp profile** at
-     **λ* = 0.45358, p* = 2.00577** (VERIFIED; final digits in O).
+     **λ* = 0.4535845 ± 5e−7, p* = 2.005772 ± 1e−6** (VERIFIED).
 3. **Terminal cusp** (DERIVED + VERIFIED). As the sonic depth δ = min(1+λ+HΘ/ξ) → 0:
    - the sonic factor develops a square-root cusp, den ≈ δ + k|η−η_s|^{1/2};
    - the profile develops an interior square-root singularity Θ − Θ_s ≈ B sgn(ξ−ξ_s)|ξ−ξ_s|^{1/2};
    - the amplitude is fixed locally by **B² = 2λΘ_s** (checked to 1 %);
-   - the layer width scales as **w = 9.10 δ²**.
+   - the layer width scales as **w = 9.10 δ²**. The universal inner-layer problem predicts w/δ² = 4.7405/k² = 9.00–9.17, with no free parameter (R020).
 4. **Universal log-periodic spiral** (DERIVED + VERIFIED). Near the cusp, the linearised profile equation is the universal nonlocal operator u' = −H[u]/(2|x|).
    - Its odd modes have purely imaginary exponents ±iτ, with **τ tanh(πτ/2) = 1/2, so τ = 0.649424**.
    - Hence λ(δ) and p(δ) oscillate log-periodically, with frequency 2τ = 1.2988 in ln δ and amplitude ∝ δ.
-   - Fitted frequencies: 1.2842 to 1.2892, with the frequency left free (within 1 % of the prediction).
+   - Fitted frequencies: 1.286 to 1.302, with the frequency left free, for δ ≤ 3e−3 (within 1 % of the prediction).
    - Successive extrema of p: 2.0134 (max), 2.00501 (min, δ ≈ 1.3e−3), 2.00584 (max, δ ≈ 1.5e−4).
    - The observed ratio 0.0996 of successive amplitudes compares with the predicted e^{−π/2τ} = 0.089.
 5. **Consequence: no third unstable CCF profile exists on the branch.**
@@ -129,7 +129,7 @@ origin. Smooth (analytic) profiles are exactly the points where p = 2.
 
 ## H. Novelty claim
 1. First global solution-branch picture of CCF self-similar blow-up. All known smooth profiles are the p = 2 crossings of one connected branch, and the instability order equals the crossing order.
-2. First identification of how the branch terminates: a self-similar profile with an interior square-root cusp, fixed by B² = 2λΘ_s.
+2. First identification of how the branch terminates: a self-similar profile with an interior square-root cusp, fixed by B² = 2λΘ_s. Its universal inner layer predicts the layer-width constant.
 3. A derived universal law for the approach to the cusp: a log-periodic spiral with τ tanh(πτ/2) = 1/2, confirmed numerically to 1 %.
 4. A negative answer, for the principal branch, to the open question whether a third unstable CCF profile exists. The ladder is finite, with exactly three members.
 5. A classical, ML-free numerical method that resolves sharp-layer self-similar profiles to 12 digits in seconds on a single CPU core. It follows the branch to sonic depths δ ~ 1e−5, where the layer width is 1e−9.
@@ -173,6 +173,7 @@ origin. Smooth (analytic) profiles are exactly the points where p = 2.
    - Odd modes: σ = −½ cot(πσ/2), with roots **±iτ** where τ tanh(πτ/2) = ½, and ±1.830, ….
 5. **Matching.** The inner layer (width w ∝ δ²) perturbs ln Θ by O(δ).
    - It excites the marginal odd modes with amplitude O(δ) and phase τ ln w = 2τ ln δ + const.
+   - The inner problem itself is universal: f(X) − 1 = (1/π) p.v.∫₀^∞ F(y) X²/(y(X²−y²)) dy, with F' = 1/f. It has no free constants and gives f''(0) = 0.08900, hence w/δ² = 4.7405/k².
    - Therefore p(δ) − p* = δ[B₀ + C cos(2τ ln δ) + D sin(2τ ln δ)] + o(δ), and likewise for λ.
    - Consecutive extrema are a factor e^{π/2τ} = 11.23 apart in δ, and their amplitudes decay by the same factor.
 6. **Finiteness.** Since p* ≠ 2 and the oscillation amplitude → 0, only finitely many crossings of p = 2 can occur.
@@ -187,12 +188,14 @@ origin. Smooth (analytic) profiles are exactly the points where p = 2.
 | λ₂ grid-independence | 12 digits over h_s, ε, L₁ ∈ {30, 45}, L₂ ∈ {120, 170}, c ∈ [0.62, 0.78] |
 | Two solvers (FFT uniform vs mapped) | λ₀ equal to 13 digits |
 | Instability orders | three methods agree (0, 1, 2 unstable modes); trivial μ = 1 reproduced |
-| Pinned continuation, two resolutions: C (24 pts/width, h_s = 0.03) vs D (36 pts/width, h_s = 0.02) | λ, p agree to ≤ 1e−10 (δ ≥ 2.6e−3, verified so far); see O for the full table |
-| Re-gridding test at every step | Δλ ≤ 1e−8, Δp ≤ 3e−8 |
+| Pinned continuation, two resolutions: C (24 pts/width, h_s = 0.03) vs D (36 pts/width, h_s = 0.02) | λ, p agree to ≤ 1e−10 for δ ≥ 5e−3. Fixed-δ refinement checks: see `verify_points.log` |
+| Re-gridding test at every step (run C, δ = 1e−2 … 1e−5) | Δλ ≤ 7e−9, Δp ≤ 3e−9 |
 | w/δ² constant (cusp scaling) | 9.052 … 9.099 over δ ∈ [8e−5, 1e−2] |
 | B² = 2λΘ_s (predicted k = 0.72575) | measured 0.7182–0.7192 (1 %, O(δ/√x) corrections) |
 | ln Θ jump coefficient 2λ/k = 1.2502 | measured 1.243–1.247 |
-| Spiral frequency 2τ = 1.2988 | free fits 1.2842–1.2892 (p and λ) |
+| Spiral frequency 2τ = 1.2988 | free fits 1.286–1.302 (p and λ, δ ≤ 3e−3) |
+| Layer-width constant (universal inner problem, f''(0) = 0.08900) | predicted 9.00–9.17 vs computed 9.098 |
+| Operator accuracy on extreme grids (h_c down to 1e−11) | ‖Hm·Ψ − exact‖ ≤ 1.4e−14 |
 | Large-λ end | p monotone decreasing, no crossing, up to λ = 7.85 (arclength, domain-converged) |
 | Uniqueness probe (multi-start, 144 starts at 8 values of λ) | every converged start (23) reproduced the branch value of p to ≤ 1e−6 |
 
@@ -269,7 +272,7 @@ the instability order equals the crossing order. Beyond the second unstable prof
 self-induced sonic layer and terminates at a profile with an interior square-root cusp. We derive that the
 linearisation about this cusp reduces to a universal Hilbert-transform operator, whose imaginary exponents
 ±iτ, τ tanh(πτ/2) = 1/2, predict a log-periodic spiral of the branch; this is confirmed numerically to 1%.
-Because the spiral centre has p* = 2.0058 > 2, no third unstable profile exists on the branch.
+Because the spiral centre has p* = 2.00577 > 2, no third unstable profile exists on the branch.
 
 ## S. Outline (Nature Computational Science Article format)
 1. **Introduction.** Unstable singularities, the PINN discovery pipeline, empirical ladders, and the open CCF question.

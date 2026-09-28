@@ -135,3 +135,19 @@ Costs are wall-clock on the 4-core container (CPU-h = cores × hours).
   centre. Test (`hilbert_extreme_test.py`): |Hm·Ψ − exact| ≤ 1.4e−14 for h_c = 1e−4 … 1e−11 (N up to 6502).
 - Runs C (24 pts/width, h_s=0.03) and D (36 pts/width, h_s=0.02) restarted with the fixed grid; old logs kept as
   `pin_*_oldgrid.log`. Data at δ ≥ 3e−4 were unaffected (changes ≤ 1e−8).
+
+### R020 — P02: universal inner layer predicts the layer-width law (IDEA117)
+- **Problem** (`inner_layer.py`): in the layer den = δ f(X), X = (η−η_s)/ℓ, ℓ = δ²/k²,
+  f(X) − 1 = (1/π) p.v.∫₀^∞ F(y) X²/(y(X²−y²)) dy, F' = 1/f (no free constants; f → X^{1/2} automatically).
+  Log-variable alternating-point discretisation, Newton–Krylov: residual 7.5e−15 (N = 4001).
+- **Result:** f''(0) = 0.08900 ⇒ curvature width (layer_info convention w = √(δ/(den''/2))) w = ℓ√(2/f''(0))
+  ⇒ **w/δ² = 4.7405/k²** = 9.00 (k² = 2λΘ_s/ξ_s = 0.5267, cusp value) … 9.17 (measured k² = 0.517 at δ = 1.7e−4);
+  computed branch: 9.098 (constant to 0.5 % over δ ∈ [1e−5, 1e−2]).
+- **Status:** DERIVED + VERIFIED (third quantitative, parameter-free confirmation of the cusp theory after the
+  spiral frequency 2τ and the amplitude law B² = 2λΘ_s).
+
+### R021 — P02: final pinned-branch data (precision-fixed grid, run C; dense run E; gap run G)
+- Run C (24 pts/width, h_s = 0.03), post-regrid values, δ = 1.04e−2 … 1.0e−5: re-grid changes ≤ 5e−9 in λ,
+  ≤ 1e−9 in p over the whole range (previously up to 2e−5 below δ = 4e−5 before the R019 fix).
+- Asymptotic fits (δ ≤ 3e−3, free ω): ω = 1.3017/1.3022 (p), 1.2921/1.2856 (λ) vs 2τ = 1.2988;
+  **p* = 2.005772 ± 1e−6, λ* = 0.4535845 ± 5e−7**; δ ln δ coefficient consistent with 0.
