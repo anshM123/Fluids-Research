@@ -100,15 +100,15 @@ coefficient to |A| ≲ 0.01, compared with an oscillation amplitude ≈ 0.59, an
 included (p* shifts by < 1e−6).
 
 Numerical confirmation:
-- With 2τ free, fits over δ ≤ 3e−3 give 1.302 (from p) and 1.286–1.292 (from λ), against 2τ = 1.2988.
-- Extrema of p: maximum 2.013428 at δ ≈ 1.5e−2; minimum 2.00495 at δ ≈ 1.6e−3; maximum 2.00584 at
-  δ ≈ 1.5e−4; minimum ≈ 2.005766 at δ ≈ 1e−5.
-- p* = 2.005772 ± 1e−6 and λ* = 0.4535845 ± 5e−7.
+- With 2τ free, fits over δ ≤ 1e−3 or ≤ 3e−3 give 1.2983–1.3010 (from p and λ, with or without a δ ln δ term), against 2τ = 1.29885.
+- Extrema of p: maximum 2.013429 at δ = 1.51e−2; minimum 2.004945 at δ = 1.68e−3; maximum 2.005850 at
+  δ ≈ 1.0e−4; minimum 2.005765 at δ ≈ 8e−6.
+- p* = 2.0057717 ± 5e−8 and λ* = 0.4535843 ± 5e−8.
 
 ## S1.7 Finiteness of the ladder
 - By (9), |p(δ) − p*| = O(δ). Since p* − 2 = 5.77e−3 ≠ 0, p(δ) = 2 has no solution for
   δ < δ_c ≈ 5.77e−3/max|B + C cos + D sin|.
-- For δ above that threshold, the computed branch shows p ∈ (2.0049, 2.0134) all the way back to λ₂.
+- For δ above that threshold, the computed branch shows p ∈ [2.004945, 2.013429] all the way back to λ₂.
 - On the other end (λ → ∞), p decreases monotonically from 2 to 1⁺.
 - Hence the branch has exactly three crossings of p = 2: λ₀, λ₁ and λ₂.
 

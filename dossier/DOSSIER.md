@@ -94,7 +94,7 @@ origin. Smooth (analytic) profiles are exactly the points where p = 2.
 2. **The branch ends at both sides without further crossings:**
    - λ → ∞: p decreases monotonically from 2 to ≈ 1.13 at λ = 7.85 (p − 1 ≈ 1/λ). VERIFIED up to λ ≈ 8.
    - Small-λ end: after λ₂, p rises to 2.0134 and then approaches a **terminal cusp profile** with log-periodic oscillations of p at
-     **λ* = 0.4535845 ± 5e−7, p* = 2.005772 ± 1e−6** (VERIFIED).
+     **λ* = 0.4535843 ± 5e−8, p* = 2.0057717 ± 5e−8** (VERIFIED).
 3. **Terminal cusp** (DERIVED + VERIFIED). As the sonic depth δ = min(1+λ+HΘ/ξ) → 0:
    - the sonic factor develops a square-root cusp, den ≈ δ + k|η−η_s|^{1/2};
    - the profile develops an interior square-root singularity Θ − Θ_s ≈ B sgn(ξ−ξ_s)|ξ−ξ_s|^{1/2};
@@ -103,11 +103,11 @@ origin. Smooth (analytic) profiles are exactly the points where p = 2.
 4. **Universal log-periodic approach** (DERIVED + VERIFIED). Near the cusp, the linearised profile equation is the universal nonlocal operator u' = −H[u]/(2|x|).
    - Its odd modes have purely imaginary exponents ±iτ, with **τ tanh(πτ/2) = 1/2, so τ = 0.649424**.
    - Hence λ(δ) and p(δ) oscillate log-periodically, with frequency 2τ = 1.2988 in ln δ and amplitude ∝ δ.
-   - Fitted frequencies: 1.286 to 1.302, with the frequency left free, for δ ≤ 3e−3 (within 1 % of the prediction).
-   - Successive extrema of p: 2.0134 (max), 2.00501 (min, δ ≈ 1.3e−3), 2.00584 (max, δ ≈ 1.5e−4).
+   - Fitted frequencies with the frequency left free: 1.2983–1.3010 for δ ≤ 1e−3 and δ ≤ 3e−3, from p and from λ, with or without a δ ln δ term. That is within 0.01–0.2 % of the prediction.
+   - Successive extrema of p: 2.013429 (max, δ = 1.51e−2), 2.004945 (min, δ = 1.68e−3), 2.005850 (max, δ ≈ 1.0e−4), 2.005765 (min, δ ≈ 8e−6).
    - The observed ratio 0.0996 of successive amplitudes compares with the predicted e^{−π/2τ} = 0.089.
 5. **Consequence: no third unstable CCF profile exists on the branch.**
-   - p ∈ (2.0050, 2.0134) on the entire arc beyond λ₂, and p → p* > 2.
+   - p ∈ [2.004945, 2.013429] on the entire arc beyond λ₂, and p → p* > 2.
    - This explains the failed λ₃ search of arXiv:2511.22819: their window [0.455, 0.4713] lies exactly on this arc.
    - It also caps the ladder of blow-up thresholds for dissipative CCF (−Δ)^{α/2}, α_c,n = 1/(1+λ_n):
      0.4586, 0.6228, **0.6797**, and no more from this branch.
@@ -130,7 +130,7 @@ origin. Smooth (analytic) profiles are exactly the points where p = 2.
 ## H. Novelty claim
 1. First global solution-branch picture of CCF self-similar blow-up. All known smooth profiles are the p = 2 crossings of one connected branch, and the instability order equals the crossing order.
 2. First identification of how the branch terminates: a self-similar profile with an interior square-root cusp, fixed by B² = 2λΘ_s. Its universal inner layer predicts the layer-width constant.
-3. A derived universal law for the approach to the cusp: a log-periodic oscillation with τ tanh(πτ/2) = 1/2, confirmed numerically to 1 %.
+3. A derived universal law for the approach to the cusp: a log-periodic oscillation with τ tanh(πτ/2) = 1/2, confirmed numerically to 0.2 %.
 4. A negative answer, for the principal branch, to the open question whether a third unstable CCF profile exists. The ladder is finite, with exactly three members.
 5. A classical, ML-free numerical method that resolves sharp-layer self-similar profiles to 12 digits in seconds on a single CPU core. It follows the branch to sonic depths δ ~ 1e−5, where the layer width is 1e−9.
 
@@ -193,7 +193,7 @@ origin. Smooth (analytic) profiles are exactly the points where p = 2.
 | w/δ² constant (cusp scaling) | 9.052 … 9.099 over δ ∈ [8e−5, 1e−2] |
 | B² = 2λΘ_s (predicted k = 0.72575) | measured 0.7182–0.7192 (1 %, O(δ/√x) corrections) |
 | ln Θ jump coefficient 2λ/k = 1.2502 | measured 1.243–1.247 |
-| Oscillation frequency 2τ = 1.2988 | free fits 1.286–1.302 (p and λ, δ ≤ 3e−3) |
+| Oscillation frequency 2τ = 1.29885 | free fits 1.2983–1.3010 (p and λ, δ ≤ 1e−3 and ≤ 3e−3; 39 branch points) |
 | Layer-width constant (universal inner problem, f''(0) = 0.08900) | predicted 9.00–9.17 vs computed 9.098 |
 | Operator accuracy on extreme grids (h_c down to 1e−11) | ‖Hm·Ψ − exact‖ ≤ 1.4e−14 |
 | Large-λ end | p monotone decreasing, no crossing, up to λ = 7.85 (arclength, domain-converged) |
@@ -316,10 +316,10 @@ Because the oscillation centre has p* = 2.00577 > 2, no third unstable profile e
   - Two resolutions (C and D) agree to ≤ 1e−10.
   - Re-gridding at every step changes λ by ≤ 1e−8.
   - Kernel arguments are formed in local coordinates. We removed an earlier round-off effect (a 1.5e−6 shift in λ at h_c ~ 3e−9) and documented it.
-  - The fitted frequency matches an a-priori prediction, with no free parameter, to 1 %.
+  - The fitted frequency matches an a-priori prediction, with no free parameter, to 0.2 %.
   - The cusp coefficient k and the ln Θ jump agree with B² = 2λΘ_s to 1 %.
   - w/δ² is constant to 0.5 % over two decades.
-  - The fit's conclusion (p* > 2) is also visible directly in the raw data: the minimum of p on the arc is 2.0050.
+  - The fit's conclusion (p* > 2) is also visible directly in the raw data: the minimum of p on the arc is 2.004945.
 - **V3.**
   - The contribution is not λ₂. It is the global structure and the mechanism: why the ladder stops, where it ends, and a universal exponent with a new equation, for a nonlocal operator.
   - It is also a negative answer to an explicitly open question, plus a transferable classical method that reaches layers five orders thinner than those resolved by PINNs.

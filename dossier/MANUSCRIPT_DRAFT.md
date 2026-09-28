@@ -17,7 +17,7 @@ condition p = 2 on the local exponent at the origin; the instability order equal
 Beyond the second unstable profile, the branch develops a self-induced sonic layer and terminates at a profile
 with an interior square-root cusp. We derive that the linearisation about this cusp reduces to a universal
 Hilbert-transform operator, whose imaginary exponents ±iτ, τ tanh(πτ/2) = 1/2, predict a log-periodic oscillation
-of the branch; this is confirmed numerically to 1%. Because the oscillation centre has p* = 2.0058 > 2, no third
+of the branch; this is confirmed numerically to 0.2%. Because the oscillation centre has p* = 2.0058 > 2, no third
 unstable profile exists on the branch.
 
 ## Main text
@@ -86,7 +86,7 @@ is mapped by H onto B|ξ−ξ_s|^{1/2}, a square-root zero of den. Feeding that 
 returns the same singularity if and only if B² = 2λΘ_s.
 
 The measured cusp coefficient and jump of ln Θ agree with this relation to 1%. The branch therefore ends at a
-continuous profile with an interior square-root singularity at (λ*, p*) = (0.45358, 2.00577)†.
+continuous profile with an interior square-root singularity at (λ*, p*) = (0.4535843, 2.0057717)†.
 
 **A universal log-periodic approach.** Linearising the profile equation about the cusp, Θ = Θ_cusp(1+u), all
 profile-dependent constants cancel and u obeys the universal nonlocal equation u' = −H[u]/(2|x|). Power
@@ -100,12 +100,12 @@ phase τ ln w. Hence
 and the same holds for λ. The branch oscillates into the cusp in the (λ, p) plane, with successive extrema a
 factor e^{π/2τ} = 11.23 apart in δ (Fig. 1b,c).
 
-The computed branch shows exactly this. Extrema of p are 2.0134, then 2.00501 at δ ≈ 1.3e−3, then 2.00584 at
-δ ≈ 1.5e−4. Fits with a free frequency return 1.28–1.29, against the predicted 2τ = 1.2988, with no adjustable
-parameter in the prediction.
+The computed branch shows exactly this. Extrema of p are 2.013429 at δ = 1.5e−2, then 2.004945 at δ = 1.7e−3, then 2.005850 at
+δ ≈ 1.0e−4, then 2.005765 at δ ≈ 8e−6. Fits with a free frequency return 1.2983–1.3010, against the predicted
+2τ = 1.29885, with no adjustable parameter in the prediction.
 
 **Consequences.**
-1. *No third unstable profile on the branch.* Beyond λ₂, p stays in (2.0050, 2.0134) and converges to p* > 2.
+1. *No third unstable profile on the branch.* Beyond λ₂, p stays in [2.004945, 2.013429] and converges to p* > 2.
    The oscillation amplitude decays like δ, so p = 2 is never reached again. The branch is closed at both ends,
    so it carries exactly three smooth profiles. The "non-smooth signal at the origin" found by
    arXiv:2511.22819 in [0.455, 0.4713] is precisely this arc, where p = 2.005–2.013.

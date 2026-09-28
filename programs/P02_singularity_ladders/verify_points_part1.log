@@ -1,0 +1,3 @@
+pdense_states/E_005.npy: δ=5.415823e-03 pts/width=24 h_s=0.03 N=5574: λ=0.4547100473718 p=2.0075172519239 ok=True
+pdense_states/E_005.npy: δ=5.415823e-03 pts/width=36 h_s=0.02 N=8362: λ=0.4547100473727 p=2.0075172519280 ok=True
+pdense_states/E_005.npy: δ=5.415823e-03 pts/width=48 h_s=0.03 N=5620: λ=0.4547100473726 p=2.0075172519284 ok=True
