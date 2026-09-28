@@ -65,19 +65,28 @@ def run(start_file, nsteps, tag, direction=-1.0, ds=0.004, dsmax=0.02):
         N = M.N
         ph, lm = phi + ds * tphi, lam + ds * tl
         ok = False
-        for it in range(12):
+        for it in range(14):
             F, den = M.F(ph, lm, target)
             if den.min() <= 0:
                 break
             g = (W * tphi) @ (ph - phi) + tl * (lm - lam) - ds
-            if max(np.max(np.abs(F)), abs(g)) < 1e-11:
+            res = max(np.max(np.abs(F)), abs(g))
+            if res < 1e-10:
                 ok = True
                 break
             J, Fl = jac(M, ph, lm, den)
             A = np.zeros((N + 1, N + 1))
             A[:N, :N] = J; A[:N, N] = Fl; A[N, :N] = W * tphi; A[N, N] = tl
             dd = sla.solve(A, -np.concatenate([F, [g]]))
-            ph, lm = ph + dd[:N], lm + dd[N]
+            tt = 1.0
+            while tt > 1e-3:          # damped update keeping the sonic factor positive
+                Fn, dn = M.F(ph + tt * dd[:N], lm + tt * dd[N], target)
+                if dn.min() > 0 and np.max(np.abs(Fn)) < 2 * res + 1e-9:
+                    break
+                tt *= 0.5
+            ph, lm = ph + tt * dd[:N], lm + tt * dd[N]
+            if step < 3:
+                print(f"      corr it {it}: res={res:.2e} tt={tt:.3f} minden={dn.min():.3e}", flush=True)
         if not ok:
             ds *= 0.5
             print(f"   corrector failed; ds -> {ds:.2e}", flush=True)
