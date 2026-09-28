@@ -24,7 +24,9 @@ def residual(B, Y):
     return (X - B.ea2[:, None] * Pn)[B.i0:], info
 
 
-def newton(B, P, tol=1e-10, maxit=30, gm_tol=1e-9, gm_max=80, verbose=True, t0=None):
+def newton(B, P, tol=1e-10, maxit=30, gm_tol=1e-9, gm_max=80, verbose=True, t0=None, fd='forward', pert=1e-7):
+    """fd='forward': matvec (R(P+εv)−R)/ε with ε = 1e-7 (unit 2-norm v, entries ~1e-3: perturbations ~1e-10).
+    fd='central': ε chosen so that the largest perturbed entry is `pert`, central difference (2 residuals)."""
     t0 = time.time() if t0 is None else t0
     R, info = residual(B, P)
     if R is None:
@@ -41,6 +43,10 @@ def newton(B, P, tol=1e-10, maxit=30, gm_tol=1e-9, gm_max=80, verbose=True, t0=N
 
         def mv(v):
             v = v.reshape(shape)
+            if fd == 'central':
+                e = pert / max(np.abs(v).max(), 1e-300)
+                Rp, _ = residual(B, P + e * v); Rm, _ = residual(B, P - e * v)
+                return ((Rp - Rm) / (2 * e)).ravel()
             Rp, _ = residual(B, P + eps * v)
             if Rp is None:
                 Rp, _ = residual(B, P - eps * v)
