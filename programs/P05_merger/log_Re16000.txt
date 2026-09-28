@@ -1,0 +1,1 @@
+Re=16000 N=512 a0=0.100: t_merge(b<0.5)=163.84  a_diff(t_m)/b0=0.2257  wallclock=7490s

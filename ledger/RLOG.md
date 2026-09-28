@@ -67,3 +67,9 @@ Costs are wall-clock on the 4-core container (CPU-h = cores × hours).
 - arXiv:2511.22819 (Wang–Léger–Lai–Buckmaster, "Resolving sharp gradients of unstable singularities to machine precision via neural networks", Nov 2025) reports **λ₂ = 0.47132422** (search snippet). Our classical value 0.471324227767 agrees to all 8 published digits; the earlier 0.4703 (arXiv:2509.14185) was imprecise. They required a gradient-normalised PINN loss to resolve the sharp internal layer; our adaptive spectral solver needs ≈20 s on one core.
 - Their λ₃ search window [0.455, 0.4713] "leaves a non-smooth signal at the origin" ↔ our branch has p ≈ 2.005–2.013 ≠ 2 throughout that window.
 - **Status:** VERIFIED (external agreement to 8 digits)
+
+### R010 — P05 vortex merger: Re-dependence of the merger ratio (3 Reynolds numbers)
+- **Computation:** Gaussian pairs (Γ=1 each, b0=1), a0=0.10, pseudo-spectral 256² (Re≤4000) / 512² (Re=16000); merger time t_m when peak separation < b0/2; diffusive core a_d = (a0²+4t_m/Re)^{1/2}.
+- **Result:** a_d/b0 = 0.2983 (Re 10³), 0.2476 (4×10³), 0.2257 (1.6×10⁴). Successive differences ratio 2.31 per ×4 in Re ⇒ fit a_d/b0 ≈ 0.209 + 5.8·Re^{−0.60}.
+- **Interpretation:** approach to an inviscid limit ≈0.21 with exponent ≈0.6, close to the slow-passage-through-a-fold prediction 2/3 (IDEA005). Caveats: completion (not onset) criterion; 3 points; exponent uncertainty ≈±0.1. Needs onset diagnostic, Re=6.4×10⁴, and inviscid fold location from co-rotating equilibria.
+- **Cost:** ≈3 CPU-h · **Status:** ACTIVE (backup program, promising)
