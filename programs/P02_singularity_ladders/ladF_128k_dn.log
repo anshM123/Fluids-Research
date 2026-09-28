@@ -1,5 +1,0 @@
-step 0: lam=0.5980187853 p=1.9882365476 min_den=1.474e-01 eta_min=-1.431 dlam/ds=-0.1976 ds=1.00e-02 t=18s
-step 10: lam=0.5739505782 p=1.9549839822 min_den=1.265e-01 eta_min=-1.345 dlam/ds=-0.1941 ds=1.40e-02 t=61s
-step 20: lam=0.5438848127 p=1.9285846304 min_den=9.990e-02 eta_min=-1.239 dlam/ds=-0.2335 ds=1.37e-02 t=107s
-step 30: lam=0.5335938472 p=1.9258554224 min_den=9.060e-02 eta_min=-1.202 dlam/ds=-0.2705 ds=7.21e-05 t=285s
-   step size underflow; stop

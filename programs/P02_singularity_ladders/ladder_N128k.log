@@ -1,3 +1,0 @@
-step 0: lam=0.5964214613 p=1.9858461729 min_den=1.460e-01 eta_min=-1.429 dlam/ds=-0.1783 ds=2.00e-02 t=2s
-step 10: lam=0.4922724049 p=1.9606889719 min_den=5.191e-02 eta_min=-1.153 dlam/ds=-0.2319 ds=1.92e-02 t=62s
-step 20: lam=0.4733256772 p=1.9964308791 min_den=3.259e-02 eta_min=-1.106 dlam/ds=-0.1497 ds=9.60e-03 t=140s
