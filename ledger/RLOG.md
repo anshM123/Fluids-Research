@@ -268,3 +268,11 @@ Costs are wall-clock on the 4-core container (CPU-h = cores × hours).
     1.499–1.504 (β = 0.42). All fit the seven rungs to ≤ 1e-3.
   - Final statement: π/C lies between 1.476 and ≈ 1.51, and 3/2 is a candidate, not derived. This supersedes
     "1.48 ± 0.01" above.
+- Third addendum.
+  - Argument-principle count for λ₃: 4.000 zeros, i.e. no complex unstable modes in the box.
+  - Global solver for λ₇ with s_min = −20 (hs 0.0125): λ₇ = 1.0883386, which is +2.1e-7 from the marching value.
+    The earlier +9.6e-6 was the s_min = −12 truncation.
+  - Method 2 at s_min = −20 reproduces λ₇'s six largest eigenvalues to 5e-5.
+  - Method-2 artifacts are not monotone in s_min: for λ₁ the dense family sits at Re μ ≈ 0.054 for s_min = −12 and
+    ≈ 0.15 for −20, and inflow-boundary modes are s_min-independent. Method 2 is therefore used for eigenvalue
+    values only; counts come from method 1.

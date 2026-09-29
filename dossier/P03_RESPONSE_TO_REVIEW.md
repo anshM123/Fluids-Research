@@ -35,7 +35,7 @@ pseudospectral cloud) are why it is not used for counting. Examples:
   s_start = −12, −20, −30), and are discarded.
 - Genuine eigenvalues do not move; for example λ₇'s lowest is 0.0699 for both s_start = −20 and −30.
 - Complex modes: the argument-principle counts on [0.06, 1.5] × [−1.5, 1.5] give exactly real + trivial (λ₁: 2;
-  λ₂: 3; ⟨λ₃–λ₅ pending⟩).
+  λ₂: 3; λ₃: 4).
 
 **New observation.** The lower unstable eigenvalues scale with ε = (λ_n − 1)/2: μ_k/ε ≈ 1.6, 3.8, 6.05, 8.4, …
 
@@ -54,9 +54,9 @@ Done for all eight (P03_DOSSIER.md Table 2).
 - λ₁–λ₅: 1e-7 to 6e-7.
 - λ₀: 1.7e-6.
 - λ₆: 4.6e-6.
-- λ₇: 9.6e-6.
+- λ₇: 9.6e-6 at the global solver's default origin truncation s_min = −12, and 2.1e-7 with s_min = −20.
 
-The λ₆ and λ₇ differences lie within the marching solver's own hs-uncertainty for these rungs.
+The remaining λ₆ difference lies within the marching solver's own hs-uncertainty for that rung.
 
 ## (D) Matched-asymptotic calculation with explicit error terms
 See `programs/P03_boussinesq_ladder/ASYMPTOTICS.md`.
