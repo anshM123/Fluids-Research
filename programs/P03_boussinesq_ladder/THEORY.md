@@ -106,7 +106,8 @@ stagnation point to the front (first point beyond the dip with D/ε > 3).
 - The phase gained between consecutive smooth profiles, 2.98, 3.03, 3.07, 3.07, 3.115, 3.12, tends to π. This is the
   quantisation condition Re Φ(λ_n) = Φ₀ + nπ.
 - εΦ levels off at a ≈ 1.05 − 0.6i (Re εΦ = 1.0505, 1.0491, 1.0502, 1.0511 for n = 4–7), so the asymptotic
-  spacing is Δz = π/(2 Re a) ≈ 1.50. The observed spacings (1.457 → 1.4758) increase monotonically towards it.
+  spacing would be Δz = π/(2 Re a) ≈ 1.50 at this cut-off. The observed spacings (1.457 → 1.4758) increase
+  monotonically.
 - Caveat: εΦ at finite ε depends on the front cut-off at the level O(ε) (λ₄: Re εΦ = 1.040, 1.050, 1.060, 1.081
   for D/ε > 2, 3, 5, 8). The robust quantity is the slope C of Re Φ versus z at a fixed cut-off (ASYMPTOTICS.md §5).
 - The two-point law of Wang et al. (slope 1.4187, the line through λ₀ and λ₁) therefore underestimates the
@@ -131,5 +132,6 @@ not derived.
 **Consequence (formal, with numerical support).** In both models the WKB representation implies infinitely many
 smooth self-similar profiles accumulating at λ = 1, with 1/(λ_n − 1) growing linearly in n (ASYMPTOTICS.md,
 Lemma and §3). The empirical law of Wang et al. is the leading-order phase quantization of the stalled layer.
-The asymptotic 2D slope π/C lies in [1.476, 1.50], with WKB central value 1.496. That is larger than the slope
-1.4187 of the line through λ₀ and λ₁. The value 3/2 is a candidate, not a derived result.
+The asymptotic 2D slope is π/C = 1.48 ± 0.01 (ASYMPTOTICS.md §5: front cut-off study and direct fits of the
+resonances). That is larger than the slope 1.4187 of the line through λ₀ and λ₁. The value 3/2 is not derived and
+is not supported by the fits.

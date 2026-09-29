@@ -15,7 +15,7 @@ equals 2 exactly at a smooth profile.
 **Numerics.**
 - Continuation along the branch with a classical solver locates eight such regularity resonances, from
   λ₀ = 1.9205593 to λ₇ = 1.0883384. Four of them lie beyond those previously reported.
-- An independent global Newton solver reproduces all eight resonances.
+- An independent global Newton solver reproduces all eight resonances to ≤ 1e-5 (≤ 6e-7 for n = 1–5).
 - Two independent linear-stability methods find n unstable modes for the n-th profile, as reported for the first
   four.
 
@@ -25,7 +25,7 @@ equals 2 exactly at a smooth profile.
   eigenproblem. The resonances therefore obey a phase-quantization condition Re Φ(λ_n) = nπ + δ + o(1), with
   Φ ∼ C/(λ−1) and C > 0.
 - The computed phase gain per resonance approaches π (3.12 at n = 7). This is evidence for an infinite ladder
-  accumulating at λ = 1, with 1/(λ_n − 1) ≈ (π/C) n and π/C between 1.476 and 1.50.
+  accumulating at λ = 1, with 1/(λ_n − 1) ≈ (π/C) n and π/C = 1.48 ± 0.01.
 
 **Contrast.** The Hou–Luo boundary model shows the same mechanism. In the Córdoba–Córdoba–Fontelos model, by
 contrast, the cusp forms at a finite λ* ≈ 0.4536 and the ladder ends after three profiles.
@@ -82,9 +82,12 @@ whenever Ω > 0.
 **Numerical verification.**
 - Phase gain per resonance 2.98, 3.03, 3.07, 3.07, 3.115, 3.12 (2D) and 3.02–3.09 (Hou–Luo).
 - δ_n converges.
-- The linear law Re Φ = Cz + Φ₀ holds to ±0.024 over n = 3–7, with C = 2.100, i.e. π/C = 1.496.
+- The linear law Re Φ = Cz + Φ₀ holds to ±0.024 over n = 4–7 for every front cut-off.
+- Integrated through the front, Re Φ(λ_n) − nπ is constant to ±0.03.
 - The directly measured spacings increase monotonically, 1.4646 → 1.4758, and bound π/C from below.
-- The asymptotic spacing 3/2 (C = 2π/3) is a candidate that we cannot confirm or exclude.
+- Direct fits of the resonance positions with analytic 1/z corrections give π/C = 1.476–1.479, and the WKB slopes
+  give 1.478–1.493. Hence π/C = 1.48 ± 0.01.
+- 3/2 (C = 2π/3) is not derived. It would require a slow non-analytic approach and is not supported by the fits.
 
 **Interpretation (not a derivation).** The n-th resonance carries n half-wavelengths of the layer oscillation.
 Its instability index is n.
@@ -125,8 +128,29 @@ Its instability index is n.
 | 6 | 1.1015817 | 9.84429 |
 | 7 | 1.0883384 | 11.32010 |
 
-## Table 2 — independent global solver
-⟨pending final runs⟩
+## Table 2 — independent global solver (s_max-extrapolated; hs = 0.0125 for n ≥ 3)
+| n | marching | global | difference |
+|---|---|---|---|
+| 0 | 1.9205593 | 1.9205610 | +1.7e-6 |
+| 1 | 1.3990961 | 1.3990960 | −1.1e-7 |
+| 2 | 1.2523487 | 1.2523481 | −5.6e-7 |
+| 3 | 1.1842533 | 1.1842530 | −3.2e-7 |
+| 4 | 1.1449857 | 1.1449853 | −4.2e-7 |
+| 5 | 1.1194738 | 1.1194739 | +1.1e-7 |
+| 6 | 1.1015817 | 1.1015771 | −4.6e-6 |
+| 7 | 1.0883384 | 1.0883480 | +9.6e-6 |
 
-## Table 3 — unstable eigenvalues μ_k (perturbations e^{μτ})
-⟨pending final runs⟩
+## Table 3 — unstable eigenvalues μ_k (perturbations ∝ e^{μτ})
+Method 2 (global eigen-solver) is shown. Method 1 (march-based) brackets each value within 0.05 and refines
+λ₁, λ₂ to 1e-5.
+
+| n | index | μ_k |
+|---|---|---|
+| 0 | 0 | — |
+| 1 | 1 | 0.37379 |
+| 2 | 2 | 0.55419, 0.22048 |
+| 3 | 3 | 0.63437, 0.37541, 0.15492 |
+| 4 | 4 | 0.68004, 0.45973, 0.28629, 0.11908 |
+| 5 | 5 | 0.70985, 0.51143, 0.36869, 0.23121, 0.09654 |
+| 6 | 6 | 0.73139, 0.54481, 0.42577, 0.30749, 0.19415, 0.08154 |
+| 7 | 7 | method 1: (0.70,0.75), (0.55,0.60), (0.45,0.50), (0.35,0.40), (0.25,0.30), (0.16,0.17), 0.0699 |

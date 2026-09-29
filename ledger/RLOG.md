@@ -219,3 +219,39 @@ Costs are wall-clock on the 4-core container (CPU-h = cores × hours).
 - WKB phase per interval (to the front): 2.743, 2.981, 3.030, 3.070, 3.071, 3.115, 3.121 → π; Re εΦ = 1.050 ± 0.001 for n = 4–7.
 - HL dip D̂_min ∝ ε^{0.34} down to ε = 0.0142 (z = 35–40): no termination.
 - Status: VERIFIED (λ₀–λ₅); λ₆–λ₇ converged at hs 0.0125 (hs 0.00625 check of λ₆ running).
+
+### R028 — P03: reviewer alignment (claims, stability, independent reproduction, asymptotics)
+**(A) Claims.**
+- Headline: "numerical evidence and asymptotic analysis reveal a quantized hierarchy …, with evidence for an
+  infinite ladder accumulating at λ = 1".
+- Central concept: discrete smooth profiles are regularity-selected points on a continuous singular branch.
+- No proof is claimed anywhere. P03_DOSSIER, the manuscript, README, THEORY and the top-level DOSSIER were rewritten
+  around the 8 core claims, each with a status tag.
+
+**(B) Stability** (`bq_stability.py`, `stab_scan.py`, `stab_refine.py`, `stab_contour.py`, `glob_stab.py`).
+- Method 1: eigen-condition ν(μ) = 1 of the linearised march + Biot–Savart map T_μ.
+- Method 2: independent shift-invert eigen-solve of the global discretisation.
+- Instability index: λ₀…λ₇ → 0, 1, 2, 3, 4, 5, 6, 7 (method 1, all eight).
+- Method 2 matches every eigenvalue for λ₁–λ₆ (21 values) to ~1e-5. Examples: λ₁ 0.373789 vs 0.37379; λ₂ 0.55418,
+  0.22048 vs 0.55419, 0.22048.
+- Trivial modes: μ = 1 (time translation) is recovered to 1e-6; μ = 0 (scaling) is neutral.
+- Origin-truncation artifacts sit near μ ≈ 0.66/|s_start|. They move with the truncation (0.052 at −12, 0.033 at −20,
+  ≈ 0.02 at −30) and are discarded. λ₇'s lowest mode, 0.0699, is the same for s_start −20 and −30.
+- Complex modes: the argument principle on [0.06, 1.5] × [−1.5, 1.5] gives exactly 2 zeros for λ₁ (μ = 1, 0.374).
+  The only complex candidate in method 2 (λ₂, 0.610 ± 1.104i) is an inflow-boundary mode localised at s_min.
+- Observation: the lower unstable eigenvalues scale with ε (μ_k/ε → 1.6, 3.8, 6.05, 8.4, …).
+
+**(C) Independent reproduction** (`bq_global.py`, `glob_run.py`).
+- The method is a global Newton solve on unhatted fields: FD in s, Chebyshev in β, elliptic Biot–Savart, smoothness
+  imposed with λ as an eigenvalue, and s_max extrapolation.
+- Global − marching: +1.7e-6, −1.1e-7, −5.6e-7, −3.2e-7, −4.2e-7, +1.1e-7, −4.6e-6, +9.6e-6 for λ₀…λ₇.
+
+**(D) Asymptotics** (`ASYMPTOTICS.md`).
+- An elementary lemma is proved.
+- The formal WKB representation is derived, with explicit orders of every dropped term.
+- C > 0: closed form for Hou–Luo, where Ω > 0 in the layer is verified for z = 10–40; checked pointwise in 2D.
+- Front cut-off study (`wkb_sens.py`): the WKB slope gives π/C = 1.493 → 1.4775 as the cut goes from D/ε = 2 to 8.
+  The front region has width ≈ 2.6/z ∝ ε, so its phase is O(1), but it biases finite-z slopes.
+- Direct fits of the resonances with 1/z corrections give π/C = 1.476–1.479.
+- Revised estimate: π/C = 1.48 ± 0.01, replacing the earlier "≈ 1.50" (a single cut-off). 3/2 is not derived and
+  not supported.

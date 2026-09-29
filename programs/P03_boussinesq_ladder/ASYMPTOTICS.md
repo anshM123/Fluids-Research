@@ -21,12 +21,17 @@ Boussinesq equations.*
 - **[P given F] C > 0.** In the Hou–Luo model, Re κ₀ > 0 follows in closed form from Ω > 0 in the layer. In 2D it is
   checked pointwise along every computed profile.
 - **[N] Measurements.**
-  - Re Φ(λ_n) − nπ = δ_n converges (2.27, 2.11, 2.00, 1.92, 1.85, 1.83, 1.81 for n = 1…7; increments shrink like
-    z⁻²).
-  - Re Φ(z) = Cz + Φ₀ + E with |E| ≤ 0.03 on z ∈ [4, 11.3].
-  - C ∈ [2.09, 2.13], i.e. an asymptotic spacing Δz_∞ = π/C ∈ [1.476, 1.50]. The central WKB value is 1.496.
+  - **Quantization.** The WKB phase integrated through most of the front (cut at D/ε = 5 or 8) satisfies
+    Re Φ(λ_n) − nπ = δ + O(0.03) for n = 4–7, with δ ≈ 2.0 (cut 5) or 2.3 (cut 8). Cut at D/ε = 2–3, δ_n still
+    drifts by −0.04 per rung.
+  - **Linear law.** Re Φ(z) = Cz + Φ₀ + E with |E| ≤ 0.024 on z ∈ [6.9, 11.3] for every cut-off.
+  - **Asymptotic spacing.** π/C = 1.48 ± 0.01. Direct fits of the resonance positions with analytic 1/z corrections
+    give 1.476–1.479. The WKB phase slope gives 1.478–1.493, depending on the front cut-off.
 - **[O] Open.**
-  - The exact value of C. Δz_∞ = 3/2 (C = 2π/3) is a candidate consistent with the data. It is **not derived**.
+  - The exact value of C.
+  - Δz_∞ = 3/2 (C = 2π/3) lies at the upper edge of the range. It is not supported by the analytic-correction
+    fits, would require a slow non-analytic approach, and is **not derived**. Our earlier central value 1.496 used
+    a single front cut-off (§5.3).
   - Uniqueness of the zero in each half period (observed, not shown).
   - A rigorous version of any [F] step.
 
@@ -140,8 +145,8 @@ The WKB form fails in two places, each giving an O(1) connection phase:
 (`wkb_sens.py`, table in §5).
 
 ## 5. Numerical verification [N]
-### 5.1 Phase at the smooth profiles
-- WKB phase cut at the front (D/ε > 3); λ₄–λ₇ at hs = 0.0125, the others at hs = 0.025.
+### 5.1 Phase at the smooth profiles (front cut-off D/ε = 3)
+- λ₄–λ₇ at hs = 0.0125, the others at hs = 0.025.
 - δ_n = Re Φ(λ_n) − nπ.
 
 | n | z_n | Re Φ(λ_n) | δ_n | Re εΦ |
@@ -154,42 +159,62 @@ The WKB form fails in two places, each giving an O(1) connection phase:
 | 6 | 9.84429 | 20.677 | 1.827 | 1.0502 |
 | 7 | 11.32010 | 23.797 | 1.806 | 1.0511 |
 
-**Quantisation.**
-- The δ_n decrease by 0.16, 0.11, 0.071, 0.070, 0.027, 0.021, roughly like z⁻².
-- A fit δ_n = δ + d/z (n = 5–7) gives δ = 1.67. A fit with d/z² gives 1.74.
-- So Φ(λ_n) = nπ + δ + o(1) holds with δ = 1.7 ± 0.05 (this δ refers to the cut integral; the cut-off moves Φ₀ and
-  δ together).
+### 5.2 Dependence on the front cut-off (`wkb_sens.py`, `wkb_sens.out`)
+The phase integral stops where D/ε first exceeds a cut-off after the dip. The table fits Re Φ = Cz + Φ₀ to
+n = 4–7 (hs = 0.0125).
 
-**Linear law.** Least squares for Re Φ = Cz + Φ₀:
-| data | C | Φ₀ | max residual | π/C |
-|---|---|---|---|---|
-| n = 2–7 | 2.094 | 0.06 | 0.029 | 1.500 |
-| n = 3–7 | 2.100 | 0.007 | 0.024 | 1.496 |
-| n = 4–7 | 2.105 | −0.04 | 0.016 | 1.492 |
+| cut D/ε | C | π/C | max residual | ΔRe Φ (4→5, 5→6, 6→7) | δ_n (n = 4…7) |
+|---|---|---|---|---|---|
+| 2 | 2.1039 | 1.4932 | 0.001 | 3.096, 3.102, 3.107 | 1.78, 1.73, 1.69, 1.66 |
+| 3 | 2.1051 | 1.4924 | 0.016 | 3.071, 3.115, 3.121 | 1.92, 1.85, 1.83, 1.81 |
+| 5 | 2.1165 | 1.4843 | 0.024 | 3.079, 3.153, 3.118 | 2.05, 1.99, 2.00, 1.98 |
+| 8 | 2.1264 | 1.4775 | 0.022 | 3.098, 3.128, 3.181 | 2.35, 2.30, 2.29, 2.33 |
 
-Adding a 1/z term gives C = 2.12–2.15. That fit is less stable (four points, three parameters) and is not used for
-the central value.
+**Resolution checks.**
+- Halving the quadrature step changes εΦ by ≤ 4e-4.
+- Halving hs of the profile changes εΦ by 8e-5 at cut 3, but by 3e-3 at cut 5 (the front is hs-sensitive).
+- Root-tracking failures occur only for s < −6.7, where κ < 0.005. They contribute 0.0017 to εΦ.
+
+**Why the front matters.** The region between D/ε = 2 and 8 has width 0.41, 0.33, 0.26, 0.225 in s at
+z = 6.9, 8.4, 9.8, 11.3, i.e. ≈ 2.6/z ∝ ε. So its phase contribution is O(1), consistent with the formal
+derivation. It still changes with z in the computed range, which biases the finite-z slopes. Including more of the
+front has two effects:
+- it makes δ_n constant (the quantization is then satisfied to ±0.03);
+- it lowers π/C towards the directly measured spacing.
+
+### 5.3 Direct fits of the resonance positions
+The fits are of nπ = C z_n + a (+ b/z_n or b/z_n²) to the exact zeros.
+
+| data | linear | + b/z | + b/z² |
+|---|---|---|---|
+| n = 2–7 | 1.4717 | 1.4780 | 1.4759 |
+| n = 3–7 | 1.4733 | 1.4784 | 1.4767 |
+| n = 4–7 | 1.4743 | 1.4788 | 1.4773 |
+
+**Uncertainty from λ₇.** λ₇ is uncertain by about 1e-5; the two solvers differ by 9.6e-6, which gives δz₇ ≈ 1.3e-3.
+That moves the b/z value by about ±0.002. A 5e-5 uncertainty would move it by ±0.006.
 
 **Directly measured spacings.**
-- z_{n+1} − z_n = 1.4646, 1.4699, 1.4728, 1.4743, 1.4758 (n = 3…7), increasing monotonically.
-- The local slopes π/Δz_n = 2.1451, 2.1373, 2.1331, 2.1310, 2.1287 decrease monotonically, which gives C < 2.129.
-- The λ₇ entry carries an uncertainty of about 5e-3 in z from the hs-sensitivity of the deepest crossing.
+- z_{n+1} − z_n = 1.4646, 1.4699, 1.4728, 1.4743, 1.4758 (n = 3…7): monotone, with increments 5.3e-3, 2.9e-3, 1.5e-3,
+  1.5e-3.
+- A power-law extrapolation of the increments (exponent 2.0–2.3) gives a limit of 1.483–1.485.
 
-**Estimate.** Combining the WKB slope and the monotone bound, C ∈ [2.09, 2.13], i.e. Δz_∞ ∈ [1.476, 1.50].
+**Estimate.** π/C = 1.48 ± 0.01.
 
-### 5.2 Hou–Luo (sharper test of the same statements)
-- There are 12 crossings (z up to 15).
+### 5.4 Hou–Luo (sharper test of the same statements)
+- There are 11 crossings resolved above the noise (z ≤ 13.56).
 - ΔRe Φ per rung is 3.02–3.09, tending to π.
-- The observed spacings rise from 1.2538 to 1.2674, against the WKB limit π/(2 Re a₀) ≈ 1.27 with a₀ ≈ 1.24 − 0.50i.
-  The deepest spacing is within 0.3 % of the prediction.
+- The spacings are 1.2583, 1.2612, 1.2637, 1.2652, 1.2638, against the WKB limit π/(2 Re a₀) ≈ 1.267 with
+  a₀ ≈ 1.24 − 0.50i (0.2 % agreement).
+- Re κ > 0 and Im κ ≤ 0 hold at every point of the layer for z = 10.6–40.6, because Ω > 0 there.
 
 ## 6. The value 3/2 [O]
-- Δz_∞ = 3/2 is equivalent to Re a₀ = π/3 = 1.0472. The measured Re εΦ_cut is 1.049–1.051 for n = 4–7.
-- Two things make the difference hard to settle:
-  - the cut-off contribution (§5.3, `wkb_sens.py`);
-  - the unknown sign of the finite-ε drift. In Hou–Luo, εΦ_cut approaches a₀ from below.
-- So Re a₀ = π/3 is neither excluded nor supported beyond this. Nothing in the leading-order problem suggests a
-  closed form for a₀: it is an integral of a numerically determined local root over a numerically determined layer
-  profile.
-- Recommended wording: "λ_n = 1 + C/(nπ + c + o(1)) with C = 2.10 ± 0.02, i.e. an asymptotic spacing
-  1/(λ_{n+1}−1) − 1/(λ_n−1) → π/C ≈ 1.49 ± 0.01; the value 3/2 is a candidate."
+- Δz_∞ = 3/2 is equivalent to C = 2π/3 = 2.0944.
+- The estimate C = 2.12 ± 0.015, i.e. π/C = 1.48 ± 0.01, places 3/2 at or beyond the upper edge:
+  - the direct fits with analytic corrections give 1.476–1.479;
+  - only the cut-off-2/3 WKB slopes (1.492–1.493) come close.
+- Reaching 3/2 would need a slow non-analytic approach (spacing ≈ S − b n^{−1/2}). We see no sign of it, and we
+  cannot exclude it with rungs up to n = 7.
+- Nothing in the leading-order problem suggests a closed form for a₀.
+- Recommended wording: "λ_n = 1 + C/(nπ + c + o(1)), with π/C = 1.48 ± 0.01; the asymptotic spacing is not
+  determined analytically." Do not quote 3/2.

@@ -71,7 +71,7 @@ for f, col in (("Y2_lam1.9200_Nb32_hs0.025.npy", 'tab:blue'), ("Y2_B_lam1.4000.n
     except Exception as e:
         print("skip", f, e)
 c.set_ylim(0, 6); c.set_xscale('log'); c.set_xlabel('r (along the boundary)'); c.set_ylabel('(V_r/r)/ε  on the boundary')
-c.legend(fontsize=7); c.set_title('(c) quasi-stagnant boundary region and front (x_c ≈ 0.5)', fontsize=9)
+c.legend(fontsize=7); c.set_title('(c) stalled (quasi-stagnant) boundary layer and front (x_c ≈ 0.7)', fontsize=9)
 d = ax[1, 1]
 zc_B = np.array([1 / (l - 1) for n, l in sorted(refined.items())])
 nB = np.arange(len(zc_B))
@@ -80,10 +80,10 @@ zc_H = crossings(Hall)
 d.plot(np.arange(len(zc_H)), zc_H, 's-', color='tab:green', ms=4, label='Hou–Luo (this work)')
 nn = np.arange(0, 12)
 d.plot(nn, 1.0863 + 1.4187 * nn, 'k:', lw=0.8, label='two-point law (Wang et al.)')
-d.set_xlabel('n (instability index)'); d.set_ylabel('1/(λ_n − 1)'); d.legend(fontsize=8, loc='upper left')
-d.set_title('(d) the ladder: 1/(λ_n − 1) vs n;  inset: WKB phase gained per profile / π', fontsize=9)
+d.set_xlabel('n (continuation order = number of unstable modes)'); d.set_ylabel('1/(λ_n − 1)'); d.legend(fontsize=8, loc='upper left')
+d.set_title('(d) the ladder: 1/(λ_n − 1) vs n;  inset: WKB phase gained per resonance / π', fontsize=9)
 ins = d.inset_axes([0.58, 0.1, 0.38, 0.35])
-dphi_B = np.array([2.743, 2.981, 3.030, 3.072, 3.110]) / np.pi
+dphi_B = np.array([2.743, 2.981, 3.030, 3.070, 3.071, 3.115, 3.121]) / np.pi
 dphi_H = np.array([3.025, 3.052, 3.074, 3.069, 3.092, 3.094]) / np.pi
 ins.plot(np.arange(1, len(dphi_B) + 1), dphi_B, 'o-', color='tab:blue', ms=4)
 ins.plot(np.arange(3, 3 + len(dphi_H)), dphi_H, 's-', color='tab:green', ms=3)

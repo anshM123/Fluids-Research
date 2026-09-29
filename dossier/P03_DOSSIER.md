@@ -12,7 +12,8 @@ stagnation point. The smooth profiles are the regularity resonances m(λ) = 2.
   lemma about oscillatory functions (`programs/P03_boussinesq_ladder/ASYMPTOTICS.md` §2).
 - "Infinite" means: eight computed resonances, plus a formal mechanism whose ingredients are each checked on the
   computed profiles.
-- The asymptotic spacing 3/2 is a candidate only. It is not derived.
+- The asymptotic spacing is not derived analytically. Our estimate is π/C = 1.48 ± 0.01. The value 3/2 sits at the
+  upper edge of this range and is not supported by the fits.
 
 **Status tags.**
 - [N] numerical. Where stated, reproduced by two independent solvers and converged in the discretisation parameters.
@@ -32,9 +33,9 @@ stagnation point. The smooth profiles are the regularity resonances m(λ) = 2.
    - λ₄, which corresponds to their candidate fourth unstable profile, plus λ₅, λ₆ and λ₇ (Table 1).
    - All eight are reproduced by an independent global Newton solver: different unknowns, discretisation,
      Biot–Savart solver and treatment of λ (Table 2).
-   - Linear stability by two independent methods gives n unstable modes for the n-th profile, as Wang et al. found
-     for n ≤ 3. Verified here for ⟨n ≤ 5, pending 6–7⟩ (Table 3).
-   - Profiles whose index is not yet verified are called "next in continuation order".
+   - Linear stability gives n unstable modes for the n-th profile for all eight (method 1). Wang et al. found this
+     for n ≤ 3. An independent second method confirms every eigenvalue for n ≤ 6 to about 1e-5 (Table 3). λ₇ is
+     pending in method 2; until then it is "next in continuation order" with index 7 from method 1.
 4. **[N + F] A stalled layer next to a limiting cusp.** As λ → 1⁺:
    - For x < x_c ≈ 0.72 on the wall, the radial self-similar speed is D = O(λ−1): a quasi-stagnant (stalled) layer.
    - The layer is bounded by a front. Outside the front D → k(x−x_c)^{1/2}, the same square-root cusp that ends
@@ -50,8 +51,11 @@ stagnation point. The smooth profiles are the regularity resonances m(λ) = 2.
    - C = 2 Re ∫κ₀ ds > 0. Positivity is exact for the Hou–Luo local root; in 2D it is checked pointwise.
    - The remainder is O(1) only under a uniformity hypothesis (U) on the stalled layer, which fails near the front
      (see §4). Numerically z_n − a n is constant to ±0.02 over n = 3–7.
-   - a ∈ [1.476, 1.50]; the WKB central value is 1.496. Measured spacings: 1.4646, 1.4699, 1.4728, 1.4743, 1.4758.
-   - The value a = 3/2 is a candidate consistent with the data. It is not derived.
+   - a = π/C = 1.48 ± 0.01.
+     - Direct fits of the resonance positions with analytic 1/z corrections give 1.476–1.479.
+     - The WKB phase slope gives 1.478–1.493, depending on how much of the front is included.
+     - Measured spacings: 1.4646, 1.4699, 1.4728, 1.4743, 1.4758 (monotone).
+   - 3/2 is not derived and not supported by these fits. It could be reached only by a slow non-analytic approach.
 7. **[N + closed-form local root] Hou–Luo shows the same mechanism.**
    - 8 reliable resonances; phase gain per resonance 3.02 → 3.09 (→ π).
    - Spacings 1.2583 → 1.2652 against the WKB prediction π/(2 Re a₀) ≈ 1.27.
@@ -110,10 +114,47 @@ stagnation point. The smooth profiles are the regularity resonances m(λ) = 2.
   uncertain at about 5e-5.
 
 ### Table 2 — independent reproduction (global solver, s_min = −12, s_max = 8/10/12 extrapolated)
-⟨filled from glob_g*_s12.log / glob_g*_h0125*.log⟩
+| n | marching | global hs 0.025 | global hs 0.0125 | global − marching |
+|---|---|---|---|---|
+| 0 | 1.9205593 | 1.9205610 | — | +1.7e-6 |
+| 1 | 1.3990961 | 1.3990960 | — | −1.1e-7 |
+| 2 | 1.2523487 | 1.2523481 | — | −5.6e-7 |
+| 3 | 1.1842533 | 1.1842512 | 1.1842530 | −3.2e-7 |
+| 4 | 1.1449857 | 1.1449777 | 1.1449853 | −4.2e-7 |
+| 5 | 1.1194738 | 1.1194516 | 1.1194739 | +1.1e-7 |
+| 6 | 1.1015817 | 1.1015204 | 1.1015771 | −4.6e-6 |
+| 7 | 1.0883384 | no convergence | 1.0883480 (s_max = 12) | +9.6e-6 |
 
-### Table 3 — instability index
-⟨filled from stab_l*.log, stabc_l*.log, gstab_summary.py⟩
+The two solvers share no numerical ingredient. The origin truncation of the global solver matters at the 1e-6
+level: s_min −8 → −12 moves λ₁ from −3.2e-6 to −1.1e-7. Both solvers show the same hs-trend for the deep rungs.
+
+### Table 3 — instability index and unstable eigenvalues (perturbations ∝ e^{μτ}, τ = −ln(1−t))
+| n | index | method 1 (march, T_μ): brackets | method 2 (global eigen-solver): μ_k |
+|---|---|---|---|
+| 0 | 0 | — | — |
+| 1 | 1 | (0.35, 0.40); refined 0.373789 | 0.37379 |
+| 2 | 2 | (0.55, 0.60), (0.20, 0.25); refined 0.55418, 0.22048 | 0.55419, 0.22048 |
+| 3 | 3 | (0.60, 0.65), (0.35, 0.40), (0.15, 0.16) | 0.63437, 0.37541, 0.15492 |
+| 4 | 4 | (0.65, 0.70), (0.45, 0.50), (0.25, 0.30), (0.11, 0.12) | 0.68004, 0.45973, 0.28629, 0.11908 |
+| 5 | 5 | (0.70, 0.75), (0.50, 0.55), (0.35, 0.40), (0.20, 0.25), (0.09, 0.10) | 0.70985, 0.51143, 0.36869, 0.23121, 0.09654 |
+| 6 | 6 | (0.70, 0.75), (0.50, 0.55), (0.40, 0.45), (0.30, 0.35), (0.19, 0.20), (0.08, 0.09) | 0.73139, 0.54481, 0.42577, 0.30749, 0.19415, 0.08154 |
+| 7 | 7 | (0.70, 0.75), (0.55, 0.60), (0.45, 0.50), (0.35, 0.40), (0.25, 0.30), (0.16, 0.17), (0.065, 0.070) | ⟨pending⟩ |
+
+**How the table was obtained.**
+- Trivial modes: μ = 1 (time translation) is recovered by both methods (1.000000 and 0.99999); μ = 0 (scaling) is
+  neutral.
+- Counts are taken for μ ≥ 0.045. Below that, the origin truncation creates spurious crossings, which move with the
+  truncation: 0.052 at s_start −12, 0.033 at −20, ≈ 0.02 at −30.
+- λ₇'s lowest eigenvalue is at 0.0699 for both s_start = −20 and −30, so it is genuine.
+
+**Complex eigenvalues.**
+- An argument-principle count for λ₁ on [0.06, 1.5] × [−1.5, 1.5] returns 1.997 zeros: exactly μ = 1 and 0.374.
+- Method 2 found no s_min-robust complex eigenvalue with Re μ > 0 for λ₁–λ₆. The one candidate, 0.610 ± 1.104i for
+  λ₂, is an inflow-boundary mode whose eigenvector is concentrated at s_min.
+- ⟨Contours for λ₂–λ₅ running.⟩
+
+**Observation.** For fixed k, the lower eigenvalues scale with ε = (λ_n−1)/2: μ_k/ε → 1.6, 3.8, 6.05, 8.4, …, an
+almost equally spaced ladder. The largest eigenvalue approaches ≈ 0.75.
 
 ### 3.4 Asymptotics (ASYMPTOTICS.md)
 - **Lemma [P].** F = R(cos Θ + η), with R > 0, Θ ↑ ∞ and |η| < 1, implies infinitely many zeros. If
@@ -124,7 +165,10 @@ stagnation point. The smooth profiles are the regularity resonances m(λ) = 2.
   - C = 2 Re a₀ > 0.
   - Remainder: o(z) in general; O(1) under hypothesis (U).
 - **Checks [N].**
-  - A linear fit Re Φ(λ_n) = Cz + Φ₀ over n = 3–7 gives C = 2.100 with residuals ≤ 0.024, i.e. π/C = 1.496.
+  - A linear fit Re Φ(λ_n) = Cz + Φ₀ over n = 4–7 holds to ≤ 0.024 for every front cut-off. The slope C depends on
+    the cut-off: π/C = 1.493 (cut D/ε = 2) … 1.4775 (cut 8).
+  - Integrated through the front, the quantization Re Φ(λ_n) = nπ + δ holds with δ constant to ±0.03.
+  - Direct fits of the resonance positions give π/C = 1.476–1.479, so π/C = 1.48 ± 0.01.
   - The measured local slopes π/Δz_n decrease monotonically from 2.145 to 2.129, which bounds C from above.
   - Cut-off sensitivity: ⟨wkb_sens⟩.
 
@@ -132,7 +176,7 @@ stagnation point. The smooth profiles are the regularity resonances m(λ) = 2.
 - No proof; the WKB derivation is formal.
 - Hypothesis (U) fails near the front, where the dip closes like ε^{0.18}. The o(1) error term in Φ is therefore
   not established; only o(1/(λ−1)) is.
-- The value of C is known only to about ±1 %. 3/2 is not derived.
+- The value of C is known only to about ±1 % (π/C = 1.48 ± 0.01). 3/2 is not derived and is disfavoured by the fits.
 - The deepest resonances have |m − 2| ~ 1e-6 (λ₆) and 1e-7 (λ₇). Their existence rests on sign changes resolved
   by both solvers; their location is hs-sensitive (Table 1).
 - **Stability results hold within a smooth-perturbation class.** The perturbation must be regular at the
