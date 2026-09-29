@@ -1,6 +1,9 @@
-# Why the Boussinesq ladder is infinite: WKB quantisation in a quasi-stagnant boundary region
+# Phase quantization in a stalled boundary layer: the mechanism behind the Boussinesq ladder
 
-*Working notes. The numbers are updated as the scans progress; see README.md for the data.*
+*Working notes. See README.md for the data and ASYMPTOTICS.md for the status of each statement: proved (an
+elementary lemma only), formal matched asymptotics, or numerical. Nothing here is a proof that the ladder is
+infinite. The claim is evidence from eight computed resonances plus a formal mechanism whose ingredients are
+checked numerically.*
 
 ## 1. The branch and the smoothness function
 For every λ > 1 the least-singular self-similar profile has the local exponent m(λ) = (λ−1)/ε(λ) at the
@@ -18,7 +21,7 @@ speed of the self-similar flow along the boundary.
 
 1. **Quasi-stagnant region** x < x_c: D = ε D̂(s) with D̂ = O(1). D̂ → 1 at the origin and has a dip of depth
    D̂_min ≈ 0.4–0.8 before the front. Θ_b ≈ −x² and Ω_b ≈ ∂ₓΘ_b (vorticity slaved to the temperature gradient).
-2. **Front** at x_c ≈ 0.5–0.6 (fixed as λ → 1). Here D rises from O(ε) to O(1) over a width that shrinks like ε
+2. **Front** at x_c ≈ 0.72 in 2D and ≈ 0.61 in Hou–Luo (fixed as λ → 1). Here D rises from O(ε) to O(1) over a width that shrinks like ε
    (Hou–Luo: max d ln D/dη ≈ 1.1/ε).
 3. **Outer region** x > x_c: an O(1) flow, where Θ saturates (Θ grows only like x^{(λ−1)/(1+λ)}).
 
@@ -43,7 +46,8 @@ any λ > 1 on the computed range (scans continue to λ = 1.02 in 2D and λ = 1.0
 the boundary, with c(m) ∝ (m−2). The particular solution of −ΔΨ = C y₁^{m−1} in the corner has
 Ψ_β(β = 0) ∝ (m−2); it vanishes for m = 2, where Ψ = (C/2) y₁y₂². In the quasi-stagnant region, D − ε itself
 must stay O(ε), so (m−2) = O(ε). The same holds at every order of the formal expansion in ε. The smoothness
-defect is therefore beyond all orders in ε, and set by exponentially small (WKB) terms.
+defect is therefore beyond all orders in ε, and set by exponentially small (WKB) terms. This is a formal argument,
+not a proof.
 
 ## 3. WKB modes of the quasi-stagnant region
 In the quasi-stagnant region the radial transport speed is O(ε) while all other rates are O(1). Consider
@@ -103,6 +107,8 @@ stagnation point to the front (first point beyond the dip with D/ε > 3).
   quantisation condition Re Φ(λ_n) = Φ₀ + nπ.
 - εΦ levels off at a ≈ 1.05 − 0.6i (Re εΦ = 1.0505, 1.0491, 1.0502, 1.0511 for n = 4–7), so the asymptotic
   spacing is Δz = π/(2 Re a) ≈ 1.50. The observed spacings (1.457 → 1.4758) increase monotonically towards it.
+- Caveat: εΦ at finite ε depends on the front cut-off at the level O(ε) (λ₄: Re εΦ = 1.040, 1.050, 1.060, 1.081
+  for D/ε > 2, 3, 5, 8). The robust quantity is the slope C of Re Φ versus z at a fixed cut-off (ASYMPTOTICS.md §5).
 - The two-point law of Wang et al. (slope 1.4187, the line through λ₀ and λ₁) therefore underestimates the
   asymptotic slope by about 5 %.
 
@@ -119,8 +125,11 @@ extrema by the computed WKB factor e^{Im Φ(z)}, what remains is a clean power l
   (local values 1.48–1.76).
 - 2D, extrema at z = 1.5–7.4: local p = 1.01, 1.23, 1.33, 1.29, not yet asymptotic.
 
-Hence, empirically, m(λ) − 2 ≈ C (λ−1)^{p} Re[e^{iΦ(λ) + iφ}] with p ≈ 3/2.
+Hence, empirically, m(λ) − 2 ≈ C (λ−1)^{p} Re[e^{iΦ(λ) + iφ}] with p ≈ 1.5. The prefactor exponent p is fitted,
+not derived.
 
-**Consequence.** Both models have an infinite ladder of smooth self-similar profiles accumulating at λ = 1, with
-1/(λ_n − 1) growing linearly in n. The empirical law of Wang et al. is the leading-order WKB quantisation of the
-quasi-stagnant region. The asymptotic 2D slope is π/(2 Re a) ≈ 1.50, larger than the slope 1.4187 of the line through λ₀ and λ₁.
+**Consequence (formal, with numerical support).** In both models the WKB representation implies infinitely many
+smooth self-similar profiles accumulating at λ = 1, with 1/(λ_n − 1) growing linearly in n (ASYMPTOTICS.md,
+Lemma and §3). The empirical law of Wang et al. is the leading-order phase quantization of the stalled layer.
+The asymptotic 2D slope π/C lies in [1.476, 1.50], with WKB central value 1.496. That is larger than the slope
+1.4187 of the line through λ₀ and λ₁. The value 3/2 is a candidate, not a derived result.

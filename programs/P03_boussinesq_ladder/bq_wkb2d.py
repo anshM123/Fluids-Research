@@ -56,7 +56,7 @@ def wkb_phase(f, s_lo=-10.0, ds=0.025, Dcut=3.0, verbose=False, return_kappa=Fal
     if (~good).any() and good.sum() > 2:
         kap[~good] = np.interp(grid[~good], grid[good], kap[good].real) + 1j * np.interp(grid[~good], grid[good], kap[good].imag)
     if return_kappa:
-        return lam, m, eps, s_cut, np.trapezoid(kap, grid), (~good).sum(), grid, kap
+        return lam, m, eps, s_cut, np.trapezoid(kap, grid), (~good).sum(), grid, kap, good
     return lam, m, eps, s_cut, np.trapezoid(kap, grid), (~good).sum()
 
 

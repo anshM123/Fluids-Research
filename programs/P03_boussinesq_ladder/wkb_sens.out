@@ -1,0 +1,54 @@
+/usr/local/lib/python3.11/dist-packages/scipy/integrate/_ivp/rk.py:63: RuntimeWarning: overflow encountered in dot
+  dy = np.dot(K[:s].T, a[:s]) * h
+/usr/local/lib/python3.11/dist-packages/scipy/integrate/_ivp/rk.py:63: RuntimeWarning: invalid value encountered in dot
+  dy = np.dot(K[:s].T, a[:s]) * h
+/usr/local/lib/python3.11/dist-packages/scipy/integrate/_ivp/rk.py:63: RuntimeWarning: invalid value encountered in multiply
+  dy = np.dot(K[:s].T, a[:s]) * h
+/usr/local/lib/python3.11/dist-packages/scipy/integrate/_ivp/rk.py:521: RuntimeWarning: invalid value encountered in divide
+  err5 = np.dot(K.T, self.E5) / scale
+/usr/local/lib/python3.11/dist-packages/scipy/integrate/_ivp/rk.py:522: RuntimeWarning: invalid value encountered in divide
+  err3 = np.dot(K.T, self.E3) / scale
+/home/user/Fluids-Research/programs/P03_boussinesq_ladder/bq_local_eig.py:112: RuntimeWarning: overflow encountered in exp
+  return (dps + kap * ps) * np.exp(-kap * Y1) / 2
+/home/user/Fluids-Research/programs/P03_boussinesq_ladder/bq_local_eig.py:112: RuntimeWarning: invalid value encountered in scalar multiply
+  return (dps + kap * ps) * np.exp(-kap * Y1) / 2
+/home/user/Fluids-Research/programs/P03_boussinesq_ladder/bq_local_eig.py:112: RuntimeWarning: invalid value encountered in scalar divide
+  return (dps + kap * ps) * np.exp(-kap * Y1) / 2
+/home/user/Fluids-Research/programs/P03_boussinesq_ladder/bq_local_eig.py:120: RuntimeWarning: invalid value encountered in scalar divide
+  k2 = k1 - f1 * (k1 - k0) / (f1 - f0)
+/home/user/Fluids-Research/programs/P03_boussinesq_ladder/bq_local_eig.py:100: RuntimeWarning: invalid value encountered in scalar divide
+  th0 = -G / (1j * kap * Dh)                  # iκD̂ θ(0) = −G ψ'(0)
+/home/user/Fluids-Research/programs/P03_boussinesq_ladder/bq_local_eig.py:101: RuntimeWarning: invalid value encountered in scalar divide
+  om0 = 1j * kap * th0 / (1 + 1j * kap * Dh)
+Ycross_Nb32_hs0.0125_ss-20.0_sm100.0_lam: z=6.89722 Dcut=2.0 ds=0.025: s_cut=-0.3750 εΦ=1.03995-0.57231i ReΦ=2z·Re εΦ=14.3455 | min Re κ=2.665e-04 max Im κ=-2.768e-08 (filled 126)
+Ycross_Nb32_hs0.0125_ss-20.0_sm100.0_lam: z=6.89722 Dcut=3.0 ds=0.025: s_cut=-0.3000 εΦ=1.05045-0.58091i ReΦ=2z·Re εΦ=14.4903 | min Re κ=2.665e-04 max Im κ=-2.768e-08 (filled 126)
+Ycross_Nb32_hs0.0125_ss-20.0_sm100.0_lam: z=6.89722 Dcut=3.0 ds=0.0125: s_cut=-0.3000 εΦ=1.05048-0.58093i ReΦ=2z·Re εΦ=14.4907 | min Re κ=2.665e-04 max Im κ=-2.768e-08 (filled 253)
+Ycross_Nb32_hs0.0125_ss-20.0_sm100.0_lam: z=6.89722 Dcut=5.0 ds=0.025: s_cut=-0.1625 εΦ=1.05988-0.58692i ReΦ=2z·Re εΦ=14.6205 | min Re κ=2.665e-04 max Im κ=-2.768e-08 (filled 126)
+Ycross_Nb32_hs0.0125_ss-20.0_sm100.0_lam: z=6.89722 Dcut=8.0 ds=0.025: s_cut=0.0375 εΦ=1.08106-0.59659i ReΦ=2z·Re εΦ=14.9127 | min Re κ=2.665e-04 max Im κ=-2.768e-08 (filled 126)
+Ycross_Nb32_hs0.025_ss-20.0_sm100.0_lam1: z=6.89722 Dcut=2.0 ds=0.025: s_cut=-0.3750 εΦ=1.04001-0.57224i ReΦ=2z·Re εΦ=14.3463 | min Re κ=2.664e-04 max Im κ=-2.768e-08 (filled 126)
+Ycross_Nb32_hs0.025_ss-20.0_sm100.0_lam1: z=6.89722 Dcut=3.0 ds=0.025: s_cut=-0.3000 εΦ=1.05053-0.58085i ReΦ=2z·Re εΦ=14.4915 | min Re κ=2.664e-04 max Im κ=-2.768e-08 (filled 126)
+Ycross_Nb32_hs0.025_ss-20.0_sm100.0_lam1: z=6.89722 Dcut=3.0 ds=0.0125: s_cut=-0.3000 εΦ=1.05016-0.58038i ReΦ=2z·Re εΦ=14.4863 | min Re κ=2.664e-04 max Im κ=-2.768e-08 (filled 253)
+Ycross_Nb32_hs0.025_ss-20.0_sm100.0_lam1: z=6.89722 Dcut=5.0 ds=0.025: s_cut=-0.1500 εΦ=1.06300-0.58829i ReΦ=2z·Re εΦ=14.6635 | min Re κ=2.664e-04 max Im κ=-2.768e-08 (filled 126)
+Ycross_Nb32_hs0.025_ss-20.0_sm100.0_lam1: z=6.89722 Dcut=8.0 ds=0.025: s_cut=0.0500 εΦ=1.08297-0.59730i ReΦ=2z·Re εΦ=14.9390 | min Re κ=2.664e-04 max Im κ=-2.768e-08 (filled 126)
+Ycross_Nb32_hs0.0125_ss-20.0_sm100.0_lam: z=8.37002 Dcut=2.0 ds=0.025: s_cut=-0.3750 εΦ=1.04191-0.58043i ReΦ=2z·Re εΦ=17.4416 | min Re κ=2.685e-04 max Im κ=-2.835e-08 (filled 126)
+Ycross_Nb32_hs0.0125_ss-20.0_sm100.0_lam: z=8.37002 Dcut=3.0 ds=0.025: s_cut=-0.3125 εΦ=1.04908-0.58658i ReΦ=2z·Re εΦ=17.5616 | min Re κ=2.685e-04 max Im κ=-2.835e-08 (filled 126)
+Ycross_Nb32_hs0.0125_ss-20.0_sm100.0_lam: z=8.37002 Dcut=3.0 ds=0.0125: s_cut=-0.3125 εΦ=1.05039-0.58761i ReΦ=2z·Re εΦ=17.5835 | min Re κ=2.664e-04 max Im κ=-2.765e-08 (filled 252)
+Ycross_Nb32_hs0.0125_ss-20.0_sm100.0_lam: z=8.37002 Dcut=5.0 ds=0.025: s_cut=-0.2125 εΦ=1.05733-0.59211i ReΦ=2z·Re εΦ=17.6997 | min Re κ=2.685e-04 max Im κ=-2.835e-08 (filled 126)
+Ycross_Nb32_hs0.0125_ss-20.0_sm100.0_lam: z=8.37002 Dcut=8.0 ds=0.025: s_cut=-0.0500 εΦ=1.07592-0.60076i ReΦ=2z·Re εΦ=18.0110 | min Re κ=2.685e-04 max Im κ=-2.835e-08 (filled 126)
+Ycross_Nb32_hs0.0125_ss-20.0_sm100.0_lam: z=9.84426 Dcut=2.0 ds=0.025: s_cut=-0.3750 εΦ=1.04342-0.58649i ReΦ=2z·Re εΦ=20.5435 | min Re κ=2.657e-04 max Im κ=-2.743e-08 (filled 125)
+Ycross_Nb32_hs0.0125_ss-20.0_sm100.0_lam: z=9.84426 Dcut=3.0 ds=0.025: s_cut=-0.3250 εΦ=1.05019-0.59241i ReΦ=2z·Re εΦ=20.6767 | min Re κ=2.657e-04 max Im κ=-2.743e-08 (filled 125)
+Ycross_Nb32_hs0.0125_ss-20.0_sm100.0_lam: z=9.84426 Dcut=3.0 ds=0.0125: s_cut=-0.3250 εΦ=1.05023-0.59246i ReΦ=2z·Re εΦ=20.6775 | min Re κ=2.657e-04 max Im κ=-2.743e-08 (filled 251)
+Ycross_Nb32_hs0.0125_ss-20.0_sm100.0_lam: z=9.84426 Dcut=5.0 ds=0.025: s_cut=-0.2375 εΦ=1.05912-0.59766i ReΦ=2z·Re εΦ=20.8525 | min Re κ=2.657e-04 max Im κ=-2.743e-08 (filled 125)
+Ycross_Nb32_hs0.0125_ss-20.0_sm100.0_lam: z=9.84426 Dcut=8.0 ds=0.025: s_cut=-0.1125 εΦ=1.07367-0.60464i ReΦ=2z·Re εΦ=21.1390 | min Re κ=2.657e-04 max Im κ=-2.743e-08 (filled 125)
+Ycross_Nb32_hs0.0125_ss-20.0_sm100.0_lam: z=11.32016 Dcut=2.0 ds=0.025: s_cut=-0.3750 εΦ=1.04463-0.59122i ReΦ=2z·Re εΦ=23.6508 | min Re κ=2.667e-04 max Im κ=-2.777e-08 (filled 125)
+Ycross_Nb32_hs0.0125_ss-20.0_sm100.0_lam: z=11.32016 Dcut=3.0 ds=0.025: s_cut=-0.3250 εΦ=1.05110-0.59698i ReΦ=2z·Re εΦ=23.7972 | min Re κ=2.667e-04 max Im κ=-2.777e-08 (filled 125)
+/home/user/Fluids-Research/programs/P03_boussinesq_ladder/bq_local_eig.py:112: RuntimeWarning: overflow encountered in scalar multiply
+  return (dps + kap * ps) * np.exp(-kap * Y1) / 2
+Ycross_Nb32_hs0.0125_ss-20.0_sm100.0_lam: z=11.32016 Dcut=3.0 ds=0.0125: s_cut=-0.3250 εΦ=1.05114-0.59702i ReΦ=2z·Re εΦ=23.7982 | min Re κ=2.667e-04 max Im κ=-2.777e-08 (filled 251)
+Ycross_Nb32_hs0.0125_ss-20.0_sm100.0_lam: z=11.32016 Dcut=5.0 ds=0.025: s_cut=-0.2625 εΦ=1.05877-0.60122i ReΦ=2z·Re εΦ=23.9709 | min Re κ=2.667e-04 max Im κ=-2.777e-08 (filled 125)
+Ycross_Nb32_hs0.0125_ss-20.0_sm100.0_lam: z=11.32016 Dcut=8.0 ds=0.025: s_cut=-0.1500 εΦ=1.07417-0.60876i ReΦ=2z·Re εΦ=24.3195 | min Re κ=2.667e-04 max Im κ=-2.777e-08 (filled 125)
+Ycross_Nb32_hs0.025_ss-20.0_sm100.0_lam1: z=5.42732 Dcut=2.0 ds=0.025: s_cut=-0.3750 εΦ=1.03754-0.56087i ReΦ=2z·Re εΦ=11.2621 | min Re κ=2.676e-04 max Im κ=-2.806e-08 (filled 128)
+Ycross_Nb32_hs0.025_ss-20.0_sm100.0_lam1: z=5.42732 Dcut=3.0 ds=0.025: s_cut=-0.2750 εΦ=1.05206-0.57224i ReΦ=2z·Re εΦ=11.4198 | min Re κ=2.676e-04 max Im κ=-2.806e-08 (filled 128)
+Ycross_Nb32_hs0.025_ss-20.0_sm100.0_lam1: z=5.42732 Dcut=3.0 ds=0.0125: s_cut=-0.2750 εΦ=1.05174-0.57193i ReΦ=2z·Re εΦ=11.4163 | min Re κ=2.655e-04 max Im κ=-2.737e-08 (filled 254)
+Ycross_Nb32_hs0.025_ss-20.0_sm100.0_lam1: z=5.42732 Dcut=5.0 ds=0.025: s_cut=-0.0750 εΦ=1.06596-0.58067i ReΦ=2z·Re εΦ=11.5707 | min Re κ=2.676e-04 max Im κ=-2.806e-08 (filled 128)
+Ycross_Nb32_hs0.025_ss-20.0_sm100.0_lam1: z=5.42732 Dcut=8.0 ds=0.025: s_cut=0.2000 εΦ=1.09171-0.59182i ReΦ=2z·Re εΦ=11.8501 | min Re κ=2.676e-04 max Im κ=-2.806e-08 (filled 128)

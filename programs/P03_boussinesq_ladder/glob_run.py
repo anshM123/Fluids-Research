@@ -11,13 +11,24 @@ def out(s):
     print(s, flush=True); log.write(s + "\n"); log.flush()
 out(f"# global solver {tag}: march λ={lam0} src={f} hs={hs} Nb={Nb} s_min={smin}")
 lams = []
+prev = None
 for smax in smaxs:
     t = time.time()
     G = BQGlobal(s_min=smin, s_max=smax, hs=hs, Nb=Nb)
     U = G.initial_from_march(f, lam0, hs_src=src_hs)
+    if prev is not None:
+        # continuation in s_max: reuse the previous converged fields on the common part of the grid (away from its
+        # old far-field boundary) and its λ
+        Gp, Up = prev
+        keep = (Gp.Ns - 40) * G.n
+        for k in range(3):
+            U[k * G.N:k * G.N + keep] = Up[k * Gp.N:k * Gp.N + keep]
+        U[-1] = Up[-1]
     U, ok = G.newton(U, tol=1e-10, maxit=15, verbose=False)
     R = np.abs(G.residual(U)).max()
     lams.append(U[-1])
+    if ok:
+        prev = (G, U)
     out(f"s_max={smax:5.1f}: λ = {U[-1]:.10f}  |R|={R:.1e} ok={ok}  unknowns={len(U)}  ({time.time()-t:.0f}s)")
     np.save(f"glob_{tag}_smax{smax:g}.npy", U)
 if len(lams) >= 3:

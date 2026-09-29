@@ -1,0 +1,6 @@
+# refine l2: λ=1.2523487 hs=0.025 Nb=32 m=1.9999992069
+brackets: [(np.float64(0.95), np.float64(1.0)), (np.float64(0.55), np.float64(0.6)), (np.float64(0.2), np.float64(0.25))]
+μ* = 1.000000   (bracket 0.950–1.000, 117s)
+μ* = 0.554184   (bracket 0.550–0.600, 135s)
+μ* = 0.220479   (bracket 0.200–0.250, 134s)
+RESULT l2: λ=1.2523487: 2 real unstable eigenvalues μ = [0.55418, 0.22048]; trivial mode at μ = [1.0]

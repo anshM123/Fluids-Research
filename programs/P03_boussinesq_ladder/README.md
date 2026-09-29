@@ -63,12 +63,17 @@ Gauss–Legendre march is A-stable.
 - For λ > λ₀, m decreases monotonically (1.34 at λ = 4.1), so there are no further profiles.
 - The branch continues at least to λ = 1.069 (scan D), with no sign of termination.
 
-**Mechanism** (THEORY.md): a quasi-stagnant boundary region x < x_c ≈ 0.72, where D = V₁/x = O(ε), bounded by a front
-that becomes a square-root cusp as λ → 1. The WKB phase Φ = ε⁻¹∫κ ds, from the local 2D eigenproblem
-(`bq_local_eig.py`, `bq_wkb2d.py`), gains 2.98, 3.03, 3.07, 3.07, 3.115, 3.12 between consecutive profiles, tending to π.
-The asymptotic spacing is π/(2 Re a) ≈ 1.50 with a ≈ 1.05 − 0.6i.
+**Mechanism** (THEORY.md; status of each step in ASYMPTOTICS.md):
+- A stalled (quasi-stagnant) boundary region x < x_c ≈ 0.72, where D = V₁/x = O(ε), bounded by a front that becomes
+  a square-root cusp as λ → 1.
+- The WKB phase Φ = ε⁻¹∫κ ds comes from the local 2D eigenproblem (`bq_local_eig.py`, `bq_wkb2d.py`). It gains
+  2.98, 3.03, 3.07, 3.07, 3.115, 3.12 between consecutive profiles, tending to π.
+- A fit Re Φ(λ_n) = C z_n + Φ₀ over n = 3–7 gives C = 2.100, i.e. an asymptotic spacing π/C = 1.496.
+- The measured spacings bound it from below (1.4758 at n = 7). Our range is π/C ∈ [1.476, 1.50]; 3/2 is a candidate
+  only. This is formal asymptotics plus numerics, not a proof.
 
-**Hou–Luo** (`hl_solver.py`, `hl_scan_*.log`): 12 crossings up to z = 15.
+**Hou–Luo** (`hl_solver.py`, `hl_scan_*.log`, `hl_wkb2.out`): 11 crossings resolved above the noise (z ≤ 13.56), spacings
+1.2583, 1.2612, 1.2637, 1.2652, 1.2638 against the WKB value π/(2 Re a₀) ≈ 1.267.
 - λ_n^{HL} = 1.99871, 1.44767, 1.28676, 1.21092, 1.16668, 1.13772, 1.11731, 1.10215, 1.09046, …
 - Phase gained per profile 3.02–3.09, tending to π.
 - Amplitude |m − 2| e^{−Im Φ} ∝ z^{−1.58}.
@@ -82,3 +87,81 @@ The asymptotic spacing is π/(2 Re a) ≈ 1.50 with a ≈ 1.05 − 0.6i.
 - The outer region (r ≳ 3) has angular structure that Nb = 32–48 under-resolves (residual 1e-3–1e-2).
 - The λ_n themselves are insensitive to this (Nb 32/48 agree to ≤ 1e-7 in λ₁, λ₂ and 5e-10 in m at λ₆). The strain
   at the origin sees only low angular modes, and the boundary transport is resolved to 1e-11.
+
+## Independent reproduction: global Newton solver (`bq_global.py`, `glob_run.py`, `glob_*.log`)
+**Every numerical ingredient differs from the marching solver.**
+- The unknowns are the unhatted Θ, Ω, X on the (s, β) grid, solved simultaneously (no marching).
+- 6th-order upwind-biased finite differences in s; Chebyshev in β (Nb = 24).
+- The Biot–Savart law is the local elliptic equation (∂_s+2)²X + X_ββ + Ω = 0, with a Robin far field. There is no
+  FFT and no exponential weight.
+- Smoothness is imposed through the exact local data at s_min = −12. λ is an eigenvalue fixed by the strain condition.
+- Newton with the exact sparse Jacobian and SuperLU.
+- Three far-field truncations s_max = 8, 10, 12, extrapolated geometrically.
+
+| n | marching λ_n | global, hs 0.025 | global, hs 0.0125 | global − marching |
+|---|---|---|---|---|
+| 0 | 1.9205593 | 1.9205610 | — | +1.7e-6 |
+| 1 | 1.3990961 | 1.3990960 | — | −1.1e-7 |
+| 2 | 1.2523487 | 1.2523481 | — | −5.6e-7 |
+| 3 | 1.1842533 | 1.1842512 | 1.1842530 | −3.2e-7 |
+| 4 | 1.1449857 | 1.1449777 | 1.1449853 | −4.2e-7 |
+| 5 | 1.1194738 | 1.1194516 | 1.1194739 | +1.1e-7 |
+| 6 | 1.1015817 | 1.1015204 | 1.1015771 | −4.6e-6 |
+| 7 | 1.0883384 | (no convergence) | 1.0883480 (s_max = 12 only) | +9.6e-6 |
+
+**Notes on the global solver.**
+- The truncation at the origin matters: s_min = −8 → −10 → −12 moves λ₁ by −3.2e-6 → −1.7e-7 → −1.1e-7.
+- For λ₇, Newton converges only at s_max = 12. The rung is weakly determined: |m − 2| ~ 1e-7 nearby, so the
+  Jacobian is nearly singular in the λ direction.
+- Both solvers show the same hs trend for the deep rungs (λ₆: +5.8e-5 marching, +5.7e-5 global, from hs 0.025 to
+  0.0125).
+
+## Linear stability (`bq_stability.py`, `stab_*.py`, `glob_stab.py`, `gstab_*.log`)
+**Setting.** Perturbations are taken ∝ e^{μτ}, with τ = −ln(1−t), and must be regular at the stagnation point.
+There are two trivial modes: μ = 1 (time translation) and μ = 0 (the scaling symmetry Θ → L⁻¹Θ(Ly), neutral).
+
+**Method 1 (march-based).**
+- μ is an eigenvalue iff the linearised march + Biot–Savart map T_μ has an eigenvalue ν = 1.
+- Validation: |T₁v − v|/|v| = 3e-6 on the exact time-translation mode.
+- Real-axis scans (`stab_scan.py`) count crossings. `stab_refine.py` solves ν(μ) = 1 by Brent.
+- `stab_contour.py` is an argument-principle count of det(I − T_μ) on [0.06, 1.5] × [−1.5, 1.5], so it includes
+  complex μ.
+
+**Method 2 (global).**
+- The generalised eigenproblem J v + μ M v = 0 on the global discretisation, solved by shift-invert Arnoldi at real
+  and complex shifts.
+- A mode counts only if it is found at several shifts and survives moving the origin truncation from s_min = −12
+  to −20 (`gstab_summary.py`).
+
+**Truncation artifacts (both methods).** The regular r² coefficient of a perturbation carries a factor 1/μ (a
+resonance with the neutral scaling mode). A finite origin truncation regularises it, which produces spurious modes
+near μ ≈ 0.66/|s_start|:
+- Method 1: a crossing at μ ≈ 0.033 (s_start −20) moves to 0.052 (s_start −12).
+- Method 2: a line of modes at Re μ ≈ 0.054 (s_min −12), with Im μ spaced by 2π/(travel time through the stalled
+  layer); inflow-boundary modes localised at s_min, e.g. μ = 0.610 ± 1.104i for λ₂, with the eigenvector
+  concentrated at s = −12; and a non-normal pseudospectral cloud (residual ~1e-7).
+- All of these move or vanish when the truncation changes. Counts are taken for μ ≥ 0.045.
+
+| n | unstable modes | method 1: brackets (real scan) | method 2: eigenvalues μ_k | method 1 refined |
+|---|---|---|---|---|
+| 0 | 0 | — | — | |
+| 1 | 1 | (0.35, 0.40) | 0.37379 | 0.373789 |
+| 2 | 2 | (0.55, 0.60), (0.20, 0.25) | 0.55419, 0.22048 | 0.55418, 0.22048 |
+| 3 | 3 | (0.60, 0.65), (0.35, 0.40), (0.15, 0.16) | 0.63437, 0.37541, 0.15492 | |
+| 4 | 4 | (0.65, 0.70), (0.45, 0.50), (0.25, 0.30), (0.11, 0.12) | 0.68004, 0.45973, 0.28629, 0.11908 | |
+| 5 | 5 | (0.70, 0.75), (0.50, 0.55), (0.35, 0.40), (0.20, 0.25), (0.09, 0.10) | 0.70985, 0.51143, 0.36869, 0.23121, 0.09654 | |
+| 6 | 6 | (0.70, 0.75), (0.50, 0.55), (0.40, 0.45), (0.30, 0.35), (0.19, 0.20), (0.08, 0.09) | 0.73139, 0.54481, 0.42577, 0.30749, 0.19415, 0.08154 | |
+| 7 | 7 | (0.70, 0.75), (0.55, 0.60), (0.45, 0.50), (0.35, 0.40), (0.25, 0.30), (0.16, 0.17), (0.06, 0.07) | ⟨s_min −20 run⟩ | |
+
+**Complex modes.** The argument-principle count for λ₁ returns 1.997 zeros in [0.06, 1.5] × [−1.5, 1.5], i.e. μ = 1
+and μ = 0.374, so there are no complex unstable modes there. ⟨λ₂–λ₅ running⟩.
+
+**Observation (not derived).** The lower unstable eigenvalues scale with ε = (λ_n−1)/2 and are nearly equally
+spaced. For n = 6, μ_k/ε = 1.61, 3.82, 6.05, 8.38, 10.73, with spacing ≈ 2.2–2.3; the largest approaches ≈ 0.75.
+
+## Asymptotics (`ASYMPTOTICS.md`)
+- An elementary lemma (proved).
+- A formal WKB derivation with explicit orders of the dropped terms.
+- Positivity of C: closed form for Hou–Luo, checked pointwise in 2D.
+- Numerical verification of every hypothesis, and what remains open: the exact C; 3/2; the o(1) remainder near the
+  front.

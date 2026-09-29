@@ -1,122 +1,151 @@
-# DOSSIER P03 — The infinite ladder of self-similar blow-ups of the 2D Boussinesq equations
+# DOSSIER P03 — A quantized hierarchy of self-similar blow-up profiles in 2D Boussinesq
 
-**Result.** Eight smooth self-similar blow-up profiles of 2D Boussinesq with boundary (the Hou–Luo scenario of
-3D axisymmetric Euler) were computed with a classical solver. All of them lie on **one continuous branch** of
-least-singular profiles; the smooth ones are the zeros of a single scalar function m(λ) − 2.
-- λ₀ is the known stable profile; λ₁, λ₂, λ₃ (and presumably λ₄) correspond to the unstable profiles found with
-  PINNs by Wang et al. (2025); λ₅ and λ₆ are new.
-- As λ → 1 the profiles develop a quasi-stagnant boundary region. The front bounding it becomes a CCF-type
-  square-root cusp only in the limit.
-- In the stagnant region the smoothness condition becomes a **WKB quantisation**: the complex phase
-  Φ = ε⁻¹∫κ ds, computed from a local 2D eigenproblem, gains π between consecutive smooth profiles.
-- Hence the ladder is infinite and accumulates at λ = 1, with 1/(λ_n − 1) ≈ const + n·1.50.
-- This explains the empirical law found with PINNs and corrects its slope (1.4187 → 1.50 asymptotically).
-- The 1D Hou–Luo model has the same structure: 8+ profiles and the same WKB law.
+**Result in one sentence.** Numerical evidence and asymptotic analysis reveal a quantized hierarchy of
+self-similar Boussinesq blow-up profiles, with evidence for an infinite ladder accumulating at λ = 1.
 
-Status keys: VERIFIED (converged in all discretisation parameters, ≥2 routes), DERIVED (asymptotic argument +
-numerical confirmation), PRELIMINARY.
+**Central concept.** The discrete smooth blow-up profiles are *regularity-selected points on a continuous
+singular branch*. For each λ there is a least-singular self-similar profile with Θ ≈ −|y₁|^{m(λ)} at the
+stagnation point. The smooth profiles are the regularity resonances m(λ) = 2.
 
-## 1. Question and gap
-- Wang et al. (arXiv:2509.14185) found for 2D Boussinesq a stable profile (λ₀ ≈ 1.9205, also Chen–Hou), three
-  unstable profiles and a candidate fourth. The n-th profile has n unstable modes.
-- They report λ_n ≈ 1 + 1/(1.4187 n + 1.0863), which is the line through λ₀ and λ₁.
-- Whether the ladder is infinite, and why such a law should hold, was open. The same holds for the 1D CCF model:
-  P02 in this repository shows that ladder is finite.
-- Nearest work:
-  - Chen–Huang–Li (arXiv:2604.01868): singular (unbounded) self-similar profiles of Hou–Luo/Boussinesq.
-  - Huang–Qin–Wang–Wei (CMP 2025): existence of the Hou–Luo stable profile.
-  - Chen–Hou: stable Boussinesq/Euler blow-up.
-- None of these computes the unstable ladder with a classical method or addresses its accumulation.
+**What we do not claim.**
+- No proof. Nothing here is a theorem about the Boussinesq equations. The one rigorous statement is an elementary
+  lemma about oscillatory functions (`programs/P03_boussinesq_ladder/ASYMPTOTICS.md` §2).
+- "Infinite" means: eight computed resonances, plus a formal mechanism whose ingredients are each checked on the
+  computed profiles.
+- The asymptotic spacing 3/2 is a candidate only. It is not derived.
 
-## 2. Method (programs/P03_boussinesq_ladder)
-- **Least-singular family.** For every λ, look for the profile with Θ ≈ −|y₁|^m at the stagnation point, where
-  m = (λ−1)/(1+λ−A) and A = −∂₁U₁(0). Smooth profiles ⇔ m = 2 ⇔ λ = −3 − 2∂₁U₁(0), the identity used by
-  Wang et al.
-- **Solver.**
-  - Log-polar coordinates (s = ln r, β), with the exact local structure factored out: Θ = cos^m β Θ̂.
-  - All characteristics leave the origin, so (Θ̂, Ω̂) are marched in s from the local solution. The march is
-    implicit Gauss–Legendre near the origin (stiff as λ → 1) and RK4 beyond.
-  - Spectral Biot–Savart solve.
-  - Newton–Krylov on X = Ψ/r² with central-difference matvecs, converging quadratically to 1e-13.
-  - Two numerical pitfalls were removed; see README.
-- **Continuation and crossings.** Continuation in λ with a secant predictor gives m(λ). Crossings are located by
-  safeguarded regula falsi with a full Newton solve at each λ.
-- **Cost.** One solve takes 20–60 s on one core (Ns × Nb = 8800 × 33 unknowns). No GPU and no neural network.
+**Status tags.**
+- [N] numerical. Where stated, reproduced by two independent solvers and converged in the discretisation parameters.
+- [F] formal matched asymptotics.
+- [P] proved.
+- [O] open.
+
+## 1. Core claims
+1. **[N] A continuous least-singular branch.** For every λ ∈ [1.069, 4.1] the least-singular profile exists. The
+   profiles form one continuous branch (continuation in λ, no fold or termination found).
+   - m(λ) = (λ−1)/(1+λ−A), with A = −∂₁U₁(0).
+   - m decreases monotonically for λ > λ₀, reaching 1.34 at λ = 4.1.
+2. **[N + exact identity] Smooth profiles are the regularity resonances m(λ) = 2.** This is the condition
+   λ = −3 − 2∂₁U₁(0) of Wang et al. m − 2 changes sign at each resonance. Its extrema decay geometrically:
+   +7.4e-2, −6.8e-3, +7.2e-4, −8.3e-5, +1e-5, …
+3. **[N] Four resonances beyond Wang et al.**
+   - λ₄, which corresponds to their candidate fourth unstable profile, plus λ₅, λ₆ and λ₇ (Table 1).
+   - All eight are reproduced by an independent global Newton solver: different unknowns, discretisation,
+     Biot–Savart solver and treatment of λ (Table 2).
+   - Linear stability by two independent methods gives n unstable modes for the n-th profile, as Wang et al. found
+     for n ≤ 3. Verified here for ⟨n ≤ 5, pending 6–7⟩ (Table 3).
+   - Profiles whose index is not yet verified are called "next in continuation order".
+4. **[N + F] A stalled layer next to a limiting cusp.** As λ → 1⁺:
+   - For x < x_c ≈ 0.72 on the wall, the radial self-similar speed is D = O(λ−1): a quasi-stagnant (stalled) layer.
+   - The layer is bounded by a front. Outside the front D → k(x−x_c)^{1/2}, the same square-root cusp that ends
+     the CCF branch. Here the cusp is reached only in the limit.
+   - The dip inside the front closes like ε^{0.18}. No sonic point forms at λ > 1 down to λ = 1.069.
+5. **[F + N] An oscillatory inner problem gives phase quantization.**
+   - Perturbations in the stalled layer obey a boundary-layer eigenproblem with a complex root κ(s).
+   - The smoothness defect is m − 2 ≈ |K| e^{−Im Φ} cos(Re Φ + arg K), with Φ = ε⁻¹∫κ ds, so the resonances
+     satisfy Re Φ(λ_n) = nπ + δ + o(1).
+   - Computed phase gain per resonance: 2.98, 3.03, 3.07, 3.07, 3.115, 3.12, tending to π.
+   - δ_n = 2.27 → 1.81 (n = 1…7), converging with steps that decay like z⁻².
+6. **[F, as far as the derivation supports] 1/(λ_n − 1) = a n + o(n), with a = π/C.**
+   - C = 2 Re ∫κ₀ ds > 0. Positivity is exact for the Hou–Luo local root; in 2D it is checked pointwise.
+   - The remainder is O(1) only under a uniformity hypothesis (U) on the stalled layer, which fails near the front
+     (see §4). Numerically z_n − a n is constant to ±0.02 over n = 3–7.
+   - a ∈ [1.476, 1.50]; the WKB central value is 1.496. Measured spacings: 1.4646, 1.4699, 1.4728, 1.4743, 1.4758.
+   - The value a = 3/2 is a candidate consistent with the data. It is not derived.
+7. **[N + closed-form local root] Hou–Luo shows the same mechanism.**
+   - 8 reliable resonances; phase gain per resonance 3.02 → 3.09 (→ π).
+   - Spacings 1.2583 → 1.2652 against the WKB prediction π/(2 Re a₀) ≈ 1.27.
+   - The local root has the closed form κ = (−1 + √(1+4iΩ))/(2iD̂). Re κ > 0 for Ω > 0.
+8. **[N, P02] CCF is the finite contrast.**
+   - Its branch reaches the square-root cusp at finite λ* = 0.4535843 and ends after three smooth profiles.
+   - This is consistent with the unsuccessful search of Wang, Léger, Lai and Buckmaster (arXiv:2511.22819) for a
+     third CCF profile in λ ∈ [0.455, 0.4713].
+   - Finite versus infinite ladder is decided by whether the cusp forms at finite λ or only at the accumulation
+     point.
+
+## 2. Methods (programs/P03_boussinesq_ladder)
+- **Marching solver** (`bq_solver.py`, `bq_newton.py`).
+  - Log-polar (s = ln r, β), with the exact local structure factored out.
+  - (Θ̂, Ω̂) are marched outward from the stagnation point, implicit Gauss–Legendre near it.
+  - FFT/Chebyshev Biot–Savart.
+  - Newton–Krylov on X = Ψ/r², quadratic to 1e-13.
+  - Continuation in λ (`bq_scan2.py`) and regula falsi on m = 2 (`bq_crossing.py`).
+- **Independent global solver** (`bq_global.py`, `glob_run.py`).
+  - Unhatted Θ, Ω, X solved simultaneously by Newton with the exact sparse Jacobian and SuperLU.
+  - 6th-order upwind-biased finite differences in s, Chebyshev in β.
+  - The Biot–Savart law as the local elliptic equation (∂_s+2)²X + X_ββ + Ω = 0, with a Robin far field.
+  - Smoothness imposed directly through the exact local data. λ is an eigenvalue fixed by the strain condition.
+  - Extrapolation in the far-field truncation s_max.
+- **Stability, method 1** (`bq_stability.py`). Perturbations e^{μτ} (τ = −ln(1−t)).
+  - μ is an eigenvalue iff the linearised "march + Biot–Savart" map T_μ has an eigenvalue ν = 1.
+  - Real-axis scans count the crossings (`stab_scan.py`).
+  - An argument-principle count of det(I − T_μ) on [0.06, 1.5] × [−1.5, 1.5] includes complex eigenvalues
+    (`stab_contour.py`).
+- **Stability, method 2** (`glob_stab.py`). The generalised eigenproblem J v + μ M v = 0 on the global
+  discretisation, solved by shift-invert Arnoldi at real and complex shifts. It is repeated for two origin
+  truncations, and only eigenvalues independent of the truncation are kept (`gstab_summary.py`).
+- **WKB** (`bq_local_eig.py`, `bq_wkb2d.py`, `wkb_sens.py`). The local eigenproblem is solved by shooting, and the
+  phase is integrated from the stagnation point to the front.
+- **Hou–Luo** (`hl_solver.py`, `hl_scan.py`, `hl_wkb2.py`).
+- **Cost.** Everything runs on one CPU core per job. A profile takes 20–120 s; a stability scan 10–40 min. No GPU
+  and no neural network.
 
 ## 3. Results
-### 3.1 The ladder (λ₀–λ₃ VERIFIED in Nb/hs; λ₄–λ₇ at hs = 0.0125, hs = 0.00625 check of λ₆ running)
-| n | λ_n (this work) | z_n = 1/(λ_n − 1) | z_{n}−z_{n−1} | two-point law of Wang et al. |
+### Table 1 — the resonances (marching solver; hs = 0.0125 from λ₄ on)
+| n | λ_n | z_n = 1/(λ_n−1) | z_n − z_{n−1} | two-point law of Wang et al. |
 |---|---|---|---|---|
-| 0 | 1.9205593 | 1.08630 | — | 1.9206 (stable; Chen–Hou, Wang et al. 1.9205) |
+| 0 | 1.9205593 | 1.08630 | — | 1.9206 (stable) |
 | 1 | 1.3990961 | 2.50566 | 1.41937 | 1.3992 |
 | 2 | 1.2523487 | 3.96277 | 1.45711 | 1.2549 |
 | 3 | 1.1842533 | 5.42733 | 1.46455 | 1.1872 |
-| 4 | 1.1449857 | 6.89723 | 1.46991 | 1.1479 (candidate in Wang et al.) |
+| 4 | 1.1449857 | 6.89723 | 1.46991 | 1.1479 (their candidate) |
 | 5 | 1.1194738 | 8.37004 | 1.47281 | 1.1223 |
 | 6 | 1.1015817 | 9.84429 | 1.47426 | 1.1042 |
 | 7 | 1.0883384 | 11.32010 | 1.47581 | 1.0908 |
 
-- **Resolution** (m at fixed λ):
-  - λ₁: Nb 32/48/64 give 1.39909599/1.39909609/1.39909609; hs 0.025 → 0.0125 moves it by 2e-8; s_start −20 → −12 by 2e-6 (an O(e^{s_start}) effect; −20 is used).
-  - λ₂: Nb 32/48 agree to 9e-8.
-  - λ = 1.15: hs change 7e-11, Nb change 1.3e-10.
-  - Deep crossings are hs-sensitive because the front sharpens: 0.025 → 0.0125 moves λ₄, λ₅, λ₆, λ₇ by
-    −7e-7, −8e-6, +6e-5, −7e-4. The table uses hs = 0.0125.
-- **Branch shape.**
-  - m(λ) − 2 alternates in sign between consecutive crossings. Extrema: +7.41e-2, −6.80e-3, +7.24e-4, −8.34e-5, …
-  - For λ > λ₀, m decreases monotonically (m = 1.34 at λ = 4.1), so there are no further crossings.
+**Resolution.**
+- λ₁: Nb 32/48/64 agree to 1e-9.
+- λ₂: Nb 32/48 agree to 9e-8.
+- Going from hs = 0.025 to 0.0125 moves λ₄…λ₇ by −7e-7, −8e-6, +6e-5, −7e-4. The front sharpens as λ → 1; λ₇ is
+  uncertain at about 5e-5.
 
-### 3.2 Structure as λ → 1 (DERIVED + numerics)
-- **Quasi-stagnant region.** The radial speed along the boundary is D = V₁/x ≈ ε D̂ (ε = 1+λ−A → 0) for
-  x < x_c ≈ 0.7. The front x_c is fixed as λ → 1.
-- **Square-root cusp.** Outside the front, D → k(x − x_c)^{1/2}, the same square-root cusp that terminates the CCF
-  branch (P02). Here it is reached only in the limit λ → 1.
-- **No sonic point.** The dip inside the front closes like D̂_min ∝ ε^{0.18}, so D_min → 0 only at λ = 1.
+### Table 2 — independent reproduction (global solver, s_min = −12, s_max = 8/10/12 extrapolated)
+⟨filled from glob_g*_s12.log / glob_g*_h0125*.log⟩
 
-### 3.3 Mechanism: WKB quantisation (DERIVED; THEORY.md)
-- **Why m → 2.** A non-smooth profile (m ≠ 2) carries a velocity component ∝ (m−2) x^{m−1} on the boundary. The
-  stagnant region only tolerates O(ε) velocity deviations, so m − 2 is beyond all orders in ε. The smoothness
-  defect is carried by exponentially small WKB waves.
-- **Local problem.** Perturbations ∝ exp(i∫κ ds/ε) with a vertical structure on the scale εx obey a local
-  eigenproblem (transport + Biot–Savart; `bq_local_eig.py`). Its complex root κ is continued from the Hou–Luo
-  closed form κ = (−1 + √(1+4iΩ))/(2iD̂).
-- **Quantisation.**
-  - m(λ) − 2 ≈ Re[K e^{iΦ(λ)}], so Re Φ(λ_n) = Φ₀ + nπ.
-  - Computed phase gains between consecutive smooth profiles: 2.98, 3.03, 3.07, 3.07, 3.115, 3.12 (→ π).
-  - εΦ → a ≈ 1.05 − 0.6i, so the asymptotic spacing is π/(2 Re a) ≈ 1.50. The observed spacings increase
-    monotonically, 1.457 → 1.4758.
-- **Amplitude.** The oscillation amplitude decays like e^{−Im Φ} times an algebraic factor (≈ z^{−1.4}).
+### Table 3 — instability index
+⟨filled from stab_l*.log, stabc_l*.log, gstab_summary.py⟩
 
-### 3.4 Cross-check: Hou–Luo boundary model (hl_solver.py; VERIFIED)
-- **Same solver design, 1D.** 8th-order quadrature, Gauss–Legendre march and exact Mellin symbol. Resolution
-  N = 8192 → 65536 changes m by 1.4e-7 → 2e-10 at z = 7.45.
-- **Ladder.**
-  - λ_n^{HL} = 1.99871, 1.44767, 1.28676, 1.21092, 1.16668, 1.13772, 1.11731, 1.10215, 1.09047, …
-  - Spacing in z → 1.267, WKB prediction 1.27.
-  - Phase gain per interval 3.02–3.09 (→ π).
-- **Dip.** D̂_min ∝ ε^{0.35}, no termination down to λ = 1.04 (z = 24).
+### 3.4 Asymptotics (ASYMPTOTICS.md)
+- **Lemma [P].** F = R(cos Θ + η), with R > 0, Θ ↑ ∞ and |η| < 1, implies infinitely many zeros. If
+  Θ = Cz + Θ₀ + o(1), they satisfy λ_n = 1 + C/(nπ + c + o(1)).
+- **WKB representation [F].**
+  - Eikonal: the local boundary-layer eigenproblem. Dropped terms are O(ε).
+  - Connection regions: the stagnation point (x ≲ ε) and the front contribute O(1) phases.
+  - C = 2 Re a₀ > 0.
+  - Remainder: o(z) in general; O(1) under hypothesis (U).
+- **Checks [N].**
+  - A linear fit Re Φ(λ_n) = Cz + Φ₀ over n = 3–7 gives C = 2.100 with residuals ≤ 0.024, i.e. π/C = 1.496.
+  - The measured local slopes π/Δz_n decrease monotonically from 2.145 to 2.129, which bounds C from above.
+  - Cut-off sensitivity: ⟨wkb_sens⟩.
 
-## 4. Limitations
-- Numerical evidence plus asymptotics, not a proof. "Infinite" rests on:
-  - 7 computed crossings and the continuation of the branch to λ ≈ 1.08 (2D) / 1.04 (HL);
-  - the WKB mechanism, whose ingredients (stagnant region, front, local eigenproblem) are verified on the
-    computed profiles.
-- Deep crossings have tiny amplitudes (|m − 2| ~ 1e-6 near λ₆, ~1e-7 near λ₇). Their existence (the sign change) is
-  robust, but their location is hs-sensitive (see 3.1). λ₇ is uncertain at about 5e-5 even at hs = 0.0125.
-- **Exact values of Wang et al.** were not accessible (arXiv blocked in this environment). The comparison uses
-  their stated λ₀ and their two-point law. Our λ₂ and λ₃ lie 2.6e-3 and 2.9e-3 below the law, which is consistent
-  with the law being a line through λ₀ and λ₁.
-- **Instability counts** (n unstable modes for the n-th profile) are taken from Wang et al. for n ≤ 3 and not
-  recomputed here.
-- **The amplitude prefactor** (z^{−p}) is fitted, not derived.
+## 4. Limitations and open points
+- No proof; the WKB derivation is formal.
+- Hypothesis (U) fails near the front, where the dip closes like ε^{0.18}. The o(1) error term in Φ is therefore
+  not established; only o(1/(λ−1)) is.
+- The value of C is known only to about ±1 %. 3/2 is not derived.
+- The deepest resonances have |m − 2| ~ 1e-6 (λ₆) and 1e-7 (λ₇). Their existence rests on sign changes resolved
+  by both solvers; their location is hs-sensitive (Table 1).
+- **Stability results hold within a smooth-perturbation class.** The perturbation must be regular at the
+  stagnation point.
+  - Both methods truncate at the origin (s_start = −20 or s_min = −12/−20). This creates truncation-dependent
+    modes near μ ≈ 0.66/|s_start|, which are identified and discarded.
+  - The exact μ = 0 (scaling) and μ = 1 (time translation) modes are trivial.
+- The published λ₂ and λ₃ of Wang et al. were not accessible. The comparison uses their λ₀ and their two-point law.
 
-## 5. Why this matters
-- It gives the first mechanism for the infinite ladder of unstable blow-ups in an incompressible fluid model
-  (the Hou–Luo scenario for 3D Euler with boundary), and a first-principles version of the empirical PINN law.
-- Together with P02 it gives a unified picture of when ladders are finite or infinite:
-  - **CCF:** the sonic cusp forms at finite λ*, so the branch terminates.
-  - **Boussinesq / Hou–Luo:** the cusp forms only as λ → 1, and the quasi-stagnant region in front of it supports
-    WKB standing waves, so the ladder is infinite.
-- The classical branch method finds every smooth profile on the branch, whereas a PINN search can only target them
-  one at a time. It also supplies high-precision profiles (7 digits in λ in seconds to minutes on one core) for
-  computer-assisted proofs.
+## 5. Why it matters
+- It gives a mechanism for the unstable-singularity hierarchy of the Hou–Luo scenario (the Boussinesq proxy for
+  3D Euler with boundary). The empirical PINN law becomes the leading term of a phase-quantization condition.
+- Together with P02 it gives a criterion for when such ladders are finite (cusp at finite λ: CCF) or infinite
+  (cusp only in the limit, with a stalled layer that supports WKB oscillations: Boussinesq, Hou–Luo).
+- Two independent classical solvers compute every rung to 5–8 digits on one core, and two independent stability
+  methods give the instability indices. These profiles are candidates for computer-assisted proofs.

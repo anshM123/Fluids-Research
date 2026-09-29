@@ -179,7 +179,13 @@ class BQGlobal:
                 return U, True
             J = self.jacobian(U)
             dU = splu(J, permc_spec='COLAMD').solve(-R)
-            U = U + dU
+            # backtracking: accept the full step unless it increases the residual by more than a factor 2
+            t = 1.0
+            for _ in range(6):
+                if np.abs(self.residual(U + t * dU)).max() < 2 * nr or nr < 1e-8:
+                    break
+                t *= 0.5
+            U = U + t * dU
         R = self.residual(U)
         return U, np.abs(R).max() < tol
 

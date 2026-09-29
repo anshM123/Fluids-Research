@@ -5,7 +5,7 @@ from bq_wkb2d import wkb_phase
 for f in sys.argv[1:]:
     for Dcut in (2.0, 3.0, 5.0, 8.0):
         for ds in ((0.025, 0.0125) if Dcut == 3.0 else (0.025,)):
-            lam, m, eps, s_cut, Phi, nf, grid, kap = wkb_phase(f, ds=ds, Dcut=Dcut, return_kappa=True)
+            lam, m, eps, s_cut, Phi, nf, grid, kap, good = wkb_phase(f, ds=ds, Dcut=Dcut, return_kappa=True)
             z = 1 / (lam - 1)
             print(f"{f[:40]}: z={z:.5f} Dcut={Dcut} ds={ds}: s_cut={s_cut:.4f} εΦ={Phi.real:.5f}{Phi.imag:+.5f}i "
-                  f"ReΦ=2z·Re εΦ={2*z*Phi.real:.4f} | min Re κ={kap.real.min():.3e} max Im κ={kap.imag.max():.3e} (filled {nf})", flush=True)
+                  f"ReΦ=2z·Re εΦ={2*z*Phi.real:.4f} | min Re κ={kap.real.min():.3e} max Im κ={kap.imag.max():.3e} (filled {nf}, failures at s ∈ [{grid[~good].min() if nf else 0:.2f}, {grid[~good].max() if nf else 0:.2f}])", flush=True)
