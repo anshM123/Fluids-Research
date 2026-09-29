@@ -134,11 +134,18 @@ stagnation point. The smooth profiles are the regularity resonances m(λ) = 2.
 | 3 | 1.1842533 | 1.1842512 | 1.1842530 | −3.2e-7 |
 | 4 | 1.1449857 | 1.1449777 | 1.1449853 | −4.2e-7 |
 | 5 | 1.1194738 | 1.1194516 | 1.1194739 | +1.1e-7 |
-| 6 | 1.1015817 | 1.1015204 | 1.1015771 | −4.6e-6 |
+| 6 | 1.1015817 | 1.1015204 | 1.1015771; with s_min = −20: 1.1015792 (s_max 12), 1.1015821 (s_max 10) | −4.6e-6 … +0.4e-6 |
 | 7 | 1.0883384 | no convergence | 1.0883480 (s_max = 12); with s_min = −20: 1.0883386 | +9.6e-6; with s_min = −20: +2.1e-7 |
 
-The two solvers share no numerical ingredient. The origin truncation of the global solver matters at the 1e-6
-level: s_min −8 → −12 moves λ₁ from −3.2e-6 to −1.1e-7. Both solvers show the same hs-trend for the deep rungs.
+**Notes.**
+- The two solvers share no numerical ingredient.
+- The origin truncation of the global solver matters at the 1e-6 level: s_min −8 → −12 moves λ₁ from −3.2e-6 to
+  −1.1e-7.
+- For the deepest rungs the global λ varies by a few 1e-6 with the truncations. These rungs are weakly determined:
+  |m − 2| ≲ 1e-6 nearby, so the Jacobian is nearly singular in the λ direction. The spread brackets the marching
+  value (λ₆, λ₇).
+- For λ₅ at s_min = −20, Newton stalled at |R| = 3e-8, and that run is not used.
+- Both solvers show the same hs trend for the deep rungs.
 
 ### Table 3 — instability index and unstable eigenvalues (perturbations ∝ e^{μτ}, τ = −ln(1−t))
 | n | index | method 1 (march, T_μ): brackets | method 2 (global eigen-solver): μ_k |

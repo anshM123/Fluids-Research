@@ -276,3 +276,6 @@ Costs are wall-clock on the 4-core container (CPU-h = cores × hours).
   - Method-2 artifacts are not monotone in s_min: for λ₁ the dense family sits at Re μ ≈ 0.054 for s_min = −12 and
     ≈ 0.15 for −20, and inflow-boundary modes are s_min-independent. Method 2 is therefore used for eigenvalue
     values only; counts come from method 1.
+- λ₆ with the global solver at s_min = −20 (hs 0.0125) gives 1.1015821 (s_max 10) and 1.1015792 (s_max 12); at
+  s_min = −12 it gave 1.1015771. The spread of a few 1e-6 brackets the marching value 1.1015817. For λ₅ at
+  s_min = −20, Newton stalled at 3e-8, so that run is not used.
