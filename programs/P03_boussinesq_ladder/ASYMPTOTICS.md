@@ -263,6 +263,32 @@ non-analytic correction to Φ = Cz + …, i.e. β ≈ 0.42 in §5.3.
 This is a scaling estimate, not a matched inner solution. It shows that analytic extrapolations may underestimate
 π/C.
 
+### 5.5b Hou–Luo to ε = 0.012 (z ≈ 40): the phase coefficient converges (`hl_dip_scaling.py`, `hl_wkb2.out`)
+**Dip scaling.** Over ε < 0.03 (ten states):
+- depth D̂_min ∝ ε^{0.31};
+- half-width ∝ ε^{0.34};
+- distance from dip to front ∝ ε^{1.23};
+- the dip and the front converge to x ≈ 0.61.
+
+At moderate ε (0.04–0.09) the same quantities give different local exponents; the half-width, for example, scales
+like ε^{0.96} there. The 2D exponents of §5.5, measured only at ε ≥ 0.044, are therefore pre-asymptotic.
+
+**Phase coefficient.** Re εΦ_cut rises monotonically from 1.125 (ε = 0.116) to 1.211 (ε = 0.012). Fits over z > 12:
+
+| model | a₀ | max residual |
+|---|---|---|
+| a + bε^{2/3} | 1.236 | 7.2e-4 |
+| a + bε | 1.223 | 7.7e-4 |
+| a + bε^{−1/6} (divergent) | — | 2.3e-3 |
+
+So the data favour convergence, a₀ = 1.22–1.25. In Hou–Luo this means Φ = C/(λ−1) + O((λ−1)^{−1/3}): the leading
+term dominates, and the correction is non-analytic with exponent 1/3 (β = 2/3 in §5.3).
+
+**Spacing.** π/(2a₀) = 1.26–1.29, against measured spacings of 1.2583–1.2652 (z ≤ 13.6).
+
+**Consequence for 2D.** If the 2D correction has the Hou–Luo exponent (β = 2/3), the §5.3 extrapolation gives
+π/C ≈ 1.49. The 2D range 1.476–1.51 is kept.
+
 ### 5.6 Hou–Luo (sharper test of the same statements)
 - There are 11 crossings resolved above the noise (z ≤ 13.56).
 - ΔRe Φ per rung is 3.02–3.09, tending to π.
