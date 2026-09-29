@@ -23,6 +23,12 @@ known hierarchy to instability index seven.
   sequence accumulating at λ = 1.
 - The unstable eigenvalues form a second, arithmetic ladder with spacing λ_n − 1, carried by eigenmodes localized
   at the same front.
+- Both ladders are governed by the same phase:
+  - the growth rate enters the stalled-layer phase only through a real transport factor;
+  - the stagnation point adds a phase πμ/(λ−1).
+- The resulting eigen-condition predicts three things: unit spacing, a ladder offset locked to the profile phase
+  along the continuous branch, and one new unstable mode per half-turn of the phase, which is the index n. We
+  confirm each numerically.
 - The infinite sequence is an asymptotic prediction, not a theorem.
 
 **Context.** The one-dimensional Hou–Luo model shows the same mechanism over eleven rungs. In the
@@ -33,8 +39,8 @@ Córdoba–Córdoba–Fontelos model, by contrast, the cusp forms at a finite λ
 |---|---|
 | **Numerically established** | 8 Boussinesq rungs λ₀…λ₇, found by one solver and reproduced by an independent one. Rung n has n resolved real unstable modes, and these eigenvalues are reproduced by an independent linearization. Right-half-plane counts give exactly n unstable eigenvalues for n ≤ 7 (2D) and n ≤ 10 (Hou–Luo). |
 | **Strongly supported** | A continuous branch of generically singular (least-singular) profiles; the smooth profiles are its regularity-selected points. |
-| **Asymptotically predicted (formal)** | An unbounded phase Φ ∼ C/(λ−1) with C > 0, the quantization Re Φ(λ_n) = nπ + δ + o(1), and an infinite ladder accumulating at λ = 1. |
-| **Not proved** | Infinitely many smooth Boussinesq profiles. C > 0 for the 2D reduction (proved only for the Hou–Luo local root; checked pointwise in 2D). The value of the asymptotic spacing. The mechanism that fixes the instability index to n. |
+| **Asymptotically predicted (formal)** | An unbounded phase Φ ∼ C/(λ−1) with C > 0, the quantization Re Φ(λ_n) = nπ + δ + o(1), and an infinite ladder accumulating at λ = 1. The eigen-condition Re Φ(λ) − πμ/(λ−1) + θ₀ = (k + ½)π for the unstable spectrum, with its consequences: unit spacing, phase-locked offset, and index = number of half-turns of Φ. |
+| **Not proved** | Infinitely many smooth Boussinesq profiles. C > 0 for the 2D reduction (proved only for the Hou–Luo local root; checked pointwise in 2D). The value of the asymptotic spacing. The offsets c of the instability ladder, and how a new unstable mode enters near μ = 0. |
 
 ## Evidence chain
 1. Method A (marching Newton–Krylov) finds 8 profiles.
@@ -45,6 +51,8 @@ Córdoba–Córdoba–Fontelos model, by contrast, the cusp forms at a finite λ
 6. The regularity diagnostic m(λ) = 2 picks out discrete smooth intersections.
 7. Inner asymptotics give an oscillatory, quantized mechanism.
 8. As λ → 1⁺ the phase grows and a cusp/front limit forms, with the unstable modes localized at that front.
+9. The same phase, together with a stagnation-point connection phase πμ/(λ−1), predicts the instability ladder.
+   Between the rungs the ladder moves with the phase, and one mode is added per rung interval.
 
 ## 1. Introduction (outline)
 **Background.**
@@ -74,7 +82,9 @@ the 28th, λ₇'s lowest (0.0699), is confirmed by linearization A with two orig
 
 **Right-half-plane counts** (argument principle for det(I − T_μ)).
 - 2D: n + 1 zeros (the trivial time-translation mode included) for every n ≤ 7.
-- ⟨Domain and grid variants for n = 5–7.⟩
+- Domain variants agree: moving the origin truncation from −20 to −30 and the contour's left edge from 0.06 to
+  0.075/0.07 gives 5.954 (n = 5, against 5.952) and 6.945 (n = 6, against 6.942).
+- Grid variant for n = 6 (hs = 0.0125): ⟨running⟩.
 
 **Hou–Luo, as a control.**
 - Eleven rungs, each with exactly n unstable eigenvalues.
@@ -92,7 +102,7 @@ the 28th, λ₇'s lowest (0.0699), is confirmed by linearization A with two orig
 ## 5. The λ → 1⁺ limit: stalled layer and limiting cusp (Fig. 1c)
 - On the wall, the radial self-similar speed is O(λ−1) up to a front x_c ≈ 0.72. Outside the front,
   D ∝ (x − x_c)^{1/2}: the square-root cusp that terminates the CCF branch, reached here only as λ → 1.
-- A dip just inside the front deepens slowly. In Hou–Luo down to λ − 1 = 0.012: depth ∝ ε^{0.31},
+- A dip just inside the front deepens slowly. In Hou–Luo down to ε = 0.012 (λ − 1 ≈ 0.025): depth ∝ ε^{0.31},
   width ∝ ε^{0.34}.
 
 ## 6. Phase quantization (formal; ASYMPTOTICS.md)
@@ -116,21 +126,41 @@ Re Φ(λ_n) = nπ + δ + o(1).
 - Hou–Luo: ≈ 1.27, against measured spacings of 1.258–1.265.
 - 3/2 is not claimed.
 
-## 7. A second ladder: the unstable spectrum (Fig. 2; INSTABILITY_LADDER.md)
+## 7. A second ladder, and one phase for both (Fig. 2; INSTABILITY_LADDER.md §6–7)
 **The ladder.**
 - In both models the lower unstable eigenvalues obey μ_{n,k} ≈ (λ_n − 1)(k + c).
-- The spacing, extrapolated to λ → 1, is (λ_n − 1)(1.00 ± 0.03).
-- The offset is model-dependent: c ≈ 0.72 (2D) and 0.66 (Hou–Luo).
+- Extrapolated to λ → 1, the spacing is (λ_n − 1)(1.00 ± 0.03).
+- The offset at the rungs is model-dependent: c ≈ 0.70–0.72 (2D) and 0.65–0.67 (Hou–Luo), in units of the local
+  spacing.
+- The eigenfunctions are localized at the dip/front of the stalled layer and decay like x² toward the stagnation
+  point.
 
-**Localization.** In both models the unstable eigenfunctions are localized at the dip/front of the stalled layer.
-Toward the stagnation point they decay like x² (regular).
+**Spectral flow along the continuous branch** (Hou–Luo, ten branch points between rungs 7 and 10).
+- Between the rungs the whole lower ladder moves up rigidly by one spacing per rung interval, linearly in
+  z = 1/(λ−1).
+- The offset equals its rung value plus the fraction of the interval, to within 0.03 at every point.
+- A new member enters at the bottom once per interval. So each rung has one more unstable mode than the previous one.
 
-**Exact identity.** The transport part of the linearized operator satisfies L_μ(Θ̄φ) = Θ̄ L_{μ+λ−1}φ, because
-V·∇Θ̄ = (λ−1)Θ̄. Shifting μ by λ − 1 is therefore a symmetry of pure transport. It is broken by buoyancy and by the
-Biot–Savart coupling. The observed spacing is its imprint on the unstable spectrum.
+**Formal theory.** Two facts combine.
+1. The stalled-layer WKB root depends on the growth rate only through κ(μ) = κ(0) + iμ/D̂. This is exact for the
+   Hou–Luo root. For the 2D local eigenproblem it is verified to 1e-10. The profile-ladder phase Re Φ is therefore
+   the same for every μ; μ enters only through the real transport factor |Θ̄|^{−μ/(λ−1)}, the WKB form of the exact
+   identity L_μ(Θ̄φ) = Θ̄ L_{μ+λ−1}φ.
+2. At the stagnation point the transport is the Euler operator ε[(μ/ε − 2) + X∂_X]. Its connection to the WKB wave
+   is a Mellin (Γ-function) factor with phase π(μ/(λ−1) − 1).
 
-**Interpretation, not derived.** The profile ladder and the instability ladder are generated at the same front.
-Why the index equals n remains open.
+The eigen-condition is therefore
+
+    Re Φ(λ) − π μ/(λ−1) + θ₀ = (k + ½)π + o(1),
+
+with the same Re Φ that quantizes the profiles, Re Φ(λ_n) = nπ + δ. It predicts:
+- a spacing of exactly λ − 1;
+- the phase-locked spectral flow;
+- one new unstable mode per half-turn of the phase, hence index n at rung n (the constant fixed by any one rung);
+- an unstable spectrum reaching μ* ≈ C/π = 1/Δz_∞: about 0.79 for Hou–Luo, where the top eigenvalue is 0.78–0.81 at
+  n = 7–10, and about 0.67 for 2D, which is 0.74 with the local spacing at n = 7 (observed 0.746).
+
+The offsets c and the entry of new modes near μ = 0, where the dilation mode sits, are not derived.
 
 ## 8. Finite versus infinite ladders
 - **CCF (P02).** The sonic depth vanishes at a finite λ* = 0.4535843. The branch ends in a square-root cusp and
@@ -145,6 +175,10 @@ Why the index equals n remains open.
 - Solvers A and B, their resolution tables and cost: one CPU core, 20–120 s per profile.
 - Linearizations A and B, the argument-principle counter (stab_contour2.py, hl_contour.py) and its integrality
   diagnostics.
+- Spectra at branch points between the rungs (hl_deep_spec.py, bq_flow_spec.py): parity flips of the count of real
+  ν > 1 of T_μ, refined by bisection; the state is extended to a deeper origin truncation by its exact local
+  structure.
+- The 2D local eigenproblem with a growth rate (the shift κ(μ) − κ(0) = iμ/D̂).
 - The truncation artifacts and how they are identified.
 - The WKB phase, its cut-off study and the uniformity test.
 - Hou–Luo: solver, crossings (N = 8192/32768), stability (hl_stability.py), dip scaling.

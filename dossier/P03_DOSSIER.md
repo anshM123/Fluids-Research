@@ -23,7 +23,7 @@ stagnation point. The smooth profiles are the regularity resonances m(λ) = 2.
 | Numerically established | 8 Boussinesq rungs λ₀…λ₇, reproduced by two independent solvers. Rung n has n resolved real unstable modes, and the eigenvalues are reproduced by two independent linearisations. |
 | Strongly supported | A continuous branch of generically singular (least-singular) profiles. The smooth profiles are its regularity-selected points, m(λ) = 2. |
 | Asymptotically predicted (formal) | Unbounded phase Φ ~ C/(λ−1) with C > 0, phase quantisation, and an infinite Boussinesq ladder accumulating at λ = 1. |
-| Not proved | Infinitely many smooth Boussinesq profiles; C > 0 for the full 2D reduction (it is proved only for the Hou–Luo local root; in 2D it is checked pointwise); instability index exactly n (the index is established only as the count of resolved real modes plus right-half-plane counts through the lower rungs). |
+| Not proved | Infinitely many smooth Boussinesq profiles; C > 0 for the full 2D reduction (it is proved only for the Hou–Luo local root; in 2D it is checked pointwise); the offsets of the instability ladder and the entry of new unstable modes near μ = 0 (the index n itself follows formally from the eigen-condition of claim 9 once it is fixed at one rung, and is confirmed numerically by the counts). |
 
 **Status tags.**
 - [N] numerical. Where stated, reproduced by two independent solvers and converged in the discretisation parameters.
@@ -47,7 +47,8 @@ stagnation point. The smooth profiles are the regularity resonances m(λ) = 2.
      extends what Wang et al. found for n ≤ 3.
    - Right-half-plane counts (argument principle, trivial zero included) give n + 1 zeros for every n ≤ 7:
      1.997, 3.000, 4.000, 5.000, 5.952, 6.942, 7.921. So the index is exactly n in the box, with all modes real.
-     Domain and grid variants for n = 5–7 are running.
+     Domain variants agree: 5.954 (n = 5) and 6.945 (n = 6) with origin truncation −30 and a moved contour. A grid
+     variant for n = 6 (hs = 0.0125) is running.
    - In Hou–Luo (11 rungs) the count is exactly n for n ≤ 10, with domain variants agreeing. All modes are real for
      n ≤ 7; from n = 8 on, weakly oscillatory complex pairs appear at the top of the unstable spectrum
      (0.587 ± 0.022i at n = 8). "Real" is therefore not guaranteed at higher n, while the total index stays n.
@@ -93,13 +94,30 @@ stagnation point. The smooth profiles are the regularity resonances m(λ) = 2.
    - Finite versus infinite ladder is decided by whether the cusp forms at finite λ or only at the accumulation
      point.
 
-9. **[N; exact identity] A second quantization: the unstable spectrum is an arithmetic ladder.**
-   - In both models the lower unstable eigenvalues satisfy μ_{n,k} ≈ (λ_n − 1)(k + c). The spacing extrapolates to
-     (λ_n − 1)(1.00 ± 0.03), and the offset is c ≈ 0.72 (2D), ≈ 0.66 (Hou–Luo).
-   - The unstable eigenfunctions are localized at the dip/front of the stalled layer: Hou–Luo n = 8, and 2D λ₄.
-   - Exact identity: the transport operators satisfy L_μ(Θ̄φ) = Θ̄ L_{μ+λ−1}φ, because V·∇Θ̄ = (λ−1)Θ̄. A shift of μ
-     by λ − 1 is thus a symmetry of pure transport, broken by the couplings. The observed spacing is its imprint.
-   - Not derived: why the ladder becomes exact, the offsets c, and why the index is n.
+9. **[N + F; exact identity] A second quantization: one phase governs both ladders.**
+   - **The ladder.** In both models the lower unstable eigenvalues satisfy μ_{n,k} ≈ (λ_n − 1)(k + c). The spacing
+     extrapolates to (λ_n − 1)(1.00 ± 0.03). In units of the local spacing, the offset at the rungs is 0.70–0.72 (2D)
+     and 0.65–0.67 (Hou–Luo).
+   - **Localization.** The unstable eigenfunctions are localized at the dip/front of the stalled layer: Hou–Luo
+     n = 8, and 2D λ₄.
+   - **Exact identity.** L_μ(Θ̄φ) = Θ̄ L_{μ+λ−1}φ, because V·∇Θ̄ = (λ−1)Θ̄.
+   - **[N] Spectral flow.** Along the continuous Hou–Luo branch (ten points between the rungs 7 and 10) the lower
+     ladder moves up rigidly by one spacing per rung interval, linearly in z. Its offset equals the rung value plus the
+     fraction of the interval to within 0.03, and one new member enters per interval.
+   - **[F] Eigen-condition.** Re Φ(λ) − πμ/(λ−1) + θ₀ = (k + ½)π, where Re Φ is the phase that quantizes the
+     profiles. Its two ingredients:
+     - the growth rate enters the stalled-layer root only as κ(μ) = κ(0) + iμ/D̂ (exact for Hou–Luo; verified to
+       1e-10 for the 2D local eigenproblem);
+     - the stagnation point contributes the Mellin (Γ-function) phase π(μ/(λ−1) − 1).
+   - **What the eigen-condition predicts.**
+     - unit spacing (observed: 0.996 for Hou–Luo and 1.003 for 2D, extrapolated);
+     - the phase-locked flow;
+     - index = number of half-turns of Φ, i.e. n at rung n;
+     - an upper edge μ* ≈ C/π = 1/Δz_∞ (≈ 0.79 Hou–Luo, ≈ 0.67 2D), consistent with the observed top eigenvalues
+       0.78–0.81 and 0.746 at finite n.
+   - **Not derived.** The offsets θ₀ and c; how the new mode enters near μ = 0, where the dilation mode (a Jordan block
+     with ∂_λP) sits; the 2D stagnation-point connection problem (the Mellin phase is model-independent). A 2D
+     between-rung test is running.
 
 ## 2. Methods (programs/P03_boussinesq_ladder)
 - **Marching solver** (`bq_solver.py`, `bq_newton.py`).

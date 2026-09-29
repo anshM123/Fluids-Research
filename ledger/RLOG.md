@@ -307,3 +307,36 @@ Costs are wall-clock on the 4-core container (CPU-h = cores × hours).
 
 **Documents.** The manuscript is rewritten ("Quantization and accumulation …", with the hierarchy table and the
 evidence chain), and the response to the second review is written.
+
+### R030 — P03: one phase for both ladders (spectral flow along the branch)
+**Robustness of the counts.**
+- 2D domain variants (origin truncation −30, contour moved): λ₅ 5.954 (B5) and λ₆ 6.945 (B6), with no unresolved
+  phase steps. The grid variant C6 (hs = 0.0125) is running.
+- Hou–Luo, η₀ = −40 with x_lo = 0.04: 6.000, 7.024, 8.000, 9.032, 9.963, 11.000 for n = 5–10.
+- Hou–Luo at N = 65536: 9.000 (n = 8) and 10.989 (n = 10).
+
+**Spectral flow** (`hl_deep_spec.py`: parity flips of the count of real ν > 1 of T_μ on a grid in μ/(λ−1); states of
+branch scans E and F, extended to η₀ = −60/−100).
+- At ten branch points between the Hou–Luo rungs 7 and 10, the lower ladder moves up rigidly by one spacing per rung
+  interval, linearly in z.
+- The offset equals the rung value plus the fraction of the interval to ≤ 0.03.
+- One new member enters per interval. Off-ladder roots appear at z = 12.71 (0.327) and 15.56 (0.762); the entry
+  mechanism near μ = 0 is open.
+- The top-16 set of T_μ saturates for z ≳ 15, so the deep states are being rerun with 28 eigenvalues.
+
+**Formal eigen-condition.** Re Φ(λ) − πμ/(λ−1) + θ₀ = (k + ½)π.
+- κ(μ) = κ(0) + iμ/D̂: exact for the Hou–Luo root (v(1 + v) = iΓ with v = μ + iD̂κ); 2D local eigenproblem verified
+  to 1e-10.
+- The stagnation-point Mellin phase is π(μ/(λ−1) − 1).
+- Predictions and their checks:
+  - unit spacing: extrapolated 0.996 (HL) and 1.003 (2D);
+  - phase locking: confirmed;
+  - index = number of half-turns: n;
+  - upper edge ≈ C/π: HL 0.79 against 0.78–0.81; 2D 0.67, i.e. 0.74 with the finite-n spacing, against 0.746.
+
+**Files.** INSTABILITY_LADDER.md §6–8, `fig_spectral_flow.png`, `hl_deep_modes.py`, `hl_inner_collapse.py`. In the
+ζ = ln|Θ̄| coordinate the dip is the foot of a sharp front: its width in ζ scales like ε^{0.94}, and D̂_min like
+ε^{0.28}.
+
+**Correction.** The Hou–Luo depth in the manuscript and response is ε = 0.012, i.e. λ − 1 ≈ 0.025, not
+λ − 1 = 0.012.

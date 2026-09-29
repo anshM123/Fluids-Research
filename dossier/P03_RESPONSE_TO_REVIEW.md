@@ -103,8 +103,8 @@ The earlier "≈ 1.50" came from a single front cut-off (the cut-off study is in
 - The text now says: "the n-th computed profile has n resolved real unstable modes (0 ≤ n ≤ 7)".
 - Complete right-half-plane counts now exist for n = 5, 6, 7 (`stab_contour2.py`, k = 16, adaptive):
   5.952, 6.942, 7.921 zeros, i.e. n + 1 including the trivial mode. No oscillatory unstable spectrum was found.
-- Domain variants (origin truncation −30, moved contour) and a grid variant (hs = 0.0125) for n = 5, 6 are
-  ⟨running / see INSTABILITY_LADDER.md⟩.
+- Domain variants (origin truncation −30, contour moved to x_lo = 0.075/0.07) give 5.954 (n = 5) and 6.945 (n = 6),
+  against 5.952 and 6.942. A grid variant (hs = 0.0125) for n = 6 is ⟨running⟩.
 - A control with 11 rungs of the Hou–Luo model (`hl_stability.py`) gives exactly n unstable eigenvalues for
   n = 0…10, unchanged under a domain change. There, complex pairs appear from n = 8 while the total stays n. This
   is exactly why "real" and "exactly n" must be claimed separately.
@@ -118,7 +118,7 @@ The earlier "≈ 1.50" came from a single front cut-off (the cut-off study is in
 | Not proved | infinitely many smooth profiles; C > 0 in 2D |
 
 The abstract says explicitly that the infinite sequence is an asymptotic prediction. New Hou–Luo data down to
-λ − 1 = 0.012 support the leading-order form: the phase coefficient converges, with a non-analytic correction
+ε = 0.012 (λ − 1 ≈ 0.025) support the leading-order form: the phase coefficient converges, with a non-analytic correction
 ∝ (λ−1)^{2/3}, so Φ = C/(λ−1) + O((λ−1)^{−1/3}) there.
 
 **3. Independent solver front and center.** It is now §2 of the manuscript, with both solvers side by side in
@@ -128,15 +128,33 @@ Table 1.
 profiles in the 2D Boussinesq equations". The abstract leads with the discovery, then the redundancy, then the
 mechanism.
 
-**5. The μ/ε limiting spectrum** (priority 2; INSTABILITY_LADDER.md, `fig_instability_ladder.png`).
-- In both models the lower unstable eigenvalues form an arithmetic ladder μ_{n,k} ≈ (λ_n − 1)(k + c). The spacing
-  extrapolates to (λ_n − 1)(1.00 ± 0.03); the offset is c ≈ 0.72 (2D) and 0.66 (Hou–Luo). The 3/4 guess from 2D
-  alone is therefore not universal.
-- The eigenmodes are localized at the dip/front of the stalled layer. That is the same place that produces the
-  non-analytic corrections of the profile-ladder phase.
-- An exact identity explains the spacing at the level of the transport operator: L_μ(Θ̄φ) = Θ̄ L_{μ+λ−1}φ.
-- Why the index is n is not derived. So "one singular limiting operator generates both ladders" is supported
-  (common location; exact ladder symmetry of the common transport operator) but not proved.
+**5. The μ/ε limiting spectrum** (priority 2; INSTABILITY_LADDER.md §3–7, `fig_instability_ladder.png`,
+`fig_spectral_flow.png`). This is now the main new result.
+- **The ladder.** In both models the lower unstable eigenvalues form an arithmetic ladder
+  μ_{n,k} ≈ (λ_n − 1)(k + c). Its spacing extrapolates to 0.996 (Hou–Luo) and 1.003 (2D) times λ_n − 1. Its offset at
+  the rungs is a model constant: 0.65–0.67 (Hou–Luo), 0.70–0.72 (2D).
+- **Spectral flow along the continuous branch.** We followed the Hou–Luo spectrum through ten branch points between
+  the rungs 7 and 10.
+  - The whole lower ladder moves up rigidly by one spacing per rung interval, linearly in z = 1/(λ−1).
+  - Its offset equals the rung value plus the fraction of the interval, to within 0.03.
+  - One new member enters at the bottom per interval, which is why each rung has one more unstable mode than the last.
+- **A formal eigen-condition from the same phase.** Two ingredients:
+  - The growth rate enters the stalled-layer WKB root only as κ(μ) = κ(0) + iμ/D̂. This is exact for Hou–Luo and
+    verified to 1e-10 for the 2D local eigenproblem. So the profile-ladder phase Re Φ is the same for every μ.
+  - The stagnation point, where the transport is an Euler operator, contributes the Mellin/Γ-function phase
+    π(μ/(λ−1) − 1).
+
+  Together: Re Φ(λ) − πμ/(λ−1) + θ₀ = (k + ½)π. This predicts:
+  - a spacing of exactly λ − 1;
+  - the phase-locked flow;
+  - index = number of half-turns of Φ, i.e. n;
+  - an upper edge of the unstable spectrum ≈ C/π = 1/Δz_∞.
+
+  All four agree with the data.
+- **Your conjecture.** "One singular limiting operator generates both the profile ladder and its instability ladder"
+  thus becomes a concrete, tested statement: one WKB phase quantizes both.
+- **Not derived.** The offsets θ₀ and c, the entry of new modes near μ = 0 (where the dilation mode sits), and the 2D
+  stagnation-point problem itself. A 2D between-rung test is running.
 
 **6. The front/dip inner problem** (priority 3).
 - Measured in Hou–Luo to ε = 0.012: depth ∝ ε^{0.31}, width ∝ ε^{0.34}, and the dip-to-front distance ∝ ε^{1.23}.
