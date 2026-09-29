@@ -36,8 +36,9 @@ stagnation point. The smooth profiles are the regularity resonances m(λ) = 2.
    - All eight are reproduced by an independent global Newton solver: different unknowns, discretisation,
      Biot–Savart solver and treatment of λ (Table 2).
    - Linear stability gives n unstable modes for the n-th profile for all eight (method 1). Wang et al. found this
-     for n ≤ 3. An independent second method confirms every eigenvalue for n ≤ 6 to about 1e-5 (Table 3). λ₇ is
-     pending in method 2; until then it is "next in continuation order" with index 7 from method 1.
+     for n ≤ 3. An independent second method confirms every eigenvalue for n ≤ 6 to about 1e-5 (Table 3). For λ₇ it
+     confirms the six largest; the seventh (0.0699) sits inside the truncation-artifact band of method 2 at
+     s_min = −12, so it is checked with s_min = −20.
 4. **[N + F] A stalled layer next to a limiting cusp.** As λ → 1⁺:
    - For x < x_c ≈ 0.72 on the wall, the radial self-similar speed is D = O(λ−1): a quasi-stagnant (stalled) layer.
    - The layer is bounded by a front. Outside the front D → k(x−x_c)^{1/2}, the same square-root cusp that ends
@@ -144,7 +145,7 @@ level: s_min −8 → −12 moves λ₁ from −3.2e-6 to −1.1e-7. Both solver
 | 4 | 4 | (0.65, 0.70), (0.45, 0.50), (0.25, 0.30), (0.11, 0.12) | 0.68004, 0.45973, 0.28629, 0.11908 |
 | 5 | 5 | (0.70, 0.75), (0.50, 0.55), (0.35, 0.40), (0.20, 0.25), (0.09, 0.10) | 0.70985, 0.51143, 0.36869, 0.23121, 0.09654 |
 | 6 | 6 | (0.70, 0.75), (0.50, 0.55), (0.40, 0.45), (0.30, 0.35), (0.19, 0.20), (0.08, 0.09) | 0.73139, 0.54481, 0.42577, 0.30749, 0.19415, 0.08154 |
-| 7 | 7 | (0.70, 0.75), (0.55, 0.60), (0.45, 0.50), (0.35, 0.40), (0.25, 0.30), (0.16, 0.17), (0.065, 0.070) | ⟨pending⟩ |
+| 7 | 7 | (0.70, 0.75), (0.55, 0.60), (0.45, 0.50), (0.35, 0.40), (0.25, 0.30), (0.16, 0.17), (0.065, 0.070) | 0.74632, 0.56676, 0.46713, 0.36192, 0.26371, 0.16678, ⟨lowest: s_min −20 run⟩ |
 
 **How the table was obtained.**
 - Trivial modes: μ = 1 (time translation) is recovered by both methods (1.000000 and 0.99999); μ = 0 (scaling) is
