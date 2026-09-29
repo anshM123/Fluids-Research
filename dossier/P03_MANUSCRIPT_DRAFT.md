@@ -26,7 +26,7 @@ equals 2 exactly at a smooth profile.
   eigenproblem. The resonances therefore obey a phase-quantization condition Re Φ(λ_n) = nπ + δ + o(1), with
   Φ ∼ C/(λ−1) and C > 0.
 - The computed phase gain per resonance approaches π (3.12 at n = 7). This is evidence for an infinite ladder
-  accumulating at λ = 1, with 1/(λ_n − 1) ≈ (π/C) n and π/C = 1.48 ± 0.01.
+  accumulating at λ = 1, with 1/(λ_n − 1) ≈ (π/C) n and π/C ≈ 1.48 (range 1.476–1.50).
 
 **Contrast.** The Hou–Luo boundary model shows the same mechanism. In the Córdoba–Córdoba–Fontelos model, by
 contrast, the cusp forms at a finite λ* ≈ 0.4536 and the ladder ends after three profiles.
@@ -86,7 +86,8 @@ whenever Ω > 0.
 - Integrated through the front, Re Φ(λ_n) − nπ is constant to ±0.03.
 - The directly measured spacings increase monotonically, 1.4646 → 1.4758, and bound π/C from below.
 - Direct fits of the resonance positions with analytic 1/z corrections give π/C = 1.476–1.479, and the WKB slopes
-  give 1.478–1.493. Hence π/C = 1.48 ± 0.01.
+  give 1.478–1.493. Hence π/C ≈ 1.48, in the range 1.476–1.50. The range is widened upward because the uniformity
+  hypothesis fails in the dip region.
 - 3/2 (C = 2π/3) is not derived. It would require a slow non-analytic approach and is not supported by the fits.
 
 **Heuristic (not a derivation).** The n-th resonance carries n half-wavelengths of the layer oscillation, and its

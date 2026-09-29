@@ -25,13 +25,17 @@ Boussinesq equations.*
     Re Φ(λ_n) − nπ = δ + O(0.03) for n = 4–7, with δ ≈ 2.0 (cut 5) or 2.3 (cut 8). Cut at D/ε = 2–3, δ_n still
     drifts by −0.04 per rung.
   - **Linear law.** Re Φ(z) = Cz + Φ₀ + E with |E| ≤ 0.024 on z ∈ [6.9, 11.3] for every cut-off.
-  - **Asymptotic spacing.** π/C = 1.48 ± 0.01. Direct fits of the resonance positions with analytic 1/z corrections
-    give 1.476–1.479. The WKB phase slope gives 1.478–1.493, depending on the front cut-off.
+  - **Asymptotic spacing.** π/C ∈ [1.476, 1.50], best estimate 1.48.
+    - Direct fits of the resonance positions with analytic 1/z corrections give 1.478 ± 0.004.
+    - The WKB phase slope gives 1.478–1.493, depending on the front cut-off.
+    - The measured spacings grow monotonically, so the limit is at least 1.4758.
+    - Hypothesis (U) fails in the dip region (§5.5), so slower non-analytic corrections cannot be excluded.
+      This widens the range upward.
 - **[O] Open.**
   - The exact value of C.
   - Δz_∞ = 3/2 (C = 2π/3) lies at the upper edge of the range. It is not supported by the analytic-correction
     fits, would require a slow non-analytic approach, and is **not derived**. Our earlier central value 1.496 used
-    a single front cut-off (§5.3).
+    a single front cut-off (§5.2).
   - Uniqueness of the zero in each half period (observed, not shown).
   - A rigorous version of any [F] step.
 
@@ -199,7 +203,32 @@ That moves the b/z value by about ±0.002. A 5e-5 uncertainty would move it by �
   1.5e-3.
 - A power-law extrapolation of the increments (exponent 2.0–2.3) gives a limit of 1.483–1.485.
 
-**Estimate.** π/C = 1.48 ± 0.01.
+**Estimate.** π/C ∈ [1.476, 1.50], best estimate 1.48 (analytic-correction fits 1.478 ± 0.004). The lower end is
+the last measured spacing, and spacings increase monotonically. The upper end allows for the non-analytic
+corrections that the failure of (U) in the dip region permits (§5.5).
+
+### 5.5 Where hypothesis (U) holds (`wkb_uniform.py`, `wkb_uniform.out`)
+The base data D̂(s) and the local root κ(s) are compared at fixed s on the five crossing profiles n = 3–7
+(ε = 0.092 … 0.044), fitting a + bε.
+
+| s (x = e^s) | D̂: ε → 0 limit, max residual | κ: ε → 0 limit, max residual |
+|---|---|---|
+| −3 (0.05) | 0.9995, 1.3e-4 | 0.0972 − 0.0122i, 5e-5 |
+| −2 (0.14) | 0.9949, 2.4e-4 | 0.2380 − 0.0724i, 2.4e-4 |
+| −1.5 (0.22) | 0.9817, 1.1e-3 | 0.3514 − 0.1568i, 5.5e-4 |
+| −1 (0.37) | 0.9545, 3.6e-3 | 0.4948 − 0.3166i, 3.4e-3 |
+| −0.8 (0.45) | 0.971, 1e-2 (slope −1.4) | 0.51 − 0.37i, 1.4e-2 |
+| −0.6 (0.55) | 0.85, 3e-2 | 0.69 − 0.56i, 6e-2 |
+| −0.5 (0.61) | 0.23 (dip closing), 4e-2 | 1.6 − 1.9i, 6e-2 |
+
+**Result.**
+- Hypothesis (U) holds, with O(ε) corrections, in the inner part of the layer (x ≲ 0.4).
+- It fails in the dip region x ≈ 0.45–0.72, where the base flow still changes at O(1) as ε decreases: the dip deepens
+  like ε^{0.18}.
+- That region carries about a third of Re a₀. Its contribution to Φ need not have an analytic expansion in ε. This is
+  the reason the remainder E(z) is only known to be o(z), and the reason for the upper widening of the range for π/C.
+- This is the main open point of the asymptotic analysis. It needs an inner problem for the dip/front region as
+  ε → 0, which is not attempted here.
 
 ### 5.4 Hou–Luo (sharper test of the same statements)
 - There are 11 crossings resolved above the noise (z ≤ 13.56).
@@ -210,11 +239,11 @@ That moves the b/z value by about ±0.002. A 5e-5 uncertainty would move it by �
 
 ## 6. The value 3/2 [O]
 - Δz_∞ = 3/2 is equivalent to C = 2π/3 = 2.0944.
-- The estimate C = 2.12 ± 0.015, i.e. π/C = 1.48 ± 0.01, places 3/2 at or beyond the upper edge:
+- The estimate π/C ∈ [1.476, 1.50], best 1.48, places 3/2 at the upper edge:
   - the direct fits with analytic corrections give 1.476–1.479;
   - only the cut-off-2/3 WKB slopes (1.492–1.493) come close.
 - Reaching 3/2 would need a slow non-analytic approach (spacing ≈ S − b n^{−1/2}). We see no sign of it, and we
   cannot exclude it with rungs up to n = 7.
 - Nothing in the leading-order problem suggests a closed form for a₀.
-- Recommended wording: "λ_n = 1 + C/(nπ + c + o(1)), with π/C = 1.48 ± 0.01; the asymptotic spacing is not
-  determined analytically." Do not quote 3/2.
+- Recommended wording: "λ_n = 1 + C/(nπ + c + o(1)), with π/C ≈ 1.48 (range 1.476–1.50); the asymptotic spacing
+  is not determined analytically." Do not quote 3/2 as a result.

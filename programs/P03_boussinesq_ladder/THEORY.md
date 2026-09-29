@@ -132,6 +132,6 @@ not derived.
 **Consequence (formal, with numerical support).** In both models the WKB representation implies infinitely many
 smooth self-similar profiles accumulating at λ = 1, with 1/(λ_n − 1) growing linearly in n (ASYMPTOTICS.md,
 Lemma and §3). The empirical law of Wang et al. is the leading-order phase quantization of the stalled layer.
-The asymptotic 2D slope is π/C = 1.48 ± 0.01 (ASYMPTOTICS.md §5: front cut-off study and direct fits of the
-resonances). That is larger than the slope 1.4187 of the line through λ₀ and λ₁. The value 3/2 is not derived and
+The asymptotic 2D slope is π/C ≈ 1.48, range 1.476–1.50 (ASYMPTOTICS.md §5: front cut-off study, direct fits of
+the resonances, and the domain of validity of the uniformity hypothesis). That is larger than the slope 1.4187 of the line through λ₀ and λ₁. The value 3/2 is not derived and
 is not supported by the fits.

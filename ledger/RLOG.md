@@ -255,3 +255,8 @@ Costs are wall-clock on the 4-core container (CPU-h = cores × hours).
 - Direct fits of the resonances with 1/z corrections give π/C = 1.476–1.479.
 - Revised estimate: π/C = 1.48 ± 0.01, replacing the earlier "≈ 1.50" (a single cut-off). 3/2 is not derived and
   not supported.
+- Addendum: test of hypothesis (U) (`wkb_uniform.py`).
+  - D̂(s) and κ(s) at fixed s converge like a + bε, with residuals ≤ 4e-3, for x ≲ 0.4.
+  - They change at O(1) in the dip region x ≈ 0.45–0.72.
+  - Non-analytic corrections are therefore possible, and the spacing estimate is stated as π/C ≈ 1.48, range
+    1.476–1.50, instead of ±0.01.
