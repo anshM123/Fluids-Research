@@ -26,7 +26,7 @@ def boundary_params(f):
     return lam, m, eps, s, D, mu, G, Thy, Omb
 
 
-def wkb_phase(f, s_lo=-10.0, ds=0.025, Dcut=3.0, verbose=False):
+def wkb_phase(f, s_lo=-10.0, ds=0.025, Dcut=3.0, verbose=False, return_kappa=False):
     """ε∫κ ds over the quasi-stagnant region, from s_lo up to the front (first s beyond the dip with D/ε > Dcut).
     The root is tracked from the Hou–Luo closed form at every point (robust against branch jumping)."""
     lam, m, eps, s, D, mu, G, Thy, Omb = boundary_params(f)
@@ -55,6 +55,8 @@ def wkb_phase(f, s_lo=-10.0, ds=0.025, Dcut=3.0, verbose=False):
     # fill isolated failures by interpolation
     if (~good).any() and good.sum() > 2:
         kap[~good] = np.interp(grid[~good], grid[good], kap[good].real) + 1j * np.interp(grid[~good], grid[good], kap[good].imag)
+    if return_kappa:
+        return lam, m, eps, s_cut, np.trapezoid(kap, grid), (~good).sum(), grid, kap
     return lam, m, eps, s_cut, np.trapezoid(kap, grid), (~good).sum()
 
 

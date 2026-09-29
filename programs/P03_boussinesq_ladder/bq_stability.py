@@ -84,8 +84,8 @@ def _lin_march(s, h, mu, lam, Db, cb, sb, i0, jsw,
 
 
 class BQStab:
-    def __init__(self, lam, Y, Nb=32, hs=0.025, s_sw=12.0):
-        self.B = B = BQ(lam, Nb=Nb, hs=hs, s_sw=s_sw)
+    def __init__(self, lam, Y, Nb=32, hs=0.025, s_sw=12.0, s_start=-20):
+        self.B = B = BQ(lam, Nb=Nb, hs=hs, s_sw=s_sw, s_start=s_start)
         self.lam = lam
         X = full(B, Y)
         r = B.march(X / B.ea2[:, None], return_all=True)
@@ -158,3 +158,100 @@ class BQStab:
         om = -self.Om - (1 + self.lam) * self.gO['0'][0]
         om[:B.i0] = 0.0
         return (B.ea2[:, None] * B.poisson(om))[B.i0:].ravel()
+
+
+@njit(cache=True)
+def _lin_march_c(s, h, mu, lam, Db, cb, sb, i0, jsw,
+                 D0, w0, D1, w1, D2, w2, Dh, wh, Dg1, wg1,
+                 Ft0, Fo0, Ft1, Fo1, Ft2, Fo2, Fth, Foh, Ftg1, Fog1):
+    """complex-μ version of _lin_march (complex forcings, complex μ; base speeds real)"""
+    Ns, n = D0.shape
+    Th = np.zeros((Ns, n), dtype=np.complex128); Om = np.zeros((Ns, n), dtype=np.complex128)
+    Dbc = Db.astype(np.complex128)
+    I = np.eye(n).astype(np.complex128)
+    a11, a12, a21, a22 = 0.25, 0.25 - np.sqrt(3.0) / 6, 0.25 + np.sqrt(3.0) / 6, 0.25
+    c1, c2 = 0.5 - np.sqrt(3.0) / 6, 0.5 + np.sqrt(3.0) / 6
+    M = np.zeros((2 * n, 2 * n), dtype=np.complex128); rhs = np.zeros(2 * n, dtype=np.complex128)
+
+    for j in range(i0, Ns - 1):
+        sv = s[j]; th = Th[j].copy(); om = Om[j].copy()
+        if j < jsw:
+            P1 = np.empty((n, n), dtype=np.complex128); P2 = np.empty((n, n), dtype=np.complex128)
+            Q1 = np.empty((n, n), dtype=np.complex128); Q2 = np.empty((n, n), dtype=np.complex128)
+            for i in range(n):
+                for k in range(n):
+                    P1[i, k] = -w1[j, i] * Db[i, k] / D1[j, i]
+                    P2[i, k] = -w2[j, i] * Db[i, k] / D2[j, i]
+                Q1[i, :] = P1[i, :]; Q2[i, :] = P2[i, :]
+                P1[i, i] += -(mu + 1.0 - lam) / D1[j, i]
+                P2[i, i] += -(mu + 1.0 - lam) / D2[j, i]
+                Q1[i, i] += -(mu + 1.0) / D1[j, i]
+                Q2[i, i] += -(mu + 1.0) / D2[j, i]
+            g1 = Ft1[j] / D1[j]; g2 = Ft2[j] / D2[j]
+            M[:n, :n] = I - h * a11 * P1; M[:n, n:] = -h * a12 * P1
+            M[n:, :n] = -h * a21 * P2;    M[n:, n:] = I - h * a22 * P2
+            rhs[:n] = P1 @ th + g1; rhs[n:] = P2 @ th + g2
+            K = np.linalg.solve(M, rhs)
+            K1 = K[:n].copy(); K2 = K[n:].copy()
+            Y1 = th + h * (a11 * K1 + a12 * K2); Y2 = th + h * (a21 * K1 + a22 * K2)
+            e1 = np.exp(-(sv + c1 * h)); e2 = np.exp(-(sv + c2 * h))
+            q1 = (Fo1[j] + e1 * (cb * K1 - sb * (Dbc @ Y1))) / D1[j]
+            q2 = (Fo2[j] + e2 * (cb * K2 - sb * (Dbc @ Y2))) / D2[j]
+            M[:n, :n] = I - h * a11 * Q1; M[:n, n:] = -h * a12 * Q1
+            M[n:, :n] = -h * a21 * Q2;    M[n:, n:] = I - h * a22 * Q2
+            rhs[:n] = Q1 @ om + q1; rhs[n:] = Q2 @ om + q2
+            L = np.linalg.solve(M, rhs)
+            Th[j + 1] = th + 0.5 * h * (K1 + K2)
+            Om[j + 1] = om + 0.5 * h * (L[:n] + L[n:])
+        else:
+            kt = np.empty((4, n), dtype=np.complex128); ko = np.empty((4, n), dtype=np.complex128)
+            for st in range(4):
+                if st == 0:
+                    tt = th; oo = om; D = D0[j]; w = w0[j]; Ft = Ft0[j]; Fo = Fo0[j]; ss = sv
+                elif st == 1:
+                    tt = th + 0.5 * h * kt[0]; oo = om + 0.5 * h * ko[0]; D = Dh[j]; w = wh[j]; Ft = Fth[j]; Fo = Foh[j]; ss = sv + 0.5 * h
+                elif st == 2:
+                    tt = th + 0.5 * h * kt[1]; oo = om + 0.5 * h * ko[1]; D = Dh[j]; w = wh[j]; Ft = Fth[j]; Fo = Foh[j]; ss = sv + 0.5 * h
+                else:
+                    tt = th + h * kt[2]; oo = om + h * ko[2]; D = Dg1[j]; w = wg1[j]; Ft = Ftg1[j]; Fo = Fog1[j]; ss = sv + h
+                thb = Dbc @ tt
+                ths = (-(mu + 1.0 - lam) * tt - w * thb + Ft) / D
+                kt[st] = ths
+                ko[st] = (-(mu + 1.0) * oo - w * (Dbc @ oo) + Fo + np.exp(-ss) * (cb * ths - sb * thb)) / D
+            Th[j + 1] = th + h / 6.0 * (kt[0] + 2 * kt[1] + 2 * kt[2] + kt[3])
+            Om[j + 1] = om + h / 6.0 * (ko[0] + 2 * ko[1] + 2 * ko[2] + ko[3])
+    return Th, Om
+
+
+def _forcings(S, Xp):
+    """forcings (F_θ, F_ω) at grid/half/Gauss points for a REAL X' (full grid)"""
+    u = S._pert_vel(Xp)
+    F = {}
+    for key in ('0', 'h', '1', '2'):
+        Ur, w = u[key]
+        Ts, Tb = S.gT[key]; Os, Ob = S.gO[key]
+        F[key] = (-(Ur * Ts + w * Tb), -(Ur * Os + w * Ob))
+    return F
+
+
+def Tc(S, Yp, mu):
+    """complex T_μ (complex μ, complex X'): velocities/forcings and Biot–Savart are real operators, applied to the
+    real and imaginary parts separately; the march is complex."""
+    B = S.B
+    Yp = np.asarray(Yp, dtype=complex).reshape(B.Ns - B.i0, B.Nb + 1)
+    Fr = _forcings(S, full(B, Yp.real)); Fi = _forcings(S, full(B, Yp.imag))
+    F = {k: (Fr[k][0] + 1j * Fi[k][0], Fr[k][1] + 1j * Fi[k][1]) for k in Fr}
+    sh = lambda Z: np.vstack([Z[1:], Z[-1:]])
+    th, om = _lin_march_c(B.s, B.hs, complex(mu), S.lam, B.Db, B.cb, B.sb, S.i0, S.jsw,
+                          S.D0, S.w0, S.D1, S.w1, S.D2, S.w2, S.Dh, S.wh, S.Dg1, S.wg1,
+                          F['0'][0], F['0'][1], F['1'][0], F['1'][1], F['2'][0], F['2'][1],
+                          F['h'][0], F['h'][1], sh(F['0'][0]), sh(F['0'][1]))
+    Pn = B.poisson(om.real) + 1j * B.poisson(om.imag)
+    return (B.ea2[:, None] * Pn)[B.i0:].ravel()
+
+
+def spectrum_c(S, mu, k=10, tol=1e-8, v0=None):
+    op = LinearOperator((S.n_unk, S.n_unk), matvec=lambda v: Tc(S, v, mu), dtype=complex)
+    vals, vecs = eigs(op, k=k, which='LM', tol=tol, v0=v0, maxiter=3000)
+    o = np.argsort(-np.abs(vals))
+    return vals[o], vecs[:, o]

@@ -1,0 +1,5 @@
+# global solver g6_h025_Nb24_s12: march λ=1.1015817 src=Ycross_Nb32_hs0.0125_ss-20.0_sm100.0_lam1.101582.npy hs=0.025 Nb=24 s_min=-12.0
+s_max=  8.0: λ = 1.1015167584  |R|=3.1e-12 ok=True  unknowns=60076  (74s)
+s_max= 10.0: λ = 1.1015199287  |R|=7.4e-11 ok=True  unknowns=66076  (89s)
+s_max= 12.0: λ = 1.1015203309  |R|=4.6e-12 ok=True  unknowns=72076  (71s)
+geometric extrapolation (last three, ratio 0.127): λ_∞ = 1.1015203893   (march λ = 1.1015817000, diff -6.13e-05)
