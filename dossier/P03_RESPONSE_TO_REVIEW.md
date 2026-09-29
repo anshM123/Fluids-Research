@@ -35,7 +35,7 @@ pseudospectral cloud) are why it is not used for counting. Examples:
   s_start = −12, −20, −30), and are discarded.
 - Genuine eigenvalues do not move; for example λ₇'s lowest is 0.0699 for both s_start = −20 and −30.
 - Complex modes: the argument-principle counts on [0.06, 1.5] × [−1.5, 1.5] give exactly real + trivial (λ₁: 2;
-  λ₂: 3; λ₃: 4).
+  λ₂: 3; λ₃: 4; λ₄: 5).
 
 **New observation.** The lower unstable eigenvalues scale with ε = (λ_n − 1)/2: μ_k/ε ≈ 1.6, 3.8, 6.05, 8.4, …
 

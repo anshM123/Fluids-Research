@@ -37,7 +37,7 @@ stagnation point. The smooth profiles are the regularity resonances m(λ) = 2.
      Biot–Savart solver and treatment of λ (Table 2).
    - Linear stability gives n unstable modes for the n-th profile for all eight (method 1, real scans), extending
      what Wang et al. found for n ≤ 3.
-   - Argument-principle counts show no complex unstable modes in [0.06, 1.5] × [−1.5, 1.5] for λ₁–λ₃.
+   - Argument-principle counts show no complex unstable modes in [0.06, 1.5] × [−1.5, 1.5] for λ₁–λ₄.
    - An independent second method reproduces 27 of the 28 unstable eigenvalues (all of λ₁–λ₆ and the six largest of
      λ₇) to ≤ 5e-5 (Table 3).
    - λ₇'s lowest (0.0699) lies inside method 2's artifact band. It is confirmed by method 1 with two truncations
@@ -168,7 +168,7 @@ stagnation point. The smooth profiles are the regularity resonances m(λ) = 2.
 
 **Complex eigenvalues.**
 - Argument-principle counts of det(I − T_μ) on [0.06, 1.5] × [−1.5, 1.5] return exactly the real eigenvalues plus
-  the trivial one: 1.997 zeros for λ₁, 3.000 for λ₂, 4.000 for λ₃. ⟨λ₄ and λ₅ running.⟩
+  the trivial one: 1.997 zeros for λ₁, 3.000 for λ₂, 4.000 for λ₃, 5.000 for λ₄. ⟨λ₅ running.⟩
 - Method 2 found no complex eigenvalue with Re μ > 0 that survives a change of shift or truncation. Its one
   candidate, 0.610 ± 1.104i for λ₂, is an inflow-boundary mode whose eigenvector is concentrated at s_min. It is
   absent from the λ₂ contour count.

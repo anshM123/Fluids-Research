@@ -38,7 +38,12 @@ Hd = load_scans("hl_scan_D.npy")
 fig, ax = plt.subplots(2, 2, figsize=(13, 9.5))
 a = ax[0, 0]
 zB = 1 / (Bq[:, 0] - 1)
-a.plot(zB, Bq[:, 2] - 2, 'k.-', ms=2.5, lw=0.8)
+a.plot(zB, Bq[:, 2] - 2, 'k.-', ms=2.5, lw=0.8, label='hs = 0.025')
+import os
+if os.path.exists('scan2_F.npy'):
+    Fq = np.load('scan2_F.npy'); zF = 1 / (Fq[:, 0] - 1); o = np.argsort(zF)
+    a.plot(zF[o], Fq[o, 2] - 2, '.-', color='tab:red', ms=2.5, lw=0.8, label='hs = 0.0125')
+    a.legend(fontsize=7, loc='lower left')
 a.set_yscale('symlog', linthresh=1e-9); a.axhline(0, color='r', lw=0.6)
 for n, l in sorted(refined.items()):
     a.plot(1 / (l - 1), 0, 'o', color='tab:blue', ms=6, zorder=5)
