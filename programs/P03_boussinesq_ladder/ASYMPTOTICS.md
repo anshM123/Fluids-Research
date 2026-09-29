@@ -16,8 +16,9 @@ Boussinesq equations.*
 
   The O(1) remainder Θ₀ + o(1) requires the stagnant-layer profile to have a regular expansion in ε up to the
   front. This hypothesis (U) is **not** satisfied uniformly near the front, where the dip closes like ε^{0.18}.
-  Without (U) the derivation gives only Θ = Cz + o(z). That is still enough for infinitely many zeros and for the
-  limiting spacing π/C.
+  Without (U) the derivation gives only Θ = Cz + o(z); the measured dip scaling indicates Θ = Cz + O(z^{0.6}).
+  That is still enough for infinitely many zeros and for the limiting spacing π/C, but convergence to that
+  spacing is slow.
 - **[P given F] C > 0.** In the Hou–Luo model, Re κ₀ > 0 follows in closed form from Ω > 0 in the layer. In 2D it is
   checked pointwise along every computed profile.
 - **[N] Measurements.**
@@ -128,14 +129,16 @@ The WKB form fails in two places, each giving an O(1) connection phase:
    for x ≲ ε. There the wave matches the linearised stagnation-point problem, which converts the wave amplitude
    into a strain perturbation δA and hence F = (2/ε)δA. The phase integral converges at −∞, and this region adds
    an O(1) constant plus O(ε).
-2. **Region III.** κ → 0 as D̂ → ∞. The front has width O(ε) in s and contributes an O(1) constant, provided the
-   front structure has a regular inner limit. Because the dip closes (D̂_min → 0), this contribution is only
-   known to be o(1/ε). The phase error there is E(z) = O(z^{q}) with an unknown q < 1, possibly q = 0.
+2. **Region III.** κ → 0 as D̂ → ∞. The front has width O(ε) in s and would contribute an O(1) constant if the
+   front structure had a regular inner limit. It does not: the dip just inside the front closes (D̂_min ∝ ε^{0.18})
+   over a width ∝ ε^{0.69}, and the local root there grows like D̂^{−3/2} (§5.5). The scaling estimate for its phase
+   contribution is E(z) = O(z^{q}) with q ≈ 0.58 < 1. So the formal result is Θ = Cz + O(z^{0.6}), not
+   Cz + Θ₀ + o(1).
 
 **Result [F].**
 - F(z) = |K| e^{−Im Φ}[cos(Re Φ + arg K) + O(ε)].
 - Re Φ(z) = C z + Φ₀ + E(z), with C = 2 Re a₀ and a₀ = ∫_{−∞}^{s_c} κ₀ ds.
-- E = o(1) under (U); E = o(z) in general.
+- E = o(1) under (U); E = o(z) in general. The dip scaling indicates E ~ z^{0.58} (§5.5).
 - With the Lemma this gives infinitely many zeros and the spacing π/C. Under (U) it also gives λ_n = 1 + C/(nπ + c + o(1)).
 
 ## 4. Positivity of C [P given the WKB form; N in 2D]
