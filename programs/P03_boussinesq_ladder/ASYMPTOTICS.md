@@ -28,7 +28,7 @@ Boussinesq equations.*
   - **Linear law.** Re Φ(z) = Cz + Φ₀ + E with |E| ≤ 0.024 on z ∈ [6.9, 11.3] for every cut-off.
   - **Asymptotic spacing.** π/C lies between 1.476 and about 1.51. Its value depends on the form of the corrections
     (§5.3, §5.5).
-    - The measured spacings increase monotonically, so 1.4758 (n = 7) is a lower bound.
+    - The measured spacings increase monotonically; if that trend continues, 1.4758 (n = 7) is a lower bound.
     - Analytic 1/z phase corrections extrapolate to 1.478.
     - The measured scaling of the dip in front of the front suggests a non-analytic phase correction ∝ z^{0.6}.
       That extrapolates to 1.49–1.50.

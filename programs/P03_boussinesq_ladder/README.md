@@ -164,7 +164,10 @@ mode, so no complex unstable eigenvalues were found in the box:
 - λ₁: 1.997 zeros (μ = 1 and 0.374).
 - λ₂: 3.000 zeros (μ = 1, 0.554, 0.220). This also rules out the method-2 candidate 0.610 ± 1.104i, which is an
   inflow-boundary artifact.
-- λ₃: 4.000 zeros. λ₄: 5.000 zeros. ⟨λ₅ running⟩.
+- λ₃: 4.000 zeros. λ₄: 5.000 zeros.
+- λ₅: 5.965 ≈ 6 zeros, with one unresolved phase step at the left edge near 0.06 + 0.58i, next to the
+  truncation-artifact region.
+- λ₆ and λ₇: not contour-checked.
 
 **Observation (not derived).** The lower unstable eigenvalues scale with ε = (λ_n−1)/2 and are nearly equally
 spaced. For n = 6, μ_k/ε = 1.61, 3.82, 6.05, 8.38, 10.73, with spacing ≈ 2.2–2.3; the largest approaches ≈ 0.75.

@@ -279,3 +279,7 @@ Costs are wall-clock on the 4-core container (CPU-h = cores × hours).
 - λ₆ with the global solver at s_min = −20 (hs 0.0125) gives 1.1015821 (s_max 10) and 1.1015792 (s_max 12); at
   s_min = −12 it gave 1.1015771. The spread of a few 1e-6 brackets the marching value 1.1015817. For λ₅ at
   s_min = −20, Newton stalled at 3e-8, so that run is not used.
+- Argument-principle counts on [0.06, 1.5] × [−1.5, 1.5]: λ₄ gives 5.000 zeros; λ₅ gives 5.965 ≈ 6 zeros, with one
+  unresolved phase step at the left edge near 0.06 + 0.58i, where truncation artifacts come close. The
+  continuation at hs = 0.0125 (scan F) resolves the lobe between λ₄ and λ₅ (+1.0e-5) and the next lobe (−1.2e-6)
+  down to z = 9.0 (Fig. 1a).

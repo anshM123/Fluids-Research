@@ -168,7 +168,9 @@ stagnation point. The smooth profiles are the regularity resonances m(λ) = 2.
 
 **Complex eigenvalues.**
 - Argument-principle counts of det(I − T_μ) on [0.06, 1.5] × [−1.5, 1.5] return exactly the real eigenvalues plus
-  the trivial one: 1.997 zeros for λ₁, 3.000 for λ₂, 4.000 for λ₃, 5.000 for λ₄. ⟨λ₅ running.⟩
+  the trivial one: 1.997 zeros for λ₁, 3.000 for λ₂, 4.000 for λ₃, 5.000 for λ₄.
+- For λ₅ the count is 5.965 ≈ 6. One phase step at the left edge near μ ≈ 0.06 + 0.58i stayed unresolved; this is
+  where the truncation artifacts approach the contour. λ₆ and λ₇ were not contour-checked.
 - Method 2 found no complex eigenvalue with Re μ > 0 that survives a change of shift or truncation. Its one
   candidate, 0.610 ± 1.104i for λ₂, is an inflow-boundary mode whose eigenvector is concentrated at s_min. It is
   absent from the λ₂ contour count.
