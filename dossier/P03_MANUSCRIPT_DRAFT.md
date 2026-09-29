@@ -13,7 +13,8 @@ known hierarchy to instability index seven.
   For five of them the agreement is better than 1e-6.
 - Two independent linearizations recover the successive instability structure: the n-th profile has n resolved
   real unstable modes (n = 0,…,7).
-- Right-half-plane eigenvalue counts find no further, oscillatory instabilities.
+- Right-half-plane eigenvalue counts, stable under domain and grid changes, find no further, oscillatory
+  instabilities. So the index is exactly n.
 
 **Structure.**
 - The discrete smooth profiles lie on a continuous branch of generically singular self-similar solutions. They are
@@ -37,7 +38,7 @@ Córdoba–Córdoba–Fontelos model, by contrast, the cusp forms at a finite λ
 ## 0. What is established, supported, predicted, and not proved
 | level | statement |
 |---|---|
-| **Numerically established** | 8 Boussinesq rungs λ₀…λ₇, found by one solver and reproduced by an independent one. Rung n has n resolved real unstable modes, and these eigenvalues are reproduced by an independent linearization. Right-half-plane counts give exactly n unstable eigenvalues for n ≤ 7 (2D) and n ≤ 10 (Hou–Luo). |
+| **Numerically established** | 8 Boussinesq rungs λ₀…λ₇, found by one solver and reproduced by an independent one. Rung n has exactly n unstable eigenvalues, all real, for 0 ≤ n ≤ 7. The real modes are reproduced by an independent linearization, and right-half-plane counts are unchanged under changes of origin truncation, contour and grid (n = 5–7). In Hou–Luo the index is n for n ≤ 10. Along the continuous branch the unstable ladder moves with the profile phase (Hou–Luo; 2D at the branch points computed). |
 | **Strongly supported** | A continuous branch of generically singular (least-singular) profiles; the smooth profiles are its regularity-selected points. |
 | **Asymptotically predicted (formal)** | An unbounded phase Φ ∼ C/(λ−1) with C > 0, the quantization Re Φ(λ_n) = nπ + δ + o(1), and an infinite ladder accumulating at λ = 1. The eigen-condition Re Φ(λ) − πμ/(λ−1) + θ₀ = (k + ½)π for the unstable spectrum, with its consequences: unit spacing, phase-locked offset, and index = number of half-turns of Φ. |
 | **Not proved** | Infinitely many smooth Boussinesq profiles. C > 0 for the 2D reduction (proved only for the Hou–Luo local root; checked pointwise in 2D). The value of the asymptotic spacing. The offsets c of the instability ladder. |
@@ -84,7 +85,8 @@ the 28th, λ₇'s lowest (0.0699), is confirmed by linearization A with two orig
 - 2D: n + 1 zeros (the trivial time-translation mode included) for every n ≤ 7.
 - Domain variants agree: moving the origin truncation from −20 to −30 and the contour's left edge from 0.06 to
   0.075/0.07 gives 5.954 (n = 5, against 5.952) and 6.945 (n = 6, against 6.942).
-- Grid variant for n = 6 (hs = 0.0125): 7.003. Grid variant for n = 7: ⟨running⟩.
+- Grid variants (hs = 0.0125) agree: 7.003 (n = 6) and 7.973 (n = 7, against 7.921).
+- Hence rung n has exactly n unstable eigenvalues, all real, for 0 ≤ n ≤ 7.
 
 **Hou–Luo, as a control.**
 - Eleven rungs, each with exactly n unstable eigenvalues.

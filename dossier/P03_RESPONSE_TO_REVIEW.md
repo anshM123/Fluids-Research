@@ -104,7 +104,9 @@ The earlier "≈ 1.50" came from a single front cut-off (the cut-off study is in
 - Complete right-half-plane counts now exist for n = 5, 6, 7 (`stab_contour2.py`, k = 16, adaptive):
   5.952, 6.942, 7.921 zeros, i.e. n + 1 including the trivial mode. No oscillatory unstable spectrum was found.
 - Domain variants (origin truncation −30, contour moved to x_lo = 0.075/0.07) give 5.954 (n = 5) and 6.945 (n = 6),
-  against 5.952 and 6.942. The grid variant (hs = 0.0125) for n = 6 gives 7.003. The grid variant for n = 7 is ⟨running⟩.
+  against 5.952 and 6.942. The grid variants (hs = 0.0125) give 7.003 (n = 6) and 7.973 (n = 7).
+- As you proposed, "exactly n" is therefore restored as a numerical statement: rung n has exactly n unstable
+  eigenvalues, all real, for 0 ≤ n ≤ 7.
 - A control with 11 rungs of the Hou–Luo model (`hl_stability.py`) gives exactly n unstable eigenvalues for
   n = 0…10, unchanged under a domain change. There, complex pairs appear from n = 8 while the total stays n. This
   is exactly why "real" and "exactly n" must be claimed separately.

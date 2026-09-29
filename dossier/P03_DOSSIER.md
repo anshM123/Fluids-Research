@@ -20,7 +20,7 @@ stagnation point. The smooth profiles are the regularity resonances m(λ) = 2.
 **Evidence hierarchy (use exactly this in any text).**
 | level | statement |
 |---|---|
-| Numerically established | 8 Boussinesq rungs λ₀…λ₇, reproduced by two independent solvers. Rung n has n resolved real unstable modes, and the eigenvalues are reproduced by two independent linearisations. |
+| Numerically established | 8 Boussinesq rungs λ₀…λ₇, reproduced by two independent solvers. Rung n has exactly n unstable eigenvalues, all real (0 ≤ n ≤ 7): resolved real modes reproduced by two independent linearisations, and right-half-plane counts stable under domain and grid changes. Along the continuous branch the unstable ladder moves with the profile phase. |
 | Strongly supported | A continuous branch of generically singular (least-singular) profiles. The smooth profiles are its regularity-selected points, m(λ) = 2. |
 | Asymptotically predicted (formal) | Unbounded phase Φ ~ C/(λ−1) with C > 0, phase quantisation, and an infinite Boussinesq ladder accumulating at λ = 1. |
 | Not proved | Infinitely many smooth Boussinesq profiles; C > 0 for the full 2D reduction (it is proved only for the Hou–Luo local root; in 2D it is checked pointwise); the offsets of the instability ladder (the index n itself follows formally from the eigen-condition of claim 9 once it is fixed at one rung, and is confirmed numerically by the counts). |
@@ -48,7 +48,8 @@ stagnation point. The smooth profiles are the regularity resonances m(λ) = 2.
    - Right-half-plane counts (argument principle, trivial zero included) give n + 1 zeros for every n ≤ 7:
      1.997, 3.000, 4.000, 5.000, 5.952, 6.942, 7.921. So the index is exactly n in the box, with all modes real.
      Domain variants agree: 5.954 (n = 5) and 6.945 (n = 6) with origin truncation −30 and a moved contour. The grid
-     variant for n = 6 (hs = 0.0125) gives 7.003; the grid variant for n = 7 is running.
+     variants (hs = 0.0125) give 7.003 (n = 6) and 7.973 (n = 7). So the index is exactly n, with all modes real, for
+     0 ≤ n ≤ 7, stable under domain and grid changes.
    - In Hou–Luo (11 rungs) the count is exactly n for n ≤ 10, with domain variants agreeing. All modes are real for
      n ≤ 7; from n = 8 on, weakly oscillatory complex pairs appear at the top of the unstable spectrum
      (0.587 ± 0.022i at n = 8). "Real" is therefore not guaranteed at higher n, while the total index stays n.

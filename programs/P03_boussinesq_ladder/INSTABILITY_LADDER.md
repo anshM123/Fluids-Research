@@ -20,7 +20,7 @@ The counts include the trivial time-translation zero μ = 1, so the expected val
 | 6 | B: 0.025, −30, [0.07,1.5]×[−1.5,1.5] | 6.945 | 7 |
 | 6 | C: 0.0125, −20, [0.065,1.2]×[−0.8,0.8] | 7.003 | 7 |
 | 7 | A: 0.025, −30, [0.05,1.5]×[−1.5,1.5] | 7.921 | 8 |
-| 7 | C: 0.0125, −30, [0.055,1.2]×[−0.8,0.8] | ⟨running⟩ | 8 |
+| 7 | C: 0.0125, −30, [0.055,1.2]×[−0.8,0.8] | 7.973 | 8 |
 
 Deviations from an integer (≤ 0.08) come from eigenvalue swaps at the truncation of the top-k set. At the
 unresolved steps the smallest |1 − ν| is ≥ 0.12, so no zero lies near the contour.
@@ -35,7 +35,8 @@ Variants:
 - Grid N = 65536 (profiles re-converged, |m − 2| ≤ 6e-11; η₀ = −30): 9.000 (n = 8) and 10.989 (n = 10).
 
 **Result.** In the rectangle, the n-th profile has exactly n unstable eigenvalues: n ≤ 7 in 2D and n ≤ 10 in
-Hou–Luo. The strip 0 < Re μ < x_lo (0.03–0.075) is not counted. There the origin truncation produces a spurious
+Hou–Luo. For 2D n = 5–7 the count is unchanged under a deeper origin truncation with a moved contour (B) and under
+grid refinement hs 0.025 → 0.0125 (C). The strip 0 < Re μ < x_lo (0.03–0.075) is not counted. There the origin truncation produces a spurious
 crossing at μ ≈ 0.6/|s_start| that moves when the truncation is moved (§4).
 
 ## 2. Real versus complex
