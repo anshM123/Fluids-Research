@@ -1,0 +1,2 @@
+# global solver g7b_s20: march λ=1.0883384 src=Ycross_Nb32_hs0.0125_ss-20.0_sm100.0_lam1.088338.npy hs=0.0125 Nb=24 s_min=-20.0
+s_max= 12.0: λ = 1.0883385802  |R|=6.8e-11 ok=True  unknowns=192076  (529s)

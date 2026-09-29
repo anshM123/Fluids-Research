@@ -18,7 +18,8 @@ equals 2 exactly at a smooth profile.
 - An independent global Newton solver reproduces all eight resonances to ≤ 1e-5 (≤ 6e-7 for n = 1–5).
 - Linear stability finds n unstable modes for the n-th profile for all eight, which extends the pattern reported for
   the first four.
-- A second, independent method reproduces all 21 unstable eigenvalues of λ₁–λ₆ to about 1e-5.
+- A second, independent method reproduces 27 of the 28 unstable eigenvalues (all of λ₁–λ₆ and the six largest of
+  λ₇) to ≤ 5e-5.
 
 **Mechanism.**
 - As λ → 1⁺ the profiles develop a stalled boundary layer next to a front that tends to a square-root cusp.
@@ -57,7 +58,8 @@ for blow-up rates. The analogy is used for intuition only.
   eight zeros are the smooth profiles (Table 1). The two solvers agree (Table 2).
 - **Fig. 2.** Stability. Method (a) uses the eigen-condition ν(μ) = 1 for the linearised march–Biot–Savart map
   T_μ: real-axis crossings, plus an argument-principle count that includes complex μ. Method (b) is a shift-invert
-  eigen-solve of the global linearisation. Both give n unstable modes for profile n (Table 3).
+  eigen-solve of the global linearisation, which confirms the eigenvalue values (Table 3). Profile n has n unstable
+  modes.
 
 ## 3. Anatomy of the λ → 1 limit: a stalled layer next to a limiting cusp
 - **Fig. 1c.** Along the boundary, the radial self-similar speed is O(λ−1) up to a front x_c ≈ 0.72, then O(1).

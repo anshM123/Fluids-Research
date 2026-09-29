@@ -35,10 +35,13 @@ stagnation point. The smooth profiles are the regularity resonances m(λ) = 2.
    - λ₄, which corresponds to their candidate fourth unstable profile, plus λ₅, λ₆ and λ₇ (Table 1).
    - All eight are reproduced by an independent global Newton solver: different unknowns, discretisation,
      Biot–Savart solver and treatment of λ (Table 2).
-   - Linear stability gives n unstable modes for the n-th profile for all eight (method 1). Wang et al. found this
-     for n ≤ 3. An independent second method confirms every eigenvalue for n ≤ 6 to about 1e-5 (Table 3). For λ₇ it
-     confirms the six largest; the seventh (0.0699) sits inside the truncation-artifact band of method 2 at
-     s_min = −12, so it is checked with s_min = −20.
+   - Linear stability gives n unstable modes for the n-th profile for all eight (method 1, real scans), extending
+     what Wang et al. found for n ≤ 3.
+   - Argument-principle counts show no complex unstable modes in [0.06, 1.5] × [−1.5, 1.5] for λ₁–λ₃.
+   - An independent second method reproduces 27 of the 28 unstable eigenvalues (all of λ₁–λ₆ and the six largest of
+     λ₇) to ≤ 5e-5 (Table 3).
+   - λ₇'s lowest (0.0699) lies inside method 2's artifact band. It is confirmed by method 1 with two truncations
+     (s_start −20 and −30).
 4. **[N + F] A stalled layer next to a limiting cusp.** As λ → 1⁺:
    - For x < x_c ≈ 0.72 on the wall, the radial self-similar speed is D = O(λ−1): a quasi-stagnant (stalled) layer.
    - The layer is bounded by a front. Outside the front D → k(x−x_c)^{1/2}, the same square-root cusp that ends
@@ -93,8 +96,10 @@ stagnation point. The smooth profiles are the regularity resonances m(λ) = 2.
   - An argument-principle count of det(I − T_μ) on [0.06, 1.5] × [−1.5, 1.5] includes complex eigenvalues
     (`stab_contour.py`).
 - **Stability, method 2** (`glob_stab.py`). The generalised eigenproblem J v + μ M v = 0 on the global
-  discretisation, solved by shift-invert Arnoldi at real and complex shifts. It is repeated for two origin
-  truncations, and only eigenvalues independent of the truncation are kept (`gstab_summary.py`).
+  discretisation, solved by shift-invert Arnoldi at real and complex shifts, for two origin truncations.
+  - It confirms the eigenvalue values found by method 1.
+  - Its discretisation artifacts are listed in the README: a truncation-dependent dense family, inflow-boundary
+    modes localised at s_min, and a pseudospectral cloud. Because of them it is not used for counting.
 - **WKB** (`bq_local_eig.py`, `bq_wkb2d.py`, `wkb_sens.py`). The local eigenproblem is solved by shooting, and the
   phase is integrated from the stagnation point to the front.
 - **Hou–Luo** (`hl_solver.py`, `hl_scan.py`, `hl_wkb2.py`).
@@ -130,7 +135,7 @@ stagnation point. The smooth profiles are the regularity resonances m(λ) = 2.
 | 4 | 1.1449857 | 1.1449777 | 1.1449853 | −4.2e-7 |
 | 5 | 1.1194738 | 1.1194516 | 1.1194739 | +1.1e-7 |
 | 6 | 1.1015817 | 1.1015204 | 1.1015771 | −4.6e-6 |
-| 7 | 1.0883384 | no convergence | 1.0883480 (s_max = 12) | +9.6e-6 |
+| 7 | 1.0883384 | no convergence | 1.0883480 (s_max = 12); with s_min = −20: 1.0883386 | +9.6e-6; with s_min = −20: +2.1e-7 |
 
 The two solvers share no numerical ingredient. The origin truncation of the global solver matters at the 1e-6
 level: s_min −8 → −12 moves λ₁ from −3.2e-6 to −1.1e-7. Both solvers show the same hs-trend for the deep rungs.
@@ -145,7 +150,7 @@ level: s_min −8 → −12 moves λ₁ from −3.2e-6 to −1.1e-7. Both solver
 | 4 | 4 | (0.65, 0.70), (0.45, 0.50), (0.25, 0.30), (0.11, 0.12) | 0.68004, 0.45973, 0.28629, 0.11908 |
 | 5 | 5 | (0.70, 0.75), (0.50, 0.55), (0.35, 0.40), (0.20, 0.25), (0.09, 0.10) | 0.70985, 0.51143, 0.36869, 0.23121, 0.09654 |
 | 6 | 6 | (0.70, 0.75), (0.50, 0.55), (0.40, 0.45), (0.30, 0.35), (0.19, 0.20), (0.08, 0.09) | 0.73139, 0.54481, 0.42577, 0.30749, 0.19415, 0.08154 |
-| 7 | 7 | (0.70, 0.75), (0.55, 0.60), (0.45, 0.50), (0.35, 0.40), (0.25, 0.30), (0.16, 0.17), (0.065, 0.070) | 0.74632, 0.56676, 0.46713, 0.36192, 0.26371, 0.16678, ⟨lowest: s_min −20 run⟩ |
+| 7 | 7 | (0.70, 0.75), (0.55, 0.60), (0.45, 0.50), (0.35, 0.40), (0.25, 0.30), (0.16, 0.17), (0.065, 0.070) | 0.74632, 0.56676, 0.46713, 0.36192, 0.26371, 0.16678 (s_min −20: 0.74633 … 0.16680); lowest inside method 2's artifact band |
 
 **How the table was obtained.**
 - Trivial modes: μ = 1 (time translation) is recovered by both methods (1.000000 and 0.99999); μ = 0 (scaling) is
@@ -156,7 +161,7 @@ level: s_min −8 → −12 moves λ₁ from −3.2e-6 to −1.1e-7. Both solver
 
 **Complex eigenvalues.**
 - Argument-principle counts of det(I − T_μ) on [0.06, 1.5] × [−1.5, 1.5] return exactly the real eigenvalues plus
-  the trivial one: 1.997 zeros for λ₁ and 3.000 for λ₂. ⟨λ₃–λ₅ running.⟩
+  the trivial one: 1.997 zeros for λ₁, 3.000 for λ₂, 4.000 for λ₃. ⟨λ₄ and λ₅ running.⟩
 - Method 2 found no complex eigenvalue with Re μ > 0 that survives a change of shift or truncation. Its one
   candidate, 0.610 ± 1.104i for λ₂, is an inflow-boundary mode whose eigenvector is concentrated at s_min. It is
   absent from the λ₂ contour count.
@@ -202,5 +207,5 @@ almost equally spaced ladder. The largest eigenvalue approaches ≈ 0.75.
   3D Euler with boundary). The empirical PINN law becomes the leading term of a phase-quantization condition.
 - Together with P02 it gives a criterion for when such ladders are finite (cusp at finite λ: CCF) or infinite
   (cusp only in the limit, with a stalled layer that supports WKB oscillations: Boussinesq, Hou–Luo).
-- Two independent classical solvers compute every rung to 5–8 digits on one core, and two independent stability
-  methods give the instability indices. These profiles are candidates for computer-assisted proofs.
+- Two independent classical solvers compute every rung to 5–8 digits on one core. Two independent stability methods
+  agree on the unstable eigenvalues; the counts come from the march-based method with argument-principle checks. These profiles are candidates for computer-assisted proofs.

@@ -110,7 +110,7 @@ Gauss–Legendre march is A-stable.
 | 4 | 1.1449857 | 1.1449777 | 1.1449853 | −4.2e-7 |
 | 5 | 1.1194738 | 1.1194516 | 1.1194739 | +1.1e-7 |
 | 6 | 1.1015817 | 1.1015204 | 1.1015771 | −4.6e-6 |
-| 7 | 1.0883384 | (no convergence) | 1.0883480 (s_max = 12 only) | +9.6e-6 |
+| 7 | 1.0883384 | (no convergence) | 1.0883480 (s_max = 12 only); s_min = −20: 1.0883386 | +9.6e-6; s_min = −20: +2.1e-7 |
 
 **Notes on the global solver.**
 - The truncation at the origin matters: s_min = −8 → −10 → −12 moves λ₁ by −3.2e-6 → −1.7e-7 → −1.1e-7.
@@ -133,17 +133,20 @@ There are two trivial modes: μ = 1 (time translation) and μ = 0 (the scaling s
 **Method 2 (global).**
 - The generalised eigenproblem J v + μ M v = 0 on the global discretisation, solved by shift-invert Arnoldi at real
   and complex shifts.
-- A mode counts only if it is found at several shifts and survives moving the origin truncation from s_min = −12
-  to −20 (`gstab_summary.py`).
+- It reproduces the values of the eigenvalues found by method 1: all 21 of λ₁–λ₆ and the six largest of λ₇, to
+  ≤ 5e-5 between the two truncations s_min = −12 and −20.
+- Its spectrum also contains discretisation artifacts, none of which appears in method 1:
+  - a dense family whose real part depends on the truncation (for λ₁, Re μ ≈ 0.054 at s_min = −12 and ≈ 0.15 at
+    −20), with Im μ spaced by about 2π/(travel time through the stalled layer);
+  - inflow-boundary modes whose eigenvectors are concentrated at s_min. An example is 0.610 ± 1.104i for λ₂, present
+    for both truncations; the argument-principle count of method 1 excludes it;
+  - a pseudospectral cloud (residuals ~1e-9) at shifts far from any eigenvalue.
+- Method 2 therefore confirms eigenvalue *values*. The counts come from method 1: real scans plus argument-principle
+  counts.
 
-**Truncation artifacts (both methods).** The regular r² coefficient of a perturbation carries a factor 1/μ (a
-resonance with the neutral scaling mode). A finite origin truncation regularises it, which produces spurious modes
-near μ ≈ 0.66/|s_start|:
-- Method 1: a crossing at μ ≈ 0.033 (s_start −20) moves to 0.052 (s_start −12).
-- Method 2: a line of modes at Re μ ≈ 0.054 (s_min −12), with Im μ spaced by 2π/(travel time through the stalled
-  layer); inflow-boundary modes localised at s_min, e.g. μ = 0.610 ± 1.104i for λ₂, with the eigenvector
-  concentrated at s = −12; and a non-normal pseudospectral cloud (residual ~1e-7).
-- All of these move or vanish when the truncation changes. Counts are taken for μ ≥ 0.045.
+**Truncation artifacts in method 1.** The regular r² coefficient of a perturbation carries a factor 1/μ (a resonance
+with the neutral scaling mode). A finite origin truncation regularises it. This produces one spurious crossing,
+which moves with the truncation: 0.052 (s_start −12), 0.033 (−20), 0.022 (−30). Counts are taken for μ ≥ 0.045.
 
 | n | unstable modes | method 1: brackets (real scan) | method 2: eigenvalues μ_k | method 1 refined |
 |---|---|---|---|---|
@@ -154,7 +157,7 @@ near μ ≈ 0.66/|s_start|:
 | 4 | 4 | (0.65, 0.70), (0.45, 0.50), (0.25, 0.30), (0.11, 0.12) | 0.68004, 0.45973, 0.28629, 0.11908 | |
 | 5 | 5 | (0.70, 0.75), (0.50, 0.55), (0.35, 0.40), (0.20, 0.25), (0.09, 0.10) | 0.70985, 0.51143, 0.36869, 0.23121, 0.09654 | |
 | 6 | 6 | (0.70, 0.75), (0.50, 0.55), (0.40, 0.45), (0.30, 0.35), (0.19, 0.20), (0.08, 0.09) | 0.73139, 0.54481, 0.42577, 0.30749, 0.19415, 0.08154 | |
-| 7 | 7 | (0.70, 0.75), (0.55, 0.60), (0.45, 0.50), (0.35, 0.40), (0.25, 0.30), (0.16, 0.17), (0.065, 0.070) | 0.74632, 0.56676, 0.46713, 0.36192, 0.26371, 0.16678, ⟨lowest: s_min −20⟩ | 0.0699 (s_start −20 and −30) |
+| 7 | 7 | (0.70, 0.75), (0.55, 0.60), (0.45, 0.50), (0.35, 0.40), (0.25, 0.30), (0.16, 0.17), (0.065, 0.070) | 0.74632, 0.56676, 0.46713, 0.36192, 0.26371, 0.16678; lowest inside the artifact band | 0.0699 (s_start −20 and −30) |
 
 **Complex modes.** Argument-principle counts in [0.06, 1.5] × [−1.5, 1.5] match the real count plus the trivial
 mode, so no complex unstable eigenvalues were found in the box:

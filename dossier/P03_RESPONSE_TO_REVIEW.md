@@ -9,11 +9,11 @@ Every item points to the file that holds the evidence. Numbers are from `program
 | Headline "Numerical evidence and asymptotic analysis reveal a quantized hierarchy …, with evidence for an infinite ladder accumulating at λ = 1" | Used verbatim in P03_DOSSIER.md, the top-level DOSSIER.md and the manuscript abstract. |
 | Central concept: "discrete smooth blow-up profiles are regularity-selected points on a continuous singular branch" | P03_DOSSIER.md and manuscript §2. The manuscript title was changed to "Regularity-selected blow-up …". |
 | The 8 core claims | P03_DOSSIER.md §1 lists them one by one, each with its status and evidence. |
-| Call profiles 5–8 "next in continuation ordering" until their instability indices are verified | The indices are now verified. The march method gives 4, 5, 6, 7 for λ₄…λ₇. The independent method confirms every eigenvalue of λ₄–λ₆ and the six largest of λ₇; λ₇'s lowest is confirmed by method 1 with two truncations, and the method-2 check at s_min = −20 is ⟨pending⟩. |
+| Call profiles 5–8 "next in continuation ordering" until their instability indices are verified | The indices are now verified. The march method gives 4, 5, 6, 7 for λ₄…λ₇. The independent method confirms every eigenvalue of λ₄–λ₆ and the six largest of λ₇. λ₇'s lowest (0.0699) lies in method 2's artifact band; it is confirmed by method 1 with two truncations. |
 | 3/2 only as a candidate unless derived | 3/2 is a candidate, not derived. Our estimate is now more careful (see D). |
 
 ## (B) Stability spectra of at least λ₄, λ₅, λ₆
-Done for all eight profiles, with two independent methods (P03_DOSSIER.md Table 3, `fig_bq_stability.png`).
+Done for all eight profiles. The counts come from method 1 (real scans plus argument-principle checks); the eigenvalue values come from both methods (P03_DOSSIER.md Table 3, `fig_bq_stability.png`).
 
 **Methods.**
 - Method 1 is the eigen-condition ν(μ) = 1 of the linearised march + Biot–Savart map T_μ: real-axis scans, Brent
@@ -24,7 +24,8 @@ Done for all eight profiles, with two independent methods (P03_DOSSIER.md Table 
 reported for n ≤ 3.
 
 **Agreement between methods.** Method 2 reproduces all 21 unstable eigenvalues of λ₁–λ₆ and the six largest of λ₇
-to about 1e-5. Examples:
+to ≤ 5e-5. Its own discretisation artifacts (a truncation-dependent dense family, inflow-boundary modes, a
+pseudospectral cloud) are why it is not used for counting. Examples:
 - λ₁: μ = 0.373789 (method 1) and 0.37379 (method 2);
 - λ₂: 0.55418 / 0.22048 and 0.55419 / 0.22048.
 

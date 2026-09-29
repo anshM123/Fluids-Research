@@ -7,7 +7,8 @@ at λ = 1.* Discrete smooth blow-up profiles are regularity-selected points on a
   on one branch of least-singular profiles, as the zeros of m(λ) − 2.
 - **Independent checks.**
   - A second, independent global solver reproduces all eight to ≤ 1e-5.
-  - Two independent linear-stability methods give n unstable modes for the n-th profile, for all eight (the pattern
+  - Linear stability gives n unstable modes for the n-th profile, for all eight. A second, independent method
+    reproduces 27 of the 28 unstable eigenvalues to ≤ 5e-5 (the pattern
     Wang et al. reported for n ≤ 3).
 - **Stalled layer.** As λ → 1 a stalled (quasi-stagnant) boundary layer forms next to a front that tends to a
   square-root cusp.

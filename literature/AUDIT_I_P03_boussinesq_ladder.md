@@ -21,6 +21,6 @@ profiles", and Hou group papers.
 
 | Claim | Nearest literature | Verdict |
 |---|---|---|
-| C7. Instability index n of the n-th profile for all eight profiles, from two independent linear-stability methods (march-based eigen-condition; global shift-invert eigen-solver); 21 unstable eigenvalues agree to 1e-5. | Wang et al. 2509.14185 report the n-unstable-modes pattern for their profiles (n ≤ 3). | **Extends** their observation to n = 4–7. The two classical stability methods are new for this problem. |
+| C7. Instability index n of the n-th profile for all eight profiles, from the march-based eigen-condition with argument-principle checks; eigenvalue values confirmed by an independent global shift-invert eigen-solver); 21 unstable eigenvalues agree to 1e-5. | Wang et al. 2509.14185 report the n-unstable-modes pattern for their profiles (n ≤ 3). | **Extends** their observation to n = 4–7. The two classical stability methods are new for this problem. |
 | C8. Independent reproduction of λ₀…λ₇ by a second solver sharing no numerical ingredient, to ≤ 1e-5. | — | Verification (no novelty claim). |
 | C9. The lower unstable eigenvalues scale with ε = (λ_n−1)/2 (μ_k/ε → 1.6, 3.8, 6.05, …). | — | **Observation**, not derived. Check for related eigenvalue asymptotics in the literature before claiming. |
