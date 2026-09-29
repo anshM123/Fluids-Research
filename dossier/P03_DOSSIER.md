@@ -17,6 +17,14 @@ stagnation point. The smooth profiles are the regularity resonances m(λ) = 2.
     corrections suggested by the scaling of the dip.
   - 3/2 is a candidate within this range, not a result.
 
+**Evidence hierarchy (use exactly this in any text).**
+| level | statement |
+|---|---|
+| Numerically established | 8 Boussinesq rungs λ₀…λ₇, reproduced by two independent solvers. Rung n has n resolved real unstable modes, and the eigenvalues are reproduced by two independent linearisations. |
+| Strongly supported | A continuous branch of generically singular (least-singular) profiles. The smooth profiles are its regularity-selected points, m(λ) = 2. |
+| Asymptotically predicted (formal) | Unbounded phase Φ ~ C/(λ−1) with C > 0, phase quantisation, and an infinite Boussinesq ladder accumulating at λ = 1. |
+| Not proved | Infinitely many smooth Boussinesq profiles; C > 0 for the full 2D reduction (it is proved only for the Hou–Luo local root; in 2D it is checked pointwise); instability index exactly n (the index is established only as the count of resolved real modes plus right-half-plane counts through the lower rungs). |
+
 **Status tags.**
 - [N] numerical. Where stated, reproduced by two independent solvers and converged in the discretisation parameters.
 - [F] formal matched asymptotics.
@@ -35,8 +43,10 @@ stagnation point. The smooth profiles are the regularity resonances m(λ) = 2.
    - λ₄, which corresponds to their candidate fourth unstable profile, plus λ₅, λ₆ and λ₇ (Table 1).
    - All eight are reproduced by an independent global Newton solver: different unknowns, discretisation,
      Biot–Savart solver and treatment of λ (Table 2).
-   - Linear stability gives n unstable modes for the n-th profile for all eight (method 1, real scans), extending
-     what Wang et al. found for n ≤ 3.
+   - The n-th computed profile has n resolved real unstable modes for 0 ≤ n ≤ 7 (method 1, real scans). This
+     extends what Wang et al. found for n ≤ 3.
+   - Right-half-plane counts through the lower rungs find no additional oscillatory unstable spectrum (below).
+     "Exactly n" is claimed only where those counts have converged under domain and grid changes.
    - Argument-principle counts show no complex unstable modes in [0.06, 1.5] × [−1.5, 1.5] for λ₁–λ₄.
    - An independent second method reproduces 27 of the 28 unstable eigenvalues (all of λ₁–λ₆ and the six largest of
      λ₇) to ≤ 5e-5 (Table 3).
