@@ -28,7 +28,11 @@ def count(mu):
     except Exception:
         v, V = spectrum_c(S, complex(mu), k=16)
     last['v'] = V[:, 0]
-    return int(np.sum(v[np.abs(v.imag) < 1e-8].real > 1)), int(np.sum(np.abs(v[np.abs(v.imag) >= 1e-8]) > 1)), float(np.abs(v).min())
+    # parity from the sign of Re Π(1 − ν) (robust where real ν > 1 collide into a nearly real complex pair)
+    par = 0 if np.real(np.prod(1 - v)) > 0 else 1
+    nre = int(np.sum(v[np.abs(v.imag) < 1e-8].real > 1))
+    nre = 2 * (nre // 2) + par if (nre % 2) != par else nre
+    return nre, int(np.sum(np.abs(v[np.abs(v.imag) >= 1e-8]) > 1)), float(np.abs(v).min())
 
 
 grid = np.arange(nu_max, nu_min - 1e-9, -step)

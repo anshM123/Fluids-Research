@@ -28,7 +28,12 @@ for f in sys.argv[4:]:
 
     def count(mu):
         v, _ = St.spectrum(mu, k=KEIG)
-        return (int(np.sum(v[np.abs(v.imag) < 1e-8].real > 1)), int(np.sum(np.abs(v[np.abs(v.imag) >= 1e-8]) > 1)),
+        # parity from the sign of det(I − T_μ) ≈ Re Π(1 − ν) over the computed set (complete while |ν_k| < 1): robust
+        # where two real ν > 1 collide into a nearly real complex pair, which the |Im ν| test can split between the
+        # "real" and "complex" counts
+        par = 0 if np.real(np.prod(1 - v)) > 0 else 1
+        nre = int(np.sum(v[np.abs(v.imag) < 1e-8].real > 1))
+        return (2 * (nre // 2) + par if (nre % 2) != par else nre, int(np.sum(np.abs(v[np.abs(v.imag) >= 1e-8]) > 1)),
                 float(np.abs(v).min()))       # the last entry must stay < 1 for the parity count to be complete
 
     grid = np.arange(nu_max, NU_MIN - 1e-9, -step)
