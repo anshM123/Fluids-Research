@@ -1,8 +1,9 @@
 # ACTIVE PORTFOLIO & COMPUTE ALLOCATION  (v2, 2026-09-28, final state; v1 after literature death audit A–G)
 
 **Update (P03, 2D Boussinesq ladder):** new Tier-A program (folder `programs/P03_boussinesq_ladder`; the earlier
-queued "P03 Couette threshold" is renamed P16). Result: 7 smooth profiles on one branch and a WKB-quantisation
-theory of the infinite ladder (dossier/P03_DOSSIER.md; RLOG R023–R026).
+queued "P03 Couette threshold" is renamed P16). Result: 8 regularity resonances λ₀…λ₇ on one branch, reproduced
+by an independent solver. The instability index is n for all eight. A formal phase-quantization mechanism gives
+evidence for an infinite ladder; no proof is claimed (dossier/P03_DOSSIER.md; RLOG R023–R028).
 
 **Final status:** P02 → VERIFIED main result (dossier/DOSSIER.md): the CCF self-similar branch carries exactly three smooth
 profiles (λ₀, λ₁, λ₂) and terminates at a square-root cusp (λ* = 0.4535845, p* = 2.005772) approached with

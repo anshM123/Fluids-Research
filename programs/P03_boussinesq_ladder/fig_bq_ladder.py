@@ -80,7 +80,7 @@ zc_H = crossings(Hall)
 d.plot(np.arange(len(zc_H)), zc_H, 's-', color='tab:green', ms=4, label='Hou–Luo (this work)')
 nn = np.arange(0, 12)
 d.plot(nn, 1.0863 + 1.4187 * nn, 'k:', lw=0.8, label='two-point law (Wang et al.)')
-d.set_xlabel('n (continuation order = number of unstable modes)'); d.set_ylabel('1/(λ_n − 1)'); d.legend(fontsize=8, loc='upper left')
+d.set_xlabel('n (continuation order; in 2D = number of unstable modes, n ≤ 7)'); d.set_ylabel('1/(λ_n − 1)'); d.legend(fontsize=8, loc='upper left')
 d.set_title('(d) the ladder: 1/(λ_n − 1) vs n;  inset: WKB phase gained per resonance / π', fontsize=9)
 ins = d.inset_axes([0.58, 0.1, 0.38, 0.35])
 dphi_B = np.array([2.743, 2.981, 3.030, 3.070, 3.071, 3.115, 3.121]) / np.pi

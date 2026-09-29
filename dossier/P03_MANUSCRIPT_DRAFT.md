@@ -16,8 +16,9 @@ equals 2 exactly at a smooth profile.
 - Continuation along the branch with a classical solver locates eight such regularity resonances, from
   λ₀ = 1.9205593 to λ₇ = 1.0883384. Four of them lie beyond those previously reported.
 - An independent global Newton solver reproduces all eight resonances to ≤ 1e-5 (≤ 6e-7 for n = 1–5).
-- Two independent linear-stability methods find n unstable modes for the n-th profile, as reported for the first
-  four.
+- Linear stability finds n unstable modes for the n-th profile for all eight, which extends the pattern reported for
+  the first four.
+- A second, independent method reproduces all 21 unstable eigenvalues of λ₁–λ₆ to about 1e-5.
 
 **Mechanism.**
 - As λ → 1⁺ the profiles develop a stalled boundary layer next to a front that tends to a square-root cusp.
@@ -81,7 +82,6 @@ whenever Ω > 0.
 
 **Numerical verification.**
 - Phase gain per resonance 2.98, 3.03, 3.07, 3.07, 3.115, 3.12 (2D) and 3.02–3.09 (Hou–Luo).
-- δ_n converges.
 - The linear law Re Φ = Cz + Φ₀ holds to ±0.024 over n = 4–7 for every front cut-off.
 - Integrated through the front, Re Φ(λ_n) − nπ is constant to ±0.03.
 - The directly measured spacings increase monotonically, 1.4646 → 1.4758, and bound π/C from below.
@@ -89,15 +89,16 @@ whenever Ω > 0.
   give 1.478–1.493. Hence π/C = 1.48 ± 0.01.
 - 3/2 (C = 2π/3) is not derived. It would require a slow non-analytic approach and is not supported by the fits.
 
-**Interpretation (not a derivation).** The n-th resonance carries n half-wavelengths of the layer oscillation.
-Its instability index is n.
+**Heuristic (not a derivation).** The n-th resonance carries n half-wavelengths of the layer oscillation, and its
+instability index is n. No link between the two is derived here. The lower unstable eigenvalues scale with
+ε = (λ_n−1)/2 and form an almost equally spaced sequence, μ_k/ε ≈ 1.6, 3.8, 6.05, 8.4, …
 
 ## 5. Finite versus infinite ladders
 - **CCF (P02).** The sonic depth vanishes at λ* = 0.4535843. The branch ends in a square-root cusp with a
   log-periodic approach and carries three profiles. This is consistent with the unsuccessful search for a third
   profile in λ ∈ [0.455, 0.4713] (Wang, Léger, Lai, Buckmaster, arXiv:2511.22819).
 - **Boussinesq and Hou–Luo.** The cusp is approached only as λ → 1, and the stalled layer in front of it supports
-  the quantized oscillation, so the ladder continues.
+  the quantized oscillation. The evidence therefore points to an unbounded ladder.
 
 ## 6. Methods and verification (SI)
 - **Solver details and pitfalls.** FFT/Gibbs contamination of Newton directions; roundoff-limited Jacobian-vector

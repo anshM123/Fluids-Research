@@ -46,7 +46,8 @@ stagnation point. The smooth profiles are the regularity resonances m(λ) = 2.
    - The smoothness defect is m − 2 ≈ |K| e^{−Im Φ} cos(Re Φ + arg K), with Φ = ε⁻¹∫κ ds, so the resonances
      satisfy Re Φ(λ_n) = nπ + δ + o(1).
    - Computed phase gain per resonance: 2.98, 3.03, 3.07, 3.07, 3.115, 3.12, tending to π.
-   - δ_n = 2.27 → 1.81 (n = 1…7), converging with steps that decay like z⁻².
+   - Integrated through the front (cut at D/ε = 5–8), δ_n = Re Φ(λ_n) − nπ is constant to ±0.03 for n = 4–7. With
+     the cut at D/ε = 3 it still drifts: 2.27 → 1.81 for n = 1…7.
 6. **[F, as far as the derivation supports] 1/(λ_n − 1) = a n + o(n), with a = π/C.**
    - C = 2 Re ∫κ₀ ds > 0. Positivity is exact for the Hou–Luo local root; in 2D it is checked pointwise.
    - The remainder is O(1) only under a uniformity hypothesis (U) on the stalled layer, which fails near the front
@@ -57,8 +58,8 @@ stagnation point. The smooth profiles are the regularity resonances m(λ) = 2.
      - Measured spacings: 1.4646, 1.4699, 1.4728, 1.4743, 1.4758 (monotone).
    - 3/2 is not derived and not supported by these fits. It could be reached only by a slow non-analytic approach.
 7. **[N + closed-form local root] Hou–Luo shows the same mechanism.**
-   - 8 reliable resonances; phase gain per resonance 3.02 → 3.09 (→ π).
-   - Spacings 1.2583 → 1.2652 against the WKB prediction π/(2 Re a₀) ≈ 1.27.
+   - 11 resonances are resolved above the noise (z ≤ 13.56). The phase gain per resonance is 3.02 → 3.09 (→ π).
+   - Spacings 1.2583 → 1.2652 against the WKB prediction π/(2 Re a₀) ≈ 1.267.
    - The local root has the closed form κ = (−1 + √(1+4iΩ))/(2iD̂). Re κ > 0 for Ω > 0.
 8. **[N, P02] CCF is the finite contrast.**
    - Its branch reaches the square-root cusp at finite λ* = 0.4535843 and ends after three smooth profiles.
@@ -170,15 +171,15 @@ almost equally spaced ladder. The largest eigenvalue approaches ≈ 0.75.
   - Integrated through the front, the quantization Re Φ(λ_n) = nπ + δ holds with δ constant to ±0.03.
   - Direct fits of the resonance positions give π/C = 1.476–1.479, so π/C = 1.48 ± 0.01.
   - The measured local slopes π/Δz_n decrease monotonically from 2.145 to 2.129, which bounds C from above.
-  - Cut-off sensitivity: ⟨wkb_sens⟩.
 
 ## 4. Limitations and open points
 - No proof; the WKB derivation is formal.
 - Hypothesis (U) fails near the front, where the dip closes like ε^{0.18}. The o(1) error term in Φ is therefore
   not established; only o(1/(λ−1)) is.
 - The value of C is known only to about ±1 % (π/C = 1.48 ± 0.01). 3/2 is not derived and is disfavoured by the fits.
-- The deepest resonances have |m − 2| ~ 1e-6 (λ₆) and 1e-7 (λ₇). Their existence rests on sign changes resolved
-  by both solvers; their location is hs-sensitive (Table 1).
+- The deepest resonances have |m − 2| ~ 1e-6 (λ₆) and 1e-7 (λ₇) nearby. Their existence rests on two things: sign
+  changes of m − 2 in the marching solver, and direct convergence of the global solver to a smooth profile at the
+  same λ. Their location is hs-sensitive (Table 1).
 - **Stability results hold within a smooth-perturbation class.** The perturbation must be regular at the
   stagnation point.
   - Both methods truncate at the origin (s_start = −20 or s_min = −12/−20). This creates truncation-dependent
