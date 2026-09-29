@@ -155,10 +155,11 @@ level: s_min −8 → −12 moves λ₁ from −3.2e-6 to −1.1e-7. Both solver
 - λ₇'s lowest eigenvalue is at 0.0699 for both s_start = −20 and −30, so it is genuine.
 
 **Complex eigenvalues.**
-- An argument-principle count for λ₁ on [0.06, 1.5] × [−1.5, 1.5] returns 1.997 zeros: exactly μ = 1 and 0.374.
-- Method 2 found no s_min-robust complex eigenvalue with Re μ > 0 for λ₁–λ₆. The one candidate, 0.610 ± 1.104i for
-  λ₂, is an inflow-boundary mode whose eigenvector is concentrated at s_min.
-- ⟨Contours for λ₂–λ₅ running.⟩
+- Argument-principle counts of det(I − T_μ) on [0.06, 1.5] × [−1.5, 1.5] return exactly the real eigenvalues plus
+  the trivial one: 1.997 zeros for λ₁ and 3.000 for λ₂. ⟨λ₃–λ₅ running.⟩
+- Method 2 found no complex eigenvalue with Re μ > 0 that survives a change of shift or truncation. Its one
+  candidate, 0.610 ± 1.104i for λ₂, is an inflow-boundary mode whose eigenvector is concentrated at s_min. It is
+  absent from the λ₂ contour count.
 
 **Observation.** For fixed k, the lower eigenvalues scale with ε = (λ_n−1)/2: μ_k/ε → 1.6, 3.8, 6.05, 8.4, …, an
 almost equally spaced ladder. The largest eigenvalue approaches ≈ 0.75.

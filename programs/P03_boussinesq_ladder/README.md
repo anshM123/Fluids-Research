@@ -156,8 +156,12 @@ near μ ≈ 0.66/|s_start|:
 | 6 | 6 | (0.70, 0.75), (0.50, 0.55), (0.40, 0.45), (0.30, 0.35), (0.19, 0.20), (0.08, 0.09) | 0.73139, 0.54481, 0.42577, 0.30749, 0.19415, 0.08154 | |
 | 7 | 7 | (0.70, 0.75), (0.55, 0.60), (0.45, 0.50), (0.35, 0.40), (0.25, 0.30), (0.16, 0.17), (0.065, 0.070) | 0.74632, 0.56676, 0.46713, 0.36192, 0.26371, 0.16678, ⟨lowest: s_min −20⟩ | 0.0699 (s_start −20 and −30) |
 
-**Complex modes.** The argument-principle count for λ₁ returns 1.997 zeros in [0.06, 1.5] × [−1.5, 1.5], i.e. μ = 1
-and μ = 0.374, so there are no complex unstable modes there. ⟨λ₂–λ₅ running⟩.
+**Complex modes.** Argument-principle counts in [0.06, 1.5] × [−1.5, 1.5] match the real count plus the trivial
+mode, so no complex unstable eigenvalues were found in the box:
+- λ₁: 1.997 zeros (μ = 1 and 0.374).
+- λ₂: 3.000 zeros (μ = 1, 0.554, 0.220). This also rules out the method-2 candidate 0.610 ± 1.104i, which is an
+  inflow-boundary artifact.
+- ⟨λ₃–λ₅ running⟩.
 
 **Observation (not derived).** The lower unstable eigenvalues scale with ε = (λ_n−1)/2 and are nearly equally
 spaced. For n = 6, μ_k/ε = 1.61, 3.82, 6.05, 8.38, 10.73, with spacing ≈ 2.2–2.3; the largest approaches ≈ 0.75.
