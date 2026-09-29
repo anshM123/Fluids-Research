@@ -283,3 +283,27 @@ Costs are wall-clock on the 4-core container (CPU-h = cores × hours).
   unresolved phase step at the left edge near 0.06 + 0.58i, where truncation artifacts come close. The
   continuation at hs = 0.0125 (scan F) resolves the lobe between λ₄ and λ₅ (+1.0e-5) and the next lobe (−1.2e-6)
   down to z = 9.0 (Fig. 1a).
+
+### R029 — P03: second review ("push to Nature")
+**Right-half-plane counts** (`stab_contour2.py`, k = 16):
+- 2D λ₅ 5.952, λ₆ 6.942, λ₇ 7.921, i.e. n + 1 with the trivial mode. No oscillatory instabilities.
+- Domain and grid variants (B5, B6, C6) are running.
+
+**Hou–Luo stability** (new `hl_stability.py`, validated ν(1) = 1.000000; crossings `hl_cross.py`, N = 8192/32768).
+- Index exactly n for n = 0…10 (`hl_contour.py`). η₀ = −40 variants agree.
+- Real for n ≤ 7. Complex pairs: 0.587182 ± 0.022206i (n = 8), 0.606624 ± 0.056719i (n = 9), and
+  0.623297 ± 0.083614i and 0.463219 ± 0.020897i (n = 10).
+- Parity-flip counting on the real axis (`hl_stab_scan.py`) and complex secant search (`hl_find_complex.py`).
+
+**Instability ladder** (`ladder_fit.py`, INSTABILITY_LADDER.md, `fig_instability_ladder.png`).
+- μ_{n,k}/(λ_n − 1) → k + c. The spacing is (λ_n − 1)(1.00 ± 0.03); c ≈ 0.72 (2D), 0.66 (Hou–Luo).
+- λ₇'s lowest eigenvalue refined: 0.069854 (s_start −30).
+- Eigenmodes are localized at the dip/front (Hou–Luo n = 8; 2D λ₄: θ' peaks at s = −0.55, ω' at −0.42).
+- Exact identity: L_μ(Θ̄φ) = Θ̄ L_{μ+λ−1}φ.
+
+**Hou–Luo deep asymptotics** (`hl_dip_scaling.py`, down to ε = 0.012).
+- Dip depth ∝ ε^{0.31}, width ∝ ε^{0.34}.
+- Re εΦ_cut converges: a + bε^{2/3} fits best, a₀ = 1.22–1.25. So Φ = C/(λ−1) + O((λ−1)^{−1/3}).
+
+**Documents.** The manuscript is rewritten ("Quantization and accumulation …", with the hierarchy table and the
+evidence chain), and the response to the second review is written.

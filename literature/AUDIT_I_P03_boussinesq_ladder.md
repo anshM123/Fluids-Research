@@ -24,3 +24,14 @@ profiles", and Hou group papers.
 | C7. Instability index n of the n-th profile for all eight profiles, from the march-based eigen-condition with argument-principle checks; eigenvalue values confirmed by an independent global shift-invert eigen-solver); 21 unstable eigenvalues agree to 1e-5. | Wang et al. 2509.14185 report the n-unstable-modes pattern for their profiles (n ≤ 3). | **Extends** their observation to n = 4–7. The two classical stability methods are new for this problem. |
 | C8. Independent reproduction of λ₀…λ₇ by a second solver sharing no numerical ingredient, to ≤ 1e-5. | — | Verification (no novelty claim). |
 | C9. The lower unstable eigenvalues scale with ε = (λ_n−1)/2 (μ_k/ε → 1.6, 3.8, 6.05, …). | — | **Observation**, not derived. Check for related eigenvalue asymptotics in the literature before claiming. |
+
+**Addendum (second review, September 2026 check reported by the reviewer; to be re-verified when arXiv is
+reachable).**
+- The Wang et al. follow-up (arXiv:2511.22819) improved accuracy and found an additional IPM unstable solution.
+  It did not extend the Boussinesq ladder to λ₅–λ₇, and it gives no quantization or front mechanism for the
+  Boussinesq law.
+- Chen–Huang–Li (2026) study singular-profile, two-stage Boussinesq/Hou–Luo blow-ups, a different class that does
+  not preempt the smooth unstable ladder.
+- The stable Boussinesq profile has rigorous computer-assisted support. Existence of the unstable members is open.
+- Verdict unchanged: **survives**. New claims C10 (Hou–Luo instability index n for 11 rungs, complex pairs from
+  n = 8) and C11 (the arithmetic instability ladder, spacing λ_n − 1) found no prior art in this check.

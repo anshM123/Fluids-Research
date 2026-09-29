@@ -94,3 +94,62 @@ The earlier "≈ 1.50" came from a single front cut-off (the cut-off study is in
 - **The link between the rung number and the instability index.** It is observed, not derived. The ε-scaling of
   the lower eigenvalues suggests a WKB theory for the unstable spectrum too.
 - **Literature re-check.** Re-check against Wang et al.'s tabulated values once arXiv is reachable.
+
+---------------------------------------------------------------------------------------------------------
+
+# Second review ("push this to Nature"): point-by-point
+
+**1. Tighten "exactly n unstable modes".**
+- The text now says: "the n-th computed profile has n resolved real unstable modes (0 ≤ n ≤ 7)".
+- Complete right-half-plane counts now exist for n = 5, 6, 7 (`stab_contour2.py`, k = 16, adaptive):
+  5.952, 6.942, 7.921 zeros, i.e. n + 1 including the trivial mode. No oscillatory unstable spectrum was found.
+- Domain variants (origin truncation −30, moved contour) and a grid variant (hs = 0.0125) for n = 5, 6 are
+  ⟨running / see INSTABILITY_LADDER.md⟩.
+- A control with 11 rungs of the Hou–Luo model (`hl_stability.py`) gives exactly n unstable eigenvalues for
+  n = 0…10, unchanged under a domain change. There, complex pairs appear from n = 8 while the total stays n. This
+  is exactly why "real" and "exactly n" must be claimed separately.
+
+**2. The word "infinite".** Every document now carries the hierarchy table:
+| level | statement |
+|---|---|
+| Numerically established | 8 rungs |
+| Strongly supported | the singular branch and regularity selection |
+| Asymptotically predicted | unbounded phase and an infinite ladder |
+| Not proved | infinitely many smooth profiles; C > 0 in 2D |
+
+The abstract says explicitly that the infinite sequence is an asymptotic prediction. New Hou–Luo data down to
+λ − 1 = 0.012 support the leading-order form: the phase coefficient converges, with a non-analytic correction
+∝ (λ−1)^{2/3}, so Φ = C/(λ−1) + O((λ−1)^{−1/3}) there.
+
+**3. Independent solver front and center.** It is now §2 of the manuscript, with both solvers side by side in
+Table 1.
+
+**4. Title, abstract, evidence chain.** Adopted: "Quantization and accumulation of unstable self-similar blow-up
+profiles in the 2D Boussinesq equations". The abstract leads with the discovery, then the redundancy, then the
+mechanism.
+
+**5. The μ/ε limiting spectrum** (priority 2; INSTABILITY_LADDER.md, `fig_instability_ladder.png`).
+- In both models the lower unstable eigenvalues form an arithmetic ladder μ_{n,k} ≈ (λ_n − 1)(k + c). The spacing
+  extrapolates to (λ_n − 1)(1.00 ± 0.03); the offset is c ≈ 0.72 (2D) and 0.66 (Hou–Luo). The 3/4 guess from 2D
+  alone is therefore not universal.
+- The eigenmodes are localized at the dip/front of the stalled layer. That is the same place that produces the
+  non-analytic corrections of the profile-ladder phase.
+- An exact identity explains the spacing at the level of the transport operator: L_μ(Θ̄φ) = Θ̄ L_{μ+λ−1}φ.
+- Why the index is n is not derived. So "one singular limiting operator generates both ladders" is supported
+  (common location; exact ladder symmetry of the common transport operator) but not proved.
+
+**6. The front/dip inner problem** (priority 3).
+- Measured in Hou–Luo to ε = 0.012: depth ∝ ε^{0.31}, width ∝ ε^{0.34}, and the dip-to-front distance ∝ ε^{1.23}.
+- The 2D exponents measured at ε ≥ 0.044 are pre-asymptotic.
+- An analytic inner solution is not yet available; the asymptotic 2D spacing stays a range, 1.476–1.51.
+
+**7. Validated-numerics certificate** (priority 4). Not attempted. It is listed as the natural next project: the
+global solver's exact sparse Jacobian and polynomial (quadratic) nonlinearity make a Newton–Kantorovich
+certificate for the discretized problem straightforward. A certificate for the PDE needs rigorous
+discretization-error bounds.
+
+**Literature.** The reviewer's check through September 2026 has been added to AUDIT_I:
+- the follow-up arXiv:2511.22819 (improved accuracy and an additional IPM unstable solution) has no Boussinesq
+  rungs beyond λ₃ or λ₄;
+- Chen–Huang–Li (2026) treats a different class of singular two-stage profiles;
+- the stable profile has computer-assisted backing, while the unstable family is numerical only.
