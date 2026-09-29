@@ -331,8 +331,9 @@ branch scans E and F, extended to η₀ = −60/−100).
 - Predictions and their checks:
   - unit spacing: extrapolated 0.996 (HL) and 1.003 (2D);
   - phase locking: confirmed;
-  - index = number of half-turns: n;
-  - upper edge ≈ C/π: HL 0.79 against 0.78–0.81; 2D 0.67, i.e. 0.74 with the finite-n spacing, against 0.746.
+  - index = number of half-turns: n.
+- Correction to a first reading: the highest eigenvalue is not at C/π. The uniform ladder ends near C/π, and the
+  top member sits 0.06–0.10 above it.
 
 **Files.** INSTABILITY_LADDER.md §6–8, `fig_spectral_flow.png`, `hl_deep_modes.py`, `hl_inner_collapse.py`. In the
 ζ = ln|Θ̄| coordinate the dip is the foot of a sharp front: its width in ζ scales like ε^{0.94}, and D̂_min like

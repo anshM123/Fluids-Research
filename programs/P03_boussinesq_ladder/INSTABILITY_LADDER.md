@@ -17,9 +17,10 @@ The counts include the trivial time-translation zero μ = 1, so the expected val
 | 5 | A: 0.025, −20, [0.06,1.5]×[−1.5,1.5] | 5.952 | 6 |
 | 5 | B: 0.025, −30, [0.075,1.5]×[−1.5,1.5] | 5.954 | 6 |
 | 6 | A: 0.025, −20, [0.06,1.5]×[−1.5,1.5] | 6.942 | 7 |
-| 6 | B: 0.025, −30, [0.07,1.5]×[−1.5,1.5] | ⟨running⟩ | 7 |
-| 6 | C: 0.0125, −20, [0.065,1.2]×[−0.8,0.8] | ⟨running⟩ | 7 |
+| 6 | B: 0.025, −30, [0.07,1.5]×[−1.5,1.5] | 6.945 | 7 |
+| 6 | C: 0.0125, −20, [0.065,1.2]×[−0.8,0.8] | 7.003 | 7 |
 | 7 | A: 0.025, −30, [0.05,1.5]×[−1.5,1.5] | 7.921 | 8 |
+| 7 | C: 0.0125, −30, [0.055,1.2]×[−0.8,0.8] | ⟨running⟩ | 8 |
 
 Deviations from an integer (≤ 0.08) come from eigenvalue swaps at the truncation of the top-k set. At the
 unresolved steps the smallest |1 − ν| is ≥ 0.12, so no zero lies near the contour.
@@ -160,10 +161,11 @@ Re Φ(λ) is the same phase that quantizes the profiles, Re Φ(λ_n) = nπ + δ.
 | the offset follows the profile phase between rungs | §6: within 0.03 at 10 points |
 | the offset at the rungs is a model constant c = frac((δ + θ₀)/π − ½) | 0.65–0.67 (HL, n = 7–10); 0.70–0.72 (2D, n = 3–7) |
 | one unstable eigenvalue per half-turn of the phase, so index(n) = n + const, with const = 0 from any one rung | counts n for n = 0–7 (2D) and 0–10 (HL) |
-| the unstable spectrum is a ladder of about n members, reaching μ* ≈ C/π = 1/Δz_∞ | HL: C/π ≈ 0.79; the top eigenvalue is 0.78–0.81 for n = 7–10. 2D: C/π ≈ 0.66–0.68, i.e. 0.73–0.74 with the local spacing 1.10 at n = 7; observed 0.746 |
+| the uniform ladder of n members ends near s·n(λ_n − 1) → C/π = 1/Δz_∞ | its computed top is 0.73–0.74 (HL, n = 8–10) and 0.65 (2D, n = 7), against C/π ≈ 0.79 and 0.66–0.68. The highest eigenvalue lies a further 0.06–0.10 above it (0.79–0.81 HL, 0.75 2D) and is not described by the leading-order condition |
 
 **The upper end.**
-- The top member sits (0.6–1.0)(λ − 1) above the uniform-ladder position in both models.
+- The top member sits 0.06–0.10 above its uniform-ladder position in both models, and this displacement does not
+  shrink over the computed rungs.
 - In Hou–Luo, adjacent upper members collide into the weakly complex pairs of §2. Each pair has the mean of the two
   ladder positions: 0.587 against 0.5865 at n = 8, and 0.623 against 0.631 at n = 10.
 
@@ -180,8 +182,8 @@ Re Φ(λ) is the same phase that quantizes the profiles, Re Φ(λ_n) = nπ + δ.
   - the ladder spacing in §3 and the localization in §4;
   - the phase-locked spectral flow in §6.
 - **Exact:** the identity in §5, and κ(μ) = κ(0) + iμ/D̂ for the Hou–Luo local root.
-- **Formal:** the eigen-condition of §7 and its consequences: unit spacing, phase locking, index = number of
-  half-turns, upper edge ≈ C/π.
+- **Formal:** the eigen-condition of §7 and its consequences: unit spacing, phase locking, and index = number of
+  half-turns.
 - **Open:**
   - the offsets c;
   - the entry mechanism at μ ≈ 0;

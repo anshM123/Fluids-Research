@@ -47,8 +47,8 @@ stagnation point. The smooth profiles are the regularity resonances m(λ) = 2.
      extends what Wang et al. found for n ≤ 3.
    - Right-half-plane counts (argument principle, trivial zero included) give n + 1 zeros for every n ≤ 7:
      1.997, 3.000, 4.000, 5.000, 5.952, 6.942, 7.921. So the index is exactly n in the box, with all modes real.
-     Domain variants agree: 5.954 (n = 5) and 6.945 (n = 6) with origin truncation −30 and a moved contour. A grid
-     variant for n = 6 (hs = 0.0125) is running.
+     Domain variants agree: 5.954 (n = 5) and 6.945 (n = 6) with origin truncation −30 and a moved contour. The grid
+     variant for n = 6 (hs = 0.0125) gives 7.003; the grid variant for n = 7 is running.
    - In Hou–Luo (11 rungs) the count is exactly n for n ≤ 10, with domain variants agreeing. All modes are real for
      n ≤ 7; from n = 8 on, weakly oscillatory complex pairs appear at the top of the unstable spectrum
      (0.587 ± 0.022i at n = 8). "Real" is therefore not guaranteed at higher n, while the total index stays n.
@@ -113,8 +113,8 @@ stagnation point. The smooth profiles are the regularity resonances m(λ) = 2.
      - unit spacing (observed: 0.996 for Hou–Luo and 1.003 for 2D, extrapolated);
      - the phase-locked flow;
      - index = number of half-turns of Φ, i.e. n at rung n;
-     - an upper edge μ* ≈ C/π = 1/Δz_∞ (≈ 0.79 Hou–Luo, ≈ 0.67 2D), consistent with the observed top eigenvalues
-       0.78–0.81 and 0.746 at finite n.
+     - a uniform ladder ending near C/π = 1/Δz_∞. The highest eigenvalue lies 0.06–0.10 above the uniform ladder,
+       which the condition does not describe.
    - **Not derived.** The offsets θ₀ and c; how the new mode enters near μ = 0, where the dilation mode (a Jordan block
      with ∂_λP) sits; the 2D stagnation-point connection problem (the Mellin phase is model-independent). A 2D
      between-rung test is running.

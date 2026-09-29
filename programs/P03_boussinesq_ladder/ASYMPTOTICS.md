@@ -117,7 +117,7 @@ around the formal profile. In region II such solutions have WKB form.
 So κ = κ₀(s) + εκ₁(s) + O(ε²) wherever the base data have a regular expansion and κ is bounded away from 0.
 
 **Hou–Luo analogue** (1D, Mellin symbol ~ −1/k):
-- The eigenproblem reduces to i D̂ κ² + κ − Ω = 0.
+- The eigenproblem reduces to i D̂²κ² + D̂κ − Ω = 0, i.e. v(1 + v) = iΩ with v = iD̂κ.
 - The root is κ_HL = (−1 + √(1+4iΩ))/(2iD̂).
 
 ### 3.4 Phase and amplitude
@@ -307,3 +307,79 @@ term dominates, and the correction is non-analytic with exponent 1/3 (β = 2/3 i
 - Nothing in the leading-order problem suggests a closed form for a₀.
 - Recommended wording: "λ_n = 1 + C/(nπ + c + o(1)); the asymptotic spacing π/C lies between 1.476 and ≈ 1.51, and
   3/2 is a candidate consistent with the non-analytic extrapolation but not derived."
+
+## 7. The unstable spectrum: one eigen-condition from the same phase [F; checks N]
+The numerical facts are in INSTABILITY_LADDER.md §3 and §6:
+- the lower unstable eigenvalues form a ladder μ ≈ (λ − 1)(k + c);
+- along the continuous branch the ladder moves up by one spacing per rung interval;
+- a new member enters at the bottom once per interval.
+
+What follows is a formal account in the language of §3.
+
+### 7.1 The WKB root does not depend on the growth rate
+With perturbations ∝ e^{μτ} the transport symbols of §3.3 become μ + iD̂κ (temperature) and 1 + μ + iD̂κ
+(vorticity). All other dropped terms stay O(ε).
+- **Hou–Luo.** The local relation becomes (μ + iD̂κ)(1 + μ + iD̂κ) = iΩ. It depends on κ and μ only through
+  v = μ + iD̂κ. Hence
+
+      κ(μ) = κ(0) + iμ/D̂   for every μ,
+
+  so Re κ, and with it Re Φ = ε⁻¹ Re∫κ ds, is independent of μ.
+- **2D.** The local eigenproblem of §3.3 with μ added was solved by shooting (sample wall points x = 0.1–0.5,
+  with and without Θ_y). The result is κ(μ) − κ(0) = iμ/D̂ to 1e-10 for μ = 0.02–0.3.
+- **Meaning.** The imaginary shift is the WKB form of the exact identity L_μ(Θ̄φ) = Θ̄ L_{μ+λ−1}φ:
+  exp(−μ∫ds/(εD̂)) = |Θ̄|^{−μ/(λ−1)}. The growth rate changes only the real amplitude of the waves, not their phase.
+
+### 7.2 The stagnation point supplies a phase linear in μ
+**Region I (x ≲ ε), Hou–Luo.**
+- Use X = x/ε, ν = μ/ε, and Θ̄ = x² + …; for m = 2, ε = (λ−1)/2.
+- To leading order ω' = θ'_X/ε and u' = H(θ') + (outer strain), with H the Hilbert transform in X.
+- The temperature equation becomes
+
+      (ν − 2)θ' + Xθ'_X = −2X H(θ') + (strain forcing).
+
+**Fourier solution** (k conjugate to X, H ↔ −i sgn k).
+- For k ≠ 0 the homogeneous equation gives (ν − 3)θ̂ = (k − 2 sgn k)θ̂_k. So θ̂ ∝ |k₀ − |k||^{ν−3}, with k₀ = 2 the
+  wavenumber of the WKB wave at the stagnation point (κ ≈ Γ ∝ x in §3.4).
+- Regularity at the stagnation point forbids a power-law tail at large |k|. The regular solution is therefore
+  supported on |k| < k₀ (plus terms at k = 0 from the strain).
+- Its endpoint singularity at k → k₀⁻ gives, at large X,
+
+      θ' ∼ A Γ(ν − 2) X^{2−ν} cos(k₀X − π(ν − 2)/2),
+
+  a standing wave with phase −π(ν − 2)/2 = −π(μ/(λ−1) − 1).
+- This is the phase of the Mellin transform of the wave, ∫X^{s−1}e^{ik₀X}dX = Γ(s)(−ik₀)^{−s}. It depends only on
+  the transport near the stagnation point being the Euler operator (ν − 2) + X∂_X. The same phase is therefore
+  expected in 2D, where the wall transport near the stagnation point has the same form (the 2D region-I problem
+  itself is not solved here).
+
+### 7.3 Eigen-condition
+**The structure of an eigenfunction.**
+- It consists of a smooth part: θ' ≈ Θ̄·const in the layer, and localized at the dip/front (INSTABILITY_LADDER.md §4).
+- On top of it sits a WKB standing wave, generated at the front and decaying toward the stagnation point.
+- The smooth part is regular at x = 0. The wave's continuation through region I must be the regular solution of §7.2.
+
+**Matching.** Equating the phase of the wave arriving from the front with the phase of that regular solution gives
+
+    Re Φ(λ) − π μ/(λ−1) + θ₀ = kπ + o(1),   k ∈ ℤ,
+
+where θ₀ collects the O(1) connection phases at the front and at the stagnation point.
+- Re Φ(λ) is the phase that quantizes the profiles (§3.4, Re Φ(λ_n) = nπ + δ).
+- The sign of the μ-term is fixed by §7.2. It predicts that the ladder moves up as λ decreases, which is what is
+  observed.
+
+### 7.4 Consequences and checks
+| consequence | check |
+|---|---|
+| spacing of the lower eigenvalues → λ − 1 | extrapolated spacing 0.996 (HL), 1.003 (2D) (`fig_spectral_flow.png` d) |
+| the offset moves with Re Φ: +1 spacing per rung interval, linear in z between rungs | HL: 10 branch points, within 0.03 (INSTABILITY_LADDER.md §6) |
+| one new unstable eigenvalue per half-turn of Re Φ, so index(n) = n + const, with const fixed by one rung | counts n for n = 0–7 (2D), 0–10 (HL) |
+| the uniform ladder has about Re Φ/π members and ends near C/π = 1/Δz_∞ | computed uniform-ladder tops 0.73–0.74 (HL, n = 8–10) and 0.65 (2D, n = 7), against C/π ≈ 0.79 and 0.66–0.68. The highest eigenvalue is displaced a further 0.06–0.10 upward, which is outside this leading-order account |
+
+### 7.5 What remains open
+- The constants θ₀ and hence the offsets c: 0.65–0.67 in Hou–Luo and 0.70–0.72 in 2D, in units of the local
+  spacing. They need the front connection and the region-I problem with the strain forcing.
+- The entry of each new eigenvalue near μ = 0. The dilation mode sits there: a Jordan block with the branch derivative
+  ∂_λP, split by the origin truncation. The formula (Γ(ν − 2) has poles at ν̂ = 0, ½, 1) is not uniform there.
+- The upper end, where μ = O(1). There the top member lies 0.06–0.10 above the uniform ladder, and in Hou–Luo
+  adjacent members collide into weakly complex pairs.

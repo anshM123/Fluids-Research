@@ -104,7 +104,7 @@ The earlier "≈ 1.50" came from a single front cut-off (the cut-off study is in
 - Complete right-half-plane counts now exist for n = 5, 6, 7 (`stab_contour2.py`, k = 16, adaptive):
   5.952, 6.942, 7.921 zeros, i.e. n + 1 including the trivial mode. No oscillatory unstable spectrum was found.
 - Domain variants (origin truncation −30, contour moved to x_lo = 0.075/0.07) give 5.954 (n = 5) and 6.945 (n = 6),
-  against 5.952 and 6.942. A grid variant (hs = 0.0125) for n = 6 is ⟨running⟩.
+  against 5.952 and 6.942. The grid variant (hs = 0.0125) for n = 6 gives 7.003. The grid variant for n = 7 is ⟨running⟩.
 - A control with 11 rungs of the Hou–Luo model (`hl_stability.py`) gives exactly n unstable eigenvalues for
   n = 0…10, unchanged under a domain change. There, complex pairs appear from n = 8 while the total stays n. This
   is exactly why "real" and "exactly n" must be claimed separately.
@@ -147,10 +147,10 @@ mechanism.
   Together: Re Φ(λ) − πμ/(λ−1) + θ₀ = (k + ½)π. This predicts:
   - a spacing of exactly λ − 1;
   - the phase-locked flow;
-  - index = number of half-turns of Φ, i.e. n;
-  - an upper edge of the unstable spectrum ≈ C/π = 1/Δz_∞.
+  - index = number of half-turns of Φ, i.e. n.
 
-  All four agree with the data.
+  All three agree with the data. The highest eigenvalue lies 0.06–0.10 above the uniform ladder, which the
+  leading-order condition does not describe.
 - **Your conjecture.** "One singular limiting operator generates both the profile ladder and its instability ladder"
   thus becomes a concrete, tested statement: one WKB phase quantizes both.
 - **Not derived.** The offsets θ₀ and c, the entry of new modes near μ = 0 (where the dilation mode sits), and the 2D

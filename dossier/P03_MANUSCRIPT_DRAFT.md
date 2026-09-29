@@ -84,7 +84,7 @@ the 28th, λ₇'s lowest (0.0699), is confirmed by linearization A with two orig
 - 2D: n + 1 zeros (the trivial time-translation mode included) for every n ≤ 7.
 - Domain variants agree: moving the origin truncation from −20 to −30 and the contour's left edge from 0.06 to
   0.075/0.07 gives 5.954 (n = 5, against 5.952) and 6.945 (n = 6, against 6.942).
-- Grid variant for n = 6 (hs = 0.0125): ⟨running⟩.
+- Grid variant for n = 6 (hs = 0.0125): 7.003. Grid variant for n = 7: ⟨running⟩.
 
 **Hou–Luo, as a control.**
 - Eleven rungs, each with exactly n unstable eigenvalues.
@@ -157,8 +157,10 @@ with the same Re Φ that quantizes the profiles, Re Φ(λ_n) = nπ + δ. It pred
 - a spacing of exactly λ − 1;
 - the phase-locked spectral flow;
 - one new unstable mode per half-turn of the phase, hence index n at rung n (the constant fixed by any one rung);
-- an unstable spectrum reaching μ* ≈ C/π = 1/Δz_∞: about 0.79 for Hou–Luo, where the top eigenvalue is 0.78–0.81 at
-  n = 7–10, and about 0.67 for 2D, which is 0.74 with the local spacing at n = 7 (observed 0.746).
+- a uniform ladder that ends near C/π = 1/Δz_∞.
+
+The highest eigenvalue lies 0.06–0.10 above the uniform ladder, and this displacement is not described by the
+condition.
 
 The offsets c and the entry of new modes near μ = 0, where the dilation mode sits, are not derived.
 
