@@ -12,8 +12,10 @@ stagnation point. The smooth profiles are the regularity resonances m(λ) = 2.
   lemma about oscillatory functions (`programs/P03_boussinesq_ladder/ASYMPTOTICS.md` §2).
 - "Infinite" means: eight computed resonances, plus a formal mechanism whose ingredients are each checked on the
   computed profiles.
-- The asymptotic spacing is not derived analytically. Our estimate is π/C ≈ 1.48, in the range 1.476–1.50. The
-  value 3/2 sits at the upper edge and is not supported by the fits.
+- The asymptotic spacing is not derived analytically.
+  - It lies between 1.476 and ≈ 1.51: 1.478 if the corrections are analytic, 1.49–1.50 with the non-analytic
+    corrections suggested by the scaling of the dip.
+  - 3/2 is a candidate within this range, not a result.
 
 **Status tags.**
 - [N] numerical. Where stated, reproduced by two independent solvers and converged in the discretisation parameters.
@@ -52,13 +54,14 @@ stagnation point. The smooth profiles are the regularity resonances m(λ) = 2.
    - C = 2 Re ∫κ₀ ds > 0. Positivity is exact for the Hou–Luo local root; in 2D it is checked pointwise.
    - The remainder is O(1) only under a uniformity hypothesis (U) on the stalled layer, which fails near the front
      (see §4). Numerically z_n − a n is constant to ±0.02 over n = 3–7.
-   - a = π/C ≈ 1.48, range 1.476–1.50.
-     - Direct fits of the resonance positions with analytic 1/z corrections give 1.478 ± 0.004.
+   - a = π/C lies between 1.476 and ≈ 1.51.
+     - Extrapolations with analytic 1/z phase corrections give 1.478 ± 0.004.
      - The WKB phase slope gives 1.478–1.493, depending on how much of the front is included.
      - Measured spacings: 1.4646, 1.4699, 1.4728, 1.4743, 1.4758 (monotone).
-   - Hypothesis (U) holds with O(ε) corrections for x ≲ 0.4 but fails in the dip region x ≈ 0.45–0.72. So slower,
-     non-analytic corrections cannot be excluded, and the range extends up to 1.50.
-   - 3/2 is not derived and not supported by the fits. It could be reached only by such a slow approach.
+   - Hypothesis (U) holds with O(ε) corrections for x ≲ 0.4 but fails in the dip region x ≈ 0.45–0.72.
+   - The dip scaling (depth ε^{0.18}, width ε^{0.69}, κ ~ D̂^{−3/2}) implies a phase correction ∝ z^{≈0.6}. With it,
+     the extrapolation gives 1.49–1.50.
+   - 3/2 is a candidate consistent with this, not derived. All correction models fit the seven rungs to ≤ 1e-3.
 7. **[N + closed-form local root] Hou–Luo shows the same mechanism.**
    - 11 resonances are resolved above the noise (z ≤ 13.56). The phase gain per resonance is 3.02 → 3.09 (→ π).
    - Spacings 1.2583 → 1.2652 against the WKB prediction π/(2 Re a₀) ≈ 1.267.
@@ -171,16 +174,17 @@ almost equally spaced ladder. The largest eigenvalue approaches ≈ 0.75.
   - A linear fit Re Φ(λ_n) = Cz + Φ₀ over n = 4–7 holds to ≤ 0.024 for every front cut-off. The slope C depends on
     the cut-off: π/C = 1.493 (cut D/ε = 2) … 1.4775 (cut 8).
   - Integrated through the front, the quantization Re Φ(λ_n) = nπ + δ holds with δ constant to ±0.03.
-  - Direct fits of the resonance positions give π/C = 1.478 ± 0.004. Overall π/C ≈ 1.48, range 1.476–1.50.
+  - Direct fits of the resonance positions give π/C = 1.478 (analytic corrections) to 1.49–1.50 (non-analytic, dip
+    scaling). Overall range 1.476 to ≈ 1.51.
   - The measured local slopes π/Δz_n decrease monotonically from 2.145 to 2.129, which bounds C from above.
 
 ## 4. Limitations and open points
 - No proof; the WKB derivation is formal.
 - Hypothesis (U) fails in the dip region x ≈ 0.45–0.72, where the dip closes like ε^{0.18}. It holds, with O(ε)
-  corrections, for x ≲ 0.4 (ASYMPTOTICS.md §5.5). The o(1) error term in Φ is therefore
+  corrections, for x ≲ 0.4 (ASYMPTOTICS.md §5.4). The o(1) error term in Φ is therefore
   not established; only o(1/(λ−1)) is.
-- The value of C is known only to about ±1–2 % (π/C ≈ 1.48, range 1.476–1.50). 3/2 is not derived and is not
-  supported by the fits.
+- The value of C is known only to about ±1–2 %: π/C lies between 1.476 and ≈ 1.51, depending on the unknown
+  correction exponent. 3/2 is a candidate, not derived.
 - The deepest resonances have |m − 2| ~ 1e-6 (λ₆) and 1e-7 (λ₇) nearby. Their existence rests on two things: sign
   changes of m − 2 in the marching solver, and direct convergence of the global solver to a smooth profile at the
   same λ. Their location is hs-sensitive (Table 1).

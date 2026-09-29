@@ -12,8 +12,8 @@ at λ = 1.* Discrete smooth blow-up profiles are regularity-selected points on a
 - **Stalled layer.** As λ → 1 a stalled (quasi-stagnant) boundary layer forms next to a front that tends to a
   square-root cusp.
 - **Phase quantization.** The smoothness condition becomes a phase quantization; the phase gained per resonance
-  tends to π. The asymptotic spacing of 1/(λ_n − 1) is ≈ 1.48 (range 1.476–1.50). It is not derived analytically,
-  and 3/2 is not supported.
+  tends to π. The asymptotic spacing of 1/(λ_n − 1) lies between 1.476 and ≈ 1.51. It is not derived
+  analytically; 3/2 is a candidate.
 - **Status.** No proof is claimed. The mechanism is formal matched asymptotics, and each ingredient is checked
   numerically (programs/P03_boussinesq_ladder/ASYMPTOTICS.md).
 

@@ -25,17 +25,17 @@ Boussinesq equations.*
     Re Φ(λ_n) − nπ = δ + O(0.03) for n = 4–7, with δ ≈ 2.0 (cut 5) or 2.3 (cut 8). Cut at D/ε = 2–3, δ_n still
     drifts by −0.04 per rung.
   - **Linear law.** Re Φ(z) = Cz + Φ₀ + E with |E| ≤ 0.024 on z ∈ [6.9, 11.3] for every cut-off.
-  - **Asymptotic spacing.** π/C ∈ [1.476, 1.50], best estimate 1.48.
-    - Direct fits of the resonance positions with analytic 1/z corrections give 1.478 ± 0.004.
-    - The WKB phase slope gives 1.478–1.493, depending on the front cut-off.
-    - The measured spacings grow monotonically, so the limit is at least 1.4758.
-    - Hypothesis (U) fails in the dip region (§5.5), so slower non-analytic corrections cannot be excluded.
-      This widens the range upward.
+  - **Asymptotic spacing.** π/C lies between 1.476 and about 1.51. Its value depends on the form of the corrections
+    (§5.3, §5.5).
+    - The measured spacings increase monotonically, so 1.4758 (n = 7) is a lower bound.
+    - Analytic 1/z phase corrections extrapolate to 1.478.
+    - The measured scaling of the dip in front of the front suggests a non-analytic phase correction ∝ z^{0.6}.
+      That extrapolates to 1.49–1.50.
+    - All these models fit the seven rungs to ≤ 1e-3; the data cannot tell them apart.
 - **[O] Open.**
   - The exact value of C.
-  - Δz_∞ = 3/2 (C = 2π/3) lies at the upper edge of the range. It is not supported by the analytic-correction
-    fits, would require a slow non-analytic approach, and is **not derived**. Our earlier central value 1.496 used
-    a single front cut-off (§5.2).
+  - Δz_∞ = 3/2 (C = 2π/3) is a candidate. It is consistent with the non-analytic extrapolation suggested by the dip
+    scaling, larger than the analytic-correction extrapolation (1.478), and **not derived**.
   - Uniqueness of the zero in each half period (observed, not shown).
   - A rigorous version of any [F] step.
 
@@ -203,11 +203,25 @@ That moves the b/z value by about ±0.002. A 5e-5 uncertainty would move it by �
   1.5e-3.
 - A power-law extrapolation of the increments (exponent 2.0–2.3) gives a limit of 1.483–1.485.
 
-**Estimate.** π/C ∈ [1.476, 1.50], best estimate 1.48 (analytic-correction fits 1.478 ± 0.004). The lower end is
-the last measured spacing, and spacings increase monotonically. The upper end allows for the non-analytic
-corrections that the failure of (U) in the dip region permits (§5.5).
+**Extrapolation depends on the correction exponent.** Fit the local phase slope π/Δz_n = C + B z^{−β} (interval
+midpoints z = 4.7–10.6):
 
-### 5.5 Where hypothesis (U) holds (`wkb_uniform.py`, `wkb_uniform.out`)
+| β | meaning | π/C (n ≥ 2) | π/C (n ≥ 3) | max residual |
+|---|---|---|---|---|
+| 2 | analytic 1/z phase corrections | 1.4781 | 1.4785 | 4e-4 |
+| 1 | log z phase correction | 1.4850 | 1.4839 | 3e-4 |
+| 0.75 | | 1.4896 | 1.4875 | 4e-4 |
+| 0.5 | phase correction ∝ z^{1/2} | 1.4989 | 1.4949 | 4e-4 |
+| 0.42 | dip scaling, §5.5 | 1.5043 | 1.4991 | 5e-4 |
+| 0.3 | | 1.5180 | 1.5097 | 5e-4 |
+
+Fitting the phase itself, nπ = Cz + a + b z^{1−β}, gives the same: 1.4963–1.4986 for β = 0.42, 1.4834–1.4837 for
+β = 1.
+
+**Estimate.** π/C lies between 1.476 (the monotone lower bound) and about 1.51. The analytic-correction value is
+1.478, and the value suggested by the dip scaling is 1.49–1.50.
+
+### 5.4 Where hypothesis (U) holds (`wkb_uniform.py`, `wkb_uniform.out`)
 The base data D̂(s) and the local root κ(s) are compared at fixed s on the five crossing profiles n = 3–7
 (ε = 0.092 … 0.044), fitting a + bε.
 
@@ -230,7 +244,23 @@ The base data D̂(s) and the local root κ(s) are compared at fixed s on the fiv
 - This is the main open point of the asymptotic analysis. It needs an inner problem for the dip/front region as
   ε → 0, which is not attempted here.
 
-### 5.4 Hou–Luo (sharper test of the same statements)
+### 5.5 The dip: a source of non-analytic corrections (`dip_scaling.py`)
+Measured on the crossing profiles n = 3–7:
+
+| quantity | fit on the four deepest |
+|---|---|
+| distance from the dip minimum to the front | ∝ ε^{1.00} |
+| dip depth D̂_min | ∝ ε^{0.18} |
+| dip half-width | ∝ ε^{0.69} |
+| local root in the dip | ∝ D̂^{−1.56} (the Hou–Luo scaling κ ~ D̂^{−3/2}) |
+
+So the finite-ε dip changes the phase by roughly ε⁻¹·w·κ_dip ~ ε^{−1+0.69−0.27} ≈ z^{0.58}. That is a
+non-analytic correction to Φ = Cz + …, i.e. β ≈ 0.42 in §5.3.
+
+This is a scaling estimate, not a matched inner solution. It shows that analytic extrapolations may underestimate
+π/C.
+
+### 5.6 Hou–Luo (sharper test of the same statements)
 - There are 11 crossings resolved above the noise (z ≤ 13.56).
 - ΔRe Φ per rung is 3.02–3.09, tending to π.
 - The spacings are 1.2583, 1.2612, 1.2637, 1.2652, 1.2638, against the WKB limit π/(2 Re a₀) ≈ 1.267 with
@@ -239,11 +269,12 @@ The base data D̂(s) and the local root κ(s) are compared at fixed s on the fiv
 
 ## 6. The value 3/2 [O]
 - Δz_∞ = 3/2 is equivalent to C = 2π/3 = 2.0944.
-- The estimate π/C ∈ [1.476, 1.50], best 1.48, places 3/2 at the upper edge:
-  - the direct fits with analytic corrections give 1.476–1.479;
-  - only the cut-off-2/3 WKB slopes (1.492–1.493) come close.
-- Reaching 3/2 would need a slow non-analytic approach (spacing ≈ S − b n^{−1/2}). We see no sign of it, and we
-  cannot exclude it with rungs up to n = 7.
+- The data (seven rungs) cannot fix the correction exponent β:
+  - analytic corrections give 1.478;
+  - the non-analytic corrections suggested by the dip scaling (β ≈ 0.4–0.5) give 1.49–1.50, i.e. 3/2 within the
+    uncertainty.
+- Deciding it needs either the inner (dip/front) problem as ε → 0, or several more rungs at higher resolution.
+  The amplitude |m−2| ~ 1e-8 at n = 8 makes the latter expensive but feasible.
 - Nothing in the leading-order problem suggests a closed form for a₀.
-- Recommended wording: "λ_n = 1 + C/(nπ + c + o(1)), with π/C ≈ 1.48 (range 1.476–1.50); the asymptotic spacing
-  is not determined analytically." Do not quote 3/2 as a result.
+- Recommended wording: "λ_n = 1 + C/(nπ + c + o(1)); the asymptotic spacing π/C lies between 1.476 and ≈ 1.51, and
+  3/2 is a candidate consistent with the non-analytic extrapolation but not derived."

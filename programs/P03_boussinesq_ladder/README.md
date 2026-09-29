@@ -56,7 +56,7 @@ Gauss–Legendre march is A-stable.
 | 7 | 1.0883384 | 11.32010 | new; hs 0.0125 (hs 0.025: 1.0890078); amplitude of m − 2 here ≈ 1e-7 |
 
 - Spacings z_{n+1} − z_n: 1.41937, 1.45711, 1.46455, 1.46991, 1.47281, 1.47426, 1.47581, increasing monotonically
-  towards the asymptotic spacing π/C ≈ 1.48, range 1.476–1.50 (ASYMPTOTICS.md §5).
+  towards the asymptotic spacing π/C, which lies between 1.476 and ≈ 1.51 (ASYMPTOTICS.md §5).
 - The hs = 0.025 values of λ₆ and λ₇ were off by 6e-5 and 7e-4 because the front sharpens as λ → 1.
   The hs = 0.0125 values are used from λ₄ on.
 - Extrema of m − 2: +7.41e-2, −6.80e-3, +7.24e-4, −8.34e-5, +1.0e-5, …
@@ -70,9 +70,10 @@ Gauss–Legendre march is A-stable.
   2.98, 3.03, 3.07, 3.07, 3.115, 3.12 between consecutive profiles, tending to π.
 - A fit Re Φ(λ_n) = C z_n + Φ₀ holds to ≤ 0.024 over n = 4–7. The slope depends on the front cut-off:
   π/C = 1.493 (cut D/ε = 2) … 1.4775 (cut 8).
-- Direct fits of the resonance positions give π/C = 1.476–1.479.
-- Estimate: π/C ≈ 1.48, range 1.476–1.50. 3/2 is not supported. This is formal asymptotics plus numerics, not a
-  proof.
+- Extrapolation of the resonance positions depends on the correction exponent:
+  - 1.478 with analytic 1/z phase corrections;
+  - 1.49–1.50 with the non-analytic correction (∝ z^{0.6}) suggested by the scaling of the dip.
+- 3/2 is a candidate, not derived. This is formal asymptotics plus numerics, not a proof.
 
 **Hou–Luo** (`hl_solver.py`, `hl_scan_*.log`, `hl_wkb2.out`): 11 crossings resolved above the noise (z ≤ 13.56), spacings
 1.2583, 1.2612, 1.2637, 1.2652, 1.2638 against the WKB value π/(2 Re a₀) ≈ 1.267.

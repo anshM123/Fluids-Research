@@ -260,3 +260,11 @@ Costs are wall-clock on the 4-core container (CPU-h = cores × hours).
   - They change at O(1) in the dip region x ≈ 0.45–0.72.
   - Non-analytic corrections are therefore possible, and the spacing estimate is stated as π/C ≈ 1.48, range
     1.476–1.50, instead of ±0.01.
+- Second addendum: scaling of the dip (`dip_scaling.py`).
+  - The dip minimum sits a distance ∝ ε from the front. Its depth scales as ε^{0.18} and its width as ε^{0.69}; the
+    local root there scales as κ ~ D̂^{−1.56}.
+  - Together these give a non-analytic phase correction ∝ z^{0.58}.
+  - Extrapolations of the local slopes, π/Δz = C + B z^{−β}, give π/C = 1.478 (β = 2, analytic), 1.484 (β = 1) and
+    1.499–1.504 (β = 0.42). All fit the seven rungs to ≤ 1e-3.
+  - Final statement: π/C lies between 1.476 and ≈ 1.51, and 3/2 is a candidate, not derived. This supersedes
+    "1.48 ± 0.01" above.

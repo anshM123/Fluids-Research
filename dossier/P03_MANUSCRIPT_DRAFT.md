@@ -26,7 +26,8 @@ equals 2 exactly at a smooth profile.
   eigenproblem. The resonances therefore obey a phase-quantization condition Re Φ(λ_n) = nπ + δ + o(1), with
   Φ ∼ C/(λ−1) and C > 0.
 - The computed phase gain per resonance approaches π (3.12 at n = 7). This is evidence for an infinite ladder
-  accumulating at λ = 1, with 1/(λ_n − 1) ≈ (π/C) n and π/C ≈ 1.48 (range 1.476–1.50).
+  accumulating at λ = 1, with 1/(λ_n − 1) ≈ (π/C) n. Here π/C lies between 1.476 and about 1.51, and 3/2 is a
+  candidate.
 
 **Contrast.** The Hou–Luo boundary model shows the same mechanism. In the Córdoba–Córdoba–Fontelos model, by
 contrast, the cusp forms at a finite λ* ≈ 0.4536 and the ladder ends after three profiles.
@@ -85,10 +86,11 @@ whenever Ω > 0.
 - The linear law Re Φ = Cz + Φ₀ holds to ±0.024 over n = 4–7 for every front cut-off.
 - Integrated through the front, Re Φ(λ_n) − nπ is constant to ±0.03.
 - The directly measured spacings increase monotonically, 1.4646 → 1.4758, and bound π/C from below.
-- Direct fits of the resonance positions with analytic 1/z corrections give π/C = 1.476–1.479, and the WKB slopes
-  give 1.478–1.493. Hence π/C ≈ 1.48, in the range 1.476–1.50. The range is widened upward because the uniformity
-  hypothesis fails in the dip region.
-- 3/2 (C = 2π/3) is not derived. It would require a slow non-analytic approach and is not supported by the fits.
+- The extrapolated spacing depends on the correction exponent, which seven rungs cannot fix:
+  - analytic 1/z phase corrections give π/C = 1.478;
+  - the non-analytic correction suggested by the measured dip scaling (∝ z^{0.6}) gives 1.49–1.50;
+  - the finite-z WKB slopes give 1.478–1.493.
+- 3/2 (C = 2π/3) is a candidate consistent with the non-analytic extrapolation. It is not derived.
 
 **Heuristic (not a derivation).** The n-th resonance carries n half-wavelengths of the layer oscillation, and its
 instability index is n. No link between the two is derived here. The lower unstable eigenvalues scale with
