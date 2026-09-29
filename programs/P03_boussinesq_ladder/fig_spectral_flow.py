@@ -58,7 +58,8 @@ def parse(files, pat=r"λ=([0-9.]+) z=([0-9.]+).*?ν̂ = μ/\(λ−1\) = \[([^\]
     return out
 
 
-hl_between = parse(["hl_saw.out", "hl_deep_A.out", "hl_deep_B.out", "hl_deep_C.out", "hl_deep_D.out"])
+# states re-converged at their exact λ (reconverge.py); the earlier runs on file-name-rounded λ are superseded
+hl_between = parse(["hl_saw_exact.out", "hl_deep_exact.out"])
 bq_between = parse(["bq_flow.out"])
 # de-duplicate (the k = 28 reruns supersede the k = 16 runs of the same state)
 seen = {}

@@ -341,3 +341,13 @@ branch scans E and F, extended to η₀ = −60/−100).
 
 **Correction.** The Hou–Luo depth in the manuscript and response is ε = 0.012, i.e. λ − 1 ≈ 0.025, not
 λ − 1 = 0.012.
+
+**R030 correction (same day).** The branch-state file names carry λ rounded (HL: 6 decimals; 2D: 4 decimals). Used with
+the rounded λ, a state is inconsistent (Δm ≈ Δλ/ε ~ 1e-5 in HL, ~5e-4 in 2D).
+- `reconverge.py` re-solves each state at its exact λ from the scan logs.
+- In Hou–Luo the upper ladder members are unchanged.
+- The off-ladder roots (z = 12.71, 15.56), the 'missing' lowest members and the complex pair at z = 20.56 were
+  artifacts; at N = 131072 and consistent λ the pair is a real eigenvalue at 1.1845.
+- With consistent states the offsets agree with the prediction to ≤ 0.011, and each new member enters through μ = 0 at
+  its predicted position.
+- The first 2D between-rung run (rounded λ) was stopped and restarted on re-converged states.

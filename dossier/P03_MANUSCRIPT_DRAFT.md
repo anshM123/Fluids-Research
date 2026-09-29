@@ -40,7 +40,7 @@ Córdoba–Córdoba–Fontelos model, by contrast, the cusp forms at a finite λ
 | **Numerically established** | 8 Boussinesq rungs λ₀…λ₇, found by one solver and reproduced by an independent one. Rung n has n resolved real unstable modes, and these eigenvalues are reproduced by an independent linearization. Right-half-plane counts give exactly n unstable eigenvalues for n ≤ 7 (2D) and n ≤ 10 (Hou–Luo). |
 | **Strongly supported** | A continuous branch of generically singular (least-singular) profiles; the smooth profiles are its regularity-selected points. |
 | **Asymptotically predicted (formal)** | An unbounded phase Φ ∼ C/(λ−1) with C > 0, the quantization Re Φ(λ_n) = nπ + δ + o(1), and an infinite ladder accumulating at λ = 1. The eigen-condition Re Φ(λ) − πμ/(λ−1) + θ₀ = (k + ½)π for the unstable spectrum, with its consequences: unit spacing, phase-locked offset, and index = number of half-turns of Φ. |
-| **Not proved** | Infinitely many smooth Boussinesq profiles. C > 0 for the 2D reduction (proved only for the Hou–Luo local root; checked pointwise in 2D). The value of the asymptotic spacing. The offsets c of the instability ladder, and how a new unstable mode enters near μ = 0. |
+| **Not proved** | Infinitely many smooth Boussinesq profiles. C > 0 for the 2D reduction (proved only for the Hou–Luo local root; checked pointwise in 2D). The value of the asymptotic spacing. The offsets c of the instability ladder. |
 
 ## Evidence chain
 1. Method A (marching Newton–Krylov) finds 8 profiles.
@@ -135,11 +135,13 @@ Re Φ(λ_n) = nπ + δ + o(1).
 - The eigenfunctions are localized at the dip/front of the stalled layer and decay like x² toward the stagnation
   point.
 
-**Spectral flow along the continuous branch** (Hou–Luo, ten branch points between rungs 7 and 10).
+**Spectral flow along the continuous branch** (Hou–Luo, nine branch points between rungs 7 and 10, each state
+re-converged at its exact λ).
 - Between the rungs the whole lower ladder moves up rigidly by one spacing per rung interval, linearly in
   z = 1/(λ−1).
-- The offset equals its rung value plus the fraction of the interval, to within 0.03 at every point.
-- A new member enters at the bottom once per interval. So each rung has one more unstable mode than the previous one.
+- The offset equals its rung value plus the fraction of the interval, to within 0.011 at every point.
+- A new member enters through μ = 0 once per interval, when the offset passes an integer. It is then found at its
+  predicted position (for example 0.285 against 0.286). So each rung has one more unstable mode than the previous one.
 
 **Formal theory.** Two facts combine.
 1. The stalled-layer WKB root depends on the growth rate only through κ(μ) = κ(0) + iμ/D̂. This is exact for the
@@ -162,7 +164,7 @@ with the same Re Φ that quantizes the profiles, Re Φ(λ_n) = nπ + δ. It pred
 The highest eigenvalue lies 0.06–0.10 above the uniform ladder, and this displacement is not described by the
 condition.
 
-The offsets c and the entry of new modes near μ = 0, where the dilation mode sits, are not derived.
+The offsets c are not derived.
 
 ## 8. Finite versus infinite ladders
 - **CCF (P02).** The sonic depth vanishes at a finite λ* = 0.4535843. The branch ends in a square-root cusp and

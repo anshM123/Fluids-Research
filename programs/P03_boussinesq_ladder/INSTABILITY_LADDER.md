@@ -93,41 +93,48 @@ eigenvalue approaches ≈ 0.78–0.8 in both models (2D: 0.746 at n = 7; Hou–L
   unstable spectrum inherits it exactly in the limit, nor the offset c, nor why the count is n.
 
 ## 6. Spectral flow along the continuous branch (Hou–Luo) [N]
-The branch profiles between the rungs are smooth to |m − 2| < 1e-5 for z > 10, so their spectra can be followed
-continuously in λ (`hl_deep_spec.py`; states of scans E and F, origin truncation η₀ = −60 or −100, parity-flip
-refinement as in §2).
+The branch profiles between the rungs can be followed continuously in λ (`hl_deep_spec.py`; parity-flip refinement as
+in §2; origin truncation η₀ = −60/−100). This works because the states of scans E and F are smooth to |m − 2| ≲ 1e-6.
+Each state is first re-converged at its exact λ (`reconverge.py`, λ from the scan logs).
 
-Let f be the fraction of the rung interval, f = (z − z_n)/(z_{n+1} − z_n), with z = 1/(λ−1). Let s be the local spacing
-of the lower ladder in units of λ − 1. Then:
-- the offset of the lowest ladder member, in units of s, is predicted as c_n + f (mod 1);
-- c_n is its value at the rung n (0.665, 0.671, 0.654 for n = 7, 8, 9).
+**Re-convergence matters.** The branch-state file names carry λ rounded to six decimals. Used with the rounded λ, a
+state is inconsistent: m shifts by Δλ/ε ≈ 1e-5 and the residual is ~1e-5. That leaves the upper ladder members
+unchanged, but it displaces the lowest, front-localized member and produces spurious low roots, including a spurious
+complex pair at z = 20.56. The first runs, done this way, are superseded and kept only as `hl_saw.out` and
+`hl_deep_[A-D].out`.
 
-| z | interval | f | ν̂ = μ/(λ−1) | s | offset: observed | offset: c_n + f |
+**Definitions.**
+- f is the fraction of the rung interval, f = (z − z_n)/(z_{n+1} − z_n), with z = 1/(λ−1).
+- s is the local spacing of the lower ladder, in units of λ − 1.
+- The offset is that of the lowest member in units of s. It is predicted as c̄ + f (mod 1), where c̄ = 0.663 is the
+  mean offset at the rungs 7–10.
+
+| z | interval | f | ν̂ = μ/(λ−1) | s | offset: observed | offset: c̄ + f |
 |---|---|---|---|---|---|---|
-| 10.310 | 7→8 | 0.410 | 1.148, 2.213 | 1.065 | 1.078 | 1.075 |
-| 10.560 | 7→8 | 0.608 | 0.279, 1.357, 2.420, 3.489 | 1.069 | 0.261 (+1) | 0.273 (+1) |
-| 10.710 | 7→8 | 0.726 | 0.384, 1.482, 2.543 | 1.061 | 0.362 (+1) | 0.391 (+1) |
-| 11.110 | 8→9 | 0.042 | 0.750, 1.813, 2.872 | 1.059 | 0.708 | 0.713 |
-| 11.510 | 8→9 | 0.357 | 1.085, 2.144, 3.200 | 1.056 | 1.027 | 1.028 |
-| 11.910 | 8→9 | 0.673 | 1.417, 2.472 | 1.055 | 1.343 | 1.343 |
-| 12.310 | 8→9 | 0.988 | 0.697, 1.747, 2.800 | 1.053 | 0.662 (+1) | 0.659 (+1) |
-| 12.710 | 9→10 | 0.303 | (0.327), 1.019, 2.076, 3.128 | 1.052 | 0.969 | 0.957 |
-| 13.060 | 9→10 | 0.579 | 1.313, 2.363, 3.414 | 1.051 | 1.249 | 1.233 |
-| 13.110 | 9→10 | 0.618 | 1.354, 2.404 | 1.050 | 1.290 | 1.272 |
+| 10.310 | 7→8 | 0.410 | 1.148, 2.213 | 1.065 | 0.079 (+1) | 0.069 (+1) |
+| 10.560 | 7→8 | 0.608 | (0.279), 1.357, 2.420, 3.489 | 1.066 | 0.273 | 0.267 |
+| 10.710 | 7→8 | 0.726 | 0.409, 1.482, 2.543 | 1.067 | 0.383 | 0.385 |
+| 11.110 | 8→9 | 0.042 | 0.749, 1.813, 2.872 | 1.061 | 0.706 | 0.701 |
+| 11.510 | 8→9 | 0.357 | 1.085, 2.144, 3.200 | 1.058 | 0.026 (+1) | 0.016 (+1) |
+| 11.910 | 8→9 | 0.673 | 0.347, 1.417, 2.472 | 1.063 | 0.326 | 0.331 |
+| 12.310 | 8→9 | 0.988 | 0.687, 1.747, 2.800 | 1.057 | 0.650 | 0.647 |
+| 12.710 | 9→10 | 0.303 | 1.022, 2.076, 3.128 | 1.053 | 0.970 | 0.962 |
+| 13.110 | 9→10 | 0.618 | 0.285, 1.353, 2.404 | 1.060 | 0.269 | 0.277 |
+
+"(+1)" means the lowest member present is one spacing above the predicted bottom slot, because that slot lies below the
+scan floor ν̂ = 0.2. The value in parentheses at z = 10.560 comes from the first run; the re-converged scan stops at
+ν̂ = 0.3.
 
 **Result.**
-- Between the rungs the whole lower ladder moves up rigidly: each member gains one spacing per rung interval,
-  linearly in z, i.e. linearly in the WKB phase of the profile ladder.
-- The agreement with c_n + f is within 0.03 at every point.
-- A new member enters at the bottom once per interval, so rung n + 1 has one more unstable mode than rung n. "(+1)"
-  marks the points where it is already present.
-- The entry itself is not resolved. The new member is present at f ≥ 0.61 in the interval 7→8, but still absent at
-  f = 0.62 in the interval 9→10. One point (z = 12.710) carries an additional root at ν̂ = 0.327 that is not on the
-  ladder. The region μ ≲ 0.3(λ − 1) contains the dilation mode, a Jordan block at μ = 0 with the branch derivative
-  ∂_λP, split by the origin truncation into ±0.6/|η₀|. A probe with η₀ = −150 is running.
-- The local spacing decreases towards 1: s = 1.065–1.070 at z ≈ 10.5, 1.050 at z ≈ 13, 1.047 at z = 15.56, 1.035
-  at z = 18.06. The deep states z = 18–40 are running with 28 eigenvalues of T_μ per point; with 16, the set
-  saturates beyond z ≈ 15.
+- Between the rungs the whole lower ladder moves up rigidly by one spacing per rung interval, linearly in z, i.e.
+  linearly in the WKB phase of the profile ladder.
+- The observed offset agrees with c̄ + f within 0.011 at every point.
+- **The entry is clean.** A new member appears at the bottom slot at μ = 0 when c̄ + f passes 1, i.e. at f ≈ 0.34 of
+  each interval. It is then found exactly at its predicted position: 0.409/0.417, 0.347/0.363, 0.687/0.694 and
+  0.285/0.286 (observed/predicted).
+- So each rung has exactly one more unstable mode than the previous one.
+- The local spacing decreases towards 1 (Fig. 3d): s = 1.06–1.07 at z ≈ 10.5–11, 1.053–1.060 at z ≈ 12.3–13.1. The
+  deep states z = 13–38, re-converged, are running (`hl_deep_exact.out`).
 
 ## 7. Formal theory: one phase quantizes both ladders [F]
 **(a) The WKB phase does not depend on the growth rate.** In the stalled layer the perturbations are
@@ -158,9 +165,9 @@ Re Φ(λ) is the same phase that quantizes the profiles, Re Φ(λ_n) = nπ + δ.
 | prediction | observed |
 |---|---|
 | lower spacing → λ − 1 exactly | 1.00 ± 0.03 (extrapolated from the rungs, both models); along the HL branch s = 1.07 → 1.035 for z = 10.5 → 18 |
-| the offset follows the profile phase between rungs | §6: within 0.03 at 10 points |
+| the offset follows the profile phase between rungs | §6: within 0.011 at 9 points (Hou–Luo) |
 | the offset at the rungs is a model constant c = frac((δ + θ₀)/π − ½) | 0.65–0.67 (HL, n = 7–10); 0.70–0.72 (2D, n = 3–7) |
-| one unstable eigenvalue per half-turn of the phase, so index(n) = n + const, with const = 0 from any one rung | counts n for n = 0–7 (2D) and 0–10 (HL) |
+| one unstable eigenvalue per half-turn of the phase, entering at μ = 0 when the offset passes an integer; so index(n) = n + const, with const = 0 from any one rung | new members observed at their predicted positions (§6); counts n for n = 0–7 (2D) and 0–10 (HL) |
 | the uniform ladder of n members ends near s·n(λ_n − 1) → C/π = 1/Δz_∞ | its computed top is 0.73–0.74 (HL, n = 8–10) and 0.65 (2D, n = 7), against C/π ≈ 0.79 and 0.66–0.68. The highest eigenvalue lies a further 0.06–0.10 above it (0.79–0.81 HL, 0.75 2D) and is not described by the leading-order condition |
 
 **The upper end.**
@@ -172,7 +179,6 @@ Re Φ(λ) is the same phase that quantizes the profiles, Re Φ(λ_n) = nπ + δ.
 **(e) Not derived.**
 - The constants θ₀ and c. They require the front connection and the full stagnation-point problem with the strain
   forcing.
-- The entry of the new member near μ = 0.
 - The 2D stagnation-point connection. The Mellin phase is model-independent, but the 2D region-I problem has not
   been solved.
 
@@ -186,6 +192,5 @@ Re Φ(λ) is the same phase that quantizes the profiles, Re Φ(λ_n) = nπ + δ.
   half-turns.
 - **Open:**
   - the offsets c;
-  - the entry mechanism at μ ≈ 0;
   - a 2D between-rung test (running: `bq_flow_spec.py`);
   - whether 2D develops complex pairs at higher n, as Hou–Luo does.

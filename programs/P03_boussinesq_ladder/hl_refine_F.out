@@ -1,0 +1,2 @@
+λ=1.048638 N=131072: ok=True m=2.0000000053 (N=65536 state: m−2 as in its file)
+python3: can't open file '/home/user/Fluids-Research/programs/P03_boussinesq_ladder/hl_cx_track_G.py': [Errno 2] No such file or directory

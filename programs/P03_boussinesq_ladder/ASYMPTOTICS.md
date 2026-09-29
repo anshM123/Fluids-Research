@@ -371,15 +371,13 @@ where θ₀ collects the O(1) connection phases at the front and at the stagnati
 ### 7.4 Consequences and checks
 | consequence | check |
 |---|---|
-| spacing of the lower eigenvalues → λ − 1 | extrapolated spacing 0.996 (HL), 1.003 (2D) (`fig_spectral_flow.png` d) |
-| the offset moves with Re Φ: +1 spacing per rung interval, linear in z between rungs | HL: 10 branch points, within 0.03 (INSTABILITY_LADDER.md §6) |
+| spacing of the lower eigenvalues → λ − 1 | extrapolated spacing 1.00–1.02 (HL; deep states running), 1.003 (2D) (`fig_spectral_flow.png` d) |
+| the offset moves with Re Φ: +1 spacing per rung interval, linear in z between rungs; new members enter at μ = 0 | HL: 9 branch points, within 0.011; entering members at their predicted positions (INSTABILITY_LADDER.md §6) |
 | one new unstable eigenvalue per half-turn of Re Φ, so index(n) = n + const, with const fixed by one rung | counts n for n = 0–7 (2D), 0–10 (HL) |
 | the uniform ladder has about Re Φ/π members and ends near C/π = 1/Δz_∞ | computed uniform-ladder tops 0.73–0.74 (HL, n = 8–10) and 0.65 (2D, n = 7), against C/π ≈ 0.79 and 0.66–0.68. The highest eigenvalue is displaced a further 0.06–0.10 upward, which is outside this leading-order account |
 
 ### 7.5 What remains open
 - The constants θ₀ and hence the offsets c: 0.65–0.67 in Hou–Luo and 0.70–0.72 in 2D, in units of the local
   spacing. They need the front connection and the region-I problem with the strain forcing.
-- The entry of each new eigenvalue near μ = 0. The dilation mode sits there: a Jordan block with the branch derivative
-  ∂_λP, split by the origin truncation. The formula (Γ(ν − 2) has poles at ν̂ = 0, ½, 1) is not uniform there.
 - The upper end, where μ = O(1). There the top member lies 0.06–0.10 above the uniform ladder, and in Hou–Luo
   adjacent members collide into weakly complex pairs.

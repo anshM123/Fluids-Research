@@ -1,0 +1,11 @@
+HL λ=1.09699328: residual 1.6e-07 → converged=True, m−2 -1.388e-06 → -1.295e-06
+HL λ=1.09469700: residual 1.8e-07 → converged=True, m−2 -8.500e-07 → -9.497e-07
+2D λ=1.157564: converged=True, m−2 = -4.7027e-05
+HL λ=1.09337074: residual 7.2e-08 → converged=True, m−2 -6.075e-07 → -6.476e-07
+HL λ=1.09000906: residual 1.3e-07 → converged=True, m−2 +2.220e-09 → +7.105e-08
+HL λ=1.08688103: residual 2.1e-07 → converged=True, m−2 +2.017e-07 → +3.112e-07
+HL λ=1.08396310: residual 2.3e-07 → converged=True, m−2 +3.073e-07 → +1.885e-07
+HL λ=1.08123481: residual 2.0e-07 → converged=True, m−2 +1.062e-07 → +5.334e-09
+HL λ=1.07656970: residual 6.8e-08 → converged=True, m−2 -1.932e-08 → -5.344e-08
+HL λ=1.07867825: residual 5.4e-08 → converged=True, m−2 -1.005e-07 → -7.322e-08
+HL λ=1.07627769: residual 4.6e-08 → converged=True, m−2 -3.090e-08 → -5.363e-08
