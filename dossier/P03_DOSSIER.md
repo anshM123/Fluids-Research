@@ -102,23 +102,24 @@ stagnation point. The smooth profiles are the regularity resonances m(λ) = 2.
    - **Localization.** The unstable eigenfunctions are localized at the dip/front of the stalled layer: Hou–Luo
      n = 8, and 2D λ₄.
    - **Exact identity.** L_μ(Θ̄φ) = Θ̄ L_{μ+λ−1}φ, because V·∇Θ̄ = (λ−1)Θ̄.
-   - **[N] Spectral flow.** Along the continuous Hou–Luo branch (nine points between the rungs 7 and 10, states
-     re-converged at their exact λ) the lower ladder moves up rigidly by one spacing per rung interval, linearly in z.
-     Its offset equals the rung value plus the fraction of the interval to within 0.011. One new member enters through
-     μ = 0 per interval, at the predicted phase and position.
+   - **[N] Spectral flow** (`fig_spectral_flow.png`). The branch was followed at nine Hou–Luo points between the
+     rungs 7 and 10 and at five 2D points between the rungs 3 and 5, each state re-converged at its exact λ.
+     - The lower ladder moves up rigidly by one spacing per rung interval, linearly in z.
+     - Its offset equals the rung value plus the fraction of the interval, to within 0.011 (Hou–Luo) and 0.03 (2D).
+     - One new member enters through μ = 0 per interval, at the predicted phase and position.
    - **[F] Eigen-condition.** Re Φ(λ) − πμ/(λ−1) + θ₀ = (k + ½)π, where Re Φ is the phase that quantizes the
      profiles. Its two ingredients:
      - the growth rate enters the stalled-layer root only as κ(μ) = κ(0) + iμ/D̂ (exact for Hou–Luo; verified to
        1e-10 for the 2D local eigenproblem);
      - the stagnation point contributes the Mellin (Γ-function) phase π(μ/(λ−1) − 1).
    - **What the eigen-condition predicts.**
-     - unit spacing (observed: 1.00–1.02 for Hou–Luo and 1.003 for 2D, extrapolated; deep Hou–Luo states running);
+     - unit spacing (observed: 0.996 in both models, extrapolated);
      - the phase-locked flow;
      - index = number of half-turns of Φ, i.e. n at rung n;
      - a uniform ladder ending near C/π = 1/Δz_∞. The highest eigenvalue lies 0.06–0.10 above the uniform ladder,
        which the condition does not describe.
    - **Not derived.** The offsets θ₀ and c, and the 2D stagnation-point connection problem (the Mellin phase is
-     model-independent). A 2D between-rung test is running.
+     model-independent). The 2D spectral flow and spacing are those the eigen-condition predicts.
 
 ## 2. Methods (programs/P03_boussinesq_ladder)
 - **Marching solver** (`bq_solver.py`, `bq_newton.py`).

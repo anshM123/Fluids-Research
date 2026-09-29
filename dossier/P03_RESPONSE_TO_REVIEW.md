@@ -133,12 +133,13 @@ mechanism.
 **5. The μ/ε limiting spectrum** (priority 2; INSTABILITY_LADDER.md §3–7, `fig_instability_ladder.png`,
 `fig_spectral_flow.png`). This is now the main new result.
 - **The ladder.** In both models the lower unstable eigenvalues form an arithmetic ladder
-  μ_{n,k} ≈ (λ_n − 1)(k + c). Its spacing extrapolates to 1.00–1.02 (Hou–Luo) and 1.003 (2D) times λ_n − 1. Its offset at
+  μ_{n,k} ≈ (λ_n − 1)(k + c). Its spacing extrapolates to 0.996 times λ_n − 1 in both models. Its offset at
   the rungs is a model constant: 0.65–0.67 (Hou–Luo), 0.70–0.72 (2D).
-- **Spectral flow along the continuous branch.** We followed the Hou–Luo spectrum through nine branch points between
-  the rungs 7 and 10, each state re-converged at its exact λ.
+- **Spectral flow along the continuous branch.** We followed the spectrum through nine Hou–Luo branch points between
+  the rungs 7 and 10, and five 2D Boussinesq branch points between the rungs 3 and 5. Each state was re-converged at
+  its exact λ.
   - The whole lower ladder moves up rigidly by one spacing per rung interval, linearly in z = 1/(λ−1).
-  - Its offset equals the rung value plus the fraction of the interval, to within 0.011.
+  - Its offset equals the rung value plus the fraction of the interval, to within 0.011 (Hou–Luo) and 0.03 (2D).
   - One new member enters through μ = 0 per interval, at the predicted phase and position. That is why each rung has
     one more unstable mode than the last.
 - **A formal eigen-condition from the same phase.** Two ingredients:
@@ -156,8 +157,8 @@ mechanism.
   leading-order condition does not describe.
 - **Your conjecture.** "One singular limiting operator generates both the profile ladder and its instability ladder"
   thus becomes a concrete, tested statement: one WKB phase quantizes both.
-- **Not derived.** The offsets θ₀ and c, and the 2D stagnation-point problem itself. A 2D between-rung test is
-  running.
+- **Not derived.** The offsets θ₀ and c, and the 2D stagnation-point problem itself. The 2D spectral flow and spacing,
+  however, are those the eigen-condition predicts.
 
 **6. The front/dip inner problem** (priority 3).
 - Measured in Hou–Luo to ε = 0.012: depth ∝ ε^{0.31}, width ∝ ε^{0.34}, and the dip-to-front distance ∝ ε^{1.23}.

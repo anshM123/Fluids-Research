@@ -134,8 +134,32 @@ scan floor ν̂ = 0.2. The value in parentheses at z = 10.560 comes from the fir
   each interval. It is then found exactly at its predicted position: 0.409/0.417, 0.347/0.363, 0.687/0.694 and
   0.285/0.286 (observed/predicted).
 - So each rung has exactly one more unstable mode than the previous one.
-- The local spacing decreases towards 1 (Fig. 3d): s = 1.06–1.07 at z ≈ 10.5–11, 1.053–1.060 at z ≈ 12.3–13.1. The
-  deep states z = 13–38, re-converged, are running (`hl_deep_exact.out`).
+- The local spacing decreases towards 1 (Fig. 3d). From the upper ladder members:
+  - s = 1.06–1.07 at z ≈ 10.5–11;
+  - 1.045 at z = 13.06, 1.039 at z = 15.56, 1.035 at z = 18.06;
+  - 1.031 at z = 20.56 (N = 131072) and 1.027 at z = 23.06.
+
+  A linear fit in 1/z over all branch points extrapolates to 0.996.
+- **Beyond z ≈ 24 the method stops working.** The parity scans of T_μ become unreliable there: many ν of T_μ lie near
+  1 at small μ, and roots appear in clusters. States with z > 24 are not used.
+
+**2D Boussinesq** (`bq_flow_spec.py`, scan-C states re-converged at their exact λ, hs = 0.025, s_start = −30).
+- The rung offset is c̄ = 0.7185, the mean over the rungs 4–7.
+- The rungs are z₃ = 5.4273, z₄ = 6.8972 and z₅ = 8.3700.
+
+| z | interval | f | ν̂ = μ/(λ−1) | s | offset: observed | offset: c̄ + f |
+|---|---|---|---|---|---|---|
+| 5.940 | 3→4 | 0.349 | 1.241, 2.436 | 1.195 | 0.039 (+1) | 0.067 (+1) |
+| 6.347 | 3→4 | 0.625 | 0.388, 1.554, 2.749 | 1.181 | 0.329 | 0.344 |
+| 6.753 | 3→4 | 0.902 | 0.709, 1.864, 3.060 | 1.176 | 0.603 | 0.620 |
+| 7.159 | 4→5 | 0.178 | 1.022, 2.173, 3.369 | 1.174 | 0.871 | 0.896 |
+| 7.564 | 4→5 | 0.453 | 1.330, 2.479 | 1.149 | 0.158 (+1) | 0.171 (+1) |
+
+**Result (2D).**
+- The same spectral flow as in Hou–Luo: the offsets agree with c̄ + f within 0.03 at all five points.
+- The member that enters in the interval 3→4 is found at 0.388 (predicted 0.40) and at 0.709 (predicted 0.72). At
+  the rung n = 4 it becomes the lowest unstable eigenvalue, 0.821.
+- The spacing extrapolates to 0.996 (rungs and branch points, linear in 1/z).
 
 ## 7. Formal theory: one phase quantizes both ladders [F]
 **(a) The WKB phase does not depend on the growth rate.** In the stalled layer the perturbations are
@@ -165,8 +189,8 @@ Re Φ(λ) is the same phase that quantizes the profiles, Re Φ(λ_n) = nπ + δ.
 **(d) Consequences and their tests.**
 | prediction | observed |
 |---|---|
-| lower spacing → λ − 1 exactly | 1.00 ± 0.03 (extrapolated from the rungs, both models); along the HL branch s = 1.07 → 1.035 for z = 10.5 → 18 |
-| the offset follows the profile phase between rungs | §6: within 0.011 at 9 points (Hou–Luo) |
+| lower spacing → λ − 1 exactly | extrapolated 0.996 (Hou–Luo, branch points to z = 23) and 0.996 (2D, rungs and branch points) |
+| the offset follows the profile phase between rungs | §6: within 0.011 at 9 points (Hou–Luo) and within 0.03 at 5 points (2D) |
 | the offset at the rungs is a model constant c = frac((δ + θ₀)/π − ½) | 0.65–0.67 (HL, n = 7–10); 0.70–0.72 (2D, n = 3–7) |
 | one unstable eigenvalue per half-turn of the phase, entering at μ = 0 when the offset passes an integer; so index(n) = n + const, with const = 0 from any one rung | new members observed at their predicted positions (§6); counts n for n = 0–7 (2D) and 0–10 (HL) |
 | the uniform ladder of n members ends near s·n(λ_n − 1) → C/π = 1/Δz_∞ | its computed top is 0.73–0.74 (HL, n = 8–10) and 0.65 (2D, n = 7), against C/π ≈ 0.79 and 0.66–0.68. The highest eigenvalue lies a further 0.06–0.10 above it (0.79–0.81 HL, 0.75 2D) and is not described by the leading-order condition |
@@ -187,11 +211,10 @@ Re Φ(λ) is the same phase that quantizes the profiles, Re Φ(λ_n) = nπ + δ.
 - **Established numerically:**
   - the counts in §1 and the real/complex structure in §2;
   - the ladder spacing in §3 and the localization in §4;
-  - the phase-locked spectral flow in §6.
+  - the phase-locked spectral flow in §6 (Hou–Luo and 2D).
 - **Exact:** the identity in §5, and κ(μ) = κ(0) + iμ/D̂ for the Hou–Luo local root.
 - **Formal:** the eigen-condition of §7 and its consequences: unit spacing, phase locking, and index = number of
   half-turns.
 - **Open:**
   - the offsets c;
-  - a 2D between-rung test (running: `bq_flow_spec.py`);
   - whether 2D develops complex pairs at higher n, as Hou–Luo does.

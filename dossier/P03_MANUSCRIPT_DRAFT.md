@@ -29,7 +29,7 @@ known hierarchy to instability index seven.
   - the stagnation point adds a phase πμ/(λ−1).
 - The resulting eigen-condition predicts three things: unit spacing, a ladder offset locked to the profile phase
   along the continuous branch, and one new unstable mode per half-turn of the phase, which is the index n. We
-  confirm each numerically.
+  confirm each numerically, in 2D Boussinesq and in Hou–Luo.
 - The infinite sequence is an asymptotic prediction, not a theorem.
 
 **Context.** The one-dimensional Hou–Luo model shows the same mechanism over eleven rungs. In the
@@ -38,7 +38,7 @@ Córdoba–Córdoba–Fontelos model, by contrast, the cusp forms at a finite λ
 ## 0. What is established, supported, predicted, and not proved
 | level | statement |
 |---|---|
-| **Numerically established** | 8 Boussinesq rungs λ₀…λ₇, found by one solver and reproduced by an independent one. Rung n has exactly n unstable eigenvalues, all real, for 0 ≤ n ≤ 7. The real modes are reproduced by an independent linearization, and right-half-plane counts are unchanged under changes of origin truncation, contour and grid (n = 5–7). In Hou–Luo the index is n for n ≤ 10. Along the continuous branch the unstable ladder moves with the profile phase (Hou–Luo; 2D at the branch points computed). |
+| **Numerically established** | 8 Boussinesq rungs λ₀…λ₇, found by one solver and reproduced by an independent one. Rung n has exactly n unstable eigenvalues, all real, for 0 ≤ n ≤ 7. The real modes are reproduced by an independent linearization, and right-half-plane counts are unchanged under changes of origin truncation, contour and grid (n = 5–7). In Hou–Luo the index is n for n ≤ 10. Along the continuous branch the unstable ladder moves with the profile phase (Hou–Luo: 9 branch points; 2D: 5). |
 | **Strongly supported** | A continuous branch of generically singular (least-singular) profiles; the smooth profiles are its regularity-selected points. |
 | **Asymptotically predicted (formal)** | An unbounded phase Φ ∼ C/(λ−1) with C > 0, the quantization Re Φ(λ_n) = nπ + δ + o(1), and an infinite ladder accumulating at λ = 1. The eigen-condition Re Φ(λ) − πμ/(λ−1) + θ₀ = (k + ½)π for the unstable spectrum, with its consequences: unit spacing, phase-locked offset, and index = number of half-turns of Φ. |
 | **Not proved** | Infinitely many smooth Boussinesq profiles. C > 0 for the 2D reduction (proved only for the Hou–Luo local root; checked pointwise in 2D). The value of the asymptotic spacing. The offsets c of the instability ladder. |
@@ -128,22 +128,23 @@ Re Φ(λ_n) = nπ + δ + o(1).
 - Hou–Luo: ≈ 1.27, against measured spacings of 1.258–1.265.
 - 3/2 is not claimed.
 
-## 7. A second ladder, and one phase for both (Fig. 2; INSTABILITY_LADDER.md §6–7)
+## 7. A second ladder, and one phase for both (Figs. 2 and 3; INSTABILITY_LADDER.md §6–7)
 **The ladder.**
 - In both models the lower unstable eigenvalues obey μ_{n,k} ≈ (λ_n − 1)(k + c).
-- Extrapolated to λ → 1, the spacing is (λ_n − 1)(1.00 ± 0.03).
+- Extrapolated to λ → 1, the spacing is 0.996(λ_n − 1) in both models (rungs and branch points, linear in λ − 1).
 - The offset at the rungs is model-dependent: c ≈ 0.70–0.72 (2D) and 0.65–0.67 (Hou–Luo), in units of the local
   spacing.
 - The eigenfunctions are localized at the dip/front of the stalled layer and decay like x² toward the stagnation
   point.
 
-**Spectral flow along the continuous branch** (Hou–Luo, nine branch points between rungs 7 and 10, each state
-re-converged at its exact λ).
+**Spectral flow along the continuous branch** (Fig. 3). Hou–Luo has nine branch points between the rungs 7 and 10;
+2D Boussinesq has five between the rungs 3 and 5. Each state is re-converged at its exact λ.
 - Between the rungs the whole lower ladder moves up rigidly by one spacing per rung interval, linearly in
   z = 1/(λ−1).
-- The offset equals its rung value plus the fraction of the interval, to within 0.011 at every point.
+- The offset equals its rung value plus the fraction of the interval: within 0.011 (Hou–Luo) and 0.03 (2D).
 - A new member enters through μ = 0 once per interval, when the offset passes an integer. It is then found at its
-  predicted position (for example 0.285 against 0.286). So each rung has one more unstable mode than the previous one.
+  predicted position: 0.285 against 0.286 in Hou–Luo, and 0.388 against 0.40 in 2D. So each rung has one more
+  unstable mode than the previous one.
 
 **Formal theory.** Two facts combine.
 1. The stalled-layer WKB root depends on the growth rate only through κ(μ) = κ(0) + iμ/D̂. This is exact for the

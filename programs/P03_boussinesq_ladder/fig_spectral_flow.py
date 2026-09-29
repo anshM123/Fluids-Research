@@ -59,7 +59,8 @@ def parse(files, pat=r"λ=([0-9.]+) z=([0-9.]+).*?ν̂ = μ/\(λ−1\) = \[([^\]
 
 
 # states re-converged at their exact λ (reconverge.py); the earlier runs on file-name-rounded λ are superseded
-hl_between = parse(["hl_saw_exact.out", "hl_deep_exact.out"])
+hl_between = parse(["hl_saw_exact.out", "hl_deep_exact.out", "hl_G_check.out"])
+hl_between = [t for t in hl_between if t[1] < 24]      # beyond z ≈ 24 the parity scans of T_μ are not reliable
 bq_between = parse(["bq_flow.out"])
 # de-duplicate (the k = 28 reruns supersede the k = 16 runs of the same state)
 seen = {}
@@ -110,20 +111,21 @@ for model, ax_, lam, ev, zr, between, col, mk, zlim in (
         a.plot(zz, yy, '-', color=col, lw=0.9, alpha=0.45, label='eigen-condition (one phase)' if j == 5 else None)
     first = True
     for lamb, z, nus in between:
-        if not (zlim[0] < z < zlim[1]):
-            continue
         res = classify(z, nus, zr, cbar)
         if res is None:
             continue
         Psi, n, pred, s, lad, off = res
+        spacing_pts.append((model, 1 / z, s))          # all states; the panel (a) window only limits the plot
+        if not (zlim[0] < z < zlim[1]):
+            continue
         a.plot([z] * len(lad), lad, mk, mfc='white', mec=col, mew=1.3, ms=6,
                label='branch points between rungs' if first else None)
         if off:
             a.plot([z] * len(off), off, 'x', color=MUTED, ms=6, mew=1.2, label='off-ladder root' if first else None)
         first = False
-        spacing_pts.append((model, 1 / z, s))
         o = lad[0] / s if lad else np.nan
-        rows_off.append((model, o % 1, pred % 1, z))
+        if z < 16.5:
+            rows_off.append((model, o % 1, pred % 1, z))
     for n in sorted(zr):
         if zlim[0] < zr[n] < zlim[1]:
             a.axvline(zr[n], color=MUTED, lw=0.7, ls=':')
@@ -153,8 +155,9 @@ for model, col, mk in (("Hou–Luo", CHL, 's'), ("2D Boussinesq", C2D, 'o')):
         d.plot(pts[:, 0], pts[:, 1], mk, color=col, ms=6, mec='white', mew=0.8, label=model)
         p = np.polyfit(pts[:, 0], pts[:, 1], 1); xx = np.linspace(0, pts[:, 0].max(), 20)
         d.plot(xx, np.polyval(p, xx), '-', color=col, lw=1.0, alpha=0.7)
-        d.text(0.004, np.polyval(p, 0) + (0.012 if model == "Hou–Luo" else -0.02), f'{np.polyval(p, 0):.3f}', color=col, fontsize=8)
-d.axhline(1.0, color=MUTED, lw=1.0, ls='--')
+        d.text(0.006, np.polyval(p, 0) + (0.014 if model == "Hou–Luo" else -0.016),
+               f'{model}: {np.polyval(p, 0):.3f}', color=col, fontsize=8)
+d.axhline(1.0, color=MUTED, lw=1.0, ls='--'); d.set_ylim(0.965, None)
 d.set_xlim(0, None); d.set_xlabel('1/z = λ − 1'); d.set_ylabel('local spacing of the ladder / (λ − 1)')
 d.set_title('(d) spacing → λ − 1 (dashed: prediction)', fontsize=10, loc='left'); d.legend(fontsize=8, frameon=False)
 plt.tight_layout(); plt.savefig('fig_spectral_flow.png', dpi=160)

@@ -351,3 +351,20 @@ the rounded λ, a state is inconsistent (Δm ≈ Δλ/ε ~ 1e-5 in HL, ~5e-4 in 
 - With consistent states the offsets agree with the prediction to ≤ 0.011, and each new member enters through μ = 0 at
   its predicted position.
 - The first 2D between-rung run (rounded λ) was stopped and restarted on re-converged states.
+
+### R031 — P03: the one-phase eigen-condition confirmed in 2D Boussinesq
+**Counts.**
+- n = 7 grid variant (hs = 0.0125, s_start −30): 7.973.
+- With B5/B6/C6, every 2D count for n = 5–7 is stable under changes of domain and grid. "Exactly n (all real)" is
+  restored for 0 ≤ n ≤ 7.
+
+**2D spectral flow** (five branch points between the rungs 3 and 5, re-converged at the exact λ).
+- Offsets agree with c̄ + f within 0.03.
+- The member entering in the interval 3→4 is found at 0.388 (predicted 0.40) and 0.709 (0.72).
+
+**Spacing limit** (linear in 1/z over rungs and branch points): 0.996 in Hou–Luo (states to z = 23) and in 2D.
+
+**Method notes.**
+- The parity of det(I − T_μ) is now taken from the sign of Re Π(1 − ν).
+- Hou–Luo states beyond z ≈ 24 are not used: T_μ has many ν near 1 at small μ there.
+- A container restart interrupted the runs; the last two 2D points were recomputed.

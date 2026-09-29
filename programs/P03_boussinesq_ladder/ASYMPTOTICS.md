@@ -350,8 +350,9 @@ With perturbations ∝ e^{μτ} the transport symbols of §3.3 become μ + iD̂�
   a standing wave with phase −π(ν − 2)/2 = −π(μ/(λ−1) − 1).
 - This is the phase of the Mellin transform of the wave, ∫X^{s−1}e^{ik₀X}dX = Γ(s)(−ik₀)^{−s}. It depends only on
   the transport near the stagnation point being the Euler operator (ν − 2) + X∂_X. The same phase is therefore
-  expected in 2D, where the wall transport near the stagnation point has the same form (the 2D region-I problem
-  itself is not solved here).
+  expected in 2D, where the wall transport near the stagnation point has the same form. The 2D region-I problem
+  itself is not solved here, but the 2D spectral flow and spacing (INSTABILITY_LADDER.md §6) are those this phase
+  predicts.
 
 ### 7.3 Eigen-condition
 **The structure of an eigenfunction.**
@@ -371,8 +372,8 @@ where θ₀ collects the O(1) connection phases at the front and at the stagnati
 ### 7.4 Consequences and checks
 | consequence | check |
 |---|---|
-| spacing of the lower eigenvalues → λ − 1 | extrapolated spacing 1.00–1.02 (HL; deep states running), 1.003 (2D) (`fig_spectral_flow.png` d) |
-| the offset moves with Re Φ: +1 spacing per rung interval, linear in z between rungs; new members enter at μ = 0 | HL: 9 branch points, within 0.011; entering members at their predicted positions (INSTABILITY_LADDER.md §6) |
+| spacing of the lower eigenvalues → λ − 1 | extrapolated spacing 0.996 (HL, branch points to z = 23) and 0.996 (2D) (`fig_spectral_flow.png` d) |
+| the offset moves with Re Φ: +1 spacing per rung interval, linear in z between rungs; new members enter at μ = 0 | HL: 9 branch points, within 0.011; 2D: 5 branch points, within 0.03; entering members at their predicted positions (INSTABILITY_LADDER.md §6) |
 | one new unstable eigenvalue per half-turn of Re Φ, so index(n) = n + const, with const fixed by one rung | counts n for n = 0–7 (2D), 0–10 (HL) |
 | the uniform ladder has about Re Φ/π members and ends near C/π = 1/Δz_∞ | computed uniform-ladder tops 0.73–0.74 (HL, n = 8–10) and 0.65 (2D, n = 7), against C/π ≈ 0.79 and 0.66–0.68. The highest eigenvalue is displaced a further 0.06–0.10 upward, which is outside this leading-order account |
 
