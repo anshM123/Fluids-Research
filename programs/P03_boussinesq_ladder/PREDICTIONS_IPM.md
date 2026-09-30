@@ -322,7 +322,7 @@ mode sits at μ = 1.000025.
 
 | quantity | predicted | computed | error |
 |---|---|---|---|
-| index(U₄) | 4 | 4, all real (contour count running) | ✓ |
+| index(U₄) | 4 | 4, all real; contour count 4.902 → trivial + 4 (`ipm_contour_U4.out`) | ✓ |
 | ν̂ members | [0.794, 1.854, 2.915, 3.911] | [0.7958, 1.8463, 2.8791, 3.8684] | +0.002, −0.008, −0.036, −0.043 (0.2–1.2 %) |
 | μ at the computed rung | [0.157, 0.367, 0.577, 0.774] | [0.158, 0.367, 0.572, 0.769] | within 0.7 % |
 | parameter-free lattice | [0.805, 1.805, 2.805, 3.805] | as above | −0.01, +0.04, +0.07, +0.06 |
@@ -350,7 +350,7 @@ mode sits at μ = 1.000025.
 |---|---|
 | P1 (no fold or sonic point at λ > 0; accumulation as λ → 0; min V_r/r = O(λ)) | **failed** in its accumulation and O(λ) clauses. No fold was met down to λ = 0.14, but min V_r/r / λ falls from 0.50 to 0.21 and extrapolates to zero near λ ≈ 0.09. |
 | P2 (linear law; increasing spacings) | linear law **holds in 1/(λ − λ_c)**; the increasing-spacing clause **failed** (spacings decrease) |
-| P3 (index n, all real) | **held**, n = 0–4 (contour counts: n ≤ 3 done, U₄ running) |
+| P3 (index n, all real) | **held**, n = 0–4. Contour counts on [0.04, 1.5] × [±1.5 or ±2.5]: 1.947, 3.082, 4.077, 4.902 for n = 1–4, i.e. trivial + n |
 | P4 (lattice of step λ_n, s → 1) | **held**: gaps 1.12 (U₂); 1.07, 1.06 (U₃); 1.05, 1.03, 0.99 (U₄) |
 | P5 (rigid spectral flow, entry at μ = 0) | **held**: continuing member within 1e-3 at 4 branch points; others within 0.05 |
 | P6 (localization at the front) | **held**: U₃ modes peak at the dip x ≈ 0.61, regular at the stagnation point |

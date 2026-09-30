@@ -36,7 +36,7 @@ Here we show that a single phase organizes both the profiles and their stability
 |---|---|
 | proved (elementary) | If the smoothness defect has the form R[cos Θ + η] with Θ → ∞ and \|η\| < 1, there are infinitely many smooth profiles, one per half-turn of Θ (ASYMPTOTICS §2). |
 | derived (formal matched asymptotics) | The WKB form of the defect; the eigen-condition Re Φ − πμ/ε + θ₀ = (k+½)π; unit spacing, phase-locked spectral flow and index = n; the Hou–Luo spacing π/C_∞ from the λ → 1 limit problem. |
-| measured | 2D Boussinesq rungs n = 0–7 (two independent solvers); Hou–Luo n = 0–10; IPM n = 0–6; exact index n (argument-principle counts, grid and domain variants; IPM n ≤ 3–4); spectral flow at 9 (HL), 5 (2D) and 4 (IPM, blind) branch points. |
+| measured | 2D Boussinesq rungs n = 0–7 (two independent solvers); Hou–Luo n = 0–10; IPM n = 0–6; exact index n (argument-principle counts, grid and domain variants; IPM n ≤ 4); spectral flow at 9 (HL), 5 (2D) and 4 (IPM, blind) branch points. |
 | not proved | Infinitely many profiles for any of these PDEs; existence of any unstable profile in the sense of a computer-assisted proof; the 2D spacing constant; the ladder offsets; the IPM endpoint (extrapolated, not reached). |
 
 ## 1. Introduction
@@ -175,7 +175,8 @@ from the lower profiles by a fixed rule.
   - The straight line through the first two profiles, the empirical law of the literature, is off by 28 % of a
     spacing already at λ₃, and more further on.
 - **Spectrum: every parameter-free prediction held.**
-  - The index is exactly n for n = 0–4 (argument-principle counts for n ≤ 3; real-mode count for n = 4).
+  - The index is exactly n for n = 0–4 (argument-principle counts 1.95, 3.08, 4.08, 4.90 for n = 1–4, i.e. the
+    trivial mode plus n).
   - All modes are real.
   - The growth rates lie on a lattice of step λ_n: U₃ has μ/λ₃ = 0.805, 1.879, 2.937, and U₄ has 0.796, 1.846,
     2.879, 3.868.
@@ -317,8 +318,9 @@ numerical ingredient with solver A and reproduces every Boussinesq rung to ≤ 1
 - The eigen-condition is that the linearised "march + Biot–Savart" map T_μ has eigenvalue ν = 1. It is validated
   on the exact time-translation mode μ = 1 (|T₁x − x|/|x| ≤ 5e-8).
 - Real unstable eigenvalues: parity changes of the number of real ν > 1 on a grid in μ/ε, refined by bisection.
-- Complete right-half-plane counts: the argument principle for det(I − T_μ) on [x_lo, 1.5] × [−1.5, 1.5], with
-  adaptive refinement, domain and grid variants, and a deeper origin truncation (s_start = −30).
+- Complete right-half-plane counts: the argument principle for det(I − T_μ) on [x_lo, 1.5] × [−1.5, 1.5] (IPM U₃,
+  U₄: × [−2.5, 2.5]), with adaptive refinement, domain and grid variants, and a deeper origin truncation
+  (s_start = −30).
 - Exclusion of eigenvalues with large |Im μ|:
   - argument-principle counts on the strips 1.5 ≤ |Im μ| ≤ 3.5 (zero found);
   - a spectral radius of T_μ below one for larger |Im μ|, decaying roughly as 2/|Im μ| (Supplementary).

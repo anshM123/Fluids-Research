@@ -12,3 +12,8 @@ hl_limit_Omf*.npz
 # IPM continuation states (regenerable: ipm_solver.py, ipm_branch.py); rung states are kept as ipm_rung_*.npy
 ipm_Y_*.npy
 ipm_br_*.npy
+# fine-grid limit-family check and the failed direct Kutta attempt (regenerable: HL_TAG=fine hl_limit_nk.py; hl_kutta.py)
+hl_limit_fine_Omf*.npz
+hl_limit_kutta.npz
+# IPM states at the spectral-flow branch points (regenerable: ipm_state_at.py)
+ipm_bp_lam*.npy

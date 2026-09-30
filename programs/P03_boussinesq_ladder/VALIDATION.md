@@ -34,9 +34,11 @@ also sets out what a computer-assisted proof (CAP) of one new rung would require
   |---|---|---|
   | 2D, n = 5–7 | exactly n + 1 zeros (index n plus the trivial μ = 1) | changes of origin truncation, contour and grid |
   | Hou–Luo, n ≤ 10 | index n | — |
-  | IPM, n = 1, 2 | 1.947 → 2 and 3.082 → 3 | — |
+  | IPM, n = 1–4 | 1.947, 3.082, 4.077, 4.902 → n + 1 (index n plus the trivial mode) | box height ±1.5 (n ≤ 2) and ±2.5 (n = 3, 4) |
 
-  The deviation from the integer is ≤ 0.08 in all counts.
+  The deviation from the integer is ≤ 0.08 in all counts except IPM U₄ (0.098). There, two adjacent unresolved
+  jumps of opposite sign (+1.017 and −1.031 rad at Im μ = 2.5, Re μ ≈ 0.161) cancel; min|1 − ν| = 0.7–0.9 at both, so
+  they are an eigenvalue swap at the truncation, not a zero near the contour.
 - **Large |Im μ|.** Along Re μ = x_lo the spectral radius of T_μ decays roughly like 2/|Im μ|:
 
   | case | ρ(T_μ) |
@@ -48,7 +50,7 @@ also sets out what a computer-assisted proof (CAP) of one new rung would require
   argument-principle count on the rectangle [x_lo, 1.5] × [1.5, 3.5] (`contour_rect.py`). For 2D n = 7 the count
   is **0.0000**, i.e. no eigenvalues in the strip (`crect_bq7_strip.out`, 72 evaluations; one segment with an
   eigenvalue swap at the truncation, min|1 − ν| = 0.5 there). IPM U₃ and U₄ are counted directly on
-  [0.04, 1.5] × [±2.5]; U₃ gives 4.077 → trivial + 3.
+  [0.04, 1.5] × [±2.5]: U₃ gives 4.077 → trivial + 3 and U₄ gives 4.902 → trivial + 4.
 - **Small Re μ.** 0 < Re μ < x_lo contains only the dilation mode, which is split by the origin truncation to
   ±0.6/|s_start|. Its position moves as predicted when s_start changes (−20 → −30).
 
