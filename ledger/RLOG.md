@@ -368,3 +368,32 @@ the rounded λ, a state is inconsistent (Δm ≈ Δλ/ε ~ 1e-5 in HL, ~5e-4 in 
 - The parity of det(I − T_μ) is now taken from the sign of Re Π(1 − ν).
 - Hou–Luo states beyond z ≈ 24 are not used: T_μ has many ν near 1 at small μ there.
 - A container restart interrupted the runs; the last two 2D points were recomputed.
+
+### R032 — P03: the Hou–Luo spacing constant from the λ → 1 limit problem
+**The limit problem** (`hl_limit.py`, `hl_limit_nk.py`; ASYMPTOTICS.md §8).
+- Stalled layer: H[Ω] = −2 on (−1, 1), with Ω = Θ_ξ.
+- Outer region: transported vorticity with front value Ω_f.
+- It is solved as a one-parameter family, starting from the exact Ω_f = 0 solution Ω = 2ξ/√(1−ξ²).
+
+**The family.**
+- The phase constant C(Ω_f) = 2 Re∫κ₀ dξ/ξ decreases from 3.95 (Ω_f = 0.5) and converges as Ω_f → ∞.
+- The layer's edge singularity α → 0 (Kutta-type), and the shed vorticity becomes a spike of vanishing width.
+- Fits over Ω_f = 10–20 plus a grid check give C_∞ = 2.4565 ± 0.0005, so **π/C_∞ = 1.279 ± 0.001**.
+
+**Closure.** The finite-ε profiles shed a front vorticity that grows without bound: Ω(x_c) = 2.24 → 2.75 for
+z = 10.6 → 33, as the dip deepens (D̂_min ∝ ε^{0.31–0.36}). So Ω_f → ∞ is the relevant member.
+
+**Comparison.**
+- The measured spacings Δz_n increase monotonically to 1.2699 (n = 10).
+- They extrapolate to 1.276–1.284 (linear/quadratic in 1/z).
+- The derived constant, with no fit to rung data, lies in that range.
+- Direct imposition of α = 0 (`hl_kutta.py`) does not converge: D < 0 appears at the front.
+- The 2D analogue of the limit problem remains open.
+
+**IPM (D, blind test) started.**
+- PREDICTIONS_IPM.md was committed (4dc82af) before any continuation.
+- New tools: `ipm_solver.py`, `ipm_branch.py`, `ipm_crossing.py`, `ipm_stability.py`, `ipm_flow_spec.py` and
+  `ipm_contour.py`.
+- The IPM T_μ passes the time-translation test: |T₁x − x|/|x| = 5e-8.
+- Ground state λ₀ = 1.0285722975. First unstable rung λ₁ = 0.4721297256.
+- For comparison, the empirical law of Wang et al. gives 1.0285 and 0.4721.

@@ -382,3 +382,107 @@ where θ₀ collects the O(1) connection phases at the front and at the stagnati
   spacing. They need the front connection and the region-I problem with the strain forcing.
 - The upper end, where μ = O(1). There the top member lies 0.06–0.10 above the uniform ladder, and in Hou–Luo
   adjacent members collide into weakly complex pairs.
+
+## 8. The λ → 1 limit problem: the spacing constant of Hou–Luo [F; solution N]
+§5.5b measured the phase coefficient on finite-ε profiles and extrapolated it (a₀ = 1.22–1.25). Here the limit
+itself is solved. No finite-ε data enter, except in choosing the one closure parameter.
+
+### 8.1 The limit problem (`hl_limit.py`)
+At λ = 1 the Hou–Luo profile splits at the front ξ = x_c into two regions. Take x_c = 1; the limit problem is
+invariant under ξ → ξ/x_c.
+
+- **Stalled layer |ξ| < 1.** D = 2 + U/ξ = 0, so U = −2ξ. Equivalently
+
+      H[Ω] = −2 on (−1, 1),
+
+  a finite-Hilbert (airfoil) equation for the odd vorticity Ω.
+  - The vorticity is slaved to the buoyancy gradient, Ω = Θ_ξ, because Ω + ξDΩ_ξ = Θ_ξ with D = 0.
+  - Θ = ∫_0^ξ Ω.
+  - The WKB speed is D̂ = D/ε = 2Θ/(ξΩ), from ξDΘ_ξ = (λ−1)Θ.
+- **Outer region ξ > 1.** Θ = Θ(1) is constant. The vorticity is transported, Ω + ξDΩ_ξ = 0, with D = 2 + U/ξ and
+  U_ξ = H[Ω].
+- **Closure.** The front vorticity Ω(1⁺) = Ω_f.
+
+**Exact solution at Ω_f = 0:** Ω = 2ξ/√(1−ξ²), Θ = 2(1 − √(1−ξ²)), D = 2√(1 − 1/ξ²).
+
+**Numerics.**
+- Layer: Ω = Σ b_j T_j/√(1−ξ²) (j odd, 160 modes), which carries the edge singularity exactly.
+- Outer grid: y = 1 + σ² (6000 points) plus a logarithmic grid to 10⁸.
+- Solver: damped fixed-point iteration for Ω_f ≤ 10. Beyond Ω_f = 10 it fails, and Newton–Krylov continuation
+  in Ω_f is used instead (`hl_limit_nk.py`).
+
+**Phase constant** of the ladder (§3.4), evaluated on the limit solution:
+
+    a₀ = ∫_0^1 κ₀ dξ/ξ,   κ₀ = (−1 + √(1 + 4iΩ))/(2iD̂),   C = 2 Re a₀,   Δz_∞ = π/C.
+
+### 8.2 The family and its Ω_f → ∞ limit
+The table is `hl_limit_table.txt`. Here α = Σb_j/√2 is the coefficient of the edge singularity of the layer
+vorticity, Ω ≈ α(1−ξ)^{−1/2}.
+
+| Ω_f | α | C | π/C |
+|---|---|---|---|
+| 0.5 | 1.044 | 3.953 | 0.795 |
+| 2 | 0.490 | 2.978 | 1.055 |
+| 4 | 0.228 | 2.603 | 1.207 |
+| 6 | 0.125 | 2.505 | 1.254 |
+| 10 | 0.052 | 2.4643 | 1.2748 |
+| 14.5 | 0.029 | 2.4581 | 1.2781 |
+| 20 | 0.021 | 2.4568 | 1.2787 |
+
+**Behaviour as Ω_f grows.**
+- The edge coefficient α → 0: the inverse-square-root singularity of the layer vorticity disappears, a
+  Kutta-type edge condition.
+- The outer speed near the front, D ≈ k√(ξ−1), flattens (k ≈ 2α → 0).
+- The vorticity shed past the front becomes a spike of height Ω_f and vanishing width.
+- C converges.
+
+**The limit value.**
+- Fit C = C_∞ + AΩ_f^{−q} on Ω_f ≥ 10: C_∞ = 2.4563, with q = 4.0.
+- Grid check at Ω_f = 10–13 (240 modes, 8000 outer points on y = 1 + σ³): C is higher by 3–5e-4 (0.02 %).
+- Result: **C_∞ = 2.4565 ± 0.0005, Re a₀ = 1.2283, π/C_∞ = 1.279 ± 0.001.**
+
+Imposing α = 0 directly, with the outer amplitude free (`hl_kutta.py`), does not converge. The fixed-point step
+leaves D < 0 near the front. The limit is therefore reached only as a limit of the family.
+
+### 8.3 Why Ω_f → ∞ is the closure
+The finite-ε profiles set the front vorticity in the dip, where D̂ is smallest:
+- **The slaved vorticity is large there.** Ω ≈ Θ_ξ = 2Θ/(ξD̂).
+- **The dip deepens.** D̂_min ∝ ε^{0.31–0.36} (§5.5b), so the vorticity there grows like ε^{−0.36}.
+- **It is shed into the outer region.** The measured outer vorticity just past the front rises monotonically,
+  from Ω(x_c) = 2.24 at z = 10.6 to 2.75 at z = 33 (`hl_limit_look.out`).
+- **The outer speed near the front falls.** D/√(ξ/x_c − 1) at ξ/x_c − 1 = 0.02 drops from 1.02 to 0.77 over the
+  same range (∝ ε^{0.25}).
+
+The front vorticity therefore grows without bound as ε → 0. The relevant member of the family is Ω_f → ∞.
+
+**What is not derived.** The inner (dip/front) problem itself: the exponents and why the dip deepens.
+
+**Consistency checks.**
+- Away from the front the deepest profile (z = 33) already matches the family, in Θ, Ω and D̂ at
+  1 − ξ/x_c = 0.2–0.5, to 1–3 %. That comparison cannot resolve Ω_f ≳ 4. The phase can, because κ₀ ∝ Ω^{3/2} is
+  largest at the edge.
+- The derived value is insensitive to the exact closure once Ω_f is large: every Ω_f ≥ 10 gives π/C within 0.3 %
+  of 1.279.
+
+### 8.4 Comparison with the ladder
+The measured Hou–Luo spacings Δz_n = z_n − z_{n−1} increase monotonically: 1.2325, 1.2534, …, 1.2683, 1.2699
+(n = 1–10).
+
+| extrapolation of Δz_n to 1/z → 0 | value |
+|---|---|
+| linear in 1/z, n ≥ 3 / n ≥ 4 / n ≥ 5 | 1.2761 / 1.2773 / 1.2783 |
+| quadratic in 1/z, n ≥ 3 / n ≥ 5 | 1.2808 / 1.2835 |
+| **limit problem, π/C_∞ (no fit to rung data)** | **1.279 ± 0.001** |
+
+Also:
+- The earlier direct extrapolations of the finite-ε phase coefficient (§5.5b, a₀ = 1.22–1.25) bracket the limit
+  value Re a₀ = 1.2283.
+- The slow approach of the spacing to its limit comes from the slow growth of the front vorticity, since C(Ω_f)
+  flattens only for Ω_f ≳ 10. The rung law is therefore
+
+      1/(λ_n − 1) = a n + b + o(1),   a = π/C_∞ = 1.279,
+
+  with a derived rather than fitted.
+
+**2D.** The analogous 2D limit problem, a stalled wall layer carrying a vortex sheet plus a transported outer
+vorticity field, has not been solved. The 2D constant stays measured, 1.483–1.495 (§6).

@@ -12,19 +12,21 @@ The WKB phase constant of the profile ladder is a property of this limit solutio
     a₀ = ∫_0^1 κ₀ dξ/ξ,   κ₀ = (−1 + √(1 + 4iΩ))/(2i D̂),   D̂ = 2Θ/(ξΩ)   (the layer relation DΘ_η = (λ−1)Θ),
     C = 2 Re a₀,   predicted asymptotic spacing of z_n = 1/(λ_n − 1):  a = π/C.
 usage: python3 hl_limit.py OMEGA_F [OMEGA_F ...]"""
-import numpy as np, sys
+import numpy as np, sys, os
 
-J = 160                                    # odd Chebyshev modes j = 1, 3, ..., 2J−1
+J = int(os.environ.get('HL_J', 160))                                   # odd Chebyshev modes j = 1, 3, ..., 2J−1
 jj = np.arange(1, 2 * J, 2)
-M = 1200                                   # Gauss–Chebyshev (2nd kind) nodes on the layer
+M = int(os.environ.get('HL_M', 1200))      # Gauss–Chebyshev (2nd kind) nodes on the layer
 th_k = np.arange(1, M + 1) * np.pi / (M + 1)
 x_k = np.cos(th_k); w_k = np.pi / (M + 1) * np.sin(th_k) ** 2          # ∫ f √(1−x²) dx ≈ Σ w_k f(x_k)
 Uk = np.sin(np.outer(jj, th_k)) / np.sin(th_k)                          # U_{j−1}(x_k), shape (J, M)
 
 # outer grid: y = 1 + σ², σ ∈ (0, 3], then logarithmic to 1e8
-sig = np.linspace(0, 3.0, 6001)[1:]
-y1 = 1 + sig ** 2; dy1 = 2 * sig * (sig[1] - sig[0])
-ylog = np.exp(np.linspace(np.log(10.0), np.log(1e8), 3000))[1:]
+NSIG, NLOG = int(os.environ.get('HL_NSIG', 6000)), int(os.environ.get('HL_NLOG', 3000))
+PSIG = float(os.environ.get('HL_PSIG', 2.0))      # y = 1 + σ^PSIG near the front (PSIG = 2: the original grid)
+sig = np.linspace(0, 3.0 ** (2 / PSIG), NSIG + 1)[1:]
+y1 = 1 + sig ** PSIG; dy1 = PSIG * sig ** (PSIG - 1) * (sig[1] - sig[0])
+ylog = np.exp(np.linspace(np.log(10.0), np.log(1e8), NLOG))[1:]
 y = np.concatenate([y1, ylog])
 dy = np.concatenate([dy1, np.gradient(ylog)])
 
