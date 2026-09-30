@@ -289,3 +289,11 @@ The minimum is the dip of the boundary speed just behind the front, at x ≈ 0.6
 If this persists, P1 is **falsified** for IPM: the branch would end at a finite-λ sonic cusp, as its 1D reduction
 CCF does, rather than in a stalled layer at λ → 0. The branch is being continued to 1/λ ≈ 12 to test this
 (`ipm_branch_dn5.out`).
+
+**Stage 2d′ (added before λ₆ is computed): a shifted accumulation point.**
+- Fitting an accumulation point λ_c so that 1/(λ_n − λ_c) has constant spacing gives **λ_c = 0.0379**. The
+  spacings are then 1.294, 1.306, 1.301, 1.308, 1.304, constant to 0.2 %.
+- The same procedure recovers λ_c = 0.9992 (2D) and 0.9993 (Hou–Luo), where the known value is 1.
+- This law predicts **λ₆ = 0.1512, λ₇ = 0.1367, λ₈ = 0.1254**.
+- The geometric model (ratio 0.92) gives nearly the same: 0.1513, 0.1369, 0.1259.
+- Both imply rungs accumulating at a finite λ (0.038 or 0.065), not at λ → 0.
