@@ -264,3 +264,28 @@ From `ipm_stage2b_predictions.out`, i.e. `ipm_stage2_predict.py` on λ₀–λ�
 - The same rule, fitted on (Δ₃, Δ₄), gives **λ₅ = 0.17010 (1/λ₅ = 5.879)**.
 - Simple extrapolations bracket 0.1688–0.1707.
 - The empirical line gives 0.1492.
+
+## Stage 2c outcome and stage 2d (λ₆), recorded 2026-09-30 before the branch reached λ₆
+**λ₅.**
+- Computed: **λ₅ = 0.1708490449 (1/λ₅ = 5.8531)**.
+- Predicted: 0.17010 (5.879). The error is 0.026 in 1/λ (3 % of a spacing), or 0.44 % in λ.
+
+**Stage 2d: λ₆** (`ipm_stage2d_predictions.out`).
+- The rule gives **λ₆ = 0.150928 (1/λ₆ = 6.626)**.
+- Simple extrapolations give 0.1498–0.1513.
+
+**Observation, recorded before λ₆ is computed.** The spacings 1.146, 1.057, 0.965, 0.892, 0.821 shrink by a nearly
+*constant factor*, 0.922, 0.913, 0.925, 0.920. The fitted asymptotic spacing of the P2 law therefore keeps falling
+with every new rung (0.93, 0.72, 0.61, 0.44). This is the signature of rungs accumulating at a *finite* λ, not
+at λ → 0.
+
+It is corroborated by the stalled-layer diagnostic:
+- min V_r/r / λ falls roughly linearly in 1/λ, from 0.50 at λ = 1 to 0.24 at λ = 0.156;
+- its local log-slope rises from 0.25 to above 1;
+- extrapolated, it reaches zero near λ ≈ 0.08–0.09.
+
+The minimum is the dip of the boundary speed just behind the front, at x ≈ 0.61.
+
+If this persists, P1 is **falsified** for IPM: the branch would end at a finite-λ sonic cusp, as its 1D reduction
+CCF does, rather than in a stalled layer at λ → 0. The branch is being continued to 1/λ ≈ 12 to test this
+(`ipm_branch_dn5.out`).
