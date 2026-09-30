@@ -26,8 +26,9 @@ Here we show that a single phase organizes both the profiles and their stability
 - **New profiles.** We report four new 2D Boussinesq profiles (index 4–7), with exact instability counts.
 - **Blind test.** In the incompressible-porous-media equation we committed predictions before computing. The
   spectral predictions held, with growth rates predicted to 0.2 % and the spectral flow to 1e-3. The predicted
-  accumulation of profiles as λ → 0 failed: the IPM hierarchy follows the same linear law about a finite
-  accumulation point, where its boundary flow turns sonic.
+  accumulation of profiles as λ → 0 failed: the IPM profiles follow the same linear law about a finite point, and
+  the dip in their boundary flow extrapolates to closure at finite λ. The IPM branch ends before its scalar
+  exponent vanishes.
 - **Finite versus infinite.** How the branch ends — a stalled layer, or a sonic cusp as in the
   Córdoba–Córdoba–Fontelos model — decides whether the hierarchy is infinite.
 
@@ -190,12 +191,14 @@ from the lower profiles by a fixed rule.
   - The rungs obey the one-phase linear law (1) in the shifted variable 1/(λ − λ_c), with λ_c = 0.037, the spacing
     (1.296) constant to 0.3 % over six intervals. The same fit returns the known accumulation point λ_c = 1.000 for Boussinesq and
     Hou–Luo.
-  - The dip of the boundary flow deepens faster than λ and extrapolates to closure near λ ≈ 0.09.
-  - Both point to an IPM branch that ends at *finite* λ. There the dip becomes sonic, as in the CCF reduction of
-    IPM, rather than stalling as λ → 0.
+  - The dip of the boundary flow deepens faster than λ and extrapolates to closure near λ ≈ 0.09. A geometric
+    fit of the spacings (ratio 0.92) puts the accumulation near λ ≈ 0.065.
+  - These three extrapolations differ in value (0.04–0.09), but all place the end of the IPM branch at *finite* λ,
+    as in the CCF reduction of IPM, where the dip closes into a sonic point. They do not decide whether the IPM
+    hierarchy accumulates there or stops (§6).
 - **What the failure teaches.** It sharpens rather than breaks the mechanism. The quantization and the spectral
-  structure are common to the three models. The *location* of the accumulation point is not: it is wherever the
-  boundary flow stalls. Our prediction took that to be the zero of the scalar exponent; in IPM it comes earlier.
+  structure are common to the three models. *Where the hierarchy ends* is not: it is set by where the boundary
+  flow stalls or closes. Our prediction took that to be the zero of the scalar exponent; in IPM it comes earlier.
 - **Also failed.** Quantities we had calibrated on the other two models — the finite-λ correction to the lattice
   step and the displacement of its top member — were too large for IPM, which lies closer to the asymptotic lattice
   than either.
@@ -235,10 +238,13 @@ The mechanism uses only three ingredients: a transported scalar whose exponent c
 a boundary along which the self-similar flow can stall. It should therefore apply beyond the three models
 considered here, for example to other Euler-type reductions with boundary.
 
-**Euler.** The Boussinesq system with boundary is equivalent, away from the axis, to axisymmetric Euler with swirl
-near the wall. The hierarchy found here is therefore a hierarchy of candidate Euler singularities of increasing
-codimension, all sharing the Luo–Hou geometry. We make no claim about Euler without boundary, or about
-Navier–Stokes.
+**Euler.** Away from the symmetry axis, axisymmetric Euler with swirl near the wall reduces at leading order to
+the Boussinesq system with boundary, with the squared angular momentum (ru^θ)² in the role of the temperature. The
+remaining terms are of lower order in the self-similar scaling, and Chen and Hou's proof of stable blow-up treats
+Euler as a perturbation of Boussinesq in this way. Each profile found here is therefore a candidate Euler
+singularity at a wall, of codimension n, in the Luo–Hou geometry. Carrying an unstable profile over to Euler means
+controlling that perturbation along its n unstable directions, which we have not done. We make no claim about Euler
+without boundary, or about Navier–Stokes.
 
 **Limitations.**
 - The infinite hierarchies and the eigen-condition are derived by formal matched asymptotics. Every hypothesis is

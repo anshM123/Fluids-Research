@@ -37,8 +37,8 @@ incompressible fluids come in hierarchies, and why the n-th profile has exactly 
 1. **Profiles.** The smooth profiles are resonances of a single continuous branch of generically singular
    self-similar solutions. As the exponent ε of the transported scalar decreases, the flow along the boundary stalls
    between the stagnation point and a front. A wave trapped in this stalled layer accumulates a phase C/ε, and every
-   half-turn produces a smooth profile. This explains the linear laws, and predicts an infinite hierarchy
-   accumulating at ε = 0.
+   half-turn produces a smooth profile. This explains the linear laws. Where the stall persists down to ε = 0
+   (Boussinesq, Hou–Luo), it predicts an infinite hierarchy accumulating there.
 2. **Instabilities.** The same phase, shifted by πμ/ε at the stagnation point, quantizes the unstable growth rates
    μ. They form a lattice of step ε that moves rigidly with the phase along the branch, admitting one new unstable
    mode per half-turn. The index of the n-th profile is therefore n, a Sturm-type oscillation theorem for blow-up
@@ -53,10 +53,10 @@ incompressible fluids come in hierarchies, and why the n-th profile has exactly 
      profile were predicted to 0.2–1.2 %; the spectral flow between profiles was predicted to 1e-3; and the
      profile positions to 0.1–6 % of a spacing.
    - **What failed.** The predicted accumulation at λ → 0 failed. The IPM profiles obey the same linear law, but
-     about a finite accumulation point λ_c = 0.037 (constant spacing to 0.3 % over six intervals), where the
-     boundary flow turns sonic.
-   - **What it teaches.** The quantization and the spectral structure are common to the models. The location of
-     the accumulation point is set by where the boundary flow stalls.
+     in 1/(λ − λ_c) with λ_c = 0.037 (constant spacing to 0.3 % over six intervals). Independently, the dip in the
+     boundary flow extrapolates to closure near λ ≈ 0.09. Both place the end of the IPM branch at finite λ.
+   - **What it teaches.** The quantization and the spectral structure are common to the models. Where the
+     hierarchy ends is not: it is set by where the boundary flow stalls or closes.
 5. **Finite versus infinite.** When the branch ends instead at a sonic cusp at finite parameter, as in CCF, the
    phase still diverges but the defect oscillates about a non-zero value. The hierarchy then stops, after three
    profiles.
@@ -90,14 +90,14 @@ Sincerely,
 
 ## Abstract (≤ 200 words)
 Unstable self-similar singularities have recently been discovered in several incompressible-fluid models, in
-hierarchies whose n-th member has n unstable directions. Here we show that a single phase organizes both the
+hierarchies whose n-th member has n unstable directions. We show that a single phase organizes both the
 profiles and their stability. The smooth profiles are resonances of one continuous branch of singular self-similar
 solutions: a wave trapped in a stalled boundary layer accumulates a phase C/ε as the exponent ε of the transported
-scalar decreases, and each half-turn produces a new profile. The same phase, shifted by πμ/ε at the stagnation
+scalar decreases, and each half-turn produces a profile. The same phase, shifted by πμ/ε at the stagnation
 point, quantizes the instability growth rates μ into a lattice of step ε that admits one new unstable mode per
 half-turn, so the n-th profile has exactly n. For the Hou–Luo model we derive the asymptotic spacing from a limit
 problem (π/C = 1.279), in agreement with eleven computed profiles. We find four new 2D Boussinesq profiles. In a
-blind test on the porous-media equation, the predicted spectra held to about 1 %, while the predicted
-accumulation point did not: the hierarchy accumulates where the boundary flow stalls. Where the branch instead ends
-at a sonic cusp, as in the Córdoba–Córdoba–Fontelos model, the hierarchy is finite. The results turn an empirical catalogue of fluid
+blind test on the porous-media equation the predicted spectra held to about 1 %, but the hierarchy ends at finite
+λ rather than where the scalar exponent vanishes. Where a branch ends at a sonic cusp, as in the
+Córdoba–Córdoba–Fontelos model, the hierarchy is finite. The results turn an empirical catalogue of fluid
 singularities into a predictive mechanism.
