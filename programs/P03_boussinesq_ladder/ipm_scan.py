@@ -14,12 +14,15 @@ every = int(os.environ.get('SAVE_EVERY', 0))
 t0 = time.time(); log = open(f"ipm_scan_{tag}.out", "a")
 def out(s):
     print(s, flush=True); log.write(s + "\n"); log.flush()
-out(f"# ipm_scan {tag}: z {z0} -> {z1} step {dz}, s_start={ss}, hs={hs}, start={f} (λ={lam_s})")
-Y = transfer(BQLogPolar(lam_s, hs=hs, Nb=32, s_start=-20.0), np.load(f), IPM(lam_s, hs=hs, Nb=32, s_sw=12.0, s_start=ss))
+out(f"# ipm_scan {tag}: z {z0} -> {z1} step {dz}, s_start={ss}, hs={hs}, Nb={os.environ.get('NB', 32)}, "
+    f"tol={os.environ.get('NK_TOL', 1e-13)}, start={f} (λ={lam_s})")
+NB = int(os.environ.get('NB', 32))                                   # angular resolution of this run
+NB_IN, HS_IN, SS_IN = int(os.environ.get('NB_IN', 32)), float(os.environ.get('HS_IN', hs)), float(os.environ.get('SS_IN', -20.0))
+Y = transfer(BQLogPolar(lam_s, hs=HS_IN, Nb=NB_IN, s_start=SS_IN), np.load(f), IPM(lam_s, hs=hs, Nb=NB, s_sw=12.0, s_start=ss))
 zs = np.arange(z0, z1 + 1e-9, dz); acc = []; rows = []
 for i, z in enumerate(zs):
     lam = 1 / z
-    B = IPM(lam, hs=hs, Nb=32, s_sw=12.0, s_start=ss)
+    B = IPM(lam, hs=hs, Nb=NB, s_sw=12.0, s_start=ss)
     if len(acc) >= 2:
         (za, Ya), (zb, Yb) = acc[-2], acc[-1]; Yg = Yb + (Yb - Ya) * (z - zb) / (zb - za)
     else:

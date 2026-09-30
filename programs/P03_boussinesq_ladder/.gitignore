@@ -22,3 +22,4 @@ ipm_deep_*_lam*.npy
 ipm_noise_*.npy
 ipm_scan_*_z*.npy
 ipm_nbcheck_*.npy
+ipm_f1_start_*.npy

@@ -1,0 +1,2 @@
+# ipm_deep f1: λ 0.15092 -> 0.118, Δz = 0.08, Nb=32 hs=0.0125 s_start=-30.0 tol=2e-12 start=ipm_noise_lam0.1509200_hs0.0125.npy (grid in: Nb=32 hs=0.0125 s_start=-20.0)
+failed at the start
