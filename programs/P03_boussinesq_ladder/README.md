@@ -178,3 +178,28 @@ spaced. For n = 6, μ_k/ε = 1.61, 3.82, 6.05, 8.38, 10.73, with spacing ≈ 2.2
 - Positivity of C: closed form for Hou–Luo, checked pointwise in 2D.
 - Numerical verification of every hypothesis, and what remains open: the exact C; 3/2; the o(1) remainder near the
   front.
+- §8: the Hou–Luo λ → 1 limit problem. It gives the spacing constant π/C_∞ = 1.279 ± 0.001 (`hl_limit.py`,
+  `hl_limit_nk.py`, `fig_limit.py`).
+
+## The λ → 1 limit problem (Hou–Luo)
+| step | command | time |
+|---|---|---|
+| family for Ω_f ≤ 10 (from the exact Ω_f = 0 solution) | `python3 hl_limit.py 0.5 1 1.5 2 2.5 3 3.5 4`, then `hl_limit_large.py 5 6 8 10` | ~15 min |
+| Newton–Krylov continuation to Ω_f = 20 | `python3 hl_limit_nk.py hl_limit_Omf10.000.npz 10 20 0.5` | ~4 min |
+| grid check (240 modes, y = 1 + σ³) | `HL_J=240 HL_M=1800 HL_NSIG=8000 HL_PSIG=3 HL_TAG=_fine python3 hl_limit_nk.py hl_limit_Omf10.000.npz 10 14 1` | ~2 min |
+| table / figure | `python3 fig_limit.py` (and the table in `hl_limit_table.txt`) | ~1 min |
+| front structure of the finite-ε states | `python3 hl_limit_look.py` → `hl_limit_look.out` | ~10 min |
+
+## IPM (third model; blind test of the one-phase theory, `PREDICTIONS_IPM.md`)
+The IPM self-similar problem is the Boussinesq problem with the vorticity slaved to the density gradient,
+Ω = −∂₁R. It uses the same grid, Biot–Savart and Newton machinery (`ipm_solver.IPM` subclasses `bq_solver.BQ`).
+
+| step | command |
+|---|---|
+| profile at one λ | `python3 ipm_solver.py 1.0` |
+| continuation in z = 1/λ | `python3 ipm_branch.py LAM_START LAM_END DZ TAG START.npy` (`ipm_branch_*.out`) |
+| rung (m = 2) | `python3 ipm_crossing.py Ya lam_a Yb lam_b` (`ipm_rung*.out`, states `ipm_rung_*.npy`) |
+| stability operator T_μ | `ipm_stability.py` (time-translation check: `python3 ipm_stability.py STATE LAM`) |
+| unstable spectrum (parity scan) | `python3 ipm_flow_spec.py STATE LAM NUHAT_MAX STEP -30 0.1` (`ipm_spec_U*.out`) |
+| right-half-plane count | `python3 ipm_contour.py STATE LAM 0.025 TAG X_LO X_HI Y_HI` |
+| stage-2 predictions | `python3 ipm_stage2_predict.py` (data in `ipm_stage2_data.py`) |
