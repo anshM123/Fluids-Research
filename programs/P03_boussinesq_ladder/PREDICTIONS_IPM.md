@@ -170,3 +170,31 @@ non-trivial unstable ν̂ = μ/λ at three branch points:
 
 **Falsified if:** the members are not near-linear in f (deviation > 0.1 in ν̂ at f = 0.5), or the entry point is
 outside f ∈ [0.1, 0.4].
+
+## Stage 2a outcomes, part 1 (recorded before stage 2b)
+**λ₃.**
+- Computed: **λ₃ = 0.2415660984 (1/λ₃ = 4.13965)**.
+- Predicted: 0.2383 (4.197). The error is 0.057 in 1/λ, i.e. 6 % of a spacing, or 1.4 % in λ.
+- For reference, the empirical line gives 1/λ₃ = 4.410, an error of 0.27 (28 % of a spacing).
+
+**P2 monotonicity clause: falsified for IPM.**
+- The spacings decrease: Δ₁, Δ₂, Δ₃ = 1.146, 1.057, 0.965. So Δ₃ < Δ₂, whereas in Hou–Luo and 2D Boussinesq they
+  increase.
+- The fitted P2 law (κ < 0) anticipated the decrease, but underestimated it.
+- Whether the spacing converges to a positive constant (P1 and P2's linear law) or keeps falling is open. The
+  stalled-layer diagnostic favours convergence: min V_r/r ∝ λ^{1.28} over λ = 1 → 0.24 (min V_r/r / λ = 0.50 → 0.33).
+  That is a slowly deepening dip, as in 2D Boussinesq, with no sign of a sonic point at finite λ.
+
+**P5 at f = 0.25** (λ = 0.4197637).
+- Computed ν̂ = [1.1331] above the artifact level ν̂ ≈ 0.05, plus the trivial mode.
+- Predicted [0.012, 1.132]:
+  - the continuing member is off by 0.001;
+  - the entering member, predicted at 0.012, lies below the resolvable level, as expected.
+
+## Stage 2b, part 1 — λ₄ (fixed before the branch reaches it; the branch is capped at 1/λ = 4.8)
+- Rule of stage 2: Δ = a − κ/z̄ on (Δ₂, Δ₃). This gives a = 0.723 and κ = −0.883, hence Δ₄ = 0.915 and
+  **λ₄ = 0.19783 (1/λ₄ = 5.0549)**.
+- Other simple extrapolations span λ₄ = 0.1959 (constant spacing) to 0.1995 (linearly decreasing spacing).
+- The empirical line gives 0.1800.
+
+The U₄ spectral predictions (stage 2b, part 2) follow once the U₃ spectrum is computed, and before λ₄ is computed.
