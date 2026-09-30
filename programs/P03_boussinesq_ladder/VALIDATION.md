@@ -34,7 +34,7 @@ also sets out what a computer-assisted proof (CAP) of one new rung would require
   |---|---|---|
   | 2D, n = 5–7 | exactly n + 1 zeros (index n plus the trivial μ = 1) | changes of origin truncation, contour and grid |
   | Hou–Luo, n ≤ 10 | index n | — |
-  | IPM, n = 1–4 | 1.947, 3.082, 4.077, 4.902 → n + 1 (index n plus the trivial mode) | box height ±1.5 (n ≤ 2) and ±2.5 (n = 3, 4) |
+  | IPM, n = 0–4 | 0.994, 1.947, 3.082, 4.077, 4.902 → n + 1 (index n plus the trivial mode) | box height ±1.5 (n ≤ 2) and ±2.5 (n = 3, 4) |
 
   The deviation from the integer is ≤ 0.08 in all counts except IPM U₄ (0.098). There, two adjacent unresolved
   jumps of opposite sign (+1.017 and −1.031 rad at Im μ = 2.5, Re μ ≈ 0.161) cancel; min|1 − ν| = 0.7–0.9 at both, so

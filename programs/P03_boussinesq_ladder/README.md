@@ -202,4 +202,5 @@ The IPM self-similar problem is the Boussinesq problem with the vorticity slaved
 | stability operator T_μ | `ipm_stability.py` (time-translation check: `python3 ipm_stability.py STATE LAM`) |
 | unstable spectrum (parity scan) | `python3 ipm_flow_spec.py STATE LAM NUHAT_MAX STEP -30 0.1` (`ipm_spec_U*.out`) |
 | right-half-plane count | `python3 ipm_contour.py STATE LAM 0.025 TAG X_LO X_HI Y_HI` |
+| counts used in the paper | `python3 ipm_contour.py ipm_rung_…_lamL.npy L 0.025 Un 0.04 1.5 Y 16 -30` with Y = 1.5 (U₀–U₂) or 2.5 (U₃, U₄); results in `ipm_contour_Un.out` (0.994, 1.947, 3.082, 4.077, 4.902 for n = 0–4; ~20–60 min each) |
 | stage-2 predictions | `python3 ipm_stage2_predict.py` (data in `ipm_stage2_data.py`) |

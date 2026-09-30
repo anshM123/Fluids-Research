@@ -176,8 +176,8 @@ from the lower profiles by a fixed rule.
   - The straight line through the first two profiles, the empirical law of the literature, is off by 28 % of a
     spacing already at λ₃, and more further on.
 - **Spectrum: every parameter-free prediction held.**
-  - The index is exactly n for n = 0–4 (argument-principle counts 1.95, 3.08, 4.08, 4.90 for n = 1–4, i.e. the
-    trivial mode plus n).
+  - The index is exactly n for n = 0–4 (argument-principle counts 0.99, 1.95, 3.08, 4.08, 4.90 for n = 0–4, i.e.
+    the trivial mode plus n).
   - All modes are real.
   - The growth rates lie on a lattice of step λ_n: U₃ has μ/λ₃ = 0.805, 1.879, 2.937, and U₄ has 0.796, 1.846,
     2.879, 3.868.

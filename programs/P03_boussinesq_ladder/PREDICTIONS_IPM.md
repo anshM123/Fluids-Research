@@ -350,7 +350,7 @@ mode sits at μ = 1.000025.
 |---|---|
 | P1 (no fold or sonic point at λ > 0; accumulation as λ → 0; min V_r/r = O(λ)) | **failed** in its accumulation and O(λ) clauses. No fold was met down to λ = 0.14, but min V_r/r / λ falls from 0.50 to 0.21 and extrapolates to zero near λ ≈ 0.09. |
 | P2 (linear law; increasing spacings) | linear law **holds in 1/(λ − λ_c)**; the increasing-spacing clause **failed** (spacings decrease) |
-| P3 (index n, all real) | **held**, n = 0–4. Contour counts on [0.04, 1.5] × [±1.5 or ±2.5]: 1.947, 3.082, 4.077, 4.902 for n = 1–4, i.e. trivial + n |
+| P3 (index n, all real) | **held**, n = 0–4. Contour counts on [0.04, 1.5] × [±1.5 or ±2.5]: 0.994, 1.947, 3.082, 4.077, 4.902 for n = 0–4, i.e. trivial + n |
 | P4 (lattice of step λ_n, s → 1) | **held**: gaps 1.12 (U₂); 1.07, 1.06 (U₃); 1.05, 1.03, 0.99 (U₄) |
 | P5 (rigid spectral flow, entry at μ = 0) | **held**: continuing member within 1e-3 at 4 branch points; others within 0.05 |
 | P6 (localization at the front) | **held**: U₃ modes peak at the dip x ≈ 0.61, regular at the stagnation point |
