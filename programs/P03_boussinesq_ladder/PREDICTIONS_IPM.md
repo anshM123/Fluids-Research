@@ -251,3 +251,16 @@ From `ipm_stage2b_predictions.out`, i.e. `ipm_stage2_predict.py` on λ₀–λ�
   | 0.25 | 0.2927270 | [0.061, 1.135, 2.193] |
   | 0.50 | 0.2734243 | [0.309, 1.383, 2.441] |
   | 0.75 | 0.2565098 | [0.557, 1.631, 2.689] |
+
+## Stage 2b outcome, part 1, and stage 2c (λ₅), fixed before the branch reaches λ₅
+**λ₄.**
+- Computed: **λ₄ = 0.198730 (1/λ₄ = 5.0320)**. The refinement is converging; the final digits are in
+  `ipm_rung4.out`.
+- Predicted: 0.19783 (5.0549). The error is 0.023 in 1/λ (2.5 % of a spacing), or 0.45 % in λ.
+- The spacings keep decreasing (1.146, 1.057, 0.965, 0.892), but the decrements shrink (−0.089, −0.092, −0.072).
+  This is consistent with convergence to a positive asymptotic spacing.
+
+**Stage 2c: λ₅** (`ipm_stage2c_predictions.out`).
+- The same rule, fitted on (Δ₃, Δ₄), gives **λ₅ = 0.17010 (1/λ₅ = 5.879)**.
+- Simple extrapolations bracket 0.1688–0.1707.
+- The empirical line gives 0.1492.
