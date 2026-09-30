@@ -315,3 +315,18 @@ That is 3–5 % of a spacing. Spacing Δ₆ = 0.736.
   "crossing" at 1/λ = 6.905, with |m − 2| growing to 1.6e-6.
 - So λ₆ on this grid is uncertain by roughly 0.02–0.05 in 1/λ, and the deep branch run was stopped.
 - λ₅ and λ₆ are being recomputed at h_s = 0.0125. As in 2D Boussinesq, the deep rungs need the finer grid.
+
+## Stage 2b outcome, part 2 — U₄ spectrum (`ipm_spec_U4.out`)
+Computed ν̂ = μ/λ₄ = [0.7958, 1.8463, 2.8791, 3.8684], i.e. μ = [0.15814, 0.36692, 0.57215, 0.76877]. The trivial
+mode sits at μ = 1.000025.
+
+| quantity | predicted | computed | error |
+|---|---|---|---|
+| index(U₄) | 4 | 4, all real (contour count running) | ✓ |
+| ν̂ members | [0.794, 1.854, 2.915, 3.911] | [0.7958, 1.8463, 2.8791, 3.8684] | +0.002, −0.008, −0.036, −0.043 (0.2–1.2 %) |
+| μ at the computed rung | [0.157, 0.367, 0.577, 0.774] | [0.158, 0.367, 0.572, 0.769] | within 0.7 % |
+| parameter-free lattice | [0.805, 1.805, 2.805, 3.805] | as above | −0.01, +0.04, +0.07, +0.06 |
+
+- Lattice gaps: 1.051, 1.033, 0.989. The step tends to λ_n (s₄ − 1 = 0.05), and the top member is not displaced.
+- **Fine-grid check of λ₅** (h_s = 0.0125): 0.1706181, against 0.1708490 at h_s = 0.025. The shift is 0.008 in
+  1/λ, i.e. 1 % of a spacing. The coarse-grid rungs n ≤ 5 are therefore accurate to about 1 % of a spacing.
