@@ -1,0 +1,13 @@
+rungs used: λ = [1.0285722975, 0.4721297256, 0.3149621637, 0.2415660984]
+spacings Δ_n = [1.14584, 1.05692, 0.96467]; model Δ = a − κ/z̄ with a = 0.72313, κ = -0.88340
+PREDICTION λ_4 = 0.197826 (1/λ = 5.05494); hard bound from monotone spacing: λ_4 < 0.195912
+   (for reference, the empirical law 1/λ = 1.1459 n + 0.9723 gives 0.179989)
+PREDICTION index(U_4) = 4 (non-trivial unstable modes, all real)
+PREDICTION ν̂ = μ/λ of U_4: [0.794, 1.854, 2.915, 3.911]  (lowest 0.794; lower gap s = 1.061, β = 0.306; top gap 0.996)
+           μ = [0.15705, 0.36687, 0.57668, 0.77366]
+           lower-gap range s ∈ [1.061, 1.061]
+parameter-free lattice (s = 1, offset of U_3): ν̂ = [0.805, 1.805, 2.805, 3.805]
+P5 (interval z = 3.1750 → 4.1397): members move rigidly with slope 0.993 per interval; the new member enters μ = 0 at f* = 0.189 (z = 3.3570)
+   f = 0.25 (z = 3.4162, λ = 0.2927270): predicted ν̂ = [0.061, 1.135, 2.193]
+   f = 0.50 (z = 3.6573, λ = 0.2734243): predicted ν̂ = [0.309, 1.383, 2.441]
+   f = 0.75 (z = 3.8985, λ = 0.2565098): predicted ν̂ = [0.557, 1.631, 2.689]

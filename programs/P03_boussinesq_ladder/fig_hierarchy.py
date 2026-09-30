@@ -15,7 +15,7 @@ plt.rcParams.update({'font.size': 9, 'axes.edgecolor': MUTED, 'axes.labelcolor':
 
 def ipm_rungs():
     out = {}
-    for f in glob.glob("ipm_rung*.out"):
+    for f in glob.glob("ipm_rung[0-9].out"):
         for line in open(f):
             m = re.search(r"CROSSING .*: λ = ([0-9.]+)", line)
             if m:

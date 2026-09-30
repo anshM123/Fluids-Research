@@ -198,3 +198,56 @@ outside f ∈ [0.1, 0.4].
 - The empirical line gives 0.1800.
 
 The U₄ spectral predictions (stage 2b, part 2) follow once the U₃ spectrum is computed, and before λ₄ is computed.
+
+## Stage 2a outcomes, part 2 (recorded before stage 2b part 2)
+**U₃ spectrum** (`ipm_spec_U3.out`). ν̂ = μ/λ₃ = [0.8054, 1.8794, 2.9371], i.e. μ = [0.19456, 0.45401, 0.70949].
+The trivial mode sits at μ = 1.000011.
+
+| quantity | predicted | computed | verdict |
+|---|---|---|---|
+| index(U₃) | 3 | 3, all real (contour count running) | ✓ |
+| lowest member | 0.807 | 0.8054 | ✓ (0.2 %) |
+| lower gap | 1.198 (prior range 1.157–1.238, from Hou–Luo and 2D) | 1.074 | ✗ |
+| top gap | 1.164 | 1.058 | ✗ |
+| middle / top members | 2.005 / 3.169 | 1.879 / 2.937 | ✗ (off by 0.13 / 0.23) |
+| parameter-free lattice | [0.825, 1.825, 2.825] | [0.805, 1.879, 2.937] | closer: 0.02 / 0.05 / 0.11 |
+
+The IPM lattice is *closer* to the asymptotic step λ_n than the prior taken from the other two models: s₃ − 1 =
+0.074, so β ≈ 0.31 instead of 0.67–1.0. Nor is the top member displaced. The calibration transferred from Hou–Luo
+and 2D failed; the prediction of the theory itself, step → λ, fared better.
+
+**P5, spectral flow inside [z₁, z₂]** (`ipm_spec_bp025/050/075.out`).
+
+| f | predicted ν̂ | computed ν̂ |
+|---|---|---|
+| 0.25 | [0.012, 1.132] | [1.1331] (entering member below the resolvable 0.05) |
+| 0.50 | [0.283, 1.403] | [0.2384, 1.4038] |
+| 0.75 | [0.554, 1.674] | [0.5347, 1.6741] |
+
+- **Continuing member:** within 0.001 at all three points.
+- **Entering member:** 0.045 and 0.019 behind the rigid prediction. It moves slightly faster (slope 1.17 per
+  interval against 1.08) and entered at f* ≈ 0.30, against 0.24 predicted.
+- **Falsification criteria:** both are met, i.e. the prediction survives: linearity is within 0.1, and f* lies in
+  [0.1, 0.4].
+
+## Stage 2b, part 2 — U₄ and the spectral flow inside [z₂, z₃] (fixed before λ₄ is computed)
+From `ipm_stage2b_predictions.out`, i.e. `ipm_stage2_predict.py` on λ₀–λ₃ and U₁–U₃.
+
+**U₄.**
+- **index(U₄) = 4**, all real.
+- **ν̂ = μ/λ₄ ≈ [0.794, 1.854, 2.915, 3.911]**. The ingredients:
+  - lowest member linear in 1/z;
+  - lower gap s = 1 + β/z with β = 0.306 from U₃'s lowest gap, giving s = 1.061;
+  - top gap linear in n, giving 0.996.
+- At the predicted λ₄ = 0.19783, μ ≈ [0.157, 0.367, 0.577, 0.774].
+- The parameter-free lattice (s = 1, offset of U₃) gives [0.805, 1.805, 2.805, 3.805].
+
+**P5 inside [z₂, z₃] = [3.1750, 4.1397]** (rigid lattice, slope 0.993).
+- The new member enters at f* = 0.189 (z = 3.357).
+- Predicted ν̂ at the branch points:
+
+  | f | λ | predicted ν̂ |
+  |---|---|---|
+  | 0.25 | 0.2927270 | [0.061, 1.135, 2.193] |
+  | 0.50 | 0.2734243 | [0.309, 1.383, 2.441] |
+  | 0.75 | 0.2565098 | [0.557, 1.631, 2.689] |

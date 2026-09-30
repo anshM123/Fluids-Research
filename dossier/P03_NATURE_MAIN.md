@@ -39,79 +39,114 @@ We show that a single phase organizes both the profiles and their stability.
 | not proved | Infinitely many profiles for any of these PDEs; existence of any unstable profile in the sense of a computer-assisted proof; the 2D spacing constant; the ladder offsets. |
 
 ## 1. Introduction
-[~300 words.]
-- Blow-up for 3D Euler with boundary: the Luo–Hou scenario, and the Chen–Hou computer-assisted proof of stable,
-  nearly self-similar blow-up for 2D Boussinesq and axisymmetric Euler with boundary.
-- Unstable self-similar solutions:
-  - they are relevant where the stable one is inaccessible;
-  - they are thresholds between blow-up scenarios;
-  - they are candidates for viscous or boundary-free settings.
-- Wang et al. (2025) computed the first few by physics-informed neural networks, in Boussinesq, IPM and CCF. They
-  found empirical rules: 1/(λ_n − 1) and 1/λ_n linear in n, and n unstable modes for the n-th profile.
-- Open questions: are the hierarchies infinite, where do the linear laws come from, and why is the index n?
-- This paper answers all three with one mechanism, and tests it blindly in a third model.
+Whether the incompressible Euler equations can form a singularity in finite time from smooth initial data is a
+central open problem of mathematical fluid dynamics. Near a solid boundary it has been settled. Luo and Hou
+identified a scenario of explosive growth at the wall of a rotating cylinder, and Chen and Hou proved, with
+computer assistance, that it gives stable, nearly self-similar blow-up of the axisymmetric Euler equations and of
+their two-dimensional proxy, the Boussinesq equations with boundary.
 
-## 2. Smooth profiles are phase resonances of one singular branch (Fig. 1, Fig. 2)
-- **The branch.** For every λ there is a least-singular self-similar profile, with local behaviour
-  Θ ≈ −|y₁|^m at the stagnation point. m(λ) = ε_λ/(1+λ−A), where ε_λ = λ−1 (Boussinesq, HL) or λ (IPM), and A is
-  the strain. The profile is smooth iff m = 2.
-- **Computation.** We continue this branch with a marching Newton–Krylov solver and find its intersections with
-  m = 2.
-  - 2D Boussinesq: eight, λ₀…λ₇. n ≤ 3 reproduces Wang et al.; n = 4–7 are new.
-  - Hou–Luo: eleven.
-  - IPM: ⟨IPM⟩.
-- **Independent check.** A second solver, a global sparse Newton method sharing no numerical ingredient,
-  reproduces every Boussinesq rung to 1e-5.
-- **What the branch looks like.** Between rungs, m − 2 oscillates with an amplitude that decays by a factor
-  ≈ 10–20 per half period (Fig. 2a).
+Stable blow-up is not the whole story. Unstable self-similar solutions are thresholds between qualitatively
+different evolutions. They are the natural candidates wherever the stable scenario is unavailable, and they
+organize the phase space near blow-up. Using physics-informed neural networks, Wang et al. recently found the first
+few unstable profiles in three models:
+- the Boussinesq equations with boundary;
+- incompressible porous media (IPM);
+- the one-dimensional Córdoba–Córdoba–Fontelos (CCF) equation.
 
-## 3. The phase: a wave in a stalled boundary layer (Fig. 2)
-- **The stalled layer.** As the scalar exponent ε → 0, the self-similar flow along the boundary stalls between
-  the stagnation point and a front at x_c: the radial speed is D = O(ε).
-- **The wave.** Linear waves in the stalled layer behave as exp(i∫κ ds/ε). κ is the root of a local eigenproblem,
-  in closed form for Hou–Luo: κ = (−1 + √(1+4iΩ))/(2iD̂).
-- **The smoothness defect** is carried by this wave, F = m − 2 ∝ Re[K e^{iΦ}] with Φ = ε⁻¹∫κ ds ≈ C/ε.
-  Smooth profiles occur once per half-turn of Re Φ:
+In each, the n-th profile had n unstable directions, and the blow-up rates followed empirical straight lines. This
+leaves three questions. Why should such hierarchies exist? Are they finite or infinite? And why is the instability
+index of the n-th profile exactly n?
 
-      1/ε_n = (π/C) n + b + o(1).
+Here we answer all three with a single mechanism, and test it in a model on which it was not built. The profiles
+are resonances of one continuous branch of singular solutions. The resonance condition is set by the phase of a
+wave trapped in a stalled boundary layer. The same phase, shifted at the stagnation point, quantizes the unstable
+spectrum.
 
-- **Why the oscillation is centred at the smooth value.** m ≠ 2 would induce a boundary velocity ∝ (m−2)x^{m−1},
-  which the stalled layer forbids at every order in ε. The defect is therefore beyond all orders and purely
-  oscillatory.
+## 2. Smooth profiles are resonances of one singular branch (Figs 1, 2a)
+**The branch.** Write a self-similar solution as a profile in y = x/(1−t)^{1+λ}. For each λ there is a
+*least-singular* profile. Near the stagnation point on the boundary its transported scalar behaves as c|y₁|^m, with
+the exponent fixed by the local strain A:
+- m = (λ−1)/(1+λ−A) for the Boussinesq temperature;
+- m = λ/(1+λ−A) for the IPM density.
 
-**The spacing constant is computable.**
-- At ε = 0 the Hou–Luo profile solves a limit problem:
-  - an airfoil equation H[Ω] = −2 on the stalled layer, with the vorticity slaved to the buoyancy gradient;
-  - transport of the shed vorticity beyond the front.
-- The finite-ε profiles shed a front vorticity that grows without bound. The corresponding limit gives
-  C_∞ = 2.4565, so π/C_∞ = 1.279 ± 0.001, with no fit to the rung data.
-- The measured spacings, 1.2325 … 1.2699 for n = 1–10, increase monotonically and extrapolate to 1.276–1.284
-  (Fig. 2d).
-- The 2D analogue of the limit problem remains open. The 2D spacing is measured as 1.483–1.495.
+Generically m is not an integer and the profile is singular at the stagnation point. It is smooth exactly when
+m(λ) = 2.
+
+**Following it.** We follow this branch continuously in λ with a marching Newton–Krylov method and locate its
+intersections with m = 2 (Methods). In 2D Boussinesq we find eight: n ≤ 3 reproduce Wang et al., and n = 4–7 are
+new. A second solver, a global sparse Newton method sharing no numerical component with the first, reproduces all
+eight to 1e-5 or better. In the one-dimensional Hou–Luo model, the boundary restriction of Boussinesq, we find
+eleven.
+
+**Its shape.** Along the branch, m − 2 oscillates with an amplitude that decays by a factor of 10–20 per half period
+(Fig. 2a). The smooth profiles are the zeros of this oscillation. With ε the exponent of the transported scalar
+(ε = λ − 1 for Boussinesq and Hou–Luo, ε = λ for IPM), they are nearly equally spaced in 1/ε (Fig. 1). The
+empirical linear laws are the leading behaviour of this resonance sequence.
+
+## 3. A stalled layer carries the phase (Fig. 2)
+**The stalled layer.** As ε decreases, the self-similar flow along the boundary stalls. Between the stagnation
+point and a front at x_c, the radial speed D = V₁/x is O(ε), while it is O(1) beyond (Fig. 2b).
+- In this layer the vorticity is slaved to the gradient of the transported scalar.
+- Linear waves behave as exp(i∫κ ds/ε), with κ the root of a local eigenproblem. In Hou–Luo it is explicit:
+  κ = (−1 + √(1 + 4iΩ))/(2iD̂), with D̂ = D/ε.
+
+**The defect is a wave.** The smoothness defect m − 2 is carried by this wave. It has the form
+R cos(Re Φ(λ) − δ), with the phase Φ = ε⁻¹∫κ ds ≈ C/ε. The smooth profiles therefore occur once per half-turn of
+Re Φ:
+
+    1/ε_n = (π/C) n + b + o(1).                                                             (1)
+
+**Why it is centred on zero.** A non-smooth corner (m ≠ 2) induces a boundary velocity ∝ (m − 2)x^{m−1}, which is
+incompatible with a stalled layer at every order in ε. So m − 2 is beyond all orders in ε, and it oscillates about
+zero: every half-turn produces a new profile. An elementary lemma (Box 1) turns this form into infinitely many
+profiles accumulating at ε = 0.
+
+**The constant C is computable.** At ε = 0 the Hou–Luo profile obeys a limit problem.
+- On the stalled layer, U = −2ξ becomes an airfoil equation, H[Ω] = −2.
+- Beyond the front, the shed vorticity is transported by the flow it induces.
+- The problem has a one-parameter family of solutions, labelled by the vorticity shed at the front. The
+  finite-ε profiles shed an ever larger vorticity as ε → 0, because the stalled layer deepens in front of the
+  front (Supplementary). The corresponding limit, in which the edge singularity of the layer vorticity disappears
+  (a Kutta condition), gives C = 2.4565.
+
+Hence π/C = 1.279 ± 0.001. The measured phase coefficients converge towards this value (Fig. 2c), and the eleven
+Hou–Luo rungs, whose spacings increase monotonically to 1.270, extrapolate to 1.276–1.284 (Fig. 2d). The spacing
+of the hierarchy is thus derived, not fitted. The 2D analogue of the limit problem, a stalled wall layer carrying
+a vortex sheet, has not been solved; there the spacing is measured (1.48–1.50).
 
 ## 4. The same phase quantizes the instabilities (Fig. 3)
-Two facts connect the spectrum to the profile phase.
-1. **In the stalled layer the growth rate does not change the phase.** κ(μ) = κ(0) + iμ/D̂.
-   - Exact in Hou–Luo.
-   - To 1e-10 in the 2D local eigenproblem.
-   - It is the WKB form of the identity L_μ(Θφ) = Θ L_{μ+ε}φ.
-2. **At the stagnation point a growth rate μ changes the local exponent** from m to m(1 − μ/ε). The Mellin phase
-   of the wave therefore shifts by πμ/ε.
+Perturbations of a profile grow as e^{μτ}, with τ = −ln(1−t). Two facts tie the growth rate μ to the profile
+phase.
+1. **In the stalled layer μ does not change the phase of the waves.**
+   - The root shifts by exactly iμ/D̂: κ(μ) = κ(0) + iμ/D̂.
+   - This is exact in Hou–Luo and holds to 1e-10 for the 2D local eigenproblem.
+   - It is the WKB form of the identity L_μ(Θφ) = Θ L_{μ+ε}φ: growth only rescales the amplitude.
+2. **At the stagnation point μ changes the local exponent,** from m to m(1 − μ/ε). The Mellin phase of the wave
+   emerging there therefore shifts by πμ/ε.
 
-Matching gives one eigen-condition:
+Matching the two gives one eigen-condition:
 
-    Re Φ(λ) − πμ/ε + θ₀ = (k + ½)π.
+    Re Φ(λ) − πμ/ε + θ₀ = (k + ½)π,   k ∈ ℤ.                                               (2)
 
-Its consequences, all confirmed:
-- (i) The unstable growth rates form a lattice of step ε. The lower spacing extrapolates to 0.996ε in both
-  Boussinesq and Hou–Luo.
-- (ii) Along the branch the lattice moves rigidly with the phase, one step per rung interval. Offsets agree with
-  prediction to 0.011 (HL, 9 branch points) and 0.03 (2D, 5).
-- (iii) One eigenvalue crosses μ = 0 per half-turn, so index(U_n) = index(U₀) + n = n.
-  - This is an oscillation theorem for blow-up profiles: the n-th profile has n unstable directions, as the n-th
-    Sturm–Liouville eigenfunction has n nodes.
-  - Argument-principle counts confirm that the index is exactly n, with no complex modes: n ≤ 7 in 2D and n ≤ 10
-    in HL.
+Equations (1) and (2) share the phase Φ, and three consequences follow.
+
+**(i) A lattice of step ε.** The unstable growth rates of every profile form a lattice of step ε, with finite-ε
+corrections. The gap between the two lowest members is 1.10ε (2D, n = 7) and 1.07ε (Hou–Luo, n = 8), and it
+extrapolates to 1.003ε and 1.002ε (Fig. 3a, d).
+
+**(ii) The lattice moves with the phase.** Along the continuous branch between two profiles, (2) moves the whole
+lattice up by exactly one step. A new member crosses μ = 0 once per interval, at a position fixed by the lattice
+offset. We computed the spectra at 9 (Hou–Luo) and 5 (2D) branch points between profiles. The offsets follow the
+phase to within 0.011 and 0.03, and each new member enters at its predicted position (Fig. 3b).
+
+**(iii) The index is n.**
+- The rungs (1) and the zero crossings of (2) are two lattices in Re Φ with the same step π, so they interlace.
+- Exactly one unstable mode is added between consecutive profiles, and the n-th profile has index(U₀) + n = n.
+- This is an oscillation theorem for blow-up profiles, analogous to the n nodes of the n-th Sturm–Liouville
+  eigenfunction.
+- Argument-principle counts of det(I − T_μ) confirm that the index is exactly n, with all modes real. They cover
+  n ≤ 7 in 2D (stable under changes of grid, domain and origin truncation) and n ≤ 10 in Hou–Luo.
+- Eigenvalues with large |Im μ| are excluded because the spectral radius of T_μ falls below one there.
 
 ## 5. A blind test: incompressible porous media (Fig. 1, Fig. 3)
 ⟨IPM⟩
@@ -125,29 +160,51 @@ Its consequences, all confirmed:
 - **Stage 2:** numerical predictions for U₃ and U₄ from the lower rungs.
 - Outcome: ⟨IPM⟩.
 
-## 6. Why some hierarchies are finite (Fig. 4)
-- **The lemma's criterion.** Infinitely many zeros require the defect to oscillate about zero: η → 0 in
-  F = R[cos Θ + η].
-- **A stalled-layer ending (ε → 0) guarantees this,** because the formal expansion is smooth at every order.
-- **The CCF branch ends differently.** It ends at a finite λ* = 0.4536, at a profile with an interior sonic
-  square-root cusp. It approaches the cusp log-periodically, but about p* = 2.00577 ≠ 2. Its phase is unbounded,
-  yet the hierarchy stops after three profiles.
-- **So an unbounded phase is not enough.** What decides finiteness is the nature of the ending:
-  - a stalled layer: infinite (Boussinesq, Hou–Luo, ⟨IPM⟩);
-  - a sonic cusp: finite (CCF).
+## 6. Finite and infinite hierarchies (Fig. 4)
+An unbounded phase is not enough for an infinite hierarchy. The lemma behind (1) needs the smoothness defect to
+oscillate about zero, F = R(cos Θ + η) with |η| < 1. What decides this is how the branch ends.
+
+**Stalled-layer ending (ε → 0).** Every order of the formal expansion is smooth, so η → 0. The zeros continue
+indefinitely: Boussinesq, Hou–Luo and — as far as we have computed — IPM (Fig. 4a).
+
+**Sonic-cusp ending.** The CCF branch ends differently, at finite λ* = 0.45358.
+- There the characteristic speed vanishes at an interior point and the profile develops a square-root cusp
+  (Fig. 4d).
+- The defect still oscillates, log-periodically, with an unbounded phase 2τ ln(1/δ) in the sonic depth δ
+  (τ = 0.6494, from τ tanh(πτ/2) = ½).
+- But it oscillates about p* − 2 = 0.0058 ≠ 0, with an amplitude ∝ δ. So η → ∞ and the zeros stop: the CCF
+  hierarchy has exactly three members (Fig. 4b).
+
+**The criterion is structural.** A stalled layer forces the smooth local exponent at the endpoint; a sonic cusp does
+not. The same distinction separates CCF from its two-dimensional parent, IPM. The one-dimensional reduction loses
+the stalled boundary layer: its characteristic speed vanishes at an interior sonic point first.
 
 ## 7. Discussion
-- **Euler.** 2D Boussinesq with boundary is equivalent, away from the axis, to axisymmetric Euler with swirl near
-  the wall. The hierarchy found here is therefore a hierarchy of candidate Euler singularities of increasing
-  codimension, all sharing the Hou–Luo geometry.
-  - We make no claim about Euler without boundary, or about Navier–Stokes.
-  - Nor do we claim existence in the rigorous sense for n ≥ 1.
-- **Outlook.** A computer-assisted proof for one unstable rung is the natural next step. Our profiles and spectra
-  (released with the paper) are accurate enough to serve as its approximate solutions.
-- **Generality.** The mechanism needs only three ingredients:
-  - a transported scalar whose exponent can vanish;
-  - a stagnation point;
-  - a boundary on which the flow can stall.
+**What is established.** The profiles and instabilities of self-similar blow-up in these models are not a
+catalogue. They are the two faces of one quantization. The same phase sets:
+- where smooth profiles exist;
+- how fast their perturbations grow;
+- how many directions are unstable.
+
+The mechanism uses only three ingredients: a transported scalar whose exponent can vanish, a stagnation point, and
+a boundary along which the self-similar flow can stall. It should therefore apply beyond the three models
+considered here, for example to other Euler-type reductions with boundary.
+
+**Euler.** The Boussinesq system with boundary is equivalent, away from the axis, to axisymmetric Euler with swirl
+near the wall. The hierarchy found here is therefore a hierarchy of candidate Euler singularities of increasing
+codimension, all sharing the Luo–Hou geometry. We make no claim about Euler without boundary, or about
+Navier–Stokes.
+
+**Limitations.**
+- The infinite hierarchies and the eigen-condition are derived by formal matched asymptotics. Every hypothesis is
+  checked numerically, but none of this is a theorem.
+- For n ≥ 1 no profile has a computer-assisted existence proof.
+- The spacing constant is derived only for Hou–Luo.
+- The ladder offsets are measured, not derived.
+
+**Next step.** A rigorous proof for one unstable profile is natural. The profiles and spectra released with this
+paper, which have Newton residuals of 1e-13 and are reproduced by independent solvers, can serve as its
+approximate solutions.
 
 ## Figures
 1. **The hierarchies.**
