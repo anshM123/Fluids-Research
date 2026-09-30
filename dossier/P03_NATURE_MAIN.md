@@ -53,7 +53,8 @@ few unstable profiles in three models:
 - incompressible porous media (IPM);
 - the one-dimensional Córdoba–Córdoba–Fontelos (CCF) equation.
 
-In each, the n-th profile had n unstable directions, and the blow-up rates followed empirical straight lines. This
+In each, the profiles were ordered by their number of unstable directions, and the blow-up rates followed
+empirical straight lines. This
 leaves three questions. Why should such hierarchies exist? Are they finite or infinite? And why is the instability
 index of the n-th profile exactly n?
 
@@ -105,8 +106,8 @@ profiles accumulating at ε = 0.
 - On the stalled layer, U = −2ξ becomes an airfoil equation, H[Ω] = −2.
 - Beyond the front, the shed vorticity is transported by the flow it induces.
 - The problem has a one-parameter family of solutions, labelled by the vorticity shed at the front. The
-  finite-ε profiles shed an ever larger vorticity as ε → 0, because the stalled layer deepens in front of the
-  front (Supplementary). The corresponding limit, in which the edge singularity of the layer vorticity disappears
+  finite-ε profiles shed an ever larger vorticity as ε → 0, because the dip of the stalled layer just behind
+  the front deepens (Supplementary). The corresponding limit, in which the edge singularity of the layer vorticity disappears
   (a Kutta condition), gives C = 2.4565.
 
 Hence π/C = 1.279 ± 0.001. The measured phase coefficients converge towards this value (Fig. 2c), and the eleven
@@ -148,17 +149,43 @@ phase to within 0.011 and 0.03, and each new member enters at its predicted posi
   n ≤ 7 in 2D (stable under changes of grid, domain and origin truncation) and n ≤ 10 in Hou–Luo.
 - Eigenvalues with large |Im μ| are excluded because the spectral radius of T_μ falls below one there.
 
-## 5. A blind test: incompressible porous media (Fig. 1, Fig. 3)
-⟨IPM⟩
-- **The predictions** (PREDICTIONS_IPM.md, committed before any IPM continuation):
-  - P1: infinite ladder;
-  - P2: rung law with monotone spacings;
-  - P3: index n;
-  - P4: spectral lattice of step λ_n;
-  - P5: rigid spectral flow;
-  - P6: front-localized modes.
-- **Stage 2:** numerical predictions for U₃ and U₄ from the lower rungs.
-- Outcome: ⟨IPM⟩.
+## 5. A blind test: incompressible porous media (Figs 1, 3c)
+The theory was built on Boussinesq and Hou–Luo. To test it, we applied it to a third model, IPM. IPM differs from
+Boussinesq in having no vorticity transport: the vorticity is slaved to the density gradient, Ω = −∂₁R.
+
+**Protocol.** Before computing anything beyond a single solver test, we wrote down six predictions and committed
+them to a public repository (PREDICTIONS_IPM.md; git 4dc82af):
+- P1: an infinite ladder with no fold or sonic point;
+- P2: a linear rung law, with spacings increasing monotonically;
+- P3: index n;
+- P4: an unstable lattice of step λ_n;
+- P5: rigid spectral flow between rungs;
+- P6: modes localized at the front.
+
+Numerical predictions for each next profile were then committed before that profile was computed, each generated
+from the lower profiles by a fixed rule.
+
+**Outcome.**
+- **Profiles.** We find the IPM profiles at λ = 1.0285723, 0.4721297, 0.3149622 and 0.2415661, ⟨and λ₄⟩.
+  - The first two reproduce the published values.
+  - The straight line through them, the empirical law of Wang et al., misplaces the next two by 3 % and 6 %.
+  - The rung prediction for λ₃ was 0.2383 (computed 0.2416, within 6 % of a spacing) ⟨λ₄: predicted 0.1978⟩.
+- **P2's monotonicity clause failed.** Unlike Boussinesq and Hou–Luo, the IPM spacings *decrease*
+  (1.146, 1.057, 0.965).
+- **The stalled layer is present.** Its diagnostic, the minimum self-similar speed, decays as λ^{1.28}, with no
+  sign of a sonic point. The branch has already continued well below λ* = 0.454, where the CCF ladder, the
+  one-dimensional reduction of IPM, terminates.
+- **Spectrum: the parameter-free content of the theory held throughout.**
+  - The index is exactly n, with all modes real, for n = 0–3 ⟨4⟩ (argument-principle counts).
+  - The unstable growth rates lie on a lattice of step ≈ λ_n: U₃ has μ/λ₃ = 0.805, 1.879, 2.937, with gaps 1.07
+    and 1.06.
+  - The lowest member of U₃ was predicted to within 0.2 %.
+- **Spectral flow.** Between the first two unstable profiles the continuing member followed the predicted rigid
+  line to within 0.001 at three branch points, and the entering member followed it to within 0.05.
+- **What failed.** Quantities we had calibrated on the other two models — the finite-λ correction to the lattice
+  step and the displacement of the top member — were too large for IPM, which lies closer to the asymptotic
+  lattice than either.
+- **Scorecard.** The full list of predictions and outcomes is in Supplementary Table S⟨·⟩.
 
 ## 6. Finite and infinite hierarchies (Fig. 4)
 An unbounded phase is not enough for an infinite hierarchy. The lemma behind (1) needs the smoothness defect to
@@ -206,23 +233,44 @@ Navier–Stokes.
 paper, which have Newton residuals of 1e-13 and are reproduced by independent solvers, can serve as its
 approximate solutions.
 
-## Figures
-1. **The hierarchies.**
-   - 1/ε_n against n for 2D Boussinesq, Hou–Luo, IPM and CCF. Literature profiles are open symbols, new ones
-     filled; CCF terminates at its cusp.
-   - Inset: instability index = n.
-2. **One branch, one phase.**
-   - (a) m(λ) − 2 along the branch, with the rungs as zeros.
-   - (b) the stalled layer and the front.
-   - (c) the phase Re Φ against 1/ε.
-   - (d) the spacing constant from the limit problem against the measured spacings.
-3. **The same phase quantizes the instabilities.**
-   - Spectral flow along the branch (HL, 2D, IPM), with the eigen-condition lines.
-   - Index staircase.
-   - Spacing → ε.
-4. **Infinite versus finite.**
-   - Stalled-layer endings (defect oscillating about 0) against the CCF sonic cusp (oscillating about p* − 2 > 0).
-   - Schematics of the two end structures.
+## Figure legends
+**Figure 1 | Hierarchies of self-similar blow-up profiles.**
+- The axes are 1/ε_n against n, where ε is the exponent of the transported scalar: λ−1 for the temperature of 2D
+  Boussinesq and Hou–Luo, λ for the density of IPM and for CCF. The n-th profile has exactly n unstable modes in
+  every case computed.
+- Open symbols: profiles reported before (Wang et al.; Chen–Hou for Hou–Luo n = 0). Filled: this work.
+- Dashed lines continue the Boussinesq and Hou–Luo ladders with their asymptotic spacing, derived for Hou–Luo
+  (π/C = 1.279).
+- The CCF ladder terminates at a sonic cusp (star).
+
+**Figure 2 | One branch, one phase.**
+- **a.** Smoothness defect |m − 2| along the continuous branch of least-singular profiles. Smooth profiles (ticks)
+  are its zeros, one per half-turn of the phase.
+- **b.** The stalled layer: the radial self-similar speed along the boundary, normalized by its stagnation-point
+  value, for deep Hou–Luo profiles. It is O(λ−1) up to the front at x_c ≈ 0.61, where it dips and then rises to
+  O(1).
+- **c.** The phase coefficient measured on finite-ε profiles converges to the value a₀ = 1.2283 obtained from the
+  λ → 1 limit problem.
+- **d.** The spacing of consecutive Hou–Luo profiles against 1/z (z = 1/(λ−1)), extrapolating to the derived
+  constant π/(2a₀) = 1.279.
+
+**Figure 3 | The same phase quantizes the instabilities.**
+- **a.** Unstable growth rates μ/ε of the n-th profile for 2D Boussinesq, Hou–Luo and IPM: n real modes on a
+  lattice of step ≈ ε.
+- **b.** Spectral flow along the continuous Hou–Luo branch: at branch points between profiles the lattice has moved
+  up with the phase, and a new member has entered through μ = 0.
+- **c.** IPM, blind test. Spectra predicted before computation (open symbols) and computed (filled), at rungs and at
+  branch points between them.
+- **d.** The step of the lattice (gap between the two lowest members) in units of ε. It tends to 1, the value
+  predicted by the eigen-condition (2).
+
+**Figure 4 | Two ways a branch can end.**
+- **a.** Stalled-layer endings (ε → 0). The defect oscillates about zero with exponentially small amplitude, so
+  smooth profiles never stop.
+- **b.** The CCF branch ends at a sonic cusp. As the sonic depth δ → 0 the defect oscillates log-periodically about
+  p* − 2 = 0.0058 > 0, so no smooth profile exists beyond the third.
+- **c.** The stalled layer (Hou–Luo).
+- **d.** The sonic cusp (CCF): the characteristic speed vanishes at an interior point.
 
 ## Methods (draft)
 **Self-similar equations.** Perturbations of all three models are written in self-similar variables
@@ -254,8 +302,9 @@ numerical ingredient with solver A and reproduces every Boussinesq rung to ≤ 1
 - Real unstable eigenvalues: parity changes of the number of real ν > 1 on a grid in μ/ε, refined by bisection.
 - Complete right-half-plane counts: the argument principle for det(I − T_μ) on [x_lo, 1.5] × [−1.5, 1.5], with
   adaptive refinement, domain and grid variants, and a deeper origin truncation (s_start = −30).
-- Exclusion of eigenvalues with large |Im μ|: the spectral radius of T_μ along Re μ = x_lo for |Im μ| up to ⟨Y⟩
-  (Supplementary).
+- Exclusion of eigenvalues with large |Im μ|:
+  - argument-principle counts on the strips 1.5 ≤ |Im μ| ≤ 3.5 (zero found);
+  - a spectral radius of T_μ below one for larger |Im μ|, decaying roughly as 2/|Im μ| (Supplementary).
 
 **The λ → 1 limit problem (Hou–Luo).**
 - Stalled layer: odd Chebyshev-weighted expansion Ω = Σb_jT_j/√(1−ξ²), 160–240 modes.

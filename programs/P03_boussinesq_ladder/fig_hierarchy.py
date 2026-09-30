@@ -26,7 +26,7 @@ def ipm_rungs():
 data = {
     '2D Boussinesq': ([1 / (l - 1) for l in bq_lam], 4),            # n < 4 reported (Wang et al. 2025)
     'Hou–Luo': ([1 / (l - 1) for l in list(hl_lam) + [1.08113374, 1.07355524]], 1),   # n = 0 (Chen–Hou)
-    'IPM': ([1 / l for l in ipm_rungs()], 4),                       # n < 4 reported (Wang et al. 2025)
+    'IPM': ([1 / l for l in ipm_rungs()], 5),                       # n ≤ 3 (Wang et al. 2025), n = 4 (Wang–Léger–Lai–Buckmaster 2025)
     'CCF': ([1 / l for l in (1.180777662899, 0.6057337012, 0.471324227767)], 3),
 }
 fig, ax = plt.subplots(1, 1, figsize=(6.4, 4.8))

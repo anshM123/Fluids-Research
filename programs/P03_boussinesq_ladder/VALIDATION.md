@@ -44,9 +44,11 @@ also sets out what a computer-assisted proof (CAP) of one new rung would require
   | IPM U₁ | 1.21, 0.84, 0.61, 0.48, 0.33, 0.25, 0.17, 0.12 at Im μ = 1.5, 2, 3, 4, 6, 8, 12, 24 |
   | 2D n = 7 | < 1 for Im μ ≥ 3 at every sampled point (max 0.84 near Im μ = 6), but 1.27 at Im μ = 2.5 |
 
-  So eigenvalues with |Im μ| ≥ 3 are excluded wherever ρ < 1. The strip 1.5 ≤ |Im μ| ≤ 3 is closed by an
-  argument-principle count on the rectangle [x_lo, 1.5] × [1.5, 3.5] (`contour_rect.py`; the 2D n = 7 run is
-  pending). IPM U₃ is counted directly on [0.04, 1.5] × [±2.5].
+  So eigenvalues with |Im μ| ≥ 3 are excluded wherever ρ < 1. The strip 1.5 ≤ |Im μ| ≤ 3.5 is closed by an
+  argument-principle count on the rectangle [x_lo, 1.5] × [1.5, 3.5] (`contour_rect.py`). For 2D n = 7 the count
+  is **0.0000**, i.e. no eigenvalues in the strip (`crect_bq7_strip.out`, 72 evaluations; one segment with an
+  eigenvalue swap at the truncation, min|1 − ν| = 0.5 there). IPM U₃ and U₄ are counted directly on
+  [0.04, 1.5] × [±2.5]; U₃ gives 4.077 → trivial + 3.
 - **Small Re μ.** 0 < Re μ < x_lo contains only the dilation mode, which is split by the origin truncation to
   ±0.6/|s_start|. Its position moves as predicted when s_start changes (−20 → −30).
 
