@@ -28,13 +28,12 @@ def load(pattern, ipm=False):
 
 hl_all = list(hl_lam) + [1.08113374, 1.07355524]
 rungs = {"2D Boussinesq": [1 / (l - 1) for l in bq_lam], "Hou–Luo": [1 / (l - 1) for l in hl_all],
-         "IPM": sorted(1 / float(m.group(1)) for f in glob.glob("ipm_rung[0-9].out") for line in open(f)
-                       for m in [re.search(r"CROSSING .*: λ = ([0-9.]+)", line)] if m)}
+         "IPM": [1 / l for l in (1.0285722975, 0.4721297256, 0.3149621637, 0.2415660984, 0.1987299872, 0.1706180880, 0.15092)]}
 fig, ax = plt.subplots(2, 2, figsize=(11.5, 8.4))
 a = ax[0, 0]
 for name, pat, ipm, zmax, yr in (("2D Boussinesq", "scan2_[ABCF].npy", False, 9.0, 4e-10),
                                  ("Hou–Luo", "hl_scan_[DE].npy", False, 9.9, 2e-10),
-                                 ("IPM", "ipm_branch_*.npy", True, 99, 1e-10)):
+                                 ("IPM", "ipm_branch_dn*.npy", True, 6.3, 1e-10)):
     z, f = load(pat, ipm)
     k = (z > 0.9) & (z < zmax) & (np.abs(f) > 0)
     a.semilogy(z[k], np.abs(f[k]), '-', color=COL[name], lw=1.3, label=name)

@@ -90,14 +90,16 @@ b.legend(fontsize=8, frameon=False, loc='upper left')
 # (c) IPM blind test
 c = ax[1, 0]
 pred = {}
-if os.path.exists("ipm_stage2a_predictions.out"):
-    for line in open("ipm_stage2a_predictions.out"):
-        m = re.search(r"PREDICTION ν̂ = μ/λ of U_(\d): \[([^\]]*)\]", line)
-        if m:
-            pred[('U', int(m.group(1)))] = [float(x) for x in m.group(2).split(',')]
-        m = re.search(r"f = ([0-9.]+) \(z = ([0-9.]+), λ = ([0-9.]+)\): predicted ν̂ = \[([^\]]*)\]", line)
-        if m:
-            pred[('bp', float(m.group(1)))] = (float(m.group(2)), [float(x) for x in m.group(4).split(',') if x.strip()])
+for fnp in ("ipm_stage2a_predictions.out", "ipm_stage2b_predictions.out"):
+  if not os.path.exists(fnp):
+    continue
+  for line in open(fnp):
+    m = re.search(r"PREDICTION ν̂ = μ/λ of U_(\d): \[([^\]]*)\]", line)
+    if m:
+        pred[('U', int(m.group(1)))] = [float(x) for x in m.group(2).split(',')]
+    m = re.search(r"f = ([0-9.]+) \(z = ([0-9.]+), λ = ([0-9.]+)\): predicted ν̂ = \[([^\]]*)\]", line)
+    if m and (fnp.endswith("2a_predictions.out") or float(m.group(1)) == 0.25):
+        pred[('bp', fnp[-17:-16], float(m.group(1)))] = (float(m.group(2)), [float(x) for x in m.group(4).split(',') if x.strip()])
 for n, (lam_, v) in ipm.items():
     if n >= 1:
         c.plot([1 / lam_] * len(v), v, 'D', color=COL['IPM'], ms=6, mec='white', mew=0.8,
@@ -108,12 +110,12 @@ for key, val in pred.items():
         zz = zz[0] if zz else None
         if zz:
             c.plot([zz] * len(val), val, 'D', mfc='none', mec=INK, mew=1.0, ms=10,
-                   label=f'predicted before computing (U_{key[1]})')
+                   label='predicted before computing (rungs)' if key[1] == 3 else None)
     else:
         zf, v = val
-        c.plot([zf] * len(v), v, 'o', mfc='none', mec=INK, mew=1.0, ms=9, label='predicted (branch points)' if key[1] == 0.5 else None)
-for fr, tag in ((0.25, '025'), (0.5, '050'), (0.75, '075')):
-    r = ipm_result(f"ipm_spec_bp{tag}.out")
+        c.plot([zf] * len(v), v, 'o', mfc='none', mec=INK, mew=1.0, ms=9, label='predicted (branch points)' if key[2] == 0.5 else None)
+for fr, tag in ((0.25, 'bp025'), (0.5, 'bp050'), (0.75, 'bp075'), (0.25, '23b025')):
+    r = ipm_result(f"ipm_spec_{tag}.out")
     if r:
         c.plot([1 / r[0]] * len(r[1]), r[1], 'o', color=COL['IPM'], ms=5, mec='white', mew=0.6,
                label='computed (branch points)' if fr == 0.5 else None)

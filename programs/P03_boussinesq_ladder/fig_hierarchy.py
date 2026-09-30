@@ -13,14 +13,18 @@ plt.rcParams.update({'font.size': 9, 'axes.edgecolor': MUTED, 'axes.labelcolor':
                      'ytick.color': MUTED, 'axes.grid': True, 'grid.color': GRID, 'grid.linewidth': 0.6})
 
 
+FINE = {5: 0.1706180880, 6: 0.15092}      # h_s = 0.0125 values supersede h_s = 0.025 (PREDICTIONS_IPM.md)
+
+
 def ipm_rungs():
     out = {}
     for f in glob.glob("ipm_rung[0-9].out"):
+        n = int(re.search(r"ipm_rung(\d)\.out", f).group(1))
         for line in open(f):
             m = re.search(r"CROSSING .*: λ = ([0-9.]+)", line)
             if m:
-                out[float(m.group(1))] = True
-    return sorted(out, reverse=True)
+                out[n] = FINE.get(n, float(m.group(1)))
+    return [out[n] for n in sorted(out)]
 
 
 data = {
@@ -49,6 +53,14 @@ ax.set_ylabel('1/ε_n   (ε = exponent of the transported scalar)')
 ax.plot([], [], 'o', mfc='white', mec=MUTED, label='reported before'); ax.plot([], [], 'o', color=MUTED, label='this work')
 ax.legend(fontsize=8, frameon=False, loc='upper left')
 ax.set_xlim(-0.4, 12.9); ax.set_ylim(0, 16.5)
+ins = ax.inset_axes([0.60, 0.08, 0.37, 0.34])
+lam_ipm = np.array(ipm_rungs()); lc = 0.0370
+zz = 1 / (lam_ipm - lc); nn = np.arange(len(zz))
+ins.plot(nn, zz, 'o', color=COL['IPM'], ms=4.5, mec='white', mew=0.6)
+pp = np.polyfit(nn[1:], zz[1:], 1); ins.plot(nn, np.polyval(pp, nn), '-', color=COL['IPM'], lw=0.9, alpha=0.7)
+ins.set_title(f'IPM: 1/(λ − λ_c), λ_c = {lc}', fontsize=7.5, color=INK)
+ins.tick_params(labelsize=7); ins.set_xlabel('n', fontsize=7.5)
+ins.text(0.05, 0.8, f'spacing {pp[0]:.3f} (±0.3 %)', transform=ins.transAxes, fontsize=7, color=MUTED)
 plt.tight_layout(); plt.savefig('fig_hierarchy.png', dpi=170)
 for name, (z, k) in data.items():
     print(name, np.round(z, 4).tolist())

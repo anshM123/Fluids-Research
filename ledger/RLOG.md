@@ -397,3 +397,42 @@ z = 10.6 → 33, as the dip deepens (D̂_min ∝ ε^{0.31–0.36}). So Ω_f → 
 - The IPM T_μ passes the time-translation test: |T₁x − x|/|x| = 5e-8.
 - Ground state λ₀ = 1.0285722975. First unstable rung λ₁ = 0.4721297256.
 - For comparison, the empirical law of Wang et al. gives 1.0285 and 0.4721.
+
+### R033 — P03: IPM blind test (stages 1–2d), index validation, figures and main text
+**Protocol.**
+- Predictions P1–P6 were committed before any IPM continuation (4dc82af).
+- Numerical predictions for each next rung and spectrum were committed before computing it (b9486fb, 03e5cbb,
+  4bb5a6f, 37ce8de, 90d408e, b69afd7).
+
+**IPM rungs.** Seven: λ = 1.0285723, 0.4721297, 0.3149622, 0.2415661, 0.1987300, 0.1706181 (h_s 0.0125) and 0.15092
+(h_s 0.0125).
+- λ₀ and λ₁ match the published values. n ≤ 4 have been reported by neural-network methods; n = 5, 6 are new.
+
+**Predictions that held.**
+- Index n for n = 0–4, all real. Contour counts give 1.947, 3.082 and 4.077 for n = 1–3, counted up to |Im μ| = 2.5.
+- Spectral lattice of step λ_n. The gaps at U₄ are 1.05, 1.03 and 0.99.
+- The U₄ spectrum, predicted to 0.2–1.2 %.
+- Spectral flow between rungs: 1e-3 for the continuing member at four branch points, 0.05 for the others.
+- Front localization.
+- Rungs λ₃–λ₆ predicted to 6 %, 2.5 %, 2 % and 0.1 % of a spacing.
+
+**Predictions that failed.**
+- Accumulation at λ → 0, and spacings increasing. The spacings contract by a factor 0.92 per rung. The ladder is
+  instead linear in 1/(λ − λ_c) with λ_c = 0.037, the spacing 1.296 constant to 0.3 % over six intervals. The same
+  fit returns 1.000 for 2D Boussinesq and Hou–Luo.
+- min V_r/r = O(λ). min V_r/r / λ falls from 0.50 to 0.21, and extrapolates to a closing dip (sonic point) near
+  λ ≈ 0.09.
+- The gap calibration transferred from Hou–Luo and 2D, which was too large.
+
+**Resolution.** On the h_s = 0.025 grid, m jitters by about 1e-7, and λ₆ was off by 5 % of a spacing. On
+h_s = 0.0125 the rungs agree with the predictions. Deeper IPM rungs need the finer grid.
+
+**Index validation.**
+- 2D n = 7: no eigenvalues in the strip [0.05, 1.5] × [1.5, 3.5] (count 0.0000).
+- ρ(T_μ) < 1 at the sampled points for larger |Im μ|, decaying roughly as 2/|Im μ|.
+- VALIDATION.md scopes task C: no computer-assisted proof is claimed, and it lists what one would need.
+
+**Paper.**
+- dossier/P03_NATURE_MAIN.md: main text with four figures — fig_hierarchy, fig_mechanism, fig_spectrum_main and
+  fig_endings.
+- dossier/P03_PRESUBMISSION_ENQUIRY.md: the presubmission enquiry.

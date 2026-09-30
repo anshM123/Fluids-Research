@@ -5,8 +5,10 @@
 technical draft `P03_MANUSCRIPT_DRAFT.md`, together with ASYMPTOTICS.md, INSTABILITY_LADDER.md and
 PREDICTIONS_IPM.md, is the Supplementary Information.*
 
-**Status of this draft:** the IPM paragraphs are filled in as the blind test (PREDICTIONS_IPM.md) proceeds.
-Placeholders are marked ⟨IPM⟩.
+**Status of this draft:**
+- All numbers are final for this version.
+- Before submission, compare our IPM λ₂–λ₄ with the published neural-network values (Wang et al. 2025;
+  Wang–Léger–Lai–Buckmaster 2025). They were not accessible from this environment.
 
 ## Abstract
 Self-similar blow-up in incompressible fluids comes in hierarchies. The stable profile of the Hou–Luo scenario is
@@ -165,27 +167,27 @@ Numerical predictions for each next profile were then committed before that prof
 from the lower profiles by a fixed rule.
 
 **Outcome (full scorecard in PREDICTIONS_IPM.md).**
-- **Profiles.** We find seven IPM profiles: λ = 1.0285723, 0.4721297, 0.3149622, 0.2415661, 0.1987300, 0.1708490
-  and 0.15177 ⟨fine-grid value⟩.
+- **Profiles.** We find seven IPM profiles: λ = 1.0285723, 0.4721297, 0.3149622, 0.2415661, 0.1987300, 0.1706181
+  and 0.15092. The last two are computed on the finer grid, and the others are accurate to ≲1 % of a spacing.
   - The first two reproduce the published values. n ≤ 4 have been reported before, by neural-network methods.
-  - Each rung from λ₃ on was predicted from the lower ones before it was computed, and landed within 2–6 % of a
-    rung spacing.
+  - Each rung from λ₃ on was predicted from the lower ones before it was computed. The errors were 6 %, 2.5 %, 2 % and
+    0.1 % of a rung spacing, for λ₃ through λ₆.
   - The straight line through the first two profiles, the empirical law of the literature, is off by 28 % of a
     spacing already at λ₃, and more further on.
 - **Spectrum: every parameter-free prediction held.**
-  - The index is exactly n (argument-principle counts, n ≤ 3; ⟨4⟩).
+  - The index is exactly n for n = 0–4 (argument-principle counts for n ≤ 3; real-mode count for n = 4).
   - All modes are real.
-  - The growth rates lie on a lattice of step λ_n: U₃ has μ/λ₃ = 0.805, 1.879, 2.937, gaps 1.07 and 1.06.
-    ⟨U₄: …⟩.
-  - The lowest member of U₃ was predicted to within 0.2 %.
+  - The growth rates lie on a lattice of step λ_n: U₃ has μ/λ₃ = 0.805, 1.879, 2.937, and U₄ has 0.796, 1.846,
+    2.879, 3.868.
+  - The lowest member of U₃ was predicted to within 0.2 %, and all four members of U₄ to within 0.2–1.2 %.
 - **Spectral flow.** Between rungs every member moves linearly with the phase. The member that continues from the
   top of one rung to the top of the next was predicted to within 0.001–0.0014 at four branch points; the others
   to within 0.05. The unstable modes peak at the dip of the boundary flow, as predicted.
 - **What failed: where the ladder accumulates.**
   - We predicted accumulation as λ → 0, with spacings in 1/λ tending to a constant. Instead the spacings contract
-    by a nearly constant factor, 0.92 per rung (1.146, 1.057, 0.965, 0.892, 0.821, 0.736).
-  - The rungs obey the one-phase linear law (1) in the shifted variable 1/(λ − λ_c), with λ_c = 0.038, the spacing
-    constant to 0.2 % for n = 1–5. The same fit returns the known accumulation point λ_c = 1.000 for Boussinesq and
+    by a nearly constant factor, 0.92 per rung (1.146, 1.057, 0.965, 0.892, 0.829, 0.765).
+  - The rungs obey the one-phase linear law (1) in the shifted variable 1/(λ − λ_c), with λ_c = 0.037, the spacing
+    (1.296) constant to 0.3 % over six intervals. The same fit returns the known accumulation point λ_c = 1.000 for Boussinesq and
     Hou–Luo.
   - The dip of the boundary flow deepens faster than λ and extrapolates to closure near λ ≈ 0.09.
   - Both point to an IPM branch that ends at *finite* λ. There the dip becomes sonic, as in the CCF reduction of
