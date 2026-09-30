@@ -14,6 +14,9 @@ hs = float(sys.argv[7]) if len(sys.argv) > 7 else 0.025
 nbi = int(sys.argv[8]) if len(sys.argv) > 8 else Nb
 hsi = float(sys.argv[9]) if len(sys.argv) > 9 else hs
 tol = float(sys.argv[10]) if len(sys.argv) > 10 else 1e-10
+import os
+SST = float(os.environ.get('IPM_SSTART', -20.0))          # origin truncation (the neglected local corrections are O(e^{s_start}))
+SST_IN = float(os.environ.get('IPM_SSTART_IN', -20.0))
 log = open(f"ipm_deep_{tag}.out", "a")
 
 
@@ -26,19 +29,22 @@ def dip(B, Y):
     D = (1 + B.lam) + r['Ur'][:, 0]; D0 = 1 + B.lam - r['A']
     sel = (B.s > -3) & (B.s < 2); i = np.where(sel)[0][np.argmin(D[sel])]
     kc = i + np.argmax(D[i:] / D0 > 3.0)
-    return B.s[i], D[i] / D0, D[i], B.s[kc]
+    G = np.exp(-B.s) * np.gradient(r['Th'][:, 0], B.s); Om = r['Omega'][:, 0]
+    w = slice(max(i - 20, 0), kc + 1)                      # dip-to-front window
+    mis = float(np.max(np.abs(G[w] + Om[w])) / np.max(np.abs(G[w])))   # IPM identity Ω_b = −∂ₓR (resolution check)
+    return B.s[i], D[i] / D0, D[i], B.s[kc], mis, float(np.max(G[w]))
 
 
 t0 = time.time()
 z, zmax, dzc = 1 / lam0, 1 / lam1, dz
-out(f"# ipm_deep {tag}: λ {lam0} -> {lam1}, Δz = {dz}, Nb={Nb} hs={hs} tol={tol} start={start} (grid in: Nb={nbi} hs={hsi})")
+out(f"# ipm_deep {tag}: λ {lam0} -> {lam1}, Δz = {dz}, Nb={Nb} hs={hs} s_start={SST} tol={tol} start={start} (grid in: Nb={nbi} hs={hsi} s_start={SST_IN})")
 acc, rows = [], []
 Y0 = np.load(start)
-if (nbi, hsi) != (Nb, hs):
-    Y0 = transfer(BQLogPolar(lam0, hs=hsi, Nb=nbi), Y0, IPM(lam0, hs=hs, Nb=Nb, s_sw=12.0))
+if (nbi, hsi, SST_IN) != (Nb, hs, SST):
+    Y0 = transfer(BQLogPolar(lam0, hs=hsi, Nb=nbi, s_start=SST_IN), Y0, IPM(lam0, hs=hs, Nb=Nb, s_sw=12.0, s_start=SST))
 while z <= zmax + 1e-12:
     lam = 1 / z
-    B = IPM(lam, hs=hs, Nb=Nb, s_sw=12.0)
+    B = IPM(lam, hs=hs, Nb=Nb, s_sw=12.0, s_start=SST)
     if len(acc) >= 2:
         (za, Ya), (zb, Yb) = acc[-2], acc[-1]
         Yg = Yb + (Yb - Ya) * (z - zb) / (zb - za)
@@ -59,10 +65,10 @@ while z <= zmax + 1e-12:
         z = acc[-1][0] + dzc
         continue
     acc.append((z, Y)); acc = acc[-2:]
-    sd, dh, dd, sc = dip(B, Y)
-    rows.append((lam, info['A'], info['m'], info['vrmin'], sd, dh, dd, sc))
+    sd, dh, dd, sc, mis, gmax = dip(B, Y)
+    rows.append((lam, info['A'], info['m'], info['vrmin'], sd, dh, dd, sc, mis, gmax))
     out(f"λ={lam:.7f} z={z:.4f}: m−2={info['m'] - 2:+.4e} D0={1+lam-info['A']:.5f} vrmin={info['vrmin']:.5f} "
-        f"dip s={sd:.3f} D̂_dip={dh:.4f} front s={sc:.3f} t={time.time() - t0:.0f}s")
+        f"dip s={sd:.3f} D̂_dip={dh:.4f} front s={sc:.3f} max∂ₓR={gmax:.2f} |Ω_b+∂ₓR|/max={mis:.1e} t={time.time() - t0:.0f}s")
     np.save(f"ipm_deep_{tag}.npy", np.array(rows))
     np.save(f"ipm_deep_{tag}_lam{lam:.7f}.npy", Y)
     dzc = min(dz, 1.5 * dzc)

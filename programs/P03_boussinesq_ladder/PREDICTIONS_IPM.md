@@ -471,3 +471,56 @@ to the fine λ₆, `ipm_wkb_coarse_cut2.out`).
   (`ipm_noise_lam6_hs0125.out`). The 1e-9 scatter of m near λ₆ is therefore discretization, not the solver.
 - A shorter domain, s ∈ [−12, 40] instead of [−20, 100], changes m at λ₅ by 2e-6 and is rejected. An s_max = 130
   check is running.
+
+### Stage 3 — measured systematics and the direct phase (recorded before λ₇ is known)
+**Systematic uncertainty of the deep rungs.** All checks at λ₅ and λ₆ are on the fine grid (h_s = 0.0125)
+(`ipm_sstart_lam{5,6}.out`, `ipm_nbcheck*.out`, `ipm_rung{4,5,6}_Nb48.out`, `ipm_rung5_hs0125_smax130.out`,
+`ipm_rung6_hs00625.out`, `ipm_noise*.out`).
+
+| source | effect on m at λ₆ | effect on λ₆ |
+|---|---|---|
+| Newton floor: 5e-13 at s_start = −20 (1e-13 at −16, 1e-11 at −30) | scatter of about 5e-10 | ±2e-5 |
+| origin cut-off (s_start −19 vs −20) | 3e-10 | converged |
+| angular resolution (Nb 48 vs 32 at s_start = −20) | ≤ 1e-9 (−1.0e-9, +6e-10, −3e-10 at λ₄, λ₅, λ₆) | ≤ 4e-5 |
+| far field (s_max 130 vs 100) | 2e-10 | negligible |
+| radial resolution (h_s 0.00625 vs 0.0125) | ≈ −7e-10 (noise-limited) | ≈ −2.5e-5 ± 4e-5 |
+
+- **Result: λ₆ = 0.15092 ± 0.00005, i.e. ±0.25 % of a spacing.**
+- **Origin cut-off in detail.** The bias is not monotonic: m changes by 2e-7 (s_start = −14), 2e-8 (−15), −5e-9 (−16)
+  and −1.4e-9 (−17), all relative to −20. It is the same at λ₅ and λ₆.
+- **Angular resolution in detail.** At the shallow cut-off s_start = −16, Nb 32 → 48 shifts m by 2e-8 (the same at λ₅
+  and λ₆), and Nb 64 agrees with 48 to 9e-11. At s_start = −20 the angular effect disappears. The production
+  settings (Nb 32, h_s 0.0125, s_start −20) are therefore converged.
+
+**λ_c with a free exponent.** Fitting (λ_n − λ_s)^{−γ} = an + b:
+
+| rungs | γ | λ_s |
+|---|---|---|
+| λ₀–λ₆ | 0.996 | 0.0372 |
+| λ₁–λ₆ | 1.013 | 0.0356 |
+| λ₂–λ₆ | 0.914 | 0.0437 |
+
+- With γ fixed at ½ (the law a closing dip would give; see below), the residuals are 5–15 times larger.
+- So over λ₁–λ₆ the data prefer the shifted linear law, with λ_c = 0.036–0.044.
+
+**The direct phase, continuous cut-off.**
+- The cut-off D/D₀ = 2 is now interpolated between grid points (`ipm_wkb_fine_rungs_cut2c.out`,
+  `ipm_wkb_fine_l6_cut2c.out`); this removes the grid-step jitter of the phase.
+
+| n | 1 | 2 | 3 | 4 | 5 | 6 |
+|---|---|---|---|---|---|---|
+| δ_n = Re Φ(λ_n) − nπ | 2.033 | 2.023 | 2.032 | 2.037 | 2.028 | 1.984 |
+
+- For n = 1–5 the phase quantizes the rungs to ±0.007, i.e. increments of π within 0.3 %.
+- At n = 6 the increment is 3.097, 1.4 % below π.
+
+**An exact scaling of the IPM local problem.**
+- Rescaling Y → Y/D̂ removes D̂ from the local eigenproblem, so κ = K(ĉ, μ, G, R_y)/D̂ exactly. Numerically D̂κ is
+  constant to four digits for D̂ = 0.6 → 0.012.
+- Hence **Φ = ∫K(s) ds / D(s)**: the phase is the integral of a local wavenumber K over the unnormalized
+  self-similar wall speed D = V₁/x.
+- This holds only for IPM. In Boussinesq the vorticity transport term breaks the scaling.
+- Consequence: if the wall dip closes (D_min → 0), Φ diverges, like D_min^{−1/2} for a quadratic minimum.
+- On the fine grid, D̂_min = 0.819, 0.735, 0.666, 0.597, 0.528, 0.452 at λ₁–λ₆, and 0.438, 0.426 at z = 6.75, 6.87.
+  Linear extrapolation closes the dip near z ≈ 11.1–11.4 (λ ≈ 0.087–0.090). If that happens, the accumulation law
+  must change before λ ≈ 0.09 (towards γ = ½). The resolved continuation `ipm_deep.py` (tag e1) tests this.

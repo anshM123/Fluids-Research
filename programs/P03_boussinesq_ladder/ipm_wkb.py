@@ -14,7 +14,9 @@ def wall_data(f, lam=None, Nb=None, hs=None):
     if Nb is None or hs is None:
         mNb = re.search(r'Nb(\d+)_hs([0-9.]+?)_', f)
         Nb, hs = (int(mNb.group(1)), float(mNb.group(2))) if mNb else (32, 0.025)
-    B = IPM(lam, Nb=Nb, hs=hs, s_sw=12.0); Y = np.load(f); X = full(B, Y)
+    import os
+    ss = float(os.environ.get('WKB_SS', -20.0))
+    B = IPM(lam, Nb=Nb, hs=hs, s_sw=12.0, s_start=ss); Y = np.load(f); X = full(B, Y)
     r = B.march(X / B.ea2[:, None], return_all=True)
     m, A = r['m'], r['A']; D0 = 1 + lam - A
     s = B.s
@@ -38,8 +40,10 @@ def wkb_phase(f, lam=None, Nb=None, hs=None, s_lo=-10.0, ds=0.025, Dcut=3.0, ret
     sel = (s > -3) & (s < 2)
     kd = np.argmax(sel) + np.argmin(np.where(sel, Dh_all, np.inf)[np.argmax(sel):np.argmax(sel) + sel.sum()])
     kc = kd + np.argmax(Dh_all[kd:] > Dcut)
-    s_cut = s[kc]
-    grid = np.arange(s_lo, s_cut + 1e-12, ds)
+    # continuous cut-off: linear interpolation of D̂ = Dcut between the bracketing grid points (removes the
+    # grid-step jitter of the phase, ≈ κ h_s/D₀); fixed number of quadrature points
+    s_cut = s[kc - 1] + (Dcut - Dh_all[kc - 1]) / (Dh_all[kc] - Dh_all[kc - 1]) * (s[kc] - s[kc - 1])
+    grid = np.linspace(s_lo, s_cut, int(round((s_cut - s_lo) / ds)) + 1)
     kap = np.full(len(grid), np.nan, dtype=complex)
     prev = None
     for i, sv in enumerate(grid):
@@ -81,6 +85,9 @@ if __name__ == "__main__":
         if not f.startswith("ipm_rung_"):
             mm = re.search(r'lam([0-9.]+?)(?:_hs[0-9.]+)?\.npy', f)
             lam = float(mm.group(1)) if mm else None
+            mz = re.search(r'_z([0-9.]+?)\.npy', f)
+            if mz:
+                lam = 1 / float(mz.group(1))
         o = wkb_phase(f, lam=lam, Dcut=Dcut, Nb=Nb_env, hs=hs_env)
         print(f"{f[:58]:58s} λ={o['lam']:.7f} m-2={o['m']-2:+.2e} D0={o['D0']:.5f} dip s={o['s_dip']:.3f} D̂={o['Dh_dip']:.4f} "
               f"s_cut={o['s_cut']:.3f} Φ={o['Phi'].real:.4f}{o['Phi'].imag:+.4f}i I={o['I'].real:.5f}{o['I'].imag:+.5f}i fail={o['nfail']}", flush=True)

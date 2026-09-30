@@ -20,3 +20,5 @@ ipm_bp_lam*.npy
 # deep-continuation states (regenerable: ipm_deep.py); the table ipm_deep_*.npy without _lam is kept
 ipm_deep_*_lam*.npy
 ipm_noise_*.npy
+ipm_scan_*_z*.npy
+ipm_nbcheck_*.npy
