@@ -166,3 +166,51 @@ Its consequences, all confirmed:
 4. **Infinite versus finite.**
    - Stalled-layer endings (defect oscillating about 0) against the CCF sonic cusp (oscillating about p* − 2 > 0).
    - Schematics of the two end structures.
+
+## Methods (draft)
+**Self-similar equations.** Perturbations of all three models are written in self-similar variables
+y = x/(1−t)^{1+λ} and τ = −ln(1−t).
+- **2D Boussinesq.** Ω + V·∇Ω = ∂₁Θ, V·∇Θ = (λ−1)Θ, with V = (1+λ)y + U, U = ∇^⊥Ψ and −ΔΨ = Ω, on the half-plane with
+  no penetration.
+- **Hou–Luo.** The boundary restriction of Boussinesq, with U' = HΩ.
+- **IPM.** V·∇R = λR with Ω = −∂₁R.
+
+In each case the least-singular profile at given λ is Θ (or R) ≈ c|y₁|^m at the stagnation point, with
+m = ε/(1+λ−A), where A is the strain and ε the exponent of the transported scalar.
+
+**Solver A (2D, IPM).**
+- Log-polar coordinates (s = ln r, β) with the exact stagnation-point structure factored out: Θ = cos^m β Θ̂.
+- Θ̂ (and Ω̂) are marched outward in s from the exact local solution at s = −20. The march is implicit
+  Gauss–Legendre near the origin and RK4 beyond.
+- Biot–Savart: 8th-order finite differences in s and Chebyshev collocation in β (Nb = 32, h_s = 0.025).
+- Newton–Krylov on X − BS(march(X)) with X = Ψ/r², using central-difference matvecs (quadratic convergence).
+- Continuation in λ, and secant iteration on m(λ) = 2 for the smooth profiles.
+
+**Solver B (2D check).** A global sparse Newton method on a different grid and representation. It shares no
+numerical ingredient with solver A and reproduces every Boussinesq rung to ≤ 1e-5.
+
+**Hou–Luo.** A log-grid march with the Mellin multiplier of Ω ↦ U/ξ, N = 65,536–131,072.
+
+**Linear stability.**
+- The eigen-condition is that the linearised "march + Biot–Savart" map T_μ has eigenvalue ν = 1. It is validated
+  on the exact time-translation mode μ = 1 (|T₁x − x|/|x| ≤ 5e-8).
+- Real unstable eigenvalues: parity changes of the number of real ν > 1 on a grid in μ/ε, refined by bisection.
+- Complete right-half-plane counts: the argument principle for det(I − T_μ) on [x_lo, 1.5] × [−1.5, 1.5], with
+  adaptive refinement, domain and grid variants, and a deeper origin truncation (s_start = −30).
+- Exclusion of eigenvalues with large |Im μ|: the spectral radius of T_μ along Re μ = x_lo for |Im μ| up to ⟨Y⟩
+  (Supplementary).
+
+**The λ → 1 limit problem (Hou–Luo).**
+- Stalled layer: odd Chebyshev-weighted expansion Ω = Σb_jT_j/√(1−ξ²), 160–240 modes.
+- Outer region: graded grid y = 1 + σ^p plus a logarithmic grid to 10⁸, with principal-value quadrature with local
+  subtraction.
+- Solution: a fixed-point iteration, then Newton–Krylov continuation in Ω_f.
+- Phase integral: evaluated with θ = u² quadrature at the edge.
+
+**IPM blind protocol.**
+- PREDICTIONS_IPM.md (P1–P6) was committed (git 4dc82af) before any IPM continuation.
+- The stage-2 numerical predictions were committed before the rungs they concern were computed, each from the
+  lower rungs by a fixed procedure (`ipm_stage2_predict.py`).
+
+**Data and code.** All scripts, logs, profiles and spectra are in the repository. `README.md` in
+programs/P03_boussinesq_ladder lists the command, and the approximate time, for every number in the paper.

@@ -101,3 +101,72 @@ largest away from the origin. They do not peak at the stagnation point.
 - Only then compute U₄. Do the same for U₅ if resolution allows.
 
 **Recording.** Record every outcome, including failures, in `INSTABILITY_LADDER.md` and `ledger/RLOG.md`.
+
+---
+
+## Stage 1 outcomes so far (recorded 2026-09-30, before stage 2a)
+**Rungs.** Solver: `ipm_branch.py`, then `ipm_crossing.py`.
+
+| rung | λ | 1/λ | grid check |
+|---|---|---|---|
+| λ₀ | 1.0285722975 | 0.97222 | — |
+| λ₁ | 0.4721297256 | 2.11806 | h_s = 0.0125 gives 0.4721297348 |
+| λ₂ | 0.3149621637 | 3.17498 | — |
+
+- Spacings: Δ₁ = 1.14584, Δ₂ = 1.05692.
+- The empirical line through λ₀ and λ₁ (Wang et al.: 1/λ = 1.1459n + 0.9723) would put λ₂ at 1/λ = 3.264. The
+  computed rung is 2.7 % lower.
+
+**P3 (index), exact so far.**
+- U₀: only the time-translation mode (μ = 0.999995).
+- U₁: ν̂ = μ/λ = 0.8608 (μ = 0.406428). The argument-principle count on [0.04, 1.5] × [±1.5] is 1.947 → 2
+  (trivial + 1).
+- U₂: ν̂ = 0.8247, 1.9444 (μ = 0.259752, 0.612423). The count is 3.082 → 3 (trivial + 2).
+- All unstable modes are real.
+
+**P1, consistent so far.**
+- The branch continues without a fold to 1/λ = 3.7.
+- min V_r/r = 0.496, 0.325, 0.203, 0.117 at λ = 1, 0.714, 0.490, 0.315, i.e. ≈ 0.40λ, decreasing.
+- m − 2 oscillates with extrema +0.081, −0.0077, +0.00077: a factor ≈ 10 per half period.
+
+**P2.** Not yet tested; its monotonicity clause concerns n ≥ 2.
+
+## Stage 2a — predictions for λ₃, U₃ and the spectral flow between U₁ and U₂
+These are fixed before λ₃ or any between-rung spectrum is computed. They are produced by
+`ipm_stage2_predict.py` from `ipm_stage2_data.py` (λ₀–λ₂; spectra of U₁, U₂); output in
+`ipm_stage2a_predictions.out`.
+
+**Disclosure.** The branch continuation already ran past λ₂, to 1/λ = 3.7 (`ipm_branch_dn2.out`). Those m values
+are not used: the rung prediction uses only the three rung positions.
+
+**λ₃.**
+- The P2 law Δ_n = a − κ/z̄_n, fitted on Δ₁ and Δ₂, gives a = 0.932 and κ = −0.330. Hence Δ₃ = 1.022 and
+  **λ₃ = 0.2383 (1/λ₃ = 4.197)**.
+- This fit has κ < 0 (spacings decreasing), which contradicts the monotonicity clause of P2 (κ > 0). Both
+  commitments are recorded, and at most one can hold.
+  - The fit predicts Δ₃ < Δ₂.
+  - P2's clause predicts Δ₃ > Δ₂, i.e. λ₃ < 0.2363.
+- For reference, the empirical line gives λ₃ = 0.2268.
+
+**U₃ spectrum.**
+- **index(U₃) = 3**, all real.
+- **ν̂ = μ/λ₃ ≈ [0.807, 2.005, 3.169]**, i.e. μ ≈ [0.192, 0.478, 0.755] at the predicted λ₃. The ingredients:
+  - lowest member 0.807, extrapolated linearly in 1/z through U₁ and U₂;
+  - lower gap s = 1 + β/z with the prior β = 0.83 ± 0.17 (Hou–Luo 0.67, 2D 1.0), so s = 1.198 (range 1.157–1.238);
+  - top gap 1.164, i.e. U₂'s gap grown by 4 %.
+- The parameter-free lattice (s = 1, offset of U₂) would give ν̂ = [0.825, 1.825, 2.825].
+- **Falsified if:** the index is not 3; or a complex pair appears; or the lower gap of U₃ differs from s ∈ [1.10, 1.30]
+  by more than its range; or the lowest member is outside [0.72, 0.90].
+
+**P5, spectral flow inside [z₁, z₂] = [2.1181, 3.1750].** The rigid lattice moves linearly in the fraction f,
+with slope 1.084 per interval, and a new member enters through μ = 0 at **f* = 0.239 (z = 2.371)**. Predicted
+non-trivial unstable ν̂ = μ/λ at three branch points:
+
+| f | z | λ | predicted ν̂ |
+|---|---|---|---|
+| 0.25 | 2.3823 | 0.4197637 | [0.012, 1.132] (the lowest member has just entered) |
+| 0.50 | 2.6465 | 0.3778542 | [0.283, 1.403] |
+| 0.75 | 2.9108 | 0.3435536 | [0.554, 1.674] |
+
+**Falsified if:** the members are not near-linear in f (deviation > 0.1 in ν̂ at f = 0.5), or the entry point is
+outside f ∈ [0.1, 0.4].
