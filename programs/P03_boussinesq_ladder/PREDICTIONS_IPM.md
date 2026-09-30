@@ -297,3 +297,21 @@ CCF does, rather than in a stalled layer at λ → 0. The branch is being contin
 - This law predicts **λ₆ = 0.1512, λ₇ = 0.1367, λ₈ = 0.1254**.
 - The geometric model (ratio 0.92) gives nearly the same: 0.1513, 0.1369, 0.1259.
 - Both imply rungs accumulating at a finite λ (0.038 or 0.065), not at λ → 0.
+
+## Stage 2d outcome (λ₆, h_s = 0.025) and a resolution warning
+**λ₆.** Computed λ₆ = 0.1517666 (1/λ₆ = 6.589). Errors in 1/λ against the predictions:
+
+| rule | predicted λ₆ | error in 1/λ |
+|---|---|---|
+| stage rule | 0.150928 | −0.037 |
+| shifted law (λ_c = 0.0379) | 0.1512 | −0.025 |
+| geometric | 0.1513 | −0.020 |
+
+That is 3–5 % of a spacing. Spacing Δ₆ = 0.736.
+
+**Resolution warning.**
+- Beyond λ₅ the smoothness defect is |m − 2| ≲ 1e-6.
+- On the h_s = 0.025 grid, m jitters by ~1e-7 from step to step (`ipm_branch_dn5.out`). This is visible as a spurious
+  "crossing" at 1/λ = 6.905, with |m − 2| growing to 1.6e-6.
+- So λ₆ on this grid is uncertain by roughly 0.02–0.05 in 1/λ, and the deep branch run was stopped.
+- λ₅ and λ₆ are being recomputed at h_s = 0.0125. As in 2D Boussinesq, the deep rungs need the finer grid.
