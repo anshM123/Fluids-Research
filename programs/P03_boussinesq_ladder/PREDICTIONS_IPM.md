@@ -330,3 +330,40 @@ mode sits at μ = 1.000025.
 - Lattice gaps: 1.051, 1.033, 0.989. The step tends to λ_n (s₄ − 1 = 0.05), and the top member is not displaced.
 - **Fine-grid check of λ₅** (h_s = 0.0125): 0.1706181, against 0.1708490 at h_s = 0.025. The shift is 0.008 in
   1/λ, i.e. 1 % of a spacing. The coarse-grid rungs n ≤ 5 are therefore accurate to about 1 % of a spacing.
+
+## Stage 2d outcome at h_s = 0.0125 (λ₆)
+**Result.**
+- On the fine grid, λ₆ = 0.15092 ± 0.00002 (1/λ₆ = 6.626). The secant refinement wanders in 1e-9 noise of m, so the
+  uncertainty comes from the bracketing points in `ipm_rung6_hs0125.out`.
+- The stage-2d prediction was **0.150928**, which agrees to 1e-5.
+- The coarse-grid value 0.15177 was off by 5 % of a spacing. That was the resolution error flagged above.
+
+**The IPM ladder, n ≤ 4 from h_s = 0.025 and λ₅, λ₆ from h_s = 0.0125.**
+- In 1/λ the spacings are 1.146, 1.057, 0.965, 0.892, 0.829, 0.765, with ratios 0.92–0.93.
+- In 1/(λ − λ_c) with **λ_c = 0.0370** they are 1.290, 1.300, 1.291, 1.295, 1.301, 1.295: constant to 0.3 % over six
+  intervals.
+- The one-phase linear law therefore holds for IPM, with a *finite* accumulation point λ_c = 0.037, not λ = 0.
+
+**Scorecard of P1–P6.**
+
+| prediction | outcome |
+|---|---|
+| P1 (no fold or sonic point at λ > 0; accumulation as λ → 0; min V_r/r = O(λ)) | **failed** in its accumulation and O(λ) clauses. No fold was met down to λ = 0.14, but min V_r/r / λ falls from 0.50 to 0.21 and extrapolates to zero near λ ≈ 0.09. |
+| P2 (linear law; increasing spacings) | linear law **holds in 1/(λ − λ_c)**; the increasing-spacing clause **failed** (spacings decrease) |
+| P3 (index n, all real) | **held**, n = 0–4 (contour counts: n ≤ 3 done, U₄ running) |
+| P4 (lattice of step λ_n, s → 1) | **held**: gaps 1.12 (U₂); 1.07, 1.06 (U₃); 1.05, 1.03, 0.99 (U₄) |
+| P5 (rigid spectral flow, entry at μ = 0) | **held**: continuing member within 1e-3 at 4 branch points; others within 0.05 |
+| P6 (localization at the front) | **held**: U₃ modes peak at the dip x ≈ 0.61, regular at the stagnation point |
+
+**Stage-2 numerical predictions.**
+
+| predicted | from | error |
+|---|---|---|
+| λ₃ | λ₀–λ₂ | 6 % of a spacing |
+| λ₄ | λ₀–λ₃ | 2.5 % |
+| λ₅ | λ₀–λ₄ | 3 % (coarse) / 2 % (fine) |
+| λ₆ | λ₀–λ₅ | 0.1 % (fine) |
+| U₃, lowest member | — | 0.2 % |
+| U₃, gaps (calibration from other models) | — | ✗ |
+| U₄, all four members | — | 0.2–1.2 % |
+| spectral flow | — | within 1e-3 (continuing member) |
