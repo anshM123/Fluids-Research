@@ -7,3 +7,8 @@ Y2_*.npy
 Y3_*.npy
 Yr_*.npy
 viz_profiles.png
+# λ→1 limit-family solutions (regenerable in minutes: hl_limit.py, hl_limit_large.py; summary in hl_limit_table.txt)
+hl_limit_Omf*.npz
+# IPM continuation states (regenerable: ipm_solver.py, ipm_branch.py); rung states are kept as ipm_rung_*.npy
+ipm_Y_*.npy
+ipm_br_*.npy
