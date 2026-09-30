@@ -55,22 +55,32 @@ def wkb_phase(f, lam=None, Nb=None, hs=None, s_lo=-10.0, ds=0.025, Dcut=3.0, ret
                 kap[i] = k; prev = k
                 break
     good = np.isfinite(kap)
-    if (~good).any() and good.sum() > 2:
-        kap[~good] = np.interp(grid[~good], grid[good], kap[good].real) + 1j * np.interp(grid[~good], grid[good], kap[good].imag)
+    # far tail (κ < 0.005, shooting ill-conditioned): the small-ĉ asymptote κ ≈ κ_HL (1 % accurate at s = −3)
+    tail = (~good) & (grid < -6.0)
+    for i in np.where(tail)[0]:
+        kap[i] = hl_root(np.interp(grid[i], s, W['D']) / D0, -np.interp(grid[i], s, W['Omb']))
+    rest = ~np.isfinite(kap)
+    if rest.any() and (~rest).sum() > 2:
+        ok_ = ~rest
+        kap[rest] = np.interp(grid[rest], grid[ok_], kap[ok_].real) + 1j * np.interp(grid[rest], grid[ok_], kap[ok_].imag)
     Phi = np.trapezoid(kap, grid) / D0
-    out = dict(lam=W['lam'], m=W['m'], D0=D0, s_cut=s_cut, s_dip=s[kd], Dh_dip=Dh_all[kd], Phi=Phi, nfail=int((~good).sum()))
+    out = dict(lam=W['lam'], m=W['m'], D0=D0, s_cut=s_cut, s_dip=s[kd], Dh_dip=Dh_all[kd], Phi=Phi,
+               nfail=int((~good & (grid >= -6.0)).sum()), I=np.trapezoid(kap, grid))
     if return_kappa:
         out.update(grid=grid, kap=kap, good=good)
     return out
 
 
 if __name__ == "__main__":
+    import os
     Dcut = float(sys.argv[1])
+    Nb_env = int(os.environ.get('WKB_NB', 0)) or None
+    hs_env = float(os.environ.get('WKB_HS', 0)) or None
     for f in sys.argv[2:]:
         lam = None
-        if f.startswith("ipm_br_") or f.startswith("ipm_bp_"):
-            mm = re.search(r'lam([0-9.]+?)\.npy', f)
+        if not f.startswith("ipm_rung_"):
+            mm = re.search(r'lam([0-9.]+?)(?:_hs[0-9.]+)?\.npy', f)
             lam = float(mm.group(1)) if mm else None
-        o = wkb_phase(f, lam=lam, Dcut=Dcut)
+        o = wkb_phase(f, lam=lam, Dcut=Dcut, Nb=Nb_env, hs=hs_env)
         print(f"{f[:58]:58s} λ={o['lam']:.7f} m-2={o['m']-2:+.2e} D0={o['D0']:.5f} dip s={o['s_dip']:.3f} D̂={o['Dh_dip']:.4f} "
-              f"s_cut={o['s_cut']:.3f} Φ={o['Phi'].real:.4f}{o['Phi'].imag:+.4f}i fail={o['nfail']}", flush=True)
+              f"s_cut={o['s_cut']:.3f} Φ={o['Phi'].real:.4f}{o['Phi'].imag:+.4f}i I={o['I'].real:.5f}{o['I'].imag:+.5f}i fail={o['nfail']}", flush=True)

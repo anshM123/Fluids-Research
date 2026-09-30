@@ -439,3 +439,35 @@ Discriminating values:
 - λ₈ is attempted at h_s = 0.0125 or 0.00625, depending on the measured noise floor of m (`ipm_noise.py`).
 - The defect amplitude falls by about 10 per half-period, from 7e-6 at z ≈ 5.3 to about 5e-8 near λ₇ and 5e-9 near
   λ₈.
+
+### Stage 3, H4 — phase-based prediction (registered before any fine-grid computation below λ₆)
+**The phase at the rungs, cut-off D/D₀ = 2** (`ipm_wkb_rungs_fine.out`; λ₆ from the coarse phase curve interpolated
+to the fine λ₆, `ipm_wkb_coarse_cut2.out`).
+
+| n | 1 | 2 | 3 | 4 | 5 | 6 |
+|---|---|---|---|---|---|---|
+| δ_n = Re Φ(λ_n) − nπ | 2.038 | 2.022 | 2.014 | 2.058 | 2.057 | 2.037 |
+
+- δ_n is constant to ±0.02; the mean is δ = 2.038.
+- The mean Re Φ increment is 3.146, against π (0.1 %). With cut-off 3 or 5 the δ_n drift by −0.11 and −0.25.
+- So cut-off 2 is the one that makes the quantization exact. The same held in 2D (`ASYMPTOTICS.md` §5.2).
+
+**Rule H4.** Re Φ(λ_n) = nπ + 2.038, with Φ from the coarse-grid (h_s = 0.025) deep branch (`ipm_deep.py`, tag c1).
+
+| | λ | z | confidence |
+|---|---|---|---|
+| **λ₇** | 0.13601 | 7.352 (quadratic interpolation 7.3523–7.3543) | usable |
+| **λ₈** | ≈ 0.1263 | 7.91–7.92 | **low** |
+
+- **Why λ₈ is low-confidence.** Beyond z ≈ 7.6 the coarse grid does not resolve the steepening front.
+  - The identity Ω_b = −∂ₓR fails by 8 % there.
+  - Re Φ jumps by 2.30 between z = 7.87 and 8.12.
+  - Root-tracking failures appear.
+- **What λ₈ could decide.** H4 and H1–H3 differ by 2 % of a spacing at λ₇ and by about 12 % at λ₈. So λ₈, if it
+  can be resolved, discriminates between the phase-based and the fit-based rules.
+
+**Resolution facts measured so far (not predictions).**
+- Newton floor on the fine grid: |R| ≈ 4e-13. Tightening the tolerance from 1e-11 to 1e-13 changes m by 1.7e-11
+  (`ipm_noise_lam6_hs0125.out`). The 1e-9 scatter of m near λ₆ is therefore discretization, not the solver.
+- A shorter domain, s ∈ [−12, 40] instead of [−20, 100], changes m at λ₅ by 2e-6 and is rejected. An s_max = 130
+  check is running.

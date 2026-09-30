@@ -20,13 +20,15 @@ t0 = time.time()
 
 def solve(lam, Yg, from_grid=None):
     B = IPM(lam, hs=hs, Nb=Nb, s_start=sst, s_max=smax, s_sw=12.0)
-    if from_grid is not None and (nbi, hsi) != (Nb, hs):
+    if from_grid is not None and ((nbi, hsi) != (Nb, hs) or Yg.shape != (B.Ns - B.i0, B.Nb + 1)):
         Yg = transfer(from_grid, Yg, B)
-    Y, info, ok = newton(B, Yg, tol=1e-11, maxit=10, verbose=False, fd='central', pert=1e-6)
+    Y, info, ok = newton(B, Yg, tol=float(os.environ.get('NK_TOL', 1e-11)), maxit=10, verbose=False, fd='central', pert=1e-6)
     print(f"  λ={lam:.10f}: ok={ok} A={info['A']:.12f} m={info['m']:.12f} vrmin={info['vrmin']:.5f} t={time.time()-t0:.0f}s", flush=True)
     return Y, info['m']
 
-gin = lambda lam: BQLogPolar(lam, hs=hsi, Nb=nbi)
+import os
+_ssi, _smi = float(os.environ.get('SS_IN', -20.0)), float(os.environ.get('SM_IN', 100.0))
+gin = lambda lam: BQLogPolar(lam, hs=hsi, Nb=nbi, s_start=_ssi, s_max=_smi)
 Ya, ma = solve(la, np.load(fa), gin(la))
 Yb, mb = solve(lb, np.load(fb), gin(lb))
 bracket = (ma - 2) * (mb - 2) < 0
