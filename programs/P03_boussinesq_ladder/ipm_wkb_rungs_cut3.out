@@ -1,0 +1,28 @@
+/usr/local/lib/python3.11/dist-packages/scipy/integrate/_ivp/rk.py:63: RuntimeWarning: overflow encountered in dot
+  dy = np.dot(K[:s].T, a[:s]) * h
+/usr/local/lib/python3.11/dist-packages/scipy/integrate/_ivp/rk.py:63: RuntimeWarning: invalid value encountered in dot
+  dy = np.dot(K[:s].T, a[:s]) * h
+/usr/local/lib/python3.11/dist-packages/scipy/integrate/_ivp/rk.py:521: RuntimeWarning: invalid value encountered in divide
+  err5 = np.dot(K.T, self.E5) / scale
+/usr/local/lib/python3.11/dist-packages/scipy/integrate/_ivp/rk.py:522: RuntimeWarning: invalid value encountered in divide
+  err3 = np.dot(K.T, self.E3) / scale
+/home/user/Fluids-Research/programs/P03_boussinesq_ladder/ipm_local_eig.py:62: RuntimeWarning: overflow encountered in exp
+  return (dps + kap * ps) * np.exp(-kap * Y1) / 2
+/home/user/Fluids-Research/programs/P03_boussinesq_ladder/ipm_local_eig.py:62: RuntimeWarning: invalid value encountered in scalar multiply
+  return (dps + kap * ps) * np.exp(-kap * Y1) / 2
+/home/user/Fluids-Research/programs/P03_boussinesq_ladder/ipm_local_eig.py:62: RuntimeWarning: invalid value encountered in scalar divide
+  return (dps + kap * ps) * np.exp(-kap * Y1) / 2
+/home/user/Fluids-Research/programs/P03_boussinesq_ladder/ipm_local_eig.py:71: RuntimeWarning: invalid value encountered in scalar divide
+  k2 = k1 - f1 * (k1 - k0) / (f1 - f0)
+/home/user/Fluids-Research/programs/P03_boussinesq_ladder/ipm_local_eig.py:53: RuntimeWarning: invalid value encountered in scalar divide
+  r0 = -G / (1j * kap * Dh)                  # iκD̂ r(0) = −G ψ'(0)
+ipm_rung_Nb32_hs0.025_ss-20.0_sm100.0_lam1.02857230.npy    λ=1.0285723 m-2=-4.83e-09 D0=0.51429 dip s=-2.975 D̂=1.0046 s_cut=2.275 Φ=2.5547-0.5312i fail=103
+/home/user/Fluids-Research/programs/P03_boussinesq_ladder/ipm_local_eig.py:62: RuntimeWarning: overflow encountered in scalar multiply
+  return (dps + kap * ps) * np.exp(-kap * Y1) / 2
+ipm_rung_Nb32_hs0.025_ss-20.0_sm100.0_lam0.47212973.npy    λ=0.4721297 m-2=-1.87e-08 D0=0.23606 dip s=-1.175 D̂=0.8194 s_cut=0.075 Φ=5.4991-2.0430i fail=103
+ipm_rung_Nb32_hs0.025_ss-20.0_sm100.0_lam0.31496216.npy    λ=0.3149622 m-2=+2.33e-08 D0=0.15748 dip s=-0.675 D̂=0.7358 s_cut=0.000 Φ=8.5789-3.7274i fail=102
+ipm_rung_Nb32_hs0.025_ss-20.0_sm100.0_lam0.24156610.npy    λ=0.2415661 m-2=-1.32e-08 D0=0.12078 dip s=-0.500 D̂=0.6665 s_cut=-0.025 Φ=11.6925-5.5305i fail=102
+ipm_rung_Nb32_hs0.025_ss-20.0_sm100.0_lam0.19872999.npy    λ=0.1987300 m-2=-2.78e-08 D0=0.09936 dip s=-0.375 D̂=0.6011 s_cut=0.000 Φ=14.8224-7.4423i fail=102
+ipm_rung_Nb32_hs0.025_ss-20.0_sm100.0_lam0.17084904.npy    λ=0.1708490 m-2=+5.77e-08 D0=0.08542 dip s=-0.275 D̂=0.5279 s_cut=0.025 Φ=17.9044-9.4200i fail=102
+ipm_rung_Nb32_hs0.0125_ss-20.0_sm100.0_lam0.17061809.npy   λ=0.1706181 m-2=-2.33e-08 D0=0.08531 dip s=-0.275 D̂=0.5276 s_cut=0.025 Φ=17.9341-9.4443i fail=101
+ipm_rung_Nb32_hs0.025_ss-20.0_sm100.0_lam0.15176656.npy    λ=0.1517666 m-2=-1.05e-08 D0=0.07588 dip s=-0.200 D̂=0.4554 s_cut=0.050 Φ=20.8589-11.4064i fail=101

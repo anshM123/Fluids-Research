@@ -17,3 +17,6 @@ hl_limit_fine_Omf*.npz
 hl_limit_kutta.npz
 # IPM states at the spectral-flow branch points (regenerable: ipm_state_at.py)
 ipm_bp_lam*.npy
+# deep-continuation states (regenerable: ipm_deep.py); the table ipm_deep_*.npy without _lam is kept
+ipm_deep_*_lam*.npy
+ipm_noise_*.npy

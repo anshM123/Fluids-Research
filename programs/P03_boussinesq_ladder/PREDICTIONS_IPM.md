@@ -367,3 +367,75 @@ mode sits at μ = 1.000025.
 | U₃, gaps (calibration from other models) | — | ✗ |
 | U₄, all four members | — | 0.2–1.2 % |
 | spectral flow | — | within 1e-3 (continuing member) |
+
+---
+
+## Stage 3 — post-outcome holdout (registered before λ₇ and λ₈ are computed)
+*The stage-1 and stage-2 predictions above stay as they were, including the failed ones. Nothing below edits them.*
+
+**Why a stage 3.** The accumulation at λ → 0 (P1, P2) failed. Three readings of the finite-λ behaviour remain:
+- (i) infinitely many profiles accumulating at λ_c > 0;
+- (ii) a finite ladder ending where the wall dip closes (a sonic point, as in CCF);
+- (iii) a numerical degeneration of the branch.
+
+Stage 3 tests them with pre-registered numbers.
+
+**The ladder on one grid.** All rungs recomputed at h_s = 0.0125 (`ipm_rung{2,3,4}_hs0125.out`); λ₀ from h_s = 0.025.
+
+| n | λ_n (h_s = 0.0125) | shift from h_s = 0.025 |
+|---|---|---|
+| 0 | 1.0285722975 (h_s = 0.025) | — |
+| 1 | 0.4721297348 | +9e-9 |
+| 2 | 0.3149618108 | −3.5e-7 |
+| 3 | 0.2415663353 | +2.4e-7 |
+| 4 | 0.1987224523 | −7.5e-6 |
+| 5 | 0.1706180880 | −2.3e-4 |
+| 6 | 0.15092 ± 0.00002 | −8.5e-4 |
+
+**λ_c from successive subsets** (`ipm_stage3_predict.py` → `ipm_stage3_predictions.out`).
+- 3-point windows (0:2) … (4:6): 0.0341, 0.0396, 0.0357, 0.0353, 0.0389.
+- 4-point windows: 0.0368, 0.0376, 0.0355, 0.0371.
+- The λ₆ uncertainty moves the (4:6) value by ±0.0005.
+- So λ_c = 0.037 ± 0.003 on the present data, with no clear trend yet.
+
+**Predictions for λ₇ and λ₈ (fixed rules, no refitting after λ₇ is known).**
+
+| rule | λ₇ | z₇ | λ₈ | z₈ |
+|---|---|---|---|---|
+| H1: 1/(λ_n − λ_c) = an + b on λ₂–λ₆ (λ_c = 0.0365) | 0.13621 | 7.3415 | 0.12486 | 8.0087 |
+| H1′: the same on λ₀–λ₆ (λ_c = 0.0367) | 0.13623 | 7.3404 | 0.12490 | 8.0063 |
+| H2: geometric contraction in z (ratio 0.9258) | 0.13635 | 7.3343 | 0.12516 | 7.9899 |
+| H3: 3-point law from (λ₄, λ₅, λ₆) (λ_c = 0.0389) | 0.13635 | 7.3342 | 0.12513 | 7.9917 |
+
+These rules differ by 1 % (λ₇) to 3 % (λ₈) of a spacing. The rung positions therefore test the rung law at the 1 %
+level; they cannot decide the endpoint.
+
+**The endpoint test: the phase measured directly.**
+- New tool: the IPM local eigenproblem (`ipm_local_eig.py`, `ipm_wkb.py`). It gives κ(s) along the wall of any
+  computed profile, and Φ = (1/D₀)∫κ ds with D₀ = λ/m.
+- Check on the known rungs (front cut-off D/D₀ = 3, `ipm_wkb_rungs_cut3.out`):
+  - Re Φ = 5.50, 8.58, 11.69, 14.82, 17.93 (fine), 20.86 (coarse λ₆) for n = 1–6;
+  - increments 3.08, 3.11, 3.13, 3.11 against π.
+  - The phase therefore quantizes the IPM rungs, as in Boussinesq and Hou–Luo.
+- The phase coefficient I(z) = ∫Re κ ds = D₀ Re Φ: 1.298, 1.351, 1.412, 1.473, 1.530, 1.583 at z = 1/λ = 2.12–6.59.
+
+What each reading implies for I(z) on the deep branch (`ipm_deep.py` states, z up to 25):
+
+| reading | I(z) as z grows | profiles |
+|---|---|---|
+| accumulation at λ = 0 with a linear law (original P2) | tends to a constant | 1/λ_n ≈ an + b |
+| accumulation at λ = 0, faster phase | grows linearly in z | λ_n ∝ n^{−1/2} |
+| accumulation at λ_c ≈ 0.037 (H1) | ∝ 1/(1 − λ_c z), diverging at z ≈ 27 | 1/(λ_n − λ_c) ≈ an + b |
+| termination at the dip closure (ii) | the branch ends where min V_r/r → 0 (λ ≈ 0.08–0.09 extrapolated) | finite ladder |
+
+Discriminating values:
+- At z = 15, "linear in z" gives I ≈ 2.1 and H1 gives I ≈ 2.7.
+- At z = 20, "linear in z" gives I ≈ 2.4 and H1 gives I ≈ 4.6.
+
+**Protocol.**
+- A phase-based prediction of λ₇ (H4, from Φ on the deep coarse states, which do not resolve the defect) will be
+  committed separately.
+- The fine-grid computation of λ₇ starts only after that commit.
+- λ₈ is attempted at h_s = 0.0125 or 0.00625, depending on the measured noise floor of m (`ipm_noise.py`).
+- The defect amplitude falls by about 10 per half-period, from 7e-6 at z ≈ 5.3 to about 5e-8 near λ₇ and 5e-9 near
+  λ₈.
