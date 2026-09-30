@@ -1,0 +1,5 @@
+stage 2d (λ6), fixed before the branch reaches it; rungs used: [1.0285722975, 0.4721297256, 0.3149621637, 0.2415660984, 0.1987299872, 0.1708490449]
+z = [0.97222, 2.11806, 3.17498, 4.13965, 5.03195, 5.85312] Δ = [1.14584, 1.05692, 0.96467, 0.8923, 0.82117]
+PREDICTION (stage rule, a − κ/z̄ on Δ4, Δ5): a = 0.4404, κ = -2.0722; Δ6 = 0.7725; z6 = 6.6257; λ6 = 0.150928
+   simple extrapolations: constant spacing λ6 = 0.149829; geometric λ6 = 0.151313
+stage 2c check: λ5 predicted 0.170102 (z5 = 5.8788); computed 0.1708490449 (z5 = 5.85312 )
