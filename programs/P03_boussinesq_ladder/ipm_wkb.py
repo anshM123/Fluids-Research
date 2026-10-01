@@ -91,3 +91,69 @@ if __name__ == "__main__":
         o = wkb_phase(f, lam=lam, Dcut=Dcut, Nb=Nb_env, hs=hs_env)
         print(f"{f[:58]:58s} λ={o['lam']:.7f} m-2={o['m']-2:+.2e} D0={o['D0']:.5f} dip s={o['s_dip']:.3f} D̂={o['Dh_dip']:.4f} "
               f"s_cut={o['s_cut']:.3f} Φ={o['Phi'].real:.4f}{o['Phi'].imag:+.4f}i I={o['I'].real:.5f}{o['I'].imag:+.5f}i fail={o['nfail']}", flush=True)
+
+
+def wkb_phase2(f, lam=None, Nb=None, hs=None, s_lo=-10.0, ds=0.025, Dcut=2.0, return_kappa=False, max_depth=6):
+    """Phase with continuation-safe root tracking (for deep profiles with a steep front):
+    at each step all roots reachable from the guesses {previous κ, K_prev/D̂, κ_HL} are collected and the one closest
+    in K = κD̂ to the previous point is kept; if its K differs by more than 25 %, the step is bisected (up to max_depth
+    levels).  K is used because the exact IPM scaling makes it independent of D̂."""
+    from bq_local_eig import hl_root
+    W = wall_data(f, lam, Nb, hs)
+    s, D0 = W['s'], W['D0']
+    Dh_all = W['D'] / D0
+    sel = (s > -3) & (s < 2)
+    kd = np.argmax(sel) + np.argmin(np.where(sel, Dh_all, np.inf)[np.argmax(sel):np.argmax(sel) + sel.sum()])
+    kc = kd + np.argmax(Dh_all[kd:] > Dcut)
+    s_cut = s[kc - 1] + (Dcut - Dh_all[kc - 1]) / (Dh_all[kc] - Dh_all[kc - 1]) * (s[kc] - s[kc - 1])
+    par = lambda sv: (np.interp(sv, s, W['D']) / D0, -np.interp(sv, s, W['Omb']), np.interp(sv, s, W['mu']),
+                      np.interp(sv, s, W['G']), np.interp(sv, s, W['Ry']))
+
+    def roots_at(sv, kprev):
+        p = par(sv); Dh = p[0]; hl = hl_root(Dh, p[1]); out = []
+        gs = [hl] if kprev is None else [kprev, kprev * Dprev[0] / Dh, hl]
+        for g in gs:
+            try:
+                k, ok = local_root(*p, g)
+            except Exception:
+                ok = False
+            if ok and np.isfinite(k) and abs(k) > 1e-8 and all(abs(k - o) > 1e-6 * abs(k) for o in out):
+                out.append(k)
+        return out, Dh, hl
+
+    Dprev = [None]
+    grid = np.linspace(s_lo, s_cut, int(round((s_cut - s_lo) / ds)) + 1)
+    S, KAP = [], []
+    prev = None
+    def advance(s0, s1, depth):
+        nonlocal prev
+        rs, Dh, hl = roots_at(s1, prev)
+        if prev is None:
+            ok = [r for r in rs if abs(r - hl) < 0.8 * abs(hl) + 1e-6]
+            if ok:
+                prev = ok[0]; Dprev[0] = Dh; S.append(s1); KAP.append(prev)
+            return
+        Kp = prev * Dprev[0]
+        if rs:
+            best = min(rs, key=lambda r: abs(r * Dh - Kp))
+            if abs(best * Dh - Kp) <= 0.25 * abs(Kp) + 1e-9 or depth >= max_depth:
+                prev = best; Dprev[0] = Dh; S.append(s1); KAP.append(best); return
+        if depth < max_depth:
+            sm = 0.5 * (s0 + s1)
+            advance(s0, sm, depth + 1); advance(sm, s1, depth + 1)
+    s_last = grid[0]
+    for sv in grid:
+        advance(s_last, sv, 0); s_last = sv
+    S = np.array(S); KAP = np.array(KAP)
+    o = np.argsort(S); S, KAP = S[o], KAP[o]
+    # far tail below the first accepted point: small-ĉ asymptote
+    tail = grid[grid < S[0]]
+    if len(tail):
+        kt = np.array([hl_root(*par(t)[:2]) for t in tail])
+        S = np.concatenate([tail, S]); KAP = np.concatenate([kt, KAP])
+    Phi = np.trapezoid(KAP, S) / D0
+    out = dict(lam=W['lam'], m=W['m'], D0=D0, s_cut=s_cut, s_dip=s[kd], Dh_dip=Dh_all[kd], Phi=Phi, I=np.trapezoid(KAP, S),
+               n=len(S))
+    if return_kappa:
+        out.update(grid=S, kap=KAP)
+    return out

@@ -524,3 +524,62 @@ to the fine λ₆, `ipm_wkb_coarse_cut2.out`).
 - On the fine grid, D̂_min = 0.819, 0.735, 0.666, 0.597, 0.528, 0.452 at λ₁–λ₆, and 0.438, 0.426 at z = 6.75, 6.87.
   Linear extrapolation closes the dip near z ≈ 11.1–11.4 (λ ≈ 0.087–0.090). If that happens, the accumulation law
   must change before λ ≈ 0.09 (towards γ = ½). The resolved continuation `ipm_deep.py` (tag e1) tests this.
+
+## Stage 3 outcome: λ₇ (holdout of H1–H4)
+**The committed rule could not complete.**
+- The decision rule `ipm_lambda7_analysis.py` (committed f0b3f06, before the crossing was known) takes σ_z from the
+  front–grid scatter of the production scan p7.
+- p7 was paused before its crossing to test the front–grid locking hypothesis, so the rule's σ path could not run
+  (`ipm_lambda7_analysis_committed_rule.out`).
+- Its other branch gives, from the h_s = 0.00625 scan alone, z₇ = 7.3457 with σ_z(noise) = 0.004.
+
+**Converged-grid determination** (`ipm_lambda7_final.py`; h_s = 0.00625, four grid shifts per point).
+
+| z | m − 2, mean of 4 shifts |
+|---|---|
+| 7.256 | +4.89e-9 ± 3e-11 |
+| 7.316 | +9.1e-10 ± 4e-11 |
+| 7.346 | −2.3e-11 ± 4e-11 |
+| 7.376 | −7.2e-10 ± 3e-11 |
+
+- The locking error is ±9e-11 at h_s 0.00625, against ±3e-9 to ±1.1e-8 at h_s 0.0125 and ±1.5e-6 at 0.025.
+- Result: **z₇ = 7.3451 ± 0.0016 (statistical), λ₇ = 0.136145.**
+
+**Systematics at the crossing** (single solves at z = 7.346; `sys7_*.out`):
+
+| change | effect on m − 2 |
+|---|---|
+| Nb 32 → 48 → 64 | +3e-11 → −1.10e-9 → −3.39e-9 (not converging) |
+| s_start −20 → −22 → −24 | +3e-11 → −4.8e-10 → −1.48e-9 (the −24 value equals the λ₅ offset: a round-off artifact of deep truncation) |
+| s_max 100 → 130 → 160 | +3e-11 → +6.2e-10 → +3.6e-11 (the 130 value is solver-path noise) |
+| Nb 48, s_start −22, s_max 130 together | −2.03e-9 (not additive) |
+
+- The formulation therefore carries an erratic error floor of about 1–3 × 10⁻⁹ in m at this depth.
+- The defect crosses zero with slope −2.5 × 10⁻⁸ per unit z, because the next lobe is ten times smaller.
+- Hence **z₇ = 7.35 ± 0.08 from the defect**.
+
+**Verdict under the registered rule.**
+
+| rule | z₇ predicted | distance from measurement |
+|---|---|---|
+| H1 | 7.3415 | −0.04σ |
+| H1′ | 7.3404 | −0.06σ |
+| H2 | 7.3343 | −0.13σ |
+| H3 | 7.3342 | −0.14σ |
+| H4 | 7.352 | +0.09σ |
+
+σ_z = 0.08 > 0.003, so the λ₇ holdout is **not decisive**: no hypothesis is preferred or disfavoured.
+
+**The same profiles, read through the phase** (`ipm_wkb_h7b_cut2.out`; not a registered prediction).
+- Re Φ = 23.858, 24.025, 24.166 at z = 7.316, 7.346, 7.376.
+- With δ = 2.031 (the n = 1–5 mean) the phase places λ₇ at **z₇ = 7.3456 ± 0.003**, about 25 times more precisely than
+  the defect.
+- At the defect's central value, δ₇ = 2.03.
+
+**The general lesson** (Fig. 4 of the manuscript).
+- Rung n is located to σ_z ≈ σ_m / |dm/dz| at its crossing.
+- |dm/dz| there scales with the next, smaller lobe, so it falls about twentyfold per profile (5.2 × 10⁻⁷ at λ₆,
+  2.5 × 10⁻⁸ at λ₇).
+- The discretization floor σ_m stays at about 10⁻⁹.
+- Direct location therefore loses about a factor of twenty per profile (σ_z ≈ 0.002 at λ₆, 0.08 at λ₇, of order 1
+  at λ₈), while the phase keeps σ_z ≈ 0.003.
