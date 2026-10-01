@@ -1,0 +1,2 @@
+# ipm_deep e4: λ 0.1339405 -> 0.06, Δz = 0.25, Nb=32 hs=0.0125 s_start=-20.0 tol=1e-10 start=ipm_deep_e1_lam0.1339405.npy (grid in: Nb=32 hs=0.0125 s_start=-20.0)
+λ=0.1339405 z=7.4660: m−2=-2.3663e-08 D0=0.06697 vrmin=0.02435 dip s=-0.125 D̂_dip=0.3636 front s=0.075 max∂ₓR=7.83 |Ω_b+∂ₓR|/max=3.3e-02 t=89s

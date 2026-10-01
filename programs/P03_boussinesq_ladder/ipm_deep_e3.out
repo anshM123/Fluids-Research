@@ -1,0 +1,4 @@
+# ipm_deep e3: λ 0.1376273 -> 0.07, Δz = 0.25, Nb=32 hs=0.00625 s_start=-20.0 tol=1e-10 start=ipm_deep_e2_lam0.1376273.npy (grid in: Nb=32 hs=0.00625 s_start=-20.0)
+λ=0.1376273 z=7.2660: m−2=+4.8220e-09 D0=0.06881 vrmin=0.02621 dip s=-0.144 D̂_dip=0.3809 front s=0.069 max∂ₓR=7.30 |Ω_b+∂ₓR|/max=6.8e-03 t=18s
+# ipm_deep e3: λ 0.1376273 -> 0.07, Δz = 0.25, Nb=32 hs=0.00625 s_start=-20.0 tol=1e-10 start=ipm_deep_e2_lam0.1376273.npy (grid in: Nb=32 hs=0.00625 s_start=-20.0)
+# resumed after z = 7.2660 (1 points done)
