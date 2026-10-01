@@ -205,7 +205,7 @@ The IPM self-similar problem is the Boussinesq problem with the vorticity slaved
 | counts used in the paper | `python3 ipm_contour.py ipm_rung_…_lamL.npy L 0.025 Un 0.04 1.5 Y 16 -30` with Y = 1.5 (U₀–U₂) or 2.5 (U₃, U₄); results in `ipm_contour_Un.out` (0.994, 1.947, 3.082, 4.077, 4.902 for n = 0–4; ~20–60 min each) |
 | stage-2 predictions | `python3 ipm_stage2_predict.py` (data in `ipm_stage2_data.py`) |
 
-### IPM deep branch, λ₇ holdout, phase observable and validation (NCS companion, `dossier/P03_MANUSCRIPT_NCS.md`)
+### IPM deep branch, λ₇ holdout, phase observable and validation (the *Nature Computational Science* paper, `ncs-submission/`)
 | step | command / output |
 |---|---|
 | fine-grid scans at fixed z (resumable) | `NB=… HS_IN=… python3 ipm_scan.py …` → `ipm_scan_{s16,s20,p7,h7}.out/.npy` |

@@ -1,4 +1,5 @@
-"""Figures for the Nature Computational Science manuscript (dossier/P03_MANUSCRIPT_NCS.md).
+"""Working figures for the Nature Computational Science manuscript (superseded by
+ncs-submission/code/figures/make_figures.py, which makes the submitted figures).
 usage: python3 fig_ncs.py [1 2 3 4 5 6]  (default: all).  Every number is read from a logged output of this folder.
 Palette (validated, light mode): defect #b4442a, geometry #2a78d6, phase #1f9e6e, original tracker #8a5cc2; grids
 use one sequential blue ramp (light = coarse)."""

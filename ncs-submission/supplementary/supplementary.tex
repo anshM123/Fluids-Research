@@ -160,28 +160,34 @@ solver did not converge for $n=5$, $6$ within 15 Newton iterations (logged, not 
 All predictions for IPM were committed to the public repository before the computation they concern, in
 \texttt{programs/P03\_boussinesq\_ladder/PREDICTIONS\_IPM.md}; entries are never edited, and outcomes, deviations
 and corrections are appended. The time stamps are those of the commits that touch the file
-(\texttt{git log} on the file); a copy of the record as of submission is provided as Supplementary Data~1.
+(\texttt{git log} on the file); a copy of the record as of submission is provided as Supplementary Data~1. Commit
+dates are set by the committing machine. Supplementary Data~2 therefore lists, for every commit of the repository up
+to the preparation of this submission, the earliest push recorded by GitHub after which the commit was on the server,
+in GitHub's server time (from its public events interface). This is an upper bound on the time at which the commit
+became public. Every registration was on GitHub within 25 min of its commit date (Supplementary Table~\ref{tab:time}).
 
 \begin{table}[h]
 \centering
-\caption{\textbf{Timeline of the record.}}
+\caption{\textbf{Timeline of the record.} Each commit is followed by the time (UTC) by which it was on GitHub
+(Supplementary Data~2).}
+\label{tab:time}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{2.3cm}>{\raggedright\arraybackslash}p{6.2cm}>{\raggedright\arraybackslash}p{6.4cm}}
 \toprule
 Commit & Registered & Outcome (appended later)\\
 \midrule
-\texttt{4dc82af} & Stage 1, before any IPM continuation: accumulation as $\lambda\to0$, linear law, index $n$, lattice
+\texttt{4dc82af}\newline 30 Sep 2026, 01:02 & Stage 1, before any IPM continuation: accumulation as $\lambda\to0$, linear law, index $n$, lattice
 of growth rates of step $\lambda_n$, rigid spectral flow, localization at the front & Accumulation clause and linear
 law failed (spacings contract by 0.92 per profile); index $n$ ($n=0$--4), lattice, flow and localization held\\
 stage 2 entries & $\lambda_3$, $\lambda_4$, $\lambda_5$, $\lambda_6$ and the growth rates of the fourth unstable profile
 from the lower profiles by fixed rules & Errors 6\%, 2.5\%, 2\%, 0.1\% of a spacing; growth rates to 0.2--1.2\%\\
-\texttt{c922751} & Stage 3: $z_7$, $z_8$ by three rung-fit rules (H1, H1$'$, H2, H3) & $z_7$: not decisive (main
+\texttt{c922751}\newline 30 Sep, 17:14 & Stage 3: $z_7$, $z_8$ by three rung-fit rules (H1, H1$'$, H2, H3) & $z_7$: not decisive (main
 text); $z_8$: untested\\
-\texttt{273ae28} & Stage 3, H4: $z_7=7.352$, $z_8\approx7.91$--$7.92$ (low confidence) from the phase on the coarse
+\texttt{273ae28}\newline 30 Sep, 17:14 & Stage 3, H4: $z_7=7.352$, $z_8\approx7.91$--$7.92$ (low confidence) from the phase on the coarse
 branch & $z_7$: not decisive; the $z_8$ value was made with the faulty tracker (Supplementary Note~5)\\
-\texttt{f0b3f06} & Decision rule for $\lambda_7$, fixed before the crossing was known & Could not run as written (scan
+\texttt{f0b3f06}\newline 1 Oct, 16:19 & Decision rule for $\lambda_7$, fixed before the crossing was known & Could not run as written (scan
 paused); converged-grid analysis reported with the same thresholds\\
-\texttt{251bf1e} & Stage 4: $\lambda_8$--$\lambda_{10}$ from the repaired phase, with bands, required precision and a
+\texttt{251bf1e}\newline 1 Oct, 19:28 & Stage 4: $\lambda_8$--$\lambda_{10}$ from the repaired phase, with bands, required precision and a
 decision rule & Open benchmark (Supplementary Table~\ref{tab:stage4})\\
 \bottomrule
 \end{tabular}

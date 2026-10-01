@@ -1,4 +1,4 @@
-"""Wall speed D̂ = D/D₀ and the local wavenumber density Re K/D̂ along the wall for a few IPM states (NCS Fig. 1):
+"""Wall speed D̂ = D/D₀ and the local wavenumber density Re K/D̂ along the wall for a few IPM states (Fig. 1 of the manuscript):
 rungs 1, 3, 5, the λ₇ state (h_s 0.00625) and two deep states.  Saved to ipm_wall_profiles.npz (x = e^s, D̂, and
 for the λ₇ state the repaired phase density on its tracking grid)."""
 import os as _os, sys as _sys

@@ -1,4 +1,4 @@
-"""Diagnostic of the phase-tracker failure on deep IPM states (NCS Fig. 6): K = κD̂ along the wall from the original
+"""Diagnostic of the phase-tracker failure on deep IPM states (Fig. 6 of the manuscript): K = κD̂ along the wall from the original
 tracker (`wkb_phase`, which holds κ across a failed point) and from the repaired one (`wkb_phase3`, K-continuation
 beyond the dip), together with I = ∫Re κ ds from both.  For each state the front side (dip → cut-off) is printed
 point by point; the arrays are saved to ipm_tracker_diag.npz for the figure.

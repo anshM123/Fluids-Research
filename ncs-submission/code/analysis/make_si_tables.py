@@ -1,5 +1,6 @@
 """Supplementary tables, generated from the logged outputs so that no number is transcribed by hand.
-usage: python3 make_si_tables.py      (reads data/outputs, writes supplementary/tables/*.tex)"""
+usage: python3 make_si_tables.py      (reads data/outputs, writes supplementary/tables/*.tex;
+       the environment variables NCS_DATA and NCS_TABLES override both directories)"""
 import os, re, sys, glob
 import numpy as np
 
@@ -8,7 +9,7 @@ sys.path.insert(0, os.path.join(HERE, "..", "figures"))
 import make_figures as M                                   # parsers shared with the figures
 
 DATA = M.DATA
-OUT = os.path.abspath(os.path.join(HERE, "..", "..", "supplementary", "tables"))
+OUT = os.path.abspath(os.environ.get("NCS_TABLES", os.path.join(HERE, "..", "..", "supplementary", "tables")))
 os.makedirs(OUT, exist_ok=True)
 os.chdir(DATA)
 

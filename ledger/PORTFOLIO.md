@@ -3,9 +3,10 @@
 **Update (P03, 2D Boussinesq ladder):** new Tier-A program (folder `programs/P03_boussinesq_ladder`; the earlier
 queued "P03 Couette threshold" is renamed P16). Result: 8 regularity resonances λ₀…λ₇ on one branch, reproduced
 by an independent solver. The instability index is n for all eight. A formal phase-quantization mechanism gives
-evidence for an infinite ladder; no proof is claimed (dossier/P03_DOSSIER.md; RLOG R023–R028).
+evidence for an infinite ladder; no proof is claimed (programs/P03_boussinesq_ladder/; RLOG R023–R028). The IPM continuation of this program is
+the paper prepared for Nature Computational Science (`ncs-submission/`).
 
-**Final status:** P02 → VERIFIED main result (dossier/DOSSIER.md): the CCF self-similar branch carries exactly three smooth
+**Final status:** P02 → VERIFIED main result (ledger/DOSSIER.md): the CCF self-similar branch carries exactly three smooth
 profiles (λ₀, λ₁, λ₂) and terminates at a square-root cusp (λ* = 0.4535845, p* = 2.005772) approached with
 log-periodic oscillations of universal frequency 2τ, τ tanh(πτ/2) = ½ — no λ₃ on the branch. P05 remains the
 strongest backup (3 Re points). Other Tier B/C programs were not run (compute concentrated on P02 verification).

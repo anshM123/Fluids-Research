@@ -5,7 +5,7 @@ usage:  python3 make_figures.py [names ...]     names: fig1 … fig6, sfig1 … 
         env NCS_DATA (default ../../data/outputs) and NCS_FIGS (default ../../figures)
 
 Every number is read from the logged outputs in data/outputs; nothing is typed in except the registered predictions
-(Fig. 5, from PREDICTIONS_IPM.md) and the profile locations λ₀–λ₆ (data/outputs/ipm_rung*.out).
+(Fig. 4, from PREDICTIONS_IPM.md) and the profile locations λ₀–λ₆ (data/outputs/ipm_rung*.out).
 Colours: one categorical palette checked for colour-vision deficiency (defect #b4442a, geometry #2a78d6,
 phase #1f9e6e, original tracker #8a5cc2) and one sequential ramp for grid spacing and profile depth."""
 import os, re, sys, glob, json

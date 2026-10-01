@@ -10,9 +10,10 @@ from ipm_local_eig import local_root, LocalEigIPM
 
 def wall_data(f, lam=None, Nb=None, hs=None):
     if lam is None:
-        lam = float(re.search(r'lam([0-9.]+?)(?:_|\.npy)', f).group(1))
+        ml = re.search(r'lam([0-9.]+?)(?:_|\.npy)', f)
+        lam = float(ml.group(1)) if ml else 1 / float(re.search(r'_z([0-9.]+?)(?:_|\.npy)', f).group(1))
     if Nb is None or hs is None:
-        mNb = re.search(r'Nb(\d+)_hs([0-9.]+?)_', f)
+        mNb = re.search(r'Nb(\d+)_hs([0-9.]+?)(?:_|\.npy)', f)
         Nb, hs = (int(mNb.group(1)), float(mNb.group(2))) if mNb else (32, 0.025)
     import os
     ss = float(os.environ.get('WKB_SS', -20.0))

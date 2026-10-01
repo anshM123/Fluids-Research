@@ -436,3 +436,24 @@ h_s = 0.0125 the rungs agree with the predictions. Deeper IPM rungs need the fin
 - dossier/P03_NATURE_MAIN.md: main text with four figures — fig_hierarchy, fig_mechanism, fig_spectrum_main and
   fig_endings.
 - dossier/P03_PRESUBMISSION_ENQUIRY.md: the presubmission enquiry.
+
+### R034 — P03: IPM deep branch, phase observable and the submission package
+- **Project:** P03, incompressible porous-media flow.
+- **Computation:**
+  - λ₇ on the converged grid, with grid shifts and systematics;
+  - the deep continuation to z = 10.2;
+  - the repaired resonance-phase tracker;
+  - the endpoint geometry;
+  - the stage-4 registration (`251bf1e`);
+  - an independent global solver for λ₁–λ₆.
+- **Result:** the seventh-profile holdout was not decisive by the defect (z₇ = 7.35 ± 0.08). The phase reads
+  7.354 ± 0.007. The endpoint is open. Details are in `programs/P03_boussinesq_ladder/PREDICTIONS_IPM.md` and
+  README.
+- **Paper:** written up for *Nature Computational Science* as a self-contained package in `ncs-submission/`
+  (manuscript, Supplementary Information, code with tests, data, submission documents).
+- **Repository changes:**
+  - the earlier drafts in `dossier/` were removed (they remain in the git history);
+  - the P02 draft and SI moved to `programs/P02_singularity_ladders/`;
+  - the program dossier moved to `ledger/DOSSIER.md`.
+  Older entries that name files in `dossier/` refer to the git history.
+- **Status:** DONE.

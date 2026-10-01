@@ -1,4 +1,5 @@
-"""IPM version of stab_contour2.py (same algorithm; IPM profile and IPMStab). Right-half-plane eigenvalue count: argument principle for det(I − T_μ) on the rectangle
+"""IPM version of the 2D Boussinesq contour count (stab_contour2.py in programs/P03_boussinesq_ladder of the full
+repository; same algorithm, IPM profile and IPMStab). Right-half-plane eigenvalue count: argument principle for det(I − T_μ) on the rectangle
 [x_lo, x_hi] × [−y_hi, y_hi] (upper half traversed, conjugate symmetry), with
   * k = 24 eigenvalues of T_μ per point (eigenvalue swaps at the truncation then involve |ν| ≲ 0.3 and cause only
     small phase errors),
@@ -6,7 +7,7 @@
   * an optional deeper origin truncation s_start (base state extended by its exact constant-strain structure),
   * a diagnostic at any unresolved jump: the eigenvalue of T_μ closest to 1 there (a zero of det(I − T_μ) close to
     the contour shows up as |1 − ν| → 0).
-usage: python3 stab_contour2.py STATE LAM HS TAG X_LO X_HI Y_HI [K=24] [S_START=-20]"""
+usage: python3 ipm_contour.py STATE LAM HS TAG X_LO X_HI Y_HI [K=24] [S_START=-20]"""
 import os as _os, sys as _sys
 _sys.path.insert(0, _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "..", "lib"))  # solver library
 import numpy as np, sys, time

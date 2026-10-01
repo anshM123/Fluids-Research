@@ -1,7 +1,7 @@
 # The unstable-singularity ladder of a nonlocal transport model is finite and ends in a log-periodic cusp
 
-*Draft manuscript (Nature Computational Science Article format). Numbers marked † are final values from
-`programs/P02_singularity_ladders/` logs; see dossier section K for the validation table.*
+*Working draft of the P02 result (not submitted). Numbers marked † are final values from
+`programs/P02_singularity_ladders/` logs; see `ledger/DOSSIER.md`, section K, for the validation table.*
 
 ## Abstract
 Unstable self-similar singularities are blow-up solutions reachable only from infinitely fine-tuned initial

@@ -1,4 +1,4 @@
-"""Two checks of the IPM local wavenumber K = κD̂ used by the phase (NCS Fig. 4c,d).
+"""Two checks of the IPM local wavenumber K = κD̂ used by the phase (Fig. 5c,d of the manuscript).
 1. K against the wall density gradient G along the wall of the λ₇ state (z = 7.346, h_s 0.00625) and a deep state
    (z = 8.426, h_s 0.0125): K ≈ G for small G and saturates for G ≳ 2, which makes Φ₀ a weighted travel time.
 2. The exact scaling κ = K(ĉ, μ, G, R_y)/D̂: at three wall points of the λ₇ state (inner layer, dip, front side) the

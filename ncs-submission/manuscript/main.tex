@@ -279,7 +279,7 @@ constant to $\pm0.005$ (0.2\% of a spacing) with no adjustable parameter beyond 
 offset is $1.974\pm0.009$, a drift of $-0.057$ that we carry as an uncertainty. The drift is not an artefact of the
 cut-off: with cut-offs $D/D_0=1.5$, $3$ and $5$ the offsets trend differently over $n=1$--5, but each drops by an
 extra $0.04\pm0.01$ at $n=6$ (Supplementary Note~4). At the seventh profile the phase reads $z_7=7.354\pm0.007$, the
-range spanned by $\delta=1.974$ and $2.031$; this is eleven times tighter than the defect and consistent with it. The
+range spanned by $\delta=1.974$ and $2.031$; this is more than ten times tighter than the defect and consistent with it. The
 grid dependence of $\ReP$ at that depth is $0.010$ ($\Delta z=0.002$). This reading is not one of the registered
 predictions; the registered phase rule, evaluated on a coarser branch with an earlier tracker, gave $7.352$.
 
@@ -457,7 +457,9 @@ concerns; entries are never edited, and outcomes, deviations and corrections are
 predictions before any IPM continuation; stage~2 predicted $\lambda_3$--$\lambda_6$ and an unstable spectrum by fixed
 extrapolation rules; stage~3 predicted $\lambda_7$ and $\lambda_8$ (\texttt{c922751}, \texttt{273ae28}; decision rule
 \texttt{f0b3f06}); stage~4 predicted $\lambda_8$--$\lambda_{10}$ from the repaired phase (\texttt{251bf1e}) with a
-decision rule for future tests. The complete record and its timeline are summarized in Supplementary Note~3.
+decision rule for future tests. The complete record and its timeline are summarized in Supplementary Note~3; a copy
+of the record and the times at which GitHub received each commit, which bound when each registration became public,
+are Supplementary Data~1 and~2.
 
 \paragraph{Linear stability.} Instability indices were counted with two independent linearizations: the linearized
 march and Biot--Savart map $T_\mu$, using real-mode parity and argument-principle counts\cite{delves1967} of
@@ -483,13 +485,15 @@ the content of this paper.
 
 \section*{Data availability}
 The converged profiles $\lambda_0$--$\lambda_6$ and the states at $z=7.346$, $8.066$ and $8.786$ (double precision,
-with their grids), all logged outputs from which every figure and table is generated, and the pre-registration record
-are available in the repository [repository URL] and will be archived at Zenodo [DOI to be assigned on acceptance].
-Source data for Figs.~1--6 are provided in \texttt{data/outputs} of the submission package.
+with their grids) and all logged outputs from which every figure and table is generated are available at
+\url{https://github.com/anshM123/Fluids-Research} (directory \texttt{ncs-submission/data}) and will be archived at
+Zenodo [DOI]. The pre-registration record and the times at which GitHub received each commit are Supplementary Data~1
+and~2.
 
 \section*{Code availability}
-All solvers, analysis scripts and the figure script are available in the repository [repository URL] under the MIT
-licence and will be archived at Zenodo [DOI] together with a Code Ocean capsule for peer review.
+All solvers, analysis scripts and the figure script are available at \url{https://github.com/anshM123/Fluids-Research}
+(directory \texttt{ncs-submission/code}) under the MIT licence and will be archived at Zenodo [DOI] together with a
+Code Ocean capsule for peer review.
 
 \begin{thebibliography}{99}
 \setlength{\itemsep}{1pt}

@@ -1,4 +1,4 @@
-"""Phase stability under the same numerical changes that move the defect (NCS Fig. 4b): the repaired phase
+"""Phase stability under the same numerical changes that move the defect (Fig. 5b of the manuscript): the repaired phase
 (wkb_phase3) on every variant state at z = 7.346 (h_s = 0.00625): four grid shifts, Nb 48 and 64, origin truncation
 s_start −22 and −24, far field s_max 130 and 160, and the combined variant.  For each: m − 2 of the state (march),
 Re Φ₀ and I; and the implied shifts of z₇, Δm/|dm/dz| (defect, slope −2.5e-8 per unit z at the crossing) and

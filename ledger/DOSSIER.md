@@ -1,31 +1,13 @@
 # DOSSIER — Fluids Parallel Discovery Program
 
-**Leading result (P03, see `dossier/P03_DOSSIER.md`):** *Numerical evidence and asymptotic analysis reveal a
-quantized hierarchy of self-similar Boussinesq blow-up profiles, with evidence for an infinite ladder accumulating
-at λ = 1.* Discrete smooth blow-up profiles are regularity-selected points on a continuous singular branch.
-- **Eight regularity resonances.** Eight smooth profiles, λ₀ … λ₇, were computed with a classical solver. All lie
-  on one branch of least-singular profiles, as the zeros of m(λ) − 2.
-- **Independent checks.**
-  - A second, independent global solver reproduces all eight to ≤ 1e-5.
-  - Linear stability gives n unstable modes for the n-th profile, for all eight. A second, independent method
-    reproduces 27 of the 28 unstable eigenvalues to ≤ 5e-5 (the pattern
-    Wang et al. reported for n ≤ 3).
-- **Stalled layer.** As λ → 1 a stalled (quasi-stagnant) boundary layer forms next to a front that tends to a
-  square-root cusp.
-- **Phase quantization.** The smoothness condition becomes a phase quantization; the phase gained per resonance
-  tends to π. The asymptotic spacing of 1/(λ_n − 1) lies between 1.476 and ≈ 1.51. It is not derived
-  analytically; 3/2 is a candidate.
-- **Status.** No proof is claimed. The mechanism is formal matched asymptotics, and each ingredient is checked
-  numerically (programs/P03_boussinesq_ladder/ASYMPTOTICS.md).
+**Note (October 2026).** This is the program dossier, written for the P02 result (the CCF ladder). The program's main
+result is now the IPM paper prepared for *Nature Computational Science*, in `ncs-submission/`. The 2D Boussinesq
+and Hou–Luo computations summarized in earlier versions of this file are its validation (Supplementary Note 1 of
+that paper) and are documented in `programs/P03_boussinesq_ladder/`.
 
-**Companion result (P02, this document):** *The ladder of unstable self-similar singularities of the
+**P02 result (this document):** *The ladder of unstable self-similar singularities of the
 Córdoba–Córdoba–Fontelos equation is finite. All known profiles lie on one connected branch, which ends in a
 universal log-periodic square-root cusp.*
-
-**Together:** a ladder terminates when its sonic cusp forms at finite λ (CCF, λ* = 0.4536). This is consistent with
-the unsuccessful search for a third CCF profile down to λ ≈ 0.455 (arXiv:2511.22819). The evidence points to an
-infinite ladder when the cusp forms only in the limit λ → 1, behind a stalled layer that supports quantized WKB
-oscillations (Boussinesq, Hou–Luo).
 
 Status keys used below: VERIFIED = reproduced by ≥2 independent numerical routes and converged in all
 discretisation parameters; DERIVED = analytic argument, numerically confirmed; PRELIMINARY = single route.

@@ -1,0 +1,7 @@
+# Python 3.11. These are the versions used for every result in the paper; nearby versions are expected to work.
+numpy==2.4.6
+scipy==1.17.1
+numba==0.67.0
+matplotlib==3.11.2
+# optional, for code/tests
+pytest>=8

@@ -1,0 +1,90 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=2.4cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\setlist{itemsep=0.15em,topsep=0.2em,leftmargin=1.4em}
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{flushright}
+{[Corresponding author]}\\
+{[Affiliation, address]}\\
+{[e-mail]}\\[0.6em]
+{[Date]}
+\end{flushright}
+
+The Editor\\
+\textit{Nature Computational Science}
+
+Dear Editor,
+
+We submit our Article ``A resonance phase locates unstable self-similar singularities beyond an exponential precision
+wall'' for consideration in \textit{Nature Computational Science}.
+
+\textbf{The computational problem.} Unstable self-similar blow-up profiles of incompressible flow are now being
+computed with physics-informed neural networks and classical solvers, and computer-assisted proofs need them to high
+accuracy. They come in hierarchies. How deep such a hierarchy can be computed, and how certain we can be that a
+computed profile is the one it is claimed to be, has not been asked. We show that the answer is limited by an
+exponential precision wall: each profile is a zero of a smoothness defect that shrinks about tenfold per profile. A
+solver's residual does not reveal this. Our profiles have residuals of $10^{-13}$, but whether they are profiles at all
+is decided at $10^{-9}$.
+
+\textbf{What the paper shows}, in incompressible porous-media flow:
+\begin{enumerate}
+\item \textbf{The anatomy of the wall.} A complete error audit of a converged solver at the deepest profiles finds
+three errors, none small or smooth:
+\begin{itemize}
+\item a front--grid locking error, which we measure and cancel by grid shifting (it scales as $h_s^{7.1}$);
+\item an angular-resolution error that stops converging;
+\item round-off from deep origin truncation.
+\end{itemize}
+An independent solver, which shares no numerical ingredient with the first, agrees to the resulting floor at every
+depth, while the positions of the profiles drift apart by five orders of magnitude.
+\item \textbf{A pre-registered negative result.} Five predictions for the seventh profile and a decision rule were
+time-stamped in a public repository before the computation. The defect could not decide between them
+($z_7=7.35\pm0.08$ against a decisiveness threshold of $0.003$), and we report the test as not decisive, as the rule
+requires.
+\item \textbf{An observable that bypasses the wall.} The resonance phase is a quadrature over $O(1)$-accurate profile
+data. It moves 10 to more than 1,000 times less than the defect under the same numerical changes, and it locates
+the seventh profile more than ten times more precisely. Its imaginary part predicts the wall, so the precision that a
+direct method needs can be computed in advance.
+\item \textbf{A validation lesson.} A failure of the phase computation passed every residual check. It was exposed by
+a geometric invariant and repaired with an exact scaling of the local problem, and we document it in full.
+\item \textbf{A stated limit and a benchmark.} We leave the endpoint of the hierarchy open. We register three deeper
+profiles as a benchmark for neural and classical solvers, with their bands and the precision a decisive test needs.
+\end{enumerate}
+
+\textbf{Why \textit{Nature Computational Science}.} The paper turns a recurring difficulty of scientific computing,
+exponentially small quantities that decide qualitative structure, into an explicit lesson with a constructive remedy.
+Its practices are cheap and transfer to any search for unstable self-similar solutions, whether neural or classical:
+\begin{itemize}
+\item pre-registration with fixed decision rules;
+\item grid-shift measurement of periodic discretization errors;
+\item validation by geometric invariants rather than residuals;
+\item observables chosen for their insensitivity to the dominant errors.
+\end{itemize}
+We expect the work to interest computational physicists, numerical analysts, researchers in scientific machine
+learning, and mathematicians who use computer-assisted proofs.
+
+\textbf{Reproducibility.} All code (MIT licence), the converged profiles and every logged output are openly available,
+together with the complete pre-registration record, including its corrections. Every figure and table is regenerated
+from the logs by one script each, and smoke tests run in seconds. A Code Ocean capsule will be provided for code
+review.
+
+The manuscript is not under consideration elsewhere. [Either: A preprint has been posted on arXiv, [identifier]. Or: No preprint
+has been posted.] The authors declare no competing interests. The use of AI tools is described in the Methods, as
+required by the journal's policy.
+
+Sincerely,
+
+[Corresponding author], on behalf of all authors
+
+\end{document}
