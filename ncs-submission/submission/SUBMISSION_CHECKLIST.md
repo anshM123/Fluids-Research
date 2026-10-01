@@ -21,7 +21,7 @@ The journal accepts initial submissions as PDF, Word or LaTeX. The LaTeX source 
 | Authors | Ansh Mishra¹ and Aryan Senthilkumar² |
 | Affiliations | ¹ Independent researcher; ² Georgia Institute of Technology, Atlanta, GA, USA |
 | Corresponding author | Ansh Mishra |
-| Author contributions | A.M. carried out the fluid mechanics and physics. A.S. carried out the mathematics and validation. |
+| Author contributions | A.M. carried out the mathematics and physics. A.S. carried out the aerodynamics and fluid mechanics. |
 | Use of AI tools (Methods) | "AI tools were used continually throughout the development of this project." |
 | Acknowledgements | none (the section is omitted) |
 | Competing interests | none declared |
