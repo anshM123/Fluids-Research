@@ -1,0 +1,28 @@
+HS_IN=0.0125 python3 ipm_shift.py ipm_scan_p7_z7.3160.npy 7.316 0.25 0.0125
+HS_IN=0.0125 python3 ipm_shift.py ipm_scan_p7_z7.3160.npy 7.316 0.5 0.0125
+HS_IN=0.0125 python3 ipm_shift.py ipm_scan_p7_z7.3160.npy 7.316 0.75 0.0125
+HS_IN=0.0125 python3 ipm_shift.py ipm_scan_p7_z7.3160.npy 7.316 0.0 0.025
+HS_IN=0.0125 python3 ipm_shift.py ipm_scan_p7_z7.3160.npy 7.316 0.25 0.025
+HS_IN=0.0125 python3 ipm_shift.py ipm_scan_p7_z7.3160.npy 7.316 0.5 0.025
+HS_IN=0.0125 python3 ipm_shift.py ipm_scan_p7_z7.3160.npy 7.316 0.75 0.025
+HS_IN=0.0125 python3 ipm_shift.py ipm_scan_p7_z7.2560.npy 7.256 0.0 0.025
+HS_IN=0.0125 python3 ipm_shift.py ipm_scan_p7_z7.2560.npy 7.256 0.25 0.025
+HS_IN=0.0125 python3 ipm_shift.py ipm_scan_p7_z7.2560.npy 7.256 0.5 0.025
+HS_IN=0.0125 python3 ipm_shift.py ipm_scan_p7_z7.2560.npy 7.256 0.75 0.025
+HS_IN=0.0125 python3 ipm_shift.py ipm_scan_p7_z7.3160.npy 7.376 0.0 0.0125
+HS_IN=0.0125 python3 ipm_shift.py ipm_scan_p7_z7.3160.npy 7.376 0.25 0.0125
+HS_IN=0.0125 python3 ipm_shift.py ipm_scan_p7_z7.3160.npy 7.376 0.5 0.0125
+HS_IN=0.0125 python3 ipm_shift.py ipm_scan_p7_z7.3160.npy 7.376 0.75 0.0125
+HS_IN=0.0125 python3 ipm_shift.py ipm_scan_p7_z7.3160.npy 7.376 0.0 0.025
+HS_IN=0.0125 python3 ipm_shift.py ipm_scan_p7_z7.3160.npy 7.376 0.25 0.025
+HS_IN=0.0125 python3 ipm_shift.py ipm_scan_p7_z7.3160.npy 7.376 0.5 0.025
+HS_IN=0.0125 python3 ipm_shift.py ipm_scan_p7_z7.3160.npy 7.376 0.75 0.025
+HS_IN=0.00625 python3 ipm_shift.py ipm_scan_h7_z7.2560.npy 7.256 0.25 0.00625
+HS_IN=0.00625 python3 ipm_shift.py ipm_scan_h7_z7.2560.npy 7.256 0.5 0.00625
+HS_IN=0.00625 python3 ipm_shift.py ipm_scan_h7_z7.2560.npy 7.256 0.75 0.00625
+WAIT=ipm_scan_h7_z7.3160.npy HS_IN=0.00625 python3 ipm_shift.py ipm_scan_h7_z7.3160.npy 7.316 0.25 0.00625
+WAIT=ipm_scan_h7_z7.3160.npy HS_IN=0.00625 python3 ipm_shift.py ipm_scan_h7_z7.3160.npy 7.316 0.5 0.00625
+WAIT=ipm_scan_h7_z7.3160.npy HS_IN=0.00625 python3 ipm_shift.py ipm_scan_h7_z7.3160.npy 7.316 0.75 0.00625
+WAIT=ipm_scan_h7_z7.3760.npy HS_IN=0.00625 python3 ipm_shift.py ipm_scan_h7_z7.3760.npy 7.376 0.25 0.00625
+WAIT=ipm_scan_h7_z7.3760.npy HS_IN=0.00625 python3 ipm_shift.py ipm_scan_h7_z7.3760.npy 7.376 0.5 0.00625
+WAIT=ipm_scan_h7_z7.3760.npy HS_IN=0.00625 python3 ipm_shift.py ipm_scan_h7_z7.3760.npy 7.376 0.75 0.00625

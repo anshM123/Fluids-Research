@@ -1,0 +1,5 @@
+# IPM global solver l2f: march λ=0.3149618108 src=ipm_rung_Nb32_hs0.0125_ss-20.0_sm100.0_lam0.31496181.npy hs=0.0125 Nb=24 s_min=-16.0
+s_max=  8.0: λ = 0.3149618576  |R|=5.0e-12 ok=True  unknowns=144076  (52s)
+s_max= 10.0: λ = 0.3149617773  |R|=5.0e-12 ok=True  unknowns=156076  (48s)
+s_max= 12.0: λ = 0.3149617736  |R|=5.4e-12 ok=True  unknowns=168076  (35s)
+geometric extrapolation (last three, ratio 0.046): λ_∞ = 0.3149617734   (march λ = 0.3149618108, diff -3.74e-08)

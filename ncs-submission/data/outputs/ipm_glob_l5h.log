@@ -1,0 +1,4 @@
+# IPM global solver l5h: march λ=0.170618088 src=ipm_rung_Nb32_hs0.0125_ss-20.0_sm100.0_lam0.17061809.npy hs=0.00625 Nb=24 s_min=-16.0
+s_max=  8.0: λ = 0.1700313783  |R|=3.8e-07 ok=False  unknowns=288076  (278s)
+s_max= 10.0: λ = 0.1734034820  |R|=3.1e-07 ok=False  unknowns=312076  (303s)
+# stopped after two truncations: Newton did not converge at h_s = 0.00625 within 15 iterations (|R| ~ 1e-7); not used

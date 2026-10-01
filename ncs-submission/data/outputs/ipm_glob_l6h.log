@@ -1,0 +1,4 @@
+# IPM global solver l6h: march λ=0.15092 src=ipm_noise_lam0.1509200_hs0.0125.npy hs=0.00625 Nb=24 s_min=-16.0
+s_max=  8.0: λ = 0.1469660156  |R|=1.2e-05 ok=False  unknowns=288076  (277s)
+s_max= 10.0: λ = 0.1510078856  |R|=9.7e-08 ok=False  unknowns=312076  (304s)
+# stopped after two truncations: Newton did not converge at h_s = 0.00625 within 15 iterations (|R| ~ 1e-5–1e-7); not used
