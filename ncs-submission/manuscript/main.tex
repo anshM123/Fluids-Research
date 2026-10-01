@@ -196,9 +196,9 @@ to $-19$; deeper starts add a round-off offset. \textbf{d}, Converged Newton res
 \subsection*{A pre-registered holdout the defect cannot decide}
 
 We used the deepest profile that the error budget allows as a holdout. Before any fine-grid computation below the
-sixth profile, we committed five predictions for $z_7=1/\lambda_7$ to a public repository: three rules fitted to the
-lower profiles (a shifted law, a geometric contraction and a three-point law; git commit \texttt{c922751}) and one
-rule from the resonance phase evaluated on a coarse branch (\texttt{273ae28}). The decision rule, also fixed before
+sixth profile, we committed five predictions for $z_7=1/\lambda_7$ to a public repository: four from rules fitted to the
+lower profiles (a shifted law fitted to two ranges, a geometric contraction and a three-point law; git commit
+\texttt{c922751}) and one from the resonance phase evaluated on a coarse branch (\texttt{273ae28}). The decision rule, also fixed before
 the crossing was known (\texttt{f0b3f06}), disfavours a hypothesis that misses by more than $2\sigma$, counts the
 comparison as decisive only if $\sigma_z\le0.003$ (small enough to separate the two families of predictions, $0.007$
 apart, at $2\sigma$), and takes the measured value from matched scans at two resolutions (Extended Data Table~2, Fig.~4 and
@@ -469,7 +469,7 @@ Note~1.
 
 \paragraph{Reproducibility and computational cost.} Every continuation and scan writes its state and log line after
 each step, and restarts reload the last two states for the secant predictor; fine-grid jobs run in queues with
-dependency waits. Container restarts during the campaign were absorbed without loss of computed states. The deep IPM
+dependency waits. Interruptions during the campaign were absorbed without loss of computed states. The deep IPM
 campaign ($\lambda_6$ to $\lambda_{10}$) used about 13 core-hours of logged solver time on a four-core machine plus
 about one hour of phase and geometry evaluations; no GPU and no neural network was used. All figures are regenerated
 from the logged outputs by a single script. Software: Python 3.11, NumPy\cite{harris2020}, SciPy\cite{virtanen2020},
