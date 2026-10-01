@@ -16,7 +16,8 @@ def wall_data(f, lam=None, Nb=None, hs=None):
         Nb, hs = (int(mNb.group(1)), float(mNb.group(2))) if mNb else (32, 0.025)
     import os
     ss = float(os.environ.get('WKB_SS', -20.0))
-    B = IPM(lam, Nb=Nb, hs=hs, s_sw=12.0, s_start=ss); Y = np.load(f); X = full(B, Y)
+    smin = float(os.environ.get('WKB_SMIN', -120.0)); smax = float(os.environ.get('WKB_SMAX', 100.0))   # shifted / longer grids
+    B = IPM(lam, Nb=Nb, hs=hs, s_sw=12.0, s_start=ss, s_min=smin, s_max=smax); Y = np.load(f); X = full(B, Y)
     r = B.march(X / B.ea2[:, None], return_all=True)
     m, A = r['m'], r['A']; D0 = 1 + lam - A
     s = B.s

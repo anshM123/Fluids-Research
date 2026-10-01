@@ -634,3 +634,13 @@ failed point holds K, not κ, and is counted (`front_fail`).
 This is not a registered prediction. The registered H4 (7.352) lies inside the range. The defect's statistical
 value (7.3451) lies 1.3 range-widths below it, but the defect's own systematic uncertainty is ± 0.08. **The λ₇
 holdout therefore stays not decisive, as recorded above.**
+
+*Clarification to note 2 (same day; `ipm_tracker_diag.out`, `ipm_wkb_e5_cut2.out`).*
+- The original tracker did count its failed points. It reported fail = 0 on every state down to z = 7.47 and
+  fail = 2–4 on every deeper state. It filled those points by holding κ and carried on, because on the shallow
+  states such filled points had been harmless. The counter was logged, but it did not stop the computation.
+- On the deep states, the 2–4 filled points lie on the steep front side, where holding κ inflates K.
+- At z = 7.946, I = 1.9206 (original) against 1.6878 (repaired). That is an error of 3.7 in Re Φ₀, more than one
+  rung.
+- What exposed it was not a residual but the non-monotone I(z) in the old table (1.659, 1.723, 1.746, 1.921, 1.747,
+  1.856, …). The geometric travel time of the same profiles grows smoothly.
