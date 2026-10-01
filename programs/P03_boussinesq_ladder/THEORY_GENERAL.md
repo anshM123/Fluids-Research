@@ -66,6 +66,28 @@ for D̂ = 0.6 → 0.012.
 **Why only IPM.** In Boussinesq the vorticity obeys its own transport equation, whose term [1 + …]ω̃ breaks the
 scaling. In Hou–Luo the closed form carries the same 1/D̂, but K depends on the scaled vorticity.
 
+### 3.1 The IPM phase is a travel time [N]
+Along the wall, the transport equation gives d ln R/ds = m/D̂, so the density rises exponentially across the
+stalled layer, and so does its gradient G = ∂ₓR.
+
+The local wavenumber K = κD̂ follows G where G is small (K = 0.099 at G = 0.100), and saturates once G ≳ 2: K ≈ 0.85–1.0
+over the outer layer, peaking at the dip. (Measured on the λ₆ profile, `ipm_dip_geometry.py`.)
+
+Hence, with I_in ≈ 0.86 the λ-independent contribution of the inner layer (x < 0.5),
+
+    Φ₀ ≈ (1/D₀) [ I_in + K∞ ∫_outer ds/D̂ ],          K∞ ≈ 0.95.
+
+The phase is a travel time across the stalled layer, and the accumulation law of the hierarchy is fixed by the
+geometry of the layer — how far the front recedes, and the mean wall speed behind it.
+
+**The dip does not change this.** It collapses as it deepens: its width scales like D̂_min³, so its share of the
+phase stays bounded (5.8–6.5 in Re Φ for z = 3.2–7.2).
+
+**Measured.** On resolved profiles (z = 2.1–7.2):
+- the outer-layer share of I = D₀ Re Φ₀ grows at about 0.07 per unit z;
+- the total is linear, I ≈ 1.055 + 0.0785z (±0.004);
+- logarithmic growth misfits by up to 0.056.
+
 ## 4. Where a hierarchy accumulates, and whether it is infinite
 **Where.** The rungs accumulate exactly where Re Φ₀ diverges along the branch. How it diverges fixes the law:
 
@@ -73,7 +95,9 @@ scaling. In Hou–Luo the closed form carries the same 1/D̂, but K depends on t
 |---|---|---|
 | C/ε, layer regular as ε → 0 (stalled-layer ending) | 1/ε_n ≈ (π/C) n + b | Boussinesq, Hou–Luo (λ_c = 1) |
 | C/(λ − λ_c) | 1/(λ_n − λ_c) ≈ an + b | IPM over λ₁–λ₆ (λ_c = 0.036–0.044, exponent 0.91–1.01) |
-| (λ − λ_s)^{−1/2} (wall dip closing linearly, §3) | (λ_n − λ_s)^{−1/2} ≈ an + b | a closing dip |
+| (λ − λ_s)^{−1/2} (a dip of fixed shape closing linearly) | (λ_n − λ_s)^{−1/2} ≈ an + b | not IPM: the dip collapses, §3.1 |
+| C/λ with a layer that lengthens like ln(1/λ) | z_n ln z_n ∝ n | IPM, if the front recession is logarithmic |
+| C/λ² (layer length ∝ 1/λ, I linear in z) | z_n ∝ √n | IPM over z = 2–7.2 (I ≈ 1.055 + 0.0785z) |
 | logarithmic in the sonic depth δ (sonic cusp) | log-periodic | CCF |
 
 **Finite versus infinite [P + F].**
