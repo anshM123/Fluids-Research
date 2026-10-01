@@ -12,9 +12,10 @@ for f in sys.argv[1:]:
         if mz: lam = 1 / float(mz.group(1))
     Nb = int(os.environ.get('WKB_NB', 0)) or None; hs = float(os.environ.get('WKB_HS', 0)) or None
     o = wkb_phase(f, lam=lam, Nb=Nb, hs=hs, Dcut=2.0, return_kappa=True)
-    x = np.exp(o['grid']); k = o['kap'].real
-    parts = []
-    for e1, e2 in zip(edges[:-1], edges[1:]):
-        sel = (x >= e1) & (x < e2)
-        parts.append(np.trapezoid(k[sel], o['grid'][sel]) if sel.sum() > 1 else 0.0)
+    from scipy.integrate import cumulative_trapezoid
+    g = o['grid']; k = o['kap'].real
+    cum = np.concatenate([[0.0], cumulative_trapezoid(k, g)])          # exact partition: cumulative integral at bin edges
+    se = np.log(np.clip(edges, np.exp(g[0]), np.exp(g[-1])))
+    ce = np.interp(se, g, cum)
+    parts = list(np.diff(ce))
     print(f"{1/o['lam']:6.3f}  {o['D0']:.5f}  {np.trapezoid(k, o['grid']):.4f}   " + "  ".join(f"{p:7.4f}" for p in parts), flush=True)

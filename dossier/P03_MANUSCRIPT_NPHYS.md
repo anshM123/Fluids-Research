@@ -93,6 +93,9 @@ exponentially small defect.
 The phase is the integral of a local wavenumber over the unnormalized wall speed: the slower the wall flow, the
 more phase a wave accumulates.
 
+K follows the density gradient G where G is small, and saturates at K∞ ≈ 0.95 once G ≳ 2. Across the outer part of
+the layer, Φ₀ is therefore a travel time, (K∞/D₀)∫ds/D̂, set by the geometry of the stalled layer alone.
+
 **For Hou–Luo the spacing constant follows from a limit problem.**
 - At ε = 0 the stalled layer obeys an airfoil equation, H[Ω] = −2.
 - The vorticity shed at the front is carried by the flow it induces.
@@ -146,7 +149,10 @@ We audited every source of error at the deepest computed profiles (Fig. 4b, Meth
 | far field | 2 × 10⁻¹⁰ |
 
 The converged production settings place the sixth IPM profile at λ₆ = 0.15092 ± 0.00005 (0.25 % of a spacing).
-Two profiles deeper, the defect itself reaches this noise floor.
+
+Deeper, a further error dominates. The receding front crosses the radial grid cells one by one, and each crossing
+modulates m by a few 10⁻⁹ at h_s = 0.0125, with a period of one cell in front position. The same mechanism produced
+spurious zeros on coarser grids. Two profiles below λ₆ the defect itself reaches the noise floor.
 
 The phase does not suffer from this wall. Equation (2) needs the profile only to O(1) accuracy, so Φ₀ can be
 evaluated on profiles that are far easier to compute than the defect they encode. That makes it a predictor for
@@ -272,19 +278,20 @@ proofs.
 - **c**, IPM, blind: predicted (open) and computed (filled) spectra.
 - **d**, The lattice step tends to ε.
 
-**Figure 4 | Computing beyond the exponential wall.**
+**Figure 4 | Computing beyond the exponential wall** (`fig_computation.py`).
 - **a**, The IPM defect |m − 2| along the branch (log scale) against the noise floors of the coarse and production
   solvers. The amplitude falls tenfold per half-period.
 - **b**, The audit at the deepest profiles: the effect on m of the origin truncation, angular and radial resolution,
   far field and Newton floor.
 - **c**, The phase observable at the same depth, insensitive to all of these.
 
-**Figure 5 | How the stalled layer ends decides the hierarchy.**
-- **a**, Fixed layer (Boussinesq, Hou–Luo): the front converges and the spacings increase to π/C.
-- **b**, Receding layer (IPM): anatomy of the phase. The inner layer contributes a constant, the dip a bounded part,
-  and the receding front all the growth.
-- **c**, Sonic cusp (CCF): the defect oscillates log-periodically about p* − 2 > 0, so the hierarchy is finite.
-- **d**, The three wall-speed geometries.
+**Figure 5 | How the stalled layer ends decides the hierarchy** (`fig_endings2.py`).
+- **a**, Spacings of consecutive profiles in 1/ε. For a stalled layer of fixed extent (2D Boussinesq, Hou–Luo) they
+  increase towards π/C (1.279, derived, for Hou–Luo). For the receding layer of IPM they contract.
+- **b**, Anatomy of the IPM phase coefficient I = D₀ Re Φ₀. The inner layer (x < 0.5) contributes a constant, and
+  all growth comes from the outer layer as the front recedes.
+- **c**, Front position. Converged for Hou–Luo (x_c ≈ 0.61) and 2D (x_c ≈ 0.72); receding for IPM.
+- **d**, Sonic cusp (CCF): the defect oscillates log-periodically about p* − 2 > 0, so the zeros stop.
 
 ---
 
