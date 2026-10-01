@@ -105,19 +105,20 @@ Three findings matter beyond this problem.
 **Front–grid locking.** As λ decreases, a front on the wall recedes across the radial grid.
 - m is modulated with the period of one grid cell in the front's position.
 - We measure the modulation directly by solving the same λ on grids shifted by δ = ¼, ½ and ¾ of a cell.
-- Its half-range is 1.5 × 10⁻⁶, 1.2 × 10⁻⁸ and 8 × 10⁻¹¹ at h_s = 0.025, 0.0125 and 0.00625, i.e. ∝ h_s^7.1,
-  consistent with the eighth-order radial differences (Fig. 3a).
+- Its half-range is 1.5 × 10⁻⁶, 1.2 × 10⁻⁸ and 8 × 10⁻¹¹ at h_s = 0.025, 0.0125 and 0.00625, i.e. it falls as
+  h_s^7.1 (Fig. 3a).
 - Averaging over the four shifts cancels the first three harmonics.
-- On the coarsest grid, locking produced spurious zeros of m − 2 (Methods). A plausible-looking but spurious
-  profile is the characteristic failure of direct location.
+- On the coarsest grid it produced a spurious zero of m − 2 at z = 6.905 and displaced the sixth profile by 0.037
+  in z, 5 % of a spacing (stage 2d of the record). A plausible-looking but spurious profile is the characteristic
+  failure of direct location.
 
 **Angular resolution does not converge at the floor.** At the seventh profile (z = 7.346, h_s = 0.00625), m − 2
 moves:
 - by −1.1 × 10⁻⁹ from Nb = 32 to 48;
 - by a further −2.3 × 10⁻⁹ from 48 to 64.
 
-The same changes are below 10⁻⁹ at shallower profiles. The floor is therefore erratic, not a convergent tail that
-extrapolation could remove.
+At the sixth profile, Nb 48 → 64 changed m by only 9 × 10⁻¹¹. The floor is therefore erratic, not a convergent
+tail that extrapolation could remove.
 
 **Deeper truncation is not better.** Starting the march from the exact local solution at s_start leaves an offset
 that decays roughly as e^{s_start} (2.1 × 10⁻⁸ at −15 to 2.2 × 10⁻¹⁰ at −19; Fig. 3c). Beyond about −20, two
@@ -139,7 +140,8 @@ to a public repository (Table 2; Fig. 5):
 
 The decision rule, fixed before the crossing was known (f0b3f06), has three parts:
 - a hypothesis is disfavoured if it misses by more than 2σ;
-- the comparison counts as decisive only if σ_z ≤ 0.003, the spread of the predictions;
+- the comparison counts as decisive only if σ_z ≤ 0.003, small enough to separate the two families of rung-fit
+  predictions (0.007 apart) at 2σ;
 - the measured value comes from matched scans at two resolutions, extrapolated if they disagree.
 
 **Execution.**
@@ -156,7 +158,8 @@ The decision rule, fixed before the crossing was known (f0b3f06), has three part
 
 So z₇ = 7.35 ± 0.08 from the defect.
 
-**Verdict.** Every registered prediction lies within 0.15σ, and σ_z exceeds the decisiveness threshold 25-fold. As
+**Verdict.** Every registered prediction lies within 0.2σ, and σ_z exceeds the decisiveness threshold about
+25-fold. As
 the rule requires, the holdout is recorded as **not decisive**, and no hypothesis is preferred.
 
 The negative result is the point. Five predictions spanning 0.018 in z cannot be told apart, even though each solve
@@ -188,8 +191,8 @@ Three properties make Φ₀ a computational observable.
 - In IPM the vorticity is slaved to the density gradient, Ω = −∂ₓR. Rescaling the wall-normal coordinate by
   D̂ = D/D₀ removes the wall speed from the local problem, so κ = K(G, μ, R_y)/D̂ exactly.
 - Numerically, K is invariant to 10⁻⁸ when D̂ is varied from 0.012 to 2 at fixed (G, μ, R_y) (Fig. 4d).
-- K follows G for small G and saturates near 1 for G ≳ 5 (Fig. 4c). Φ₀ is therefore close to a weighted travel
-  time ∫ds/D, a geometric property of the stalled layer.
+- K ≈ G for small G. On the approach and the dip K levels off at 0.8–1.05 for G ≳ 3, and it is lower on the front
+  side (Fig. 4c). Φ₀ is therefore close to a weighted travel time ∫ds/D, a geometric property of the stalled layer.
 - Along the branch, I = 0.76 T + const for the shallow profiles and 0.83 T + const for the deep ones, where
   T = ∫ds/D̂ [`ipm_endpoint_geometry.out`].
 
@@ -212,7 +215,8 @@ This reading is not one of the registered predictions. The registered phase rule
 earlier tracker, gave 7.352, and lies inside the range.
 
 **The imaginary part of the same quadrature predicts the wall** (Fig. 2b).
-- If the defect behaves as Re[A e^{iΦ₀}], its envelope decays by e^{ΔIm Φ₀} per half-period.
+- If the defect behaves as |A| e^{−|Im Φ₀|} cos(Re Φ₀ + arg A), its envelope decays by e^{−|ΔIm Φ₀|} per
+  half-period.
 - From the computed phase, −π dImΦ₀/dReΦ₀ = 1.73, 1.85, 1.95, 2.05 and 2.15 e-folds per half-period at z = 3.0–6.5.
   The extrema decay by 2.30, 2.32, 2.37, 2.56 and 2.38.
 - The deficit is (0.7–1.4) λ times the prediction, the size of the O(λ) corrections that the leading-order phase
@@ -240,7 +244,7 @@ The error was exposed by geometry.
 - The repair uses the exact scaling. Beyond the dip the tracker continues K rather than κ, with predictor
   K_prev/D̂ and a quarter of the step. It accepts a root only if K is continuous to 25 %, holds K (not κ) at a failed
   point, and excludes any state with a failed point.
-- It reproduces the shallow values (Re Φ₀ = 11.4568 vs 11.4566 at n = 3) and removes the jump. Of 18 deep states
+- It reproduces the shallow values (Re Φ₀ = 11.4568 vs 11.4566 at n = 3) and removes the jump. Of 17 deep states
   one (z = 9.386, 11 failed points) is excluded.
 
 Three lessons generalize:
@@ -256,7 +260,7 @@ beyond the present method (Fig. 6c,d) [`ipm_deep_e5.out`, `ipm_travel_time.out`,
 - **The geometry.** The dip in the wall speed deepens ever more slowly: D̂_min falls from 0.36 to 0.20 between
   z = 7.47 and 9.51, at 0.107 per unit z early and 0.045 over the last unit. The dip and the front recede, x_dip
   from 0.88 to 1.00.
-- **The front steepens.** max ∂ₓR rises from 7.8 to 20 over the same range.
+- **The front steepens.** max ∂ₓR rises from 7.8 at z = 7.47 to 21 at z = 9.87.
 - **Resolution.** The violation of the exact identity Ω_b = −∂ₓR, our resolution indicator, grows from 3 % to
   7–12 % at h_s = 0.0125.
 - **Fine-grid check.** Halving h_s at z = 8.066 and 8.786 [`ipm_deepres_z*.out`] gives:
@@ -274,13 +278,14 @@ beyond the present method (Fig. 6c,d) [`ipm_deep_e5.out`, `ipm_travel_time.out`,
 **What the phase shows.** Along the branch the phase coefficient I grows linearly, with slope 0.098 per unit z and
 a weak positive curvature (+0.005 ± 0.002) over 7.47 ≤ z ≤ 9.27.
 - A saturating I, the fixed-layer class of Boussinesq and Hou–Luo, is excluded.
-- Whether I keeps growing linearly cannot be decided from z ≤ 9.3. Linear growth means profiles accumulate at
-  λ = 0 with λ_n ∝ n^{−1/2}.
-- So can neither a divergence at finite z_c (accumulation at λ_c = 1/z_c > 0) nor termination of the branch at a
-  singular front.
-  - Pole and logarithmic fits to the full range prefer z_c ≈ 10–13, but with χ² ≈ 35 for 20 degrees of freedom.
-  - The deep range alone allows any z_c from 9.5 to infinity.
-  - Linear extrapolations of D̂_min and 1/max ∂ₓR vanish near z = 14 and 12, but both decelerate.
+- Three continuations remain consistent with z ≤ 9.3:
+  - I keeps growing linearly, so profiles accumulate at λ = 0 with λ_n ∝ n^{−1/2};
+  - I diverges at a finite z_c, so profiles accumulate at λ_c = 1/z_c > 0;
+  - the branch terminates at a singular front with a finite phase.
+- The data do not decide between them:
+  - pole and logarithmic fits to the full range prefer z_c ≈ 10–13, but with χ² ≈ 35 for 20 degrees of freedom;
+  - the deep range alone allows any z_c from 9.5 to infinity;
+  - linear extrapolations of D̂_min and 1/max ∂ₓR vanish near z = 14 and 12, but both decelerate.
 - We therefore record the IPM endpoint class as **unresolved**. Deciding it needs a mesh that follows the front.
 
 **Benchmark.** Within the computed range the phase still predicts profiles.
@@ -289,7 +294,8 @@ a weak positive curvature (+0.005 ± 0.002) over 7.47 ≤ z ≤ 9.27.
 - With each we give the precision a decisive test (σ_z ≤ 0.01) needs, from the decay rate predicted by Im Φ₀:
   - z₈ = 7.999 [7.970, 8.017] needs σ_m ≲ 2 × 10⁻¹¹;
   - z₉ = 8.628 [8.590, 8.645] needs σ_m ≲ 1 × 10⁻¹²;
-  - z₁₀ = 9.201 [9.158, 9.214] needs σ_m ≲ 6 × 10⁻¹⁴, at the level of double-precision round-off on m ≈ 2.
+  - z₁₀ = 9.201 [9.158, 9.214] needs σ_m ≲ 6 × 10⁻¹⁴, below what a double-precision solver of this kind delivers
+    (our Newton residual floor is 5 × 10⁻¹³).
 - The band at n = 8 contains the rung-fit predictions of stage 3 and excludes the earlier phase rule H4, which
   was made with the faulty tracker.
 - The m − 2 values we had computed in this range lie at or below the floor. They are disclosed in the record and

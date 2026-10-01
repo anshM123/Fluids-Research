@@ -5,7 +5,7 @@ This note states the one-phase theory as a single object and checks it in each m
 - [N] numerical;
 - [P] proved (elementary).
 
-The IPM endpoint section (§5) is completed as the deep-branch computations finish.
+§5 records the IPM endpoint as far as the deep-branch computations decide it (2026-10-01): its class is unresolved.
 
 ## 1. The object
 Take a one-parameter branch of least-singular self-similar profiles, with parameter λ and a stagnation point on a
@@ -60,8 +60,8 @@ with ĉ = G = ∂ₓR at the wall.
 
     Φ₀ = ∫ K ds / D,
 
-the integral of a local wavenumber over the unnormalized wall speed. Numerically D̂κ is constant to four digits
-for D̂ = 0.6 → 0.012.
+the integral of a local wavenumber over the unnormalized wall speed. Numerically D̂κ is constant to 10⁻⁷ for
+D̂ = 0.012 → 2 at fixed (G, μ, R_y) (`ipm_K_checks.out`).
 
 **Why only IPM.** In Boussinesq the vorticity obeys its own transport equation, whose term [1 + …]ω̃ breaks the
 scaling. In Hou–Luo the closed form carries the same 1/D̂, but K depends on the scaled vorticity.
@@ -80,13 +80,18 @@ Hence, with I_in ≈ 0.86 the λ-independent contribution of the inner layer (x 
 The phase is a travel time across the stalled layer, and the accumulation law of the hierarchy is fixed by the
 geometry of the layer — how far the front recedes, and the mean wall speed behind it.
 
-**The dip does not change this.** It collapses as it deepens: its width scales like D̂_min³, so its share of the
-phase stays bounded (5.8–6.5 in Re Φ for z = 3.2–7.2).
+**The dip does not change this.** It narrows as it deepens, so its share of the phase does not grow with it.
 
-**Measured.** On resolved profiles (z = 2.1–7.2):
-- the outer-layer share of I = D₀ Re Φ₀ grows at about 0.07 per unit z;
-- the total is linear, I ≈ 1.055 + 0.0785z (±0.004);
-- logarithmic growth misfits by up to 0.056.
+**Measured with the repaired tracker** (`ipm_phase_anatomy3.out`, `ipm_travel_time.out`; z = 2.1–9.3).
+- **Inner layer** (x < 0.5): 0.93 → 0.88 of I = D₀ Re Φ₀.
+- **Dip core** (below half depth): it narrows from width 0.29 to 0.13 in s while D̂_min falls from 0.67 to 0.22. Its
+  share goes 0.35 → 0.27, then 0.31–0.34 on the deepest states.
+- **Front side**: 0.10 → 0.02.
+- **Approach** (from x = 0.5 to the dip core): this is where the growth is, 0 → 0.58, as the dip and front recede
+  (x_dip 0.61 → 0.99, x_cut 0.83 → 1.09).
+- **Total.** I grows with slope 0.075–0.082 per unit z for z = 2–7.3 and 0.098 for z = 7.5–9.3, with a mild
+  positive curvature. It tracks the travel time, I = 0.76 T + c (shallow) and 0.83 T + c (deep), with
+  T = ∫ds/D̂.
 
 ## 4. Where a hierarchy accumulates, and whether it is infinite
 **Where.** The rungs accumulate exactly where Re Φ₀ diverges along the branch. How it diverges fixes the law:
@@ -97,7 +102,7 @@ phase stays bounded (5.8–6.5 in Re Φ for z = 3.2–7.2).
 | C/(λ − λ_c) | 1/(λ_n − λ_c) ≈ an + b | IPM over λ₁–λ₆ (λ_c = 0.036–0.044, exponent 0.91–1.01) |
 | (λ − λ_s)^{−1/2} (a dip of fixed shape closing linearly) | (λ_n − λ_s)^{−1/2} ≈ an + b | not IPM: the dip collapses, §3.1 |
 | C/λ with a layer that lengthens like ln(1/λ) | z_n ln z_n ∝ n | IPM, if the front recession is logarithmic |
-| C/λ² (layer length ∝ 1/λ, I linear in z) | z_n ∝ √n | IPM over z = 2–7.2 (I ≈ 1.055 + 0.0785z) |
+| C/λ² (layer length ∝ 1/λ, I linear in z) | z_n ∝ √n | IPM over z = 2–9.3 (I linear in z; slope 0.075–0.098) |
 | logarithmic in the sonic depth δ (sonic cusp) | log-periodic | CCF |
 
 **Finite versus infinite [P + F].**
@@ -111,10 +116,29 @@ phase stays bounded (5.8–6.5 in Re Φ for z = 3.2–7.2).
 **The general quantization coordinate.** It is Re Φ₀ itself. Laws such as 1/|λ_n − λ_c| ≈ an + b are its special
 cases, valid when Φ₀ ≈ C/|λ − λ_c|.
 
-## 5. IPM: the endpoint (in progress)
-- **Over λ₁–λ₆.** The phase grows like 1/(λ − 0.037). The wall dip deepens (D̂_min 0.82 → 0.45), and linear
-  extrapolation closes it near λ ≈ 0.09.
-- **If the dip closes.** By §3, Φ₀ then diverges there: the rungs would accumulate at the closure point, with a
-  crossover from the shifted linear law to the square-root law.
-- **Still open.** Whether the dip closes, how Φ₀ behaves there, and whether the defect stays centred. The resolved
-  deep continuation (tag e1) and the λ₇/λ₈ scans (tags s16, s20) decide these.
+## 5. IPM: the endpoint — unresolved (recorded 2026-10-01)
+*Earlier content of this section (kept for the record):* over λ₁–λ₆ the phase seemed to grow like 1/(λ − 0.037),
+and the dip (D̂_min 0.82 → 0.45) extrapolated linearly to closure near λ ≈ 0.09. Neither inference survives the deep
+branch.
+
+**What the resolved deep branch shows** (h_s = 0.0125 continuation to z = 9.87; h_s = 0.00625 checks at z = 8.066
+and 8.786; `ipm_endpoint_geometry.out`, `ipm_deepres_z*.out`).
+- **The dip does not close linearly.** D̂_min falls at −0.107 per unit z over z = 7.5–8.5 and at −0.045 over the last
+  unit. The value is converged to 0.3 % in h_s.
+- **The dip and the front recede.**
+- **The front steepens.** max ∂ₓR goes from 7.8 to 21. This is what limits the resolution: the indicator
+  |Ω_b + ∂ₓR|/max reaches 13 % at h_s = 0.0125 and drops about 3.6× per halving.
+- **The phase.** I grows linearly in z, so the fixed-layer class (I → const) is excluded.
+  - Pole and log forms fitted to the whole range prefer z_c ≈ 10–13, with χ² ≈ 35 for 20 dof.
+  - The deep range alone does not constrain z_c (≥ 9.5).
+- **The termination indicators** (D̂_min, 1/max ∂ₓR) extrapolate linearly to z ≈ 14 and 12, but both decelerate.
+
+**Open.** Three continuations remain:
+- linear growth of I, with λ_c = 0 and λ_n ∝ n^{−1/2};
+- divergence at a finite λ_c;
+- termination at a singular front.
+
+Deciding between them needs a mesh that follows the front. The candidate λ_c ≈ 0.037 from rung fits is not
+supported by the phase data, and the endpoint is no longer inferred from m − 2.
+
+**Phase-based λ₈–λ₁₀** are registered as a benchmark (`PREDICTIONS_IPM.md`, stage 4, 251bf1e).
