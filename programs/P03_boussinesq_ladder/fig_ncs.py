@@ -212,9 +212,10 @@ def fig6():
     d_ = ax[1, 1]
     d_.plot(E[:, 0], 100 * E[:, 4], 'o-', color=HS[0.0125], ms=3.5, lw=1.2, label='h_s = 0.0125 (continuation)')
     fine = []
-    for f in glob.glob("deepres_z*_hs0.00625.out"):
-        m = re.search(r"z=([0-9.]+).*mis=([0-9.e+-]+)", open(f).read())
-        if m: fine.append((float(m.group(1)), float(m.group(2))))
+    for f in glob.glob("ipm_deepres_z*.out"):
+        for line in open(f):
+            m = re.search(r"z=([0-9.]+) hs=0.00625:.*mis=([0-9.e+-]+)", line)
+            if m: fine.append((float(m.group(1)), float(m.group(2))))
     if fine:
         fine = np.array(sorted(fine)); d_.plot(fine[:, 0], 100 * fine[:, 1], 's', color=HS[0.00625], ms=6, label='h_s = 0.00625 (spot checks)')
     d_.set_xlabel('z = 1/λ'); d_.set_ylabel('|Ω_b + ∂ₓR| / max ∂ₓR  (%)'); d_.set_ylim(0, 14)

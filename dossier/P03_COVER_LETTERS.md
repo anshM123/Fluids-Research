@@ -50,6 +50,9 @@ dynamics, nonlinear waves, mathematical physics and the physics of finite-time s
 - The hierarchies and the eigen-condition are derived by formal matched asymptotics with numerical verification of
   every hypothesis. They are not theorems.
 - We make no claim about Euler without boundary, or about Navier–Stokes.
+- In porous-media flow the endpoint of the hierarchy is left open, and the seventh-profile holdout was not decisive
+  by the direct method. Both are documented in a companion computational paper submitted to Nature Computational
+  Science.
 
 All code, profiles, spectra and the time-stamped prediction record are openly available.
 
@@ -62,43 +65,53 @@ Sincerely,
 
 Dear Editor,
 
-We submit our Article "A single phase quantizes self-similar singularities and their instabilities in
-incompressible flow" for consideration in Nature Computational Science.
+We submit our Article "A resonance phase locates unstable self-similar singularities beyond an exponential
+precision wall" for consideration in Nature Computational Science. A companion Article on the underlying physics
+(phase quantization, spectral flow and the instability index) is being submitted to Nature Physics. The two papers
+share no claims that depend on each other's review.
 
-**The computational problem.** Unstable self-similar singularities are among the hardest objects to compute in
-fluid dynamics. Physics-informed neural networks recently found the first few in three models, but each further
-profile is harder: the quantity that defines a smooth profile is exponentially small, and it shrinks tenfold per
-profile. In our solvers it reaches the round-off-limited noise floor within two profiles of the deepest ones known.
-The same difficulty limits neural approaches; the most recent work documents residual-hidden profile errors at the
-fourth unstable IPM solution.
+**The computational problem.**
+- Unstable self-similar blow-up profiles of incompressible flow are now sought with physics-informed neural networks
+  and classical solvers, and they come in hierarchies.
+- We show that following such a hierarchy meets an exponential precision wall. Each profile is a zero of a
+  smoothness defect whose amplitude falls about tenfold per profile.
+- A solver's residual does not reveal this. Our profiles have residuals of 10⁻¹³, while their defects are decided at
+  10⁻⁹.
 
-**Our contribution is a computational framework that sidesteps this wall.**
-1. **Branch continuation with resonance detection.** Instead of training a solver for each profile, we continue a
-   single branch of singular solutions and find the smooth profiles as its resonances. This found new profiles in
-   two models, and a second, independent solver reproduces the first to 10⁻⁵.
-2. **A resonance phase observable.** It is computed from O(1)-accurate profiles through a local eigenproblem in the
-   boundary layer, and it predicts where the exponentially small defect vanishes. In a model it was not built on, it
-   locates the profiles to 0.2 % of a spacing. In porous-media flow it takes an exact form, Φ = ∫K ds/D, through a
-   scaling symmetry of the local problem.
-3. **Certified instability counts.** Argument-principle counts of a Fredholm-type determinant, with exclusion of
-   large growth rates, give the exact index of every profile.
-4. **A pre-registered computational experiment.** All predictions for a new model were time-stamped in a public
-   repository before computation, and the failed ones are kept.
-5. **An error audit for exponentially sensitive quantities.** Origin truncation, angular and radial resolution, far
-   field and solver floor are quantified separately at the deepest profiles.
+**What the paper shows.**
+1. **The wall and its anatomy.** We give a complete error audit of a converged solver at the deepest profiles of
+   incompressible porous-media flow. It finds:
+   - a front–grid locking error that we measure and cancel by grid shifting (∝ h_s^7.1);
+   - an angular-resolution error that stops converging;
+   - a round-off cost of deeper origin truncation.
+2. **A pre-registered negative result.** Five predictions for the seventh profile and a decision rule were
+   time-stamped in a public repository before the computation. The defect could not decide between them
+   (z₇ = 7.35 ± 0.08 against a decisiveness threshold of 0.003), and we report it as not decisive, as the rule
+   requires.
+3. **An observable that bypasses the wall.** The resonance phase is a quadrature over O(1)-accurate profile data.
+   - Under the same numerical changes it moves 10 to more than 1,000 times less than the defect.
+   - It locates the seventh profile eleven times more precisely.
+   - Its imaginary part predicts the decay rate of the defect, so the precision a direct method needs can be
+     computed in advance.
+4. **A validation lesson.** A failure of the phase's root tracker passed every residual check, and its failure
+   counter was logged but not gated. It was caught by a geometric invariant and repaired with an exact scaling of
+   the local problem. We document the failure in full.
+5. **An honest boundary.** The deep branch develops a steepening front that a uniform grid cannot follow.
+   - We leave the endpoint of the hierarchy open.
+   - We register three deeper profiles, with bands and the precision a decisive test needs, as a benchmark for
+     neural and classical solvers.
 
-**The scientific payoff.**
-- The framework explains why these hierarchies exist and why the n-th profile is n-fold unstable.
-- It derives the spacing constant in one model.
-- It shows that how a stalled boundary layer ends decides whether a hierarchy is infinite.
+**Why Nature Computational Science.** The paper turns a recurring difficulty, exponentially small quantities that
+decide qualitative structure, into an explicit computational lesson with a constructive remedy. Its practices are
+cheap and transfer to other searches for unstable self-similar solutions:
+- pre-registration with fixed decision rules;
+- grid-shift measurement of periodic discretization errors;
+- invariant-based tracking and geometric cross-checks.
 
-**Why Nature Computational Science.** The work shows a computational strategy — continuation plus a resonance
-observable plus pre-registration — that turns an exponentially ill-conditioned search into a well-conditioned
-one. Its ingredients transfer to other searches for unstable self-similar solutions, including those now done with
-neural networks.
-
-**Reproducibility.** Every number in the paper has a logged command and run time. Profiles, spectra and branch scans
-are released, and a Code Ocean capsule and a Zenodo archive will accompany the submission.
+**Reproducibility.**
+- Every number has a logged command.
+- The runs are restartable, and the full pre-registration record, including its corrections, is versioned.
+- Profiles, spectra and scans will be released with a Zenodo archive and a Code Ocean capsule.
 
 Sincerely,
 ⟨corresponding author, on behalf of all authors⟩

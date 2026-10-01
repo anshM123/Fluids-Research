@@ -1,10 +1,12 @@
 # A single phase quantizes self-similar singularities and their instabilities in incompressible flow
 
-*Article draft for Nature Physics (primary) or Nature Computational Science (see the two cover letters in
-`P03_COVER_LETTERS.md`). Main text ≈ 3,600 words; abstract 150 words; five figures and one table; Methods.
-Every number is produced by a script in `programs/P03_boussinesq_ladder` (P02 for CCF) and logged there.
-Items marked **[PENDING]** depend on computations that are running (λ₇ holdout, IPM endpoint); they will be filled
-in, or the claim removed, before submission.*
+*Article draft for Nature Physics. The computational side is a separate companion paper for Nature Computational
+Science (`P03_MANUSCRIPT_NCS.md`): the exponential precision wall, the error audit, the pre-registered λ₇ holdout
+and the validation of the phase observable. Cover letters for both are in `P03_COVER_LETTERS.md`.*
+- Length: main text ≈ 3,600 words; abstract 150 words; five figures and one table; Methods.
+- Every number is produced by a script in `programs/P03_boussinesq_ladder` (P02 for CCF) and logged there.
+- Scope: this paper rests on 2D Boussinesq and Hou–Luo, where the mechanism is clean, with IPM as an independent
+  system and CCF as the terminating comparison. It does not depend on the IPM endpoint, which is left open.
 
 ---
 
@@ -16,8 +18,9 @@ stalled boundary layer, answers all three questions. Smooth profiles are resonan
 solutions, one per half-turn of the phase. The same phase, shifted at the stagnation point, quantizes the growth
 rates and adds one unstable direction per profile. Computed from the profiles alone, the phase locates them to
 0.2% of a spacing in a model it was not built on, although the defect it predicts shrinks tenfold per profile. A
-pre-registered test in porous-media flow confirmed the spectral predictions and refuted the predicted endpoint,
-showing that how the stalled layer ends decides where hierarchies accumulate or stop.
+pre-registered test in porous-media flow confirmed the spectral predictions and refuted the predicted accumulation
+law: there the stalled layer recedes instead of stopping at a fixed front, showing that how the layer ends decides
+how a hierarchy continues.
 
 ---
 
@@ -53,7 +56,8 @@ The smooth profiles found by neural networks are such intersections, and there a
 - **2D Boussinesq: eight**, four of them new (n = 4–7). A second solver that shares no numerical component with the
   first reproduces all eight to ≤ 1e-5.
 - **Hou–Luo** (the boundary restriction of Boussinesq): eleven.
-- **IPM: seven**, two of them new (n = 5, 6). **[PENDING: λ₇.]**
+- **IPM: seven**, two of them new (n = 5, 6). An eighth (n = 7) is located by the phase below, but its defect is
+  below the solver's error floor, so it cannot be confirmed directly (companion paper).
 
 Along the branch, m − 2 oscillates with an amplitude that falls by a factor of about ten per half-period, and the
 smooth profiles are its zeros (Fig. 2a). A defect of this form, R(λ)[cos Θ(λ) + η] with Θ → ∞ and |η| < 1, has
@@ -78,10 +82,10 @@ Two properties make Φ₀ more than a fitting device.
 
 **It is computable from the profile alone.** κ needs only O(1)-accurate wall data of the profile, never the
 exponentially small defect.
-- In IPM, a model on which the theory was not built, Re Φ₀(λ_n) − nπ = 2.033, 2.023, 2.032, 2.037, 2.028 for
-  n = 1–5. That is constant to ±0.007, i.e. 0.2 % of a spacing, with no adjustable parameter beyond the front
+- In IPM, a model on which the theory was not built, Re Φ₀(λ_n) − nπ = 2.033, 2.023, 2.032, 2.036, 2.030 for
+  n = 1–5. That is constant to ±0.005, i.e. 0.2 % of a spacing, with no adjustable parameter beyond the front
   cut-off.
-- At n = 6 the offset is 1.984 (Fig. 2c).
+- At n = 6 the offset is 1.974 ± 0.009, a drift of 2 % of a spacing (Fig. 2c).
 - In Hou–Luo the phase gains 3.02–3.09 per profile, tending to π.
 
 **In IPM it takes an exact, transparent form.** Because the vorticity is slaved to the density gradient
@@ -136,29 +140,18 @@ with all modes real:
 ### Computing beyond the exponential wall
 The defect that defines a smooth profile is exponentially small. In IPM its extrema fall from 8 × 10⁻² to
 5 × 10⁻⁸ over seven half-periods (Fig. 4a). Locating a deep profile therefore requires solving for m to a precision
-that grows tenfold per profile.
-
-We audited every source of error at the deepest computed profiles (Fig. 4b, Methods):
-
-| source | effect on m |
-|---|---|
-| Newton floor | about 5 × 10⁻¹⁰ |
-| origin truncation | an offset that changes sign: 2 × 10⁻⁷ at s_start = −14, 5 × 10⁻⁹ at −16, ≤ 3 × 10⁻¹⁰ at −20 |
-| angular resolution | ≤ 1 × 10⁻⁹ at s_start = −20 (but 2 × 10⁻⁸ when combined with a shallow truncation) |
-| radial resolution | ≤ 1 × 10⁻⁹ |
-| far field | 2 × 10⁻¹⁰ |
+that grows tenfold per profile. The imaginary part of the same phase predicts this decay to within O(λ).
 
 The converged production settings place the sixth IPM profile at λ₆ = 0.15092 ± 0.00005 (0.25 % of a spacing).
 
-Deeper, a further error dominates. The receding front crosses the radial grid cells one by one, and each crossing
-modulates m by a few 10⁻⁹ at h_s = 0.0125, with a period of one cell in front position. The same mechanism produced
-spurious zeros on coarser grids. Two profiles below λ₆ the defect itself reaches the noise floor.
+One profile deeper the direct method fails (companion paper).
+- An erratic error floor of 1–3 × 10⁻⁹ in m remains. Its sources are angular resolution that stops converging, the
+  locking of the receding front to the radial grid, and round-off from deep origin truncation.
+- That leaves the seventh profile at z₇ = 7.35 ± 0.08 from its defect.
 
-The phase does not suffer from this wall. Equation (2) needs the profile only to O(1) accuracy, so Φ₀ can be
-evaluated on profiles that are far easier to compute than the defect they encode. That makes it a predictor for
-profiles that direct solvers cannot locate. Spurious resonances at under-resolved depth are exactly what this
-removes.
-- **[PENDING]** Holdout test at the seventh IPM profile (below).
+The phase does not suffer from this wall. Equation (2) needs the profile only to O(1) accuracy.
+- Under the same numerical changes, Re Φ₀ moves 10 to more than 1,000 times less than the defect.
+- It reads z₇ = 7.354 ± 0.007, where the range is the drift of δ (Fig. 4b, c).
 
 This is the computational counterpart of the physical mechanism: a resonance observable that turns an
 exponentially ill-conditioned search into a well-conditioned quadrature.
@@ -179,17 +172,22 @@ spectrum was then predicted from the lower ones by a fixed rule and time-stamped
 instead of tending to a constant.
 
 **Why it failed.** The anatomy of the phase explains the failure (Fig. 5b):
-- The contribution of the inner layer is independent of λ.
-- The dip ahead of the front collapses as it deepens: its width scales like the cube of its depth, so its
-  contribution stays bounded.
-- All the growth comes from the front receding outwards, from x = 0.68 to x = 0.99 as 1/λ goes from 2 to 7.
-- The stalled layer therefore lengthens as λ decreases, and Φ₀ grows faster than 1/λ.
+- The inner layer (x < 0.5) contributes an almost constant amount (0.93 → 0.89 of I = D₀ Re Φ₀ from z = 4 to 7.3).
+- The dip core narrows faster than it deepens, so its contribution shrinks.
+- The growth comes from the slow approach region, which lengthens as the dip and front recede: x_dip goes from 0.61
+  to 1.00 and the front from 0.83 to 1.10 as z = 1/λ goes from 4 to 9.5.
+- By the exact scaling, Φ₀ is close to a weighted travel time across the layer, and I tracks the travel time
+  ∫ds/D̂ (dI/dT = 0.76–0.83).
+- The stalled layer therefore lengthens as λ decreases, and I grows linearly in z instead of saturating, so Re Φ₀
+  grows like z².
 
 **What it fixes.** A shifted law, 1/(λ_n − λ_c) linear in n with λ_c = 0.037 ± 0.003, fits the seven profiles, but
-it is a description, not a mechanism. The receding front fixes the mechanism.
-- **[PENDING]** Pre-registered holdout predictions for λ₇ (rung fits z₇ = 7.334–7.342; phase rule z₇ = 7.352) and
-  its matched-resolution computation.
-- **[PENDING]** The theory-based λ₈ prediction from the derived endpoint class.
+it is a description, not a mechanism. The receding layer is the mechanism.
+- The pre-registered holdout at λ₇ could not discriminate between the rung-fit rules and the phase rule. The
+  defect at λ₇ lies below the solver's error floor (z₇ = 7.35 ± 0.08), and all five predictions fall within 0.15σ.
+  We record it as not decisive, as the registered rule requires (companion paper).
+- The phase reads z₇ = 7.354 ± 0.007.
+- Phase-based λ₈–λ₁₀ are registered as a benchmark.
 
 ### How a hierarchy ends
 A divergent phase is necessary for an infinite hierarchy but not sufficient. The defect must also oscillate about
@@ -207,9 +205,13 @@ domain.
 
 **Receding stalled layer (IPM).**
 - The defect is centred, as in Boussinesq, but the layer lengthens, so the spacings contract.
-- **[PENDING]** Whether the front recedes indefinitely, so that profiles accumulate at λ = 0 with contracting
-  spacings, or the dip closes into a sonic point at finite λ, so that the hierarchy terminates with a finite phase.
-  The resolved deep branch decides this; the scaling (2) gives the divergence class in each case.
+- Down to λ = 0.103 the phase coefficient I grows linearly in z, which excludes the fixed-layer class.
+- Over the same range the dip deepens ever more slowly (D̂_min from 0.36 to 0.20) and the front steepens.
+- **The endpoint class is unresolved.** Three outcomes remain open:
+  - the layer recedes indefinitely, so profiles accumulate at λ = 0 with λ_n ∝ n^{−1/2};
+  - I diverges at a finite λ_c, so profiles accumulate there;
+  - the branch ends at a singular front with a finite phase.
+- The steepening front, not the dip, limits the present computations (companion paper).
 
 ### Discussion
 The profiles and instabilities of self-similar blow-up in these models are not a catalogue. They are two faces of
@@ -222,7 +224,7 @@ The mechanism needs only three ingredients: a transported scalar whose exponent 
 and a wall along which the self-similar flow stalls. What is model-specific is how the stalled layer ends:
 - a fixed front gives an infinite ladder with a derived spacing;
 - a sonic cusp gives a finite one;
-- a receding front gives contracting spacings.
+- a receding front gives contracting spacings, with the endpoint still to be determined.
 
 **Euler.** Near the wall and away from the axis, axisymmetric Euler with swirl reduces at leading order to
 Boussinesq with boundary. Chen and Hou's proof treats Euler as a perturbation of Boussinesq in this way². Each
@@ -255,7 +257,8 @@ proofs.
 | P6 modes localized at the front (4dc82af) | **held**: peak at the dip, x ≈ 0.61 |
 | λ₃ … λ₆ from the lower profiles (stage 2) | errors of 6 %, 2.5 %, 2 % and 0.1 % of a spacing |
 | U₄ growth rates (stage 2b) | 0.2–1.2 % |
-| λ₇ (stage 3: H1–H3 c922751, H4 273ae28) | **[PENDING]** |
+| λ₇ (stage 3: H1–H3 c922751, H4 273ae28; rule f0b3f06) | **not decisive**: the defect gives z₇ = 7.35 ± 0.08 and all five predictions lie within 0.15σ; the phase reads 7.354 ± 0.007 (not registered) |
+| λ₈–λ₁₀ (stage 4, phase) | registered as an open benchmark (companion paper) |
 
 ## Figure legends
 **Figure 1 | Hierarchies of self-similar profiles.**
@@ -278,19 +281,20 @@ proofs.
 - **c**, IPM, blind: predicted (open) and computed (filled) spectra.
 - **d**, The lattice step tends to ε.
 
-**Figure 4 | Computing beyond the exponential wall** (`fig_computation.py`).
-- **a**, The IPM defect |m − 2| along the branch (log scale) against the noise floors of the coarse and production
-  solvers. The amplitude falls tenfold per half-period.
-- **b**, The audit at the deepest profiles: the effect on m of the origin truncation, angular and radial resolution,
-  far field and Newton floor.
-- **c**, The phase observable at the same depth, insensitive to all of these.
+**Figure 4 | Computing beyond the exponential wall** (panels from `fig_ncs.py`; details in the companion paper).
+- **a**, The IPM defect |m − 2| along the branch (log scale) and its extrema, against the production error floor.
+  The amplitude falls tenfold per half-period.
+- **b**, For every audited numerical change at the seventh profile, the shift of z₇ implied by the phase against
+  that implied by the defect.
+- **c**, The λ₇ holdout: registered predictions, the defect measurement (not decisive) and the phase reading.
 
 **Figure 5 | How the stalled layer ends decides the hierarchy** (`fig_endings2.py`).
 - **a**, Spacings of consecutive profiles in 1/ε. For a stalled layer of fixed extent (2D Boussinesq, Hou–Luo) they
   increase towards π/C (1.279, derived, for Hou–Luo). For the receding layer of IPM they contract.
-- **b**, Anatomy of the IPM phase coefficient I = D₀ Re Φ₀. The inner layer (x < 0.5) contributes a constant, and
-  all growth comes from the outer layer as the front recedes.
-- **c**, Front position. Converged for Hou–Luo (x_c ≈ 0.61) and 2D (x_c ≈ 0.72); receding for IPM.
+- **b**, Anatomy of the IPM phase coefficient I = D₀ Re Φ₀. The part before the dip core (inner layer and
+  approach) grows as the dip and front recede. The dip core narrows and levels off, and the front side vanishes.
+- **c**, Front position. Converged for Hou–Luo (x_c ≈ 0.61) and 2D (x_c ≈ 0.72); receding for IPM, through
+  x = 1.10 at 1/λ = 9.5.
 - **d**, Sonic cusp (CCF): the defect oscillates log-periodically about p* − 2 > 0, so the zeros stop.
 
 ---
@@ -345,8 +349,11 @@ r̃(Y)e^{iϕ}, with Y = y/(εx) and ϕ = ε⁻¹∫κ ds, and keep leading order
 - **Root:** found by shooting, and tracked along the wall from the Hou–Luo closed form
   κ_HL = (−1 + √(1 + 4iĉ))/(2iD̂).
 - **Phase:** Φ₀ = D₀⁻¹∫κ ds up to the front cut-off D/D₀ = 2, interpolated between grid points.
+- **Front side (IPM):** beyond the dip the root is continued in K = κD̂, with predictor K_prev/D̂. Tracking κ
+  directly fails on deep profiles, where D̂ rises steeply. States with any untracked point are excluded (companion
+  paper).
 - **Exact scaling (IPM):** Y → Y/D̂, κ → κD̂, ψ̃ → ψ̃/D̂ leaves the problem invariant, so κ = K(G, μ, R_y)/D̂.
-  Numerically D̂κ is constant to four digits for D̂ from 0.6 to 0.012.
+  Numerically D̂κ is constant to 10⁻⁷ for D̂ from 0.012 to 2.
 
 **Hou–Luo limit problem.**
 - Stalled layer: odd Chebyshev-weighted expansion Ω = Σ b_j T_j/√(1 − ξ²) (160–240 modes).
