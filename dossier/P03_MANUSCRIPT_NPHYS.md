@@ -56,8 +56,9 @@ The smooth profiles found by neural networks are such intersections, and there a
 - **2D Boussinesq: eight**, four of them new (n = 4–7). A second solver that shares no numerical component with the
   first reproduces all eight to ≤ 1e-5.
 - **Hou–Luo** (the boundary restriction of Boussinesq): eleven.
-- **IPM: seven**, two of them new (n = 5, 6). An eighth (n = 7) is located by the phase below, but its defect is
-  below the solver's error floor, so it cannot be confirmed directly (companion paper).
+- **IPM: seven**, two of them new (n = 5, 6). An independent global solver reproduces all seven to within the
+  common error floor in m. An eighth (n = 7) is located by the phase below, but its defect is below that floor, so
+  it cannot be confirmed directly (companion paper).
 
 Along the branch, m − 2 oscillates with an amplitude that falls by a factor of about ten per half-period, and the
 smooth profiles are its zeros (Fig. 2a). A defect of this form, R(λ)[cos Θ(λ) + η] with Θ → ∞ and |η| < 1, has
