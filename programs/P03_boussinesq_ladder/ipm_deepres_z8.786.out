@@ -16,9 +16,6 @@
   k2 = k1 - f1 * (k1 - k0) / (f1 - f0)
 /home/user/Fluids-Research/programs/P03_boussinesq_ladder/ipm_local_eig.py:53: RuntimeWarning: invalid value encountered in scalar divide
   r0 = -G / (1j * kap * Dh)                  # iκD̂ r(0) = −G ψ'(0)
-/home/user/Fluids-Research/programs/P03_boussinesq_ladder/ipm_local_eig.py:62: RuntimeWarning: overflow encountered in scalar multiply
-  return (dps + kap * ps) * np.exp(-kap * Y1) / 2
-z=8.0660017 hs=0.0125: m-2=+2.450e-08 D̂min=0.2902 (parab 0.2899) x_dip=0.9162 x_cut=1.0301 max∂ₓR=10.46 mis=5.08e-02 T=10.3471 ReΦ=27.4186 I=1.69964 front_fail=0
 /home/user/Fluids-Research/programs/P03_boussinesq_ladder/ipm_local_eig.py:57: RuntimeWarning: overflow encountered in scalar multiply
   dr = (-G * dps + 1j * kap * Ry * ps - 1j * kap * (Dh + ch * Y) * r) / (mu * Y)
 /home/user/Fluids-Research/programs/P03_boussinesq_ladder/ipm_local_eig.py:57: RuntimeWarning: invalid value encountered in scalar divide
@@ -29,4 +26,5 @@ z=8.0660017 hs=0.0125: m-2=+2.450e-08 D̂min=0.2902 (parab 0.2899) x_dip=0.9162 
   err5 = np.dot(K.T, self.E5) / scale
 /usr/local/lib/python3.11/dist-packages/scipy/integrate/_ivp/rk.py:522: RuntimeWarning: invalid value encountered in dot
   err3 = np.dot(K.T, self.E3) / scale
-z=8.0660000 hs=0.00625: m-2=+1.036e-09 D̂min=0.2902 (parab 0.2902) x_dip=0.9162 x_cut=1.0300 max∂ₓR=10.85 mis=1.42e-02 T=10.3472 ReΦ=27.4556 I=1.70193 front_fail=0
+z=8.7860017 hs=0.0125: m-2=+3.252e-07 D̂min=0.2322 (parab 0.2281) x_dip=0.9632 x_cut=1.0649 max∂ₓR=14.72 mis=9.12e-02 T=10.4366 ReΦ=31.0771 I=1.76856 front_fail=0
+z=8.7860000 hs=0.00625: m-2=+2.006e-09 D̂min=0.2329 (parab 0.2302) x_dip=0.9632 x_cut=1.0649 max∂ₓR=15.63 mis=2.45e-02 T=10.4366 ReΦ=31.0941 I=1.76953 front_fail=0

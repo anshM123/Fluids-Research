@@ -644,3 +644,69 @@ holdout therefore stays not decisive, as recorded above.**
   rung.
 - What exposed it was not a residual but the non-monotone I(z) in the old table (1.659, 1.723, 1.746, 1.921, 1.747,
   1.856, …). The geometric travel time of the same profiles grows smoothly.
+
+## Stage 4 — λ₈, λ₉, λ₁₀ from the repaired phase (registered 2026-10-01, before any test)
+*Nothing above is edited. Stage 3's λ₈ predictions (H1 8.0087, H1′ 8.0063, H2 7.9899, H3 7.9917, H4 7.91–7.92)
+stay as registered.*
+
+**Order of work, as requested:** repaired phase → endpoint geometry → asymptotic class → these predictions.
+- **Repaired phase.** Note 2 above; `ipm_phase3_*.out`.
+- **Endpoint geometry** (`ipm_travel_time.out`, `ipm_endpoint_geometry.out`, `ipm_deepres_z*.out`).
+  - Down to z = 9.87 (λ = 0.101) the dip deepens ever more slowly: D̂_min goes from 0.36 at z = 7.47 to 0.20 at
+    z = 9.51, at −0.107 per unit z early and −0.045 over the last unit.
+  - The dip and the front recede: x_dip 0.88 → 1.00 and x_cut 1.00 → 1.10.
+  - The front steepens: max ∂ₓR 7.8 → 21.
+  - Halving h_s at z = 8.066 and 8.786 leaves D̂_min, x_dip, x_cut and T unchanged to 0.3 %, so the deceleration of
+    the dip is not a resolution artifact. It lowers the resolution indicator from 5 % / 9 % to 1.4 % / 2.5 % and
+    raises max ∂ₓR by 4–6 %.
+- **Asymptotic class: unresolved.**
+  - I = D₀ Re Φ₀ grows linearly in z (slope 0.098, curvature +0.005 ± 0.002 over 7.47–9.27), which excludes the
+    fixed-layer class.
+  - Pole and log fits over the full range prefer a finite z_c ≈ 10–13, with χ² ≈ 35 for 20 dof. The deep range
+    alone allows any z_c ≥ 9.5.
+  - The termination indicators (D̂_min, 1/max ∂ₓR) extrapolate to zero only linearly and decelerate.
+  - So λ_c = 0 (λ_n ∝ n^{−1/2}), λ_c > 0, and termination at a singular front all remain open. The candidate
+    λ_c ≈ 0.037 of stage 3 came from rung fits to the defect zeros, and the endpoint is no longer inferred from
+    m − 2.
+
+**Rule** (`ipm_stage4_predict.py` → `ipm_stage4_predictions.out`). Solve Re Φ₀(z_n) = nπ + δ_n.
+- Re Φ₀(z) is the repaired deep table (h_s = 0.0125, states with untracked front points excluded). It is smoothed
+  by a local quadratic over ±0.5 in z and shifted by the measured grid correction +0.027 ± 0.010 (h_s 0.0125 →
+  0.00625 at z = 8.066 and 8.786).
+- Offset scenarios:
+  - A: δ = δ₆ = 1.974 (central);
+  - B: δ = 2.031 (mean of n = 1–5);
+  - C: the n = 5 → 6 drift continues, δ_n = 1.974 − 0.057(n − 6).
+- Band = scenarios A–C, widened by the grid spread and the fit error.
+
+| n | z_n (central) | band | λ_n (central) | λ band |
+|---|---|---|---|---|
+| 8 | 7.9994 | [7.9700, 8.0172] | 0.125010 | [0.124732, 0.125471] |
+| 9 | 8.6282 | [8.5895, 8.6450] | 0.115899 | [0.115673, 0.116421] |
+| 10 | 9.2013 | [9.1575, 9.2142] | 0.108680 | [0.108528, 0.109200] |
+
+**What a test needs.** The expected crossing slope continues the λ₇ slope (2.5 × 10⁻⁸ per unit z) with the decay per
+half-period predicted by Im Φ₀ times (1 + λ). That gives 2.7, 2.8 and 3.1 e-folds per rung.
+
+| n | expected \|dm/dz\| at the crossing | σ_m for σ_z = 0.01 | σ_m for σ_z = 0.003 |
+|---|---|---|---|
+| 8 | 1.8e-9 | 1.8e-11 | 5.3e-12 |
+| 9 | 1.2e-10 | 1.2e-12 | 3.6e-13 |
+| 10 | 5.9e-12 | 5.9e-14 | 1.8e-14 |
+
+- Our floor is 1–3 × 10⁻⁹, so none of the three can be tested with the present solver.
+- λ₁₀ needs an error in m ≈ 2 near double-precision round-off, so it needs extended precision, and also a mesh that
+  follows the steepening front.
+
+**Decision rule for any future test.**
+- A measurement counts only if its total uncertainty is σ_z ≤ 0.01.
+- It confirms the rule at n if the measured z_n lies inside the band (widened by 2σ_z), and refutes it otherwise.
+- The band includes H1–H3 of stage 3 at n = 8 and excludes H4 (7.91–7.92, made with the faulty tracker). A test at
+  n = 8 could therefore reject H4 but not separate H1–H3 from this rule.
+
+**Disclosure: values of m − 2 seen before this registration in the λ₈–λ₁₀ range.**
+- The h_s = 0.0125 continuation (z = 7.47–9.87, every 0.12): m − 2 between −6.7 × 10⁻⁷ and +7.4 × 10⁻⁷. Re-solving
+  two of these states at h_s = 0.00625 changes them by 2.4 × 10⁻⁸ and 3.2 × 10⁻⁷, so they are discretization error.
+- h_s = 0.00625 at z = 8.066 and 8.786: +1.0 × 10⁻⁹ and +2.0 × 10⁻⁹. Both are at the erratic floor, against
+  expected |m − 2| ≲ 2 × 10⁻¹⁰ there, so they carry no sign information.
+- No m − 2 value in this range was used. The predictions use only the phase.
