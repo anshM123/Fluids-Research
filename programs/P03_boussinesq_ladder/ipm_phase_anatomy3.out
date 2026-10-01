@@ -1,0 +1,47 @@
+file                                z        D0      I_tot    inner  approach  dipcore    front   w_core  ReK_core  D̂min   x_dip   x_cut
+/usr/local/lib/python3.11/dist-packages/scipy/integrate/_ivp/rk.py:63: RuntimeWarning: overflow encountered in dot
+  dy = np.dot(K[:s].T, a[:s]) * h
+/usr/local/lib/python3.11/dist-packages/scipy/integrate/_ivp/rk.py:63: RuntimeWarning: invalid value encountered in dot
+  dy = np.dot(K[:s].T, a[:s]) * h
+/usr/local/lib/python3.11/dist-packages/scipy/integrate/_ivp/rk.py:521: RuntimeWarning: invalid value encountered in divide
+  err5 = np.dot(K.T, self.E5) / scale
+/usr/local/lib/python3.11/dist-packages/scipy/integrate/_ivp/rk.py:522: RuntimeWarning: invalid value encountered in divide
+  err3 = np.dot(K.T, self.E3) / scale
+/home/user/Fluids-Research/programs/P03_boussinesq_ladder/ipm_local_eig.py:62: RuntimeWarning: overflow encountered in exp
+  return (dps + kap * ps) * np.exp(-kap * Y1) / 2
+/home/user/Fluids-Research/programs/P03_boussinesq_ladder/ipm_local_eig.py:62: RuntimeWarning: invalid value encountered in scalar multiply
+  return (dps + kap * ps) * np.exp(-kap * Y1) / 2
+/home/user/Fluids-Research/programs/P03_boussinesq_ladder/ipm_local_eig.py:62: RuntimeWarning: invalid value encountered in scalar divide
+  return (dps + kap * ps) * np.exp(-kap * Y1) / 2
+/home/user/Fluids-Research/programs/P03_boussinesq_ladder/ipm_local_eig.py:71: RuntimeWarning: invalid value encountered in scalar divide
+  k2 = k1 - f1 * (k1 - k0) / (f1 - f0)
+/home/user/Fluids-Research/programs/P03_boussinesq_ladder/ipm_local_eig.py:53: RuntimeWarning: invalid value encountered in scalar divide
+  r0 = -G / (1j * kap * Dh)                  # iκD̂ r(0) = −G ψ'(0)
+_ss-20.0_sm100.0_lam0.47212973.npy  2.1181 0.23606  1.22156   1.1072  -0.7182   0.5538   0.2788   0.7684    0.678  0.8194  0.3094  0.6841
+_ss-20.0_sm100.0_lam0.31496181.npy  3.1750 0.15748  1.30803   1.0030  -0.2560   0.4056   0.1553   0.3938    0.820  0.7353  0.5029  0.7790
+/home/user/Fluids-Research/programs/P03_boussinesq_ladder/ipm_local_eig.py:62: RuntimeWarning: overflow encountered in scalar multiply
+  return (dps + kap * ps) * np.exp(-kap * Y1) / 2
+_ss-20.0_sm100.0_lam0.24156634.npy  4.1396 0.12078  1.38378   0.9327   0.0020   0.3480   0.1010   0.2940    0.849  0.6660  0.6121  0.8265
+_ss-20.0_sm100.0_lam0.19872245.npy  5.0321 0.09936  1.45091   0.9094   0.1486   0.3192   0.0737   0.2435    0.857  0.5988  0.6991  0.8753
+_ss-20.0_sm100.0_lam0.17061809.npy  5.8610 0.08531  1.51322   0.8987   0.2671   0.2857   0.0618   0.1936    0.877  0.5280  0.7617  0.9186
+ipm_h7x_z7.3460.npy                 7.3460 0.06806  1.63068   0.8860   0.4243   0.2838   0.0367   0.1562    0.835  0.3874  0.8773  0.9941
+/usr/local/lib/python3.11/dist-packages/scipy/integrate/_ivp/rk.py:63: RuntimeWarning: overflow encountered in dot
+  dy = np.dot(K[:s].T, a[:s]) * h
+/usr/local/lib/python3.11/dist-packages/scipy/integrate/_ivp/rk.py:63: RuntimeWarning: invalid value encountered in dot
+  dy = np.dot(K[:s].T, a[:s]) * h
+/usr/local/lib/python3.11/dist-packages/scipy/integrate/_ivp/rk.py:521: RuntimeWarning: invalid value encountered in divide
+  err5 = np.dot(K.T, self.E5) / scale
+/usr/local/lib/python3.11/dist-packages/scipy/integrate/_ivp/rk.py:522: RuntimeWarning: invalid value encountered in divide
+  err3 = np.dot(K.T, self.E3) / scale
+/home/user/Fluids-Research/programs/P03_boussinesq_ladder/ipm_local_eig.py:62: RuntimeWarning: overflow encountered in exp
+  return (dps + kap * ps) * np.exp(-kap * Y1) / 2
+/home/user/Fluids-Research/programs/P03_boussinesq_ladder/ipm_local_eig.py:62: RuntimeWarning: invalid value encountered in scalar multiply
+  return (dps + kap * ps) * np.exp(-kap * Y1) / 2
+/home/user/Fluids-Research/programs/P03_boussinesq_ladder/ipm_local_eig.py:62: RuntimeWarning: invalid value encountered in scalar divide
+  return (dps + kap * ps) * np.exp(-kap * Y1) / 2
+/home/user/Fluids-Research/programs/P03_boussinesq_ladder/ipm_local_eig.py:71: RuntimeWarning: invalid value encountered in scalar divide
+  k2 = k1 - f1 * (k1 - k0) / (f1 - f0)
+/home/user/Fluids-Research/programs/P03_boussinesq_ladder/ipm_local_eig.py:53: RuntimeWarning: invalid value encountered in scalar divide
+  r0 = -G / (1j * kap * Dh)                  # iκD̂ r(0) = −G ψ'(0)
+/home/user/Fluids-Research/programs/P03_boussinesq_ladder/ipm_local_eig.py:62: RuntimeWarning: overflow encountered in scalar multiply
+  return (dps + kap * ps) * np.exp(-kap * Y1) / 2

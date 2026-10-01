@@ -12,3 +12,7 @@ ipm_deep_e5_lam0.1170138.npy       z= 8.5460 D0=0.05851 D̂dip=0.2570 s_cut= 0.0
 ipm_deep_e5_lam0.1153935.npy       z= 8.6660 D0=0.05770 D̂dip=0.2413 s_cut= 0.058 Φ= 30.4093-18.7190i I=1.75452 front_fail=0
 ipm_deep_e5_lam0.1138174.npy       z= 8.7860 D0=0.05691 D̂dip=0.2322 s_cut= 0.063 Φ= 31.0771-19.3427i I=1.76856 front_fail=0
 ipm_deep_e5_lam0.1122838.npy       z= 8.9060 D0=0.05614 D̂dip=0.2339 s_cut= 0.068 Φ= 31.7197-19.8606i I=1.78080 front_fail=0
+ipm_deep_e5_lam0.1107910.npy       z= 9.0260 D0=0.05540 D̂dip=0.2170 s_cut= 0.073 Φ= 32.3954-20.5066i I=1.79456 front_fail=0
+ipm_deep_e5_lam0.1093374.npy       z= 9.1460 D0=0.05467 D̂dip=0.2238 s_cut= 0.079 Φ= 33.0543-21.0476i I=1.80703 front_fail=0
+ipm_deep_e5_lam0.1079214.npy       z= 9.2660 D0=0.05396 D̂dip=0.2080 s_cut= 0.084 Φ= 33.7243-21.6692i I=1.81979 front_fail=0
+ipm_deep_e5_lam0.1065416.npy       z= 9.3860 D0=0.05327 D̂dip=0.2081 s_cut= 0.089 Φ= 34.6567-22.5874i I=1.84619 front_fail=11

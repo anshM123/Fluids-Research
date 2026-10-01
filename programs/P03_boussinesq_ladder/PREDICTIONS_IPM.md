@@ -590,3 +590,47 @@ to the fine λ₆, `ipm_wkb_coarse_cut2.out`).
 
 The phase therefore places λ₇ at **z₇ = 7.341 ± 0.005** (not ± 0.003), still about 15 times more precise than the
 defect (± 0.08).
+
+## Stage 3, note 2 — a phase-tracker failure, its repair, and the corrected phase reading of λ₇ (recorded 2026-10-01)
+
+**What failed.** The first phase table on states deeper than z ≈ 7.7 showed a jump in I = D₀ Re Φ₀ that no
+geometric quantity of the profiles shared.
+- Cause: on the front side of the dip, D̂ rises from about 0.3 to 2 within a few steps of the tracking grid, and
+  κ = K/D̂ changes by the same factor. The original tracker (`wkb_phase`) predicted the next root from the previous
+  κ, missed it, and on failure held κ constant. Holding κ while D̂ grows inflates K = κD̂ linearly (K reached 5.4 − 5.6i
+  at the cut-off at z = 7.946, where the continued root is K = 0.33 − 0.10i; `ipm_tracker_diag` output in the
+  session log, reproduced by `ipm_wkb.py`).
+- Two roots of the local problem lie close together on the front side, so a local residual check does not catch the
+  error: each value returned was a genuine root, or a held value, and every profile it was evaluated on had a Newton
+  residual below 10⁻¹². A small residual is not a sufficient test of the phase.
+
+**Repair** (`wkb_phase3` in `ipm_wkb.py`). Up to the dip the original tracking is kept; beyond it the step is
+ds/4, the predictor is K_prev/D̂ (the exact IPM scaling), a root is accepted only if K is continuous to 25 %, and a
+failed point holds K, not κ, and is counted (`front_fail`).
+- On the shallow profiles it reproduces the original values (Re Φ₀ = 11.4568 vs 11.4566 at n = 3; 17.7381 vs
+  17.7363 at n = 5), with no failed points.
+- On the deep states it removes the jump (`ipm_phase3_deep.out`). One deep state, z = 9.386, still has 11 failed front
+  points and is excluded from every fit.
+
+**Corrected offsets** δ_n = Re Φ₀(λ_n) − nπ (`ipm_phase3_rungs.out`, `ipm_phase3_l7.out`):
+
+| n | 1 | 2 | 3 | 4 | 5 | 6 |
+|---|---|---|---|---|---|---|
+| δ_n | 2.0331 | 2.0227 | 2.0320 | 2.0360 | 2.0301 | 1.9742 |
+
+- n = 1–5: mean 2.031, scatter 0.005.
+- δ₆ is 0.057 lower than that mean (the old tracker gave 1.984). The uncertainty of λ₆ (± 0.00005) moves δ₆ by only
+  ± 0.009, so the drop is real.
+- δ₇ cannot be formed, because z₇ from the defect is uncertain by ± 0.08, which is ± 0.37 in Re Φ₀.
+
+**Corrected phase reading of λ₇** (repaired Re Φ₀ = 23.8203, 23.9580, 24.0928 at z = 7.316, 7.346, 7.376; h_s =
+0.00625). This replaces the two readings above, which used the old tracker.
+- δ = 2.031 gives z₇ = 7.3602.
+- δ = δ₆ = 1.974 gives z₇ = 7.3476.
+- Hence **z₇(phase) = 7.354 ± 0.007**, the range set by the offset drift.
+- Grid sensitivity: at z = 7.316, h_s = 0.0125 gives Re Φ₀ = 23.8098 against 23.8203 at 0.00625, a shift of
+  Δz = 0.002.
+
+This is not a registered prediction. The registered H4 (7.352) lies inside the range. The defect's statistical
+value (7.3451) lies 1.3 range-widths below it, but the defect's own systematic uncertainty is ± 0.08. **The λ₇
+holdout therefore stays not decisive, as recorded above.**
