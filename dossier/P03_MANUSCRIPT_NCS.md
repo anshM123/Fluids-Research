@@ -10,19 +10,19 @@
 ---
 
 ## Abstract
-Hierarchies of unstable self-similar blow-up profiles in incompressible flow are now computed by neural and
-classical solvers, but how deep they can be followed is unknown.
+Unstable self-similar blow-up profiles of incompressible flow come in hierarchies, but how deep these can be
+computed is unknown.
 - **The wall.** Direct computation meets an exponential precision wall: each profile is a zero of a smoothness
   defect whose amplitude falls about tenfold per profile.
-- **The audit.** In incompressible porous-media flow we audit every source of error. An erratic floor of 10⁻⁹
-  leaves the seventh profile unidentifiable by its defect, as a pre-registered holdout test confirmed.
-- **The phase.** A resonance phase is a quadrature over O(1)-accurate profile data, and its imaginary part predicts
-  how fast the defect falls. It moves 10 to more than 1,000 times less under the same numerical changes, and it locates the
-  seventh profile ten times more precisely.
-- **Validation.** One tracking failure passed every residual check; it was caught by a geometric invariant and
-  repaired with an exact scaling. This shows how such observables must be validated.
+- **The audit.** In porous-media flow, an audit of every error source finds an erratic floor of 10⁻⁹. Two
+  independent solvers agree to that floor at every depth, yet their profile positions drift apart by five orders of
+  magnitude, and a pre-registered holdout could not identify the seventh profile.
+- **The phase.** A resonance phase, a quadrature over O(1)-accurate profile data, moves 10–1,000 times less under
+  the same changes and locates that profile ten times more precisely. Its imaginary part predicts the wall.
+- **Validation.** A tracking failure that passed residual checks was caught by a geometric invariant and repaired
+  with an exact scaling.
 
-We register three deeper profiles, with the precision a test requires, as a benchmark.
+Three deeper profiles are registered, with the precision a test requires, as a benchmark.
 
 ---
 
