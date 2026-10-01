@@ -1,5 +1,7 @@
 # A resonance phase locates unstable self-similar singularities beyond an exponential precision wall
 
+**Ansh Mishra** (independent researcher) and **Aryan Senthilkumar** (Georgia Institute of Technology).
+
 Submission package for *Nature Computational Science* (Article): manuscript, Supplementary Information, code, data
 and submission documents. **Start with [`submission/SUBMISSION_CHECKLIST.md`](submission/SUBMISSION_CHECKLIST.md).**
 
@@ -27,7 +29,7 @@ computation. In incompressible porous-media flow (IPM) we show five things:
 | `figures/` | Figs 1–6 and Supplementary Figs 1–3, as vector PDF and 600-dpi PNG, 183 mm wide |
 | `code/` | solver library, production runs, analysis, figure script and tests; see [`code/README.md`](code/README.md) |
 | `data/` | ten converged profiles (31 MB) and every logged output (0.7 MB); see [`data/README.md`](data/README.md) |
-| `submission/` | cover letter (`.tex` and `.pdf`), checklist, author-information and referee templates, and notes for the Reporting Summary and the Code and Software Submission Checklist |
+| `submission/` | cover letter (`.tex` and `.pdf`), checklist, referee template, and notes for the Reporting Summary and the Code and Software Submission Checklist |
 
 ## Quick start
 

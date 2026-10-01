@@ -5,7 +5,8 @@ Computational research on singularity formation in models of incompressible flow
 ## Paper
 
 **A resonance phase locates unstable self-similar singularities beyond an exponential precision wall.** This Article
-was prepared for *Nature Computational Science*. Everything needed to read, check and submit it is in
+was prepared for *Nature Computational Science* by Ansh Mishra (independent researcher) and Aryan
+Senthilkumar (Georgia Institute of Technology). Everything needed to read, check and submit it is in
 [`ncs-submission/`](ncs-submission/):
 - the manuscript and Supplementary Information;
 - the figures;

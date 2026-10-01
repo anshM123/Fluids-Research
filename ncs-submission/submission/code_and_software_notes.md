@@ -9,7 +9,7 @@ review, the editors ask for:
 
 | Item | Answer |
 |---|---|
-| Code location | https://github.com/anshM123/Fluids-Research, directory `ncs-submission/code`; Zenodo [DOI]; Code Ocean capsule [link] |
+| Code location | https://github.com/anshM123/Fluids-Research, directory `ncs-submission/code` (and the Code Ocean capsule, once created) |
 | Licence | MIT (OSI-approved), `ncs-submission/LICENSE`; data under CC BY 4.0 |
 | System requirements | Linux x86-64 (tested on Ubuntu 24.04), Python 3.11, NumPy 2.4.6, SciPy 1.17.1, Numba 0.67.0, Matplotlib 3.11.2 (`requirements.txt`). No GPU or non-standard hardware. |
 | Installation guide | `python3 -m pip install -r requirements.txt` (about 1 min on a normal connection) |

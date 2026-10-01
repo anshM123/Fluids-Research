@@ -18,14 +18,14 @@ The paper has no experiments, samples or statistical hypothesis tests. Two items
   numerical code.
 - **Data analysis:** custom code in Python 3.11 with NumPy 2.4.6, SciPy 1.17.1, Numba 0.67.0 and Matplotlib 3.11.2.
   It is available at https://github.com/anshM123/Fluids-Research (directory `ncs-submission/code`) under the MIT
-  licence and will be archived at Zenodo [DOI].
+  licence.
 - **Custom code central to the claims:** yes. It is provided for peer review; see `code_and_software_notes.md`.
 
 ## Data
 
 - **Data availability statement:** as in the manuscript.
   - The converged profiles and all logged outputs are at https://github.com/anshM123/Fluids-Research (directory
-    `ncs-submission/data`) and will be archived at Zenodo [DOI].
+    `ncs-submission/data`).
   - The pre-registration record and the GitHub push log are Supplementary Data 1 and 2.
   - The source data for every figure are in `data/outputs`.
 - **Restrictions:** none.
