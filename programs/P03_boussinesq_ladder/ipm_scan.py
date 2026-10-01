@@ -20,6 +20,18 @@ NB = int(os.environ.get('NB', 32))                                   # angular r
 NB_IN, HS_IN, SS_IN = int(os.environ.get('NB_IN', 32)), float(os.environ.get('HS_IN', hs)), float(os.environ.get('SS_IN', -20.0))
 Y = transfer(BQLogPolar(lam_s, hs=HS_IN, Nb=NB_IN, s_start=SS_IN), np.load(f), IPM(lam_s, hs=hs, Nb=NB, s_sw=12.0, s_start=ss))
 zs = np.arange(z0, z1 + 1e-9, dz); acc = []; rows = []
+# resume after a container restart: skip the z already done and restart from the last saved state(s)
+if os.path.exists(f"ipm_scan_{tag}.npy") and os.environ.get('RESUME', '1') == '1':
+    done = np.load(f"ipm_scan_{tag}.npy"); rows = [tuple(r) for r in done]
+    for zd in done[-2:, 0]:
+        fz = f"ipm_scan_{tag}_z{zd:.4f}.npy"
+        if os.path.exists(fz):
+            acc.append((zd, np.load(fz)))
+    if acc:
+        out(f"# resumed after z = {done[-1, 0]:.4f} ({len(rows)} points done, {len(acc)} states reloaded)")
+        zs = zs[zs > done[-1, 0] + 1e-9]
+    else:
+        rows = []
 for i, z in enumerate(zs):
     lam = 1 / z
     B = IPM(lam, hs=hs, Nb=NB, s_sw=12.0, s_start=ss)

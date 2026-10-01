@@ -39,8 +39,17 @@ t0 = time.time()
 z, zmax, dzc = 1 / lam0, 1 / lam1, dz
 out(f"# ipm_deep {tag}: λ {lam0} -> {lam1}, Δz = {dz}, Nb={Nb} hs={hs} s_start={SST} tol={tol} start={start} (grid in: Nb={nbi} hs={hsi} s_start={SST_IN})")
 acc, rows = [], []
+import glob as _glob
+if os.environ.get('RESUME', '1') == '1' and os.path.exists(f"ipm_deep_{tag}.npy"):
+    _done = np.load(f"ipm_deep_{tag}.npy")
+    _st = sorted(((1 / float(f.split('_lam')[1][:-4]), f) for f in _glob.glob(f"ipm_deep_{tag}_lam*.npy")))
+    if len(_done) and _st:
+        rows = [tuple(r) for r in _done]
+        acc = [(zz, np.load(ff)) for zz, ff in _st[-2:]]
+        z = acc[-1][0] + dz; dzc = dz
+        out(f"# resumed after z = {acc[-1][0]:.4f} ({len(rows)} points done)")
 Y0 = np.load(start)
-if (nbi, hsi, SST_IN) != (Nb, hs, SST):
+if not acc and (nbi, hsi, SST_IN) != (Nb, hs, SST):
     Y0 = transfer(BQLogPolar(lam0, hs=hsi, Nb=nbi, s_start=SST_IN), Y0, IPM(lam0, hs=hs, Nb=Nb, s_sw=12.0, s_start=SST))
 while z <= zmax + 1e-12:
     lam = 1 / z
