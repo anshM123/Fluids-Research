@@ -583,3 +583,10 @@ to the fine λ₆, `ipm_wkb_coarse_cut2.out`).
 - The discretization floor σ_m stays at about 10⁻⁹.
 - Direct location therefore loses about a factor of twenty per profile (σ_z ≈ 0.002 at λ₆, 0.08 at λ₇, of order 1
   at λ₈), while the phase keeps σ_z ≈ 0.003.
+
+*Correction to the entry above (same day).* The phase-based location depends on the offset used:
+- δ = 2.031 (the n = 1–5 mean) gives z₇ = 7.3456;
+- δ = δ₆ = 1.984 gives z₇ = 7.337.
+
+The phase therefore places λ₇ at **z₇ = 7.341 ± 0.005** (not ± 0.003), still about 15 times more precise than the
+defect (± 0.08).
