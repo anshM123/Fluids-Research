@@ -1,0 +1,415 @@
+\documentclass[10pt]{article}
+\usepackage[a4paper,margin=2.2cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{caption}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\captionsetup{font=small,labelfont=bf,labelsep=period,justification=justified,singlelinecheck=false}
+\graphicspath{{../figures/}}
+\setlength{\parskip}{0.4em}
+\setlength{\parindent}{0pt}
+\newcommand{\Dh}{\hat D}
+\newcommand{\ReP}{\mathrm{Re}\,\Phi_0}
+\newcommand{\ImP}{\mathrm{Im}\,\Phi_0}
+\newcommand{\sstart}{s_{\mathrm{start}}}
+\renewcommand{\figurename}{Supplementary Fig.}
+\renewcommand{\tablename}{Supplementary Table}
+\newtheorem*{lemma}{Lemma}
+
+\begin{document}
+\begin{center}
+{\Large\bfseries Supplementary Information\par}
+\vspace{0.5em}
+{\large A resonance phase locates unstable self-similar singularities beyond an exponential precision wall\par}
+\vspace{0.4em}
+{\small [Author names]\par}
+\end{center}
+
+\tableofcontents
+\vspace{1em}
+
+Every number in this document is generated from the logged outputs in \texttt{data/outputs} of the code and data
+package: the tables are written by \path{code/analysis/make_si_tables.py} and the figures by
+\path{code/figures/make_figures.py}. Evidence levels: [P] proved (elementary), [F] formal matched asymptotics,
+[N] numerical with stated error.
+
+%=====================================================================================================
+\section*{Supplementary Note 1. Validation on 2D Boussinesq and the Hou--Luo model}
+\addcontentsline{toc}{section}{Supplementary Note 1. Validation on 2D Boussinesq and the Hou--Luo model}
+
+The pipeline used for IPM was first developed and validated on the 2D Boussinesq system with a boundary, the
+standard proxy for axisymmetric Euler at a wall\cite{s_chen2022}, and on its one-dimensional boundary restriction,
+the Hou--Luo model\cite{s_choi2017}. In both, $\varepsilon=\lambda-1$ in equation~(1) of the main text and the branch
+is followed in $z=1/(\lambda-1)$.
+
+\textbf{Profiles and two independent solvers (2D) [N].} The marching solver finds eight smooth profiles
+$\lambda_0,\dots,\lambda_7$ (Supplementary Table~\ref{tab:bq}). The independent global solver (Methods), which shares
+no numerical ingredient with it, reproduces all eight; with matched origin truncation the differences are at most
+$4.6\times10^{-6}$. The deepest rungs are weakly determined ($|m-2|\lesssim10^{-6}$ nearby), the same exponential
+wall as in IPM.
+
+\begin{table}[h]
+\centering
+\caption{\textbf{2D Boussinesq profiles.} Marching solver ($h_s=0.0125$ from $n=4$); global solver extrapolated in
+$s_{\max}$ (difference global $-$ marching). Source: \texttt{programs/P03\_boussinesq\_ladder} (\texttt{glob\_*},
+\texttt{bq\_*} logs).}
+\label{tab:bq}
+\small
+\begin{tabular}{rrrrr}
+\toprule
+$n$ & $\lambda_n$ & $z_n=1/(\lambda_n-1)$ & $z_n-z_{n-1}$ & global $-$ marching\\
+\midrule
+0 & 1.9205593 & 1.08630 & --- & $+1.7\times10^{-6}$\\
+1 & 1.3990961 & 2.50566 & 1.41937 & $-1.1\times10^{-7}$\\
+2 & 1.2523487 & 3.96277 & 1.45711 & $-5.6\times10^{-7}$\\
+3 & 1.1842533 & 5.42733 & 1.46455 & $-3.2\times10^{-7}$\\
+4 & 1.1449857 & 6.89723 & 1.46991 & $-4.2\times10^{-7}$\\
+5 & 1.1194738 & 8.37004 & 1.47281 & $+1.1\times10^{-7}$\\
+6 & 1.1015817 & 9.84429 & 1.47426 & $-4.6\times10^{-6}$ to $+0.4\times10^{-6}$\\
+7 & 1.0883384 & 11.32010 & 1.47581 & $+2.1\times10^{-7}$ ($s_{\min}=-20$)\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Instability index [N].} Perturbations grow as $e^{\mu\tau}$, $\tau=-\ln(1-t)$. Method~1 linearizes the march
+and Biot--Savart map; $\mu$ is an eigenvalue if the linearized map $T_\mu$ has eigenvalue~1. Right-half-plane counts
+by the argument principle applied to $\det(I-T_\mu)$, which include the trivial time-translation mode $\mu=1$, give
+$1.997$, $3.000$, $4.000$, $5.000$, $5.952$, $6.942$ and $7.921$ zeros for the 2D profiles $n=1$--7: the $n$-th
+profile has exactly $n$ unstable directions, all real, and the counts are unchanged under domain and grid variants.
+Method~2, a shift-invert eigensolver on the global discretization, reproduces 27 of the 28 unstable eigenvalues of
+$\lambda_1$--$\lambda_7$ to $5\times10^{-5}$; the remaining one lies in its truncation-artefact band and is confirmed
+by method~1 with two truncations. In the Hou--Luo model (11 profiles) the index is $n$ for $n\le10$. In IPM, method~1
+gives contour counts $0.994$, $1.947$, $3.082$, $4.077$ and $4.902$ for $n=0$--4 (\texttt{ipm\_contour\_U*.out}),
+i.e.\ index $n$.
+
+\textbf{Spacings [N].} For a stalled layer of fixed extent (2D Boussinesq, Hou--Luo) the spacings of $1/\varepsilon_n$
+increase towards a constant; for IPM, whose layer recedes, they contract (Supplementary Fig.~\ref{fig:spacing}).
+
+%=====================================================================================================
+\section*{Supplementary Note 2. Error audit}
+\addcontentsline{toc}{section}{Supplementary Note 2. Error audit}
+
+\textbf{Front--grid locking.} Supplementary Table~\ref{tab:shift} lists $m-2$ on radial grids shifted by $\delta h_s$
+around the seventh profile, and Supplementary Fig.~\ref{fig:shift} shows them. The scatter over shifts is the locking
+error at that grid; its half-range falls from $\sim10^{-6}$ ($h_s=0.025$) to $\sim10^{-8}$ ($0.0125$) and
+$\sim10^{-10}$ ($0.00625$), i.e.\ as $h_s^{7.1}$ (main-text Fig.~3a). On $h_s=0.025$ the scatter exceeds the defect
+itself, which is why that grid produced a spurious zero near $z=6.905$ (pre-registration record, stage 2d).
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{SupplementaryFig1.pdf}
+\caption{\textbf{Raw grid-shift data near the seventh profile.} $m-2$ on four radial grids shifted by
+$\delta h_s$ ($\delta=0,\tfrac14,\tfrac12,\tfrac34$; symbols offset slightly in $z$ by $\delta$) and their mean (line),
+for $h_s=0.025$ (\textbf{a}), $0.0125$ (\textbf{b}) and $0.00625$ (\textbf{c}). Only on the finest grid does the scatter
+fall below the defect.}
+\label{fig:shift}
+\end{figure}
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Grid-shift data} (\texttt{rich7\_*.out}; unshifted values from the scans \texttt{ipm\_scan\_\{p7,h7\}}).}
+\label{tab:shift}
+\small
+\input{tables/shift_table.tex}
+\end{table}
+
+\textbf{Origin truncation and the Newton floor.} Supplementary Table~\ref{tab:trunc} gives the converged Newton
+residual and $m-2$ for origin truncations $\sstart=-15$ to $-30$ at $\lambda_5$ and $\lambda_6$. The offset relative to
+$\sstart=-20$ decays roughly as $e^{\sstart}$ down to $-19$ (the neglected local corrections are $O(e^{\sstart})$);
+deeper starts raise the residual floor and add a round-off offset that is independent of $\lambda$ at $-24$
+($1.5\times10^{-9}$ at both $\lambda_5$ and $\lambda_7$) and reaches $2.1\times10^{-8}$ at $-30$.
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Origin truncation and Newton residual floor.}}
+\label{tab:trunc}
+\small
+\input{tables/truncation_table.tex}
+\end{table}
+
+\textbf{Angular resolution at the sixth profile.} With $\sstart=-16$, $N_b=32\to48$ changes $m$ by $2.0\times10^{-8}$
+and $N_b=48\to64$ by $9\times10^{-11}$ (\texttt{ipm\_nbcheck*\_lam6.out}); with $\sstart=-20$ the $N_b=32\to48$ change
+is $\sim10^{-9}$ for $\lambda_4$--$\lambda_6$. At the seventh profile $N_b=48\to64$ changes $m$ by $2.3\times10^{-9}$
+(Extended Data Table~1 of the main text): the angular error stops converging at the floor. Tightening the Newton tolerance from $10^{-11}$
+to $10^{-13}$ changes $m$ by $1.7\times10^{-11}$ (\texttt{ipm\_noise\_lam6\_hs0125.out}), so the scatter at the floor
+is discretization, not the nonlinear solver.
+
+\textbf{Two independent solvers (IPM).} Supplementary Table~\ref{tab:two} compares the independent global solver
+with the marching solver. Converted with the crossing slopes, the differences are $0.2$--$3.5\times10^{-9}$ in $m$ at
+every profile, while the difference in profile position grows by five orders of magnitude.
+
+\begin{table}[h]
+\centering
+\caption{\textbf{IPM profiles from two independent solvers} (\texttt{ipm\_glob\_*.log}). At $h_s=0.00625$ the global
+solver did not converge for $n=5$, $6$ within 15 Newton iterations (logged, not used).}
+\label{tab:two}
+\small
+\input{tables/twosolver_table.tex}
+\end{table}
+
+%=====================================================================================================
+\section*{Supplementary Note 3. The pre-registration record}
+\addcontentsline{toc}{section}{Supplementary Note 3. The pre-registration record}
+
+All predictions for IPM were committed to the public repository before the computation they concern, in
+\texttt{programs/P03\_boussinesq\_ladder/PREDICTIONS\_IPM.md}; entries are never edited, and outcomes, deviations
+and corrections are appended. The time stamps are those of the commits that touch the file
+(\texttt{git log} on the file); a copy of the record as of submission is provided as Supplementary Data~1.
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Timeline of the record.}}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{2.3cm}>{\raggedright\arraybackslash}p{6.2cm}>{\raggedright\arraybackslash}p{6.4cm}}
+\toprule
+Commit & Registered & Outcome (appended later)\\
+\midrule
+\texttt{4dc82af} & Stage 1, before any IPM continuation: accumulation as $\lambda\to0$, linear law, index $n$, lattice
+of growth rates of step $\lambda_n$, rigid spectral flow, localization at the front & Accumulation clause and linear
+law failed (spacings contract by 0.92 per profile); index $n$ ($n=0$--4), lattice, flow and localization held\\
+stage 2 entries & $\lambda_3$, $\lambda_4$, $\lambda_5$, $\lambda_6$ and the growth rates of the fourth unstable profile
+from the lower profiles by fixed rules & Errors 6\%, 2.5\%, 2\%, 0.1\% of a spacing; growth rates to 0.2--1.2\%\\
+\texttt{c922751} & Stage 3: $z_7$, $z_8$ by three rung-fit rules (H1, H1$'$, H2, H3) & $z_7$: not decisive (main
+text); $z_8$: untested\\
+\texttt{273ae28} & Stage 3, H4: $z_7=7.352$, $z_8\approx7.91$--$7.92$ (low confidence) from the phase on the coarse
+branch & $z_7$: not decisive; the $z_8$ value was made with the faulty tracker (Supplementary Note~5)\\
+\texttt{f0b3f06} & Decision rule for $\lambda_7$, fixed before the crossing was known & Could not run as written (scan
+paused); converged-grid analysis reported with the same thresholds\\
+\texttt{251bf1e} & Stage 4: $\lambda_8$--$\lambda_{10}$ from the repaired phase, with bands, required precision and a
+decision rule & Open benchmark (Supplementary Table~\ref{tab:stage4})\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Deviations and corrections recorded in the file.} (i) The committed $\lambda_7$ procedure needed matched scans
+at $h_s=0.0125$ and $0.00625$; the $0.0125$ scan had been paused to measure the locking error, so the procedure could
+not complete; the converged-grid determination with four grid shifts was reported instead, judged by the same
+thresholds. (ii) A first phase reading of $\lambda_7$ ($z_7=7.3456\pm0.003$) was corrected the same day to
+$7.341\pm0.005$ (dependence on the offset) and, after the tracker repair, to $7.354\pm0.007$; none of these is a
+registered prediction. (iii) The tracker failure and its repair were recorded with a clarification that the failure
+counter had been logged but not gated.
+
+\textbf{Stage 4.} The rule: solve $\ReP(z_n)=n\pi+\delta_n$ with $\ReP$ from the repaired deep table (smoothed by a
+local quadratic over $\pm0.5$ in $z$, shifted by the measured grid correction $+0.027\pm0.010$); offset scenarios
+$\delta=\delta_6=1.974$ (central), $\delta=2.031$ (mean of $n=1$--5), and a continuing drift
+$\delta_n=1.974-0.057(n-6)$; band = scenarios widened by the grid spread and the fit error. The required precision
+continues the $\lambda_7$ crossing slope with the decay per half-period predicted by $\ImP$ times $(1+\lambda)$. A future
+measurement counts only if $\sigma_z\le0.01$; it confirms the rule at $n$ if the measured $z_n$ lies inside the band
+(widened by $2\sigma_z$), and refutes it otherwise. All values of $m-2$ computed in this range before registration were
+at or below the floor and are disclosed in the record.
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Stage-4 predictions and the precision a test needs} (\texttt{ipm\_stage4\_predictions.out}).}
+\label{tab:stage4}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\input{tables/stage4_table.tex}
+\end{table}
+
+%=====================================================================================================
+\section*{Supplementary Note 4. The resonance phase}
+\addcontentsline{toc}{section}{Supplementary Note 4. The resonance phase}
+
+\textbf{Why a defect of this form has zeros [P].}
+\begin{lemma}
+Let $F(z)=R(z)\,[\cos\Theta(z)+\eta(z)]$ on $[z_0,\infty)$ with $R>0$ and $\Theta$ continuous, $\Theta$ strictly
+increasing to $\infty$, and $\sup|\eta|<1$. Then $F$ changes sign between $\Theta^{-1}(k\pi)$ and $\Theta^{-1}((k+1)\pi)$
+for every admissible integer $k$, so it has infinitely many zeros accumulating only at $z=\infty$; if $\eta\to0$, each
+zero $z^*$ satisfies $\Theta(z^*)=(k+\tfrac12)\pi+O(|\eta(z^*)|)$.
+\end{lemma}
+\textit{Proof.} $F(\Theta^{-1}(k\pi))=R\,[(-1)^k+\eta]$ has the sign of $(-1)^k$ because $|\eta|<1$; apply the
+intermediate value theorem. The second statement follows from $\cos\Theta=-\eta$. $\square$
+
+\textbf{The stalled layer and the local problem [F].} As $\varepsilon\to0$ the wall speed $D=V_1/x$ is $O(\varepsilon)$
+between the stagnation point and a front. In this layer we write a perturbation of the density as
+$\tilde r(Y)\,e^{i\varphi}$ with $\varphi=D_0^{-1}\int\kappa\,ds$, $s=\ln x$, and $Y$ the wall-normal coordinate scaled
+with the layer thickness, and keep the leading order in $\varepsilon$. For IPM this gives the local eigenproblem of
+the Methods,
+\begin{equation*}
+\bigl[i\kappa(\Dh+\hat cY)+\mu Y\partial_Y\bigr]\tilde r=-G\,\partial_Y\tilde\psi+i\kappa R_y\tilde\psi ,\qquad
+-\partial_Y^2\tilde\psi+\kappa^2\tilde\psi=-i\kappa\tilde r ,
+\end{equation*}
+with $\tilde\psi(0)=0$, no growing mode, $\Dh=D/D_0$, $\hat c=G=\partial_xR$ at the wall (because $\Omega=-\partial_1R$),
+$\mu$ the wall-normal strain and $R_y$ the normal density gradient. The continued root $\kappa(s)$ defines the phase
+$\Phi_0=D_0^{-1}\int\kappa\,ds$, integrated from the stagnation point to the front. Matching the layer solution to the
+stagnation-point region and to the front writes the smoothness defect as
+$m-2\simeq|A|\,e^{-|\ImP|}\,[\cos(\ReP+\arg A)+\eta]$ with $\eta=O(\varepsilon)$, so by the Lemma the smooth profiles
+satisfy $\ReP(\lambda_n)=n\pi+\delta$ (main-text equation~(2)), and the envelope of the defect decays by
+$e^{-|\Delta\ImP|}$ per half-period. The offset $\delta$ collects the $O(1)$ connection phases at the stagnation point
+and at the front and is fixed by the cut-off convention $D/D_0=2$. The derivation is formal; its hypotheses are checked
+numerically below.
+
+\textbf{Exact scaling in IPM [P].} Substitute $Y=\Dh\,\eta$, $\kappa=K/\Dh$ and $\tilde r=\hat r/\Dh$. Then
+$i\kappa(\Dh+\hat cY)=iK(1+\hat c\,\eta)$, $\mu Y\partial_Y=\mu\eta\partial_\eta$ and $\partial_Y=\Dh^{-1}\partial_\eta$,
+and both equations become independent of $\Dh$:
+\begin{equation*}
+\bigl[iK(1+\hat c\eta)+\mu\eta\partial_\eta\bigr]\hat r=-G\,\partial_\eta\tilde\psi+iKR_y\tilde\psi ,\qquad
+-\partial_\eta^2\tilde\psi+K^2\tilde\psi=-iK\hat r .
+\end{equation*}
+Hence $\kappa=K(G,\mu,R_y)/\Dh$ exactly and $\Phi_0=\int K\,ds/D$. Numerically $K$ is unchanged to $10^{-7}$ when
+$\Dh$ is varied from $0.012$ to $2$ at fixed $(G,\mu,R_y)$ (main-text Fig.~5d; \texttt{ipm\_K\_checks.out}). In 2D
+Boussinesq the vorticity obeys its own transport equation, which breaks this scaling.
+
+\textbf{The phase along the branch [N].} Supplementary Table~\ref{tab:phase} lists the repaired phase on every
+computed state. The offsets $\delta_n$ for four cut-offs are in Supplementary Table~\ref{tab:cut}: the registered
+cut-off $D/D_0=2$ is the only one that is flat over $n=1$--5, and every cut-off shows an extra drop of
+$0.04\pm0.01$ at $n=6$, which therefore originates inside the layer. Supplementary Table~\ref{tab:decay} compares the
+decay of the defect per half-period with the prediction from $\ImP$.
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Offsets $\delta_n$ for four front cut-offs} (\texttt{ipm\_cutoff\_drift.out}).}
+\label{tab:cut}
+\small
+\input{tables/cutoff_table.tex}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Decay of the defect per half-period: prediction from $\ImP$ and measurement.}}
+\label{tab:decay}
+\small
+\input{tables/decay_table.tex}
+\end{table}
+
+\begin{table}[p]
+\centering
+\captionsetup{justification=raggedright}
+\caption{\textbf{Repaired resonance phase on every computed state} (\texttt{ipm\_phase3\_\{rungs,l7,deep\}.out}).}
+\label{tab:phase}
+\footnotesize
+\input{tables/phase_table.tex}
+\end{table}
+
+%=====================================================================================================
+\section*{Supplementary Note 5. The tracker failure and its repair}
+\addcontentsline{toc}{section}{Supplementary Note 5. The tracker failure and its repair}
+
+\textbf{Original tracker.} Along the wall, the root $\kappa$ at the next point was sought from the previous $\kappa$
+(and from the Hou--Luo closed form as a fallback); a point without an accepted root kept the previous $\kappa$ and was
+counted as failed. On the shallow states no point failed.
+
+\textbf{Failure.} On the deep states the front side of the dip carries $\Dh$ from about $0.3$ to $2$ within a few steps
+of $\Delta s=0.025$. The previous $\kappa$ is then a poor predictor, the secant iteration lands on another root or
+fails, and holding $\kappa$ inflates $K=\kappa\Dh$ in proportion to $\Dh$. Supplementary Table~\ref{tab:tracker}
+compares $I=D_0\ReP$ from the original and the repaired tracker; the original values are non-monotone in $z$ and
+exceed the repaired ones by up to 14\%.
+
+\textbf{Repair.} Up to the dip the original tracking is kept. Beyond it: (i) step $\Delta s/4$; (ii) predictor
+$K_{\rm prev}/\Dh$ (exact by the scaling of Supplementary Note~4), then the previous $\kappa$, then the Hou--Luo form;
+(iii) accept a root only if $|K-K_{\rm prev}|\le0.25|K_{\rm prev}|$; (iv) at a failed point hold $K$, not $\kappa$, and
+count it; (v) exclude any state with a failed point from every fit. The repaired tracker reproduces the shallow values
+($\ReP=11.4568$ vs $11.4566$ at $n=3$; $17.7381$ vs $17.7363$ at $n=5$) and fails on one of 17 deep states
+($z=9.386$, 11 points; excluded).
+
+\begin{table}[h]
+\centering
+\captionsetup{justification=raggedright}
+\caption{\textbf{Phase coefficient from the original and the repaired tracker} (\texttt{ipm\_wkb\_e5\_cut2.out},
+\texttt{ipm\_tracker\_diag.out}).}
+\label{tab:tracker}
+\small
+\input{tables/tracker_table.tex}
+\end{table}
+
+%=====================================================================================================
+\section*{Supplementary Note 6. The deep branch and the endpoint analysis}
+\addcontentsline{toc}{section}{Supplementary Note 6. The deep branch and the endpoint analysis}
+
+\textbf{Geometry [N].} Supplementary Table~\ref{tab:geom} and Supplementary Fig.~\ref{fig:deep} give the dip depth,
+the dip and front positions, the travel time $T=\int ds/\Dh$, the steepest wall gradient and the resolution indicator
+along the branch. Supplementary Table~\ref{tab:deepres} compares two deep states on $h_s=0.0125$ and $0.00625$: the
+geometry and $T$ agree to 0.3\%, while the indicator, the steepest gradient and $m-2$ change as described in the main
+text.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{SupplementaryFig2.pdf}
+\caption{\textbf{Geometry of the IPM branch.} \textbf{a}, Partition of $I=D_0\ReP$: the part before the dip core
+(inner layer and approach) grows as the dip and front recede; the dip core and the front side do not. \textbf{b}, Dip
+depth $\Dh_{\min}$ along the branch, with two checks at $h_s=0.00625$. \textbf{c}, Positions of the dip and of the
+front ($\Dh=2$).}
+\label{fig:deep}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{SupplementaryFig3.pdf}
+\caption{\textbf{Spacings of consecutive profiles in $1/\varepsilon$.} A stalled layer of fixed extent gives
+increasing spacings (2D Boussinesq, Hou--Luo; dashed: the Hou--Luo asymptote $\pi/C=1.279$ obtained from the
+$\lambda\to1$ limit problem); the receding layer of IPM gives contracting spacings.}
+\label{fig:spacing}
+\end{figure}
+
+\textbf{Endpoint classes [N].} The phase coefficient $I(z)$ was fitted on $z\ge4$ with three forms: (A)
+$a+bz+cz^2$ (accumulation at $\lambda=0$); (B) $a+bz+C/(z_c-z)$ and (C) $a+bz-C\ln(1-z/z_c)$ (accumulation at
+$\lambda_c=1/z_c$). Weighting the shallow points by their grid error and the deep points by their scatter, (B) and (C)
+prefer $z_c\approx10$--$13$ with $\chi^2\approx33$--$36$ for 20 degrees of freedom, against $\chi^2=140$ for (A); the
+fits are therefore not adequate models and the preference is not significant. On the deep range alone ($z\ge7.45$),
+$z_c$ is unconstrained ($\Delta\chi^2\le4$ for all $z_c\ge9.5$), the slope of $I$ is $0.098$ and its curvature
+$+0.005\pm0.002$. Termination indicators: $\Dh_{\min}$ and $1/\max\partial_xR$ decrease at $-0.107$ and $-0.050$ per
+unit $z$ on $z\in[7.45,8.5]$ and at $-0.023$ and $-0.014$ over the last unit, extrapolating linearly to zero only near
+$z\approx18$ and $13$ (\texttt{ipm\_endpoint\_geometry.out}). The endpoint class is unresolved.
+
+\begin{table}[p]
+\centering
+\caption{\textbf{Geometry along the IPM branch} (\texttt{ipm\_travel\_time.out}, \texttt{ipm\_deep\_e5.out}).}
+\label{tab:geom}
+\footnotesize
+\input{tables/geometry_table.tex}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Resolution checks of deep states} (\texttt{ipm\_deepres\_z*.out}).}
+\label{tab:deepres}
+\footnotesize
+\input{tables/deepres_table.tex}
+\end{table}
+
+%=====================================================================================================
+\section*{Supplementary Note 7. Formulations, solvers and reproducibility}
+\addcontentsline{toc}{section}{Supplementary Note 7. Formulations, solvers and reproducibility}
+
+\textbf{Self-similar equations.} With $y=x/(1-t)^{1+\lambda}$ and $V=(1+\lambda)y+U$, $U=\nabla^\perp\Psi$,
+$-\Delta\Psi=\Omega$:
+\begin{itemize}
+\item IPM: $V\cdot\nabla R=\lambda R$, $\Omega=-\partial_1R$ ($\varepsilon=\lambda$);
+\item 2D Boussinesq: $\Omega+V\cdot\nabla\Omega=\partial_1\Theta$, $V\cdot\nabla\Theta=(\lambda-1)\Theta$
+($\varepsilon=\lambda-1$);
+\item Hou--Luo: the boundary restriction of Boussinesq, with $U'=H\Omega$ ($H$ the Hilbert transform).
+\end{itemize}
+All are posed on the half-plane with no penetration; by symmetry the 2D problems are solved on the quarter plane in
+log-polar coordinates $(s,\beta)$, $\beta=0$ the wall.
+
+\textbf{Solver parameters.} Marching solver: $N_b=32$ Chebyshev points in $\beta$; $h_s=0.025$, $0.0125$ (production)
+or $0.00625$; $s\in[-120,100]$; origin truncation $\sstart=-20$; implicit Gauss--Legendre march for $s<12$, RK4
+beyond; eighth-order differences for the velocity; Newton--Krylov with central-difference products (perturbation
+$10^{-6}$ on the largest entry); tolerances $7\times10^{-13}$ ($h_s=0.0125$) and $1.5\times10^{-12}$ ($0.00625$).
+Global solver: $N_b=24$; sixth-order differences; $s_{\min}=-16$ ($-12$ for $\lambda_1$); $s_{\max}=8,10,12$ with
+geometric extrapolation; exact sparse Jacobian; tolerance $10^{-10}$.
+
+\textbf{Software and hardware.} Python 3.11; NumPy 2.4; SciPy 1.17; Numba 0.67; Matplotlib 3.11. All computations
+ran on a four-core x86-64 machine without GPU. Logged solver time for the deep IPM campaign was about 13 core-hours;
+phase and geometry evaluations about one hour.
+
+\textbf{Map from results to code and data.} Every figure is produced by \path{code/figures/make_figures.py} and
+every Supplementary Table by \path{code/analysis/make_si_tables.py}, both reading only \path{data/outputs}. The file
+\path{code/README.md} lists, in order, the commands that regenerate every output from scratch, with run times.
+
+\begin{thebibliography}{9}
+\small
+\bibitem{s_chen2022} Chen, J. \& Hou, T. Y. Stable nearly self-similar blowup of the 2D Boussinesq and 3D Euler
+equations with smooth data I: analysis. Preprint at \url{https://arxiv.org/abs/2210.07191} (2022).
+\bibitem{s_choi2017} Choi, K. et al. On the finite-time blowup of a one-dimensional model for the three-dimensional
+axisymmetric Euler equations. \textit{Commun. Pure Appl. Math.} \textbf{70}, 2218--2243 (2017).
+\end{thebibliography}
+
+\end{document}

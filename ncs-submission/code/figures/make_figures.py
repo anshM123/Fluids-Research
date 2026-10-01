@@ -449,8 +449,8 @@ def fig3():
     save(fig, "Fig3")
 
 
-# ------------------------------------------------------------------ Fig. 4
-def fig4():
+# ------------------------------------------------------------------ Fig. 5 (phase stability)
+def fig5():
     fig, ax = plt.subplots(2, 2, figsize=(W2, 118 * MM))
     a = ax[0, 0]
     L = rungs()
@@ -512,11 +512,11 @@ def fig4():
     d.legend(loc="upper right")
     letter(d, "d", dx=-0.2)
     fig.tight_layout(h_pad=1.4, w_pad=1.6)
-    save(fig, "Fig4")
+    save(fig, "Fig5")
 
 
-# ------------------------------------------------------------------ Fig. 5
-def fig5():
+# ------------------------------------------------------------------ Fig. 4 (holdout)
+def fig4():
     z7, _, st = z7_defect()
     fig, ax = plt.subplots(figsize=(W2, 62 * MM))
     P = [("H1  shifted law, $\\lambda_2$–$\\lambda_6$", 7.3415, "c922751"),
@@ -543,7 +543,7 @@ def fig5():
     ax.set_xlim(7.21, 7.46); ax.set_ylim(-1.15, 5.5); ax.set_yticks([]); ax.grid(axis="y", visible=False)
     ax.set_xlabel(r"$z_7=1/\lambda_7$")
     fig.tight_layout()
-    save(fig, "Fig5")
+    save(fig, "Fig4")
 
 
 # ------------------------------------------------------------------ Fig. 6
@@ -615,7 +615,7 @@ def fig6():
 
 
 # ------------------------------------------------------------------ Supplementary figures
-def sfig1():
+def sfig2():
     """Geometry of the deep branch: phase anatomy, dip depth, dip and front positions."""
     fig, ax = plt.subplots(1, 3, figsize=(W2, 60 * MM))
     a = ax[0]
@@ -651,10 +651,10 @@ def sfig1():
     c.legend(loc="lower right")
     letter(c, "c")
     fig.tight_layout(w_pad=1.6)
-    save(fig, "SupplementaryFig1")
+    save(fig, "SupplementaryFig2")
 
 
-def sfig2():
+def sfig3():
     """Spacing of consecutive profiles: fixed stalled layer (2D Boussinesq, Hou–Luo) against receding (IPM)."""
     J = json.load(open("ladders.json"))
     fig, ax = plt.subplots(figsize=(W1, 62 * MM))
@@ -668,10 +668,10 @@ def sfig2():
     ax.set_ylim(0.6, 1.65)
     ax.legend(loc="lower left")
     fig.tight_layout()
-    save(fig, "SupplementaryFig2")
+    save(fig, "SupplementaryFig3")
 
 
-def sfig3():
+def sfig1():
     """Raw grid-shift data: m − 2 on four shifted grids at each z, for three radial spacings."""
     V = rich_values()
     fig, ax = plt.subplots(1, 3, figsize=(W2, 58 * MM))
@@ -689,7 +689,7 @@ def sfig3():
         a.ticklabel_format(axis="y", style="sci", scilimits=(-2, 2))
         letter(a, "abc"[k], dx=-0.22)
     fig.tight_layout(w_pad=1.6)
-    save(fig, "SupplementaryFig3")
+    save(fig, "SupplementaryFig1")
 
 
 ALL = ["fig1", "fig2", "fig3", "fig4", "fig5", "fig6", "sfig1", "sfig2", "sfig3"]
