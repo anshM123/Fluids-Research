@@ -1,0 +1,14 @@
+pm_noise_lam0.1509200_hs0.0125.npy z= 6.6260 D0=0.07546 D̂dip=0.4515 s_cut=-0.043 Φ= 20.8238-11.4252i I=1.57136 front_fail=0
+ipm_deep_e5_lam0.1339405.npy       z= 7.4660 D0=0.06697 D̂dip=0.3636 s_cut= 0.000 Φ= 24.5106-14.0662i I=1.64148 front_fail=0
+ipm_deep_e5_lam0.1318217.npy       z= 7.5860 D0=0.06591 D̂dip=0.3458 s_cut= 0.006 Φ= 25.0602-14.4663i I=1.65174 front_fail=0
+ipm_deep_e5_lam0.1297690.npy       z= 7.7060 D0=0.06488 D̂dip=0.3293 s_cut= 0.012 Φ= 25.6446-14.9372i I=1.66393 front_fail=0
+ipm_deep_e5_lam0.1277792.npy       z= 7.8260 D0=0.06389 D̂dip=0.3204 s_cut= 0.018 Φ= 26.2192-15.3738i I=1.67514 front_fail=0
+ipm_deep_e5_lam0.1258495.npy       z= 7.9460 D0=0.06292 D̂dip=0.3083 s_cut= 0.024 Φ= 26.8226-15.8768i I=1.68781 front_fail=0
+ipm_deep_e5_lam0.1239772.npy       z= 8.0660 D0=0.06199 D̂dip=0.2902 s_cut= 0.030 Φ= 27.4185-16.3487i I=1.69964 front_fail=0
+ipm_deep_e5_lam0.1221598.npy       z= 8.1860 D0=0.06108 D̂dip=0.2834 s_cut= 0.035 Φ= 27.9493-16.7308i I=1.70714 front_fail=0
+ipm_deep_e5_lam0.1203949.npy       z= 8.3060 D0=0.06020 D̂dip=0.2729 s_cut= 0.041 Φ= 28.6510-17.3721i I=1.72472 front_fail=0
+ipm_deep_e5_lam0.1186803.npy       z= 8.4260 D0=0.05934 D̂dip=0.2565 s_cut= 0.047 Φ= 29.1547-17.6826i I=1.73005 front_fail=0
+ipm_deep_e5_lam0.1170138.npy       z= 8.5460 D0=0.05851 D̂dip=0.2570 s_cut= 0.052 Φ= 29.7744-18.1999i I=1.74201 front_fail=0
+ipm_deep_e5_lam0.1153935.npy       z= 8.6660 D0=0.05770 D̂dip=0.2413 s_cut= 0.058 Φ= 30.4093-18.7190i I=1.75452 front_fail=0
+ipm_deep_e5_lam0.1138174.npy       z= 8.7860 D0=0.05691 D̂dip=0.2322 s_cut= 0.063 Φ= 31.0771-19.3427i I=1.76856 front_fail=0
+ipm_deep_e5_lam0.1122838.npy       z= 8.9060 D0=0.05614 D̂dip=0.2339 s_cut= 0.068 Φ= 31.7197-19.8606i I=1.78080 front_fail=0
