@@ -204,3 +204,28 @@ The IPM self-similar problem is the Boussinesq problem with the vorticity slaved
 | right-half-plane count | `python3 ipm_contour.py STATE LAM 0.025 TAG X_LO X_HI Y_HI` |
 | counts used in the paper | `python3 ipm_contour.py ipm_rung_…_lamL.npy L 0.025 Un 0.04 1.5 Y 16 -30` with Y = 1.5 (U₀–U₂) or 2.5 (U₃, U₄); results in `ipm_contour_Un.out` (0.994, 1.947, 3.082, 4.077, 4.902 for n = 0–4; ~20–60 min each) |
 | stage-2 predictions | `python3 ipm_stage2_predict.py` (data in `ipm_stage2_data.py`) |
+
+### IPM deep branch, λ₇ holdout, phase observable and validation (NCS companion, `dossier/P03_MANUSCRIPT_NCS.md`)
+| step | command / output |
+|---|---|
+| fine-grid scans at fixed z (resumable) | `NB=… HS_IN=… python3 ipm_scan.py …` → `ipm_scan_{s16,s20,p7,h7}.out/.npy` |
+| grid-shift solves (front–grid locking) | `python3 ipm_shift.py STATE Z DELTA HS` (env NB, SS, SMAX, HS_IN, NK_TOL); queues `rich7_run*.sh` → `rich7_*.out`, `sys7_*.out` |
+| λ₇ (pre-committed rule; converged grid) | `ipm_lambda7_analysis.py` → `…_committed_rule.out`; `ipm_lambda7_final.py` → `ipm_lambda7_final.out` |
+| deep continuation (resumable) | `IPM_SSTART=-20 python3 ipm_deep.py LAM0 LAM1 DZ TAG START [Nb hs]` → `ipm_deep_e5.out` (to z = 10.23) |
+| local eigenproblem | `ipm_local_eig.py` (shooting + secant) |
+| phase, repaired tracker | `ipm_wkb.wkb_phase3`; tables `ipm_phase3_table.py` → `ipm_phase3_{rungs,l7,deep}.out` |
+| tracker failure diagnostic | `ipm_tracker_diag.py` → `ipm_tracker_diag.out/.npz` |
+| phase under the λ₇ audit variants | `ipm_phase_variants.py` → `ipm_phase_variants.out` |
+| K = κD̂ checks (scaling, saturation) | `ipm_K_checks.py` → `ipm_K_checks.out/.npz` |
+| travel time, anatomy, geometry | `ipm_travel_time.py`, `ipm_phase_anatomy3.py`, `ipm_endpoint_geometry.py` → `.out` |
+| deep resolution checks | `ipm_deepres_check.py Z STATE_0125 STATE_00625 [Z_0125]` → `ipm_deepres_z*.out` |
+| origin truncation / Newton floor | `ipm_sstart.py`, `ipm_noise2.py`, `ipm_shift.py` with SS = −26, −30 → `ipm_nfloor_*.out` |
+| offset drift vs cut-off | `ipm_cutoff_drift.py` → `ipm_cutoff_drift.out` |
+| independent global solver | `ipm_global.py` (Jacobian check: `python3 ipm_global.py`), `ipm_glob_run.py SRC LAM TAG HS NB SMIN SMAX,…` → `ipm_glob_*.log` |
+| stage-4 predictions (λ₈–λ₁₀) | `ipm_stage4_predict.py` → `ipm_stage4_predictions.out` (registered in `PREDICTIONS_IPM.md`, 251bf1e) |
+| figures | `fig_ncs.py [1–6]` → `fig_ncs*.png`; `fig_endings2.py` |
+
+**Two independent solvers, IPM** (h_s = 0.0125, s_min = −16, s_max → ∞; λ₁ at h_s 0.025, s_min −12):
+|Δλ| = 1.4e-8, 3.7e-8, 3.4e-8, 6.5e-7, 9e-7 and 1.3e-4 for n = 1–6. That is 0.2–3.5e-9 in m at every n, the
+floor of both solvers. At h_s = 0.00625, λ₅ and λ₆ did not converge in the global solver, and those runs are not
+used.

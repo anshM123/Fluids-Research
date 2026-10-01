@@ -68,6 +68,22 @@ def decay_pred(zs, Rs, Is):
     return np.array(pz), np.array(pe)
 
 
+def two_solver():
+    """|Δz_n| between the marching solver and the independent global solver (ipm_global.py), finest run per profile."""
+    best = {1: ["l1"], 2: ["l2f", "l2"], 3: ["l3f", "l3"], 4: ["l4h", "l4f", "l4"], 5: ["l5h", "l5f"], 6: ["l6h", "l6f"]}
+    out = []
+    for n, tags in best.items():
+        for tg in tags:
+            try:
+                txt = open(f"ipm_glob_{tg}.log").read()
+            except FileNotFoundError:
+                continue
+            m = re.search(r"λ_∞ = ([0-9.]+)\s+\(march λ = ([0-9.]+)", txt)
+            if m and "ok=False" not in txt:
+                lg, lm = float(m.group(1)), float(m.group(2)); out.append((n, abs(1 / lg - 1 / lm))); break
+    return np.array(out)
+
+
 # ---------------------------------------------------------------- Fig. 2: the exponential wall
 def fig2():
     z, Re, Im, I = phase_table()
@@ -121,6 +137,9 @@ def fig2():
     dlt = np.array([2.0331, 2.0227, 2.0320, 2.0360, 2.0301, 1.9742])
     sp = np.concatenate([np.hypot(0.005, 0.0105) / dRe_n[:5], [np.hypot(0.057, 0.0105) / dRe_n[5]], [0.007]])
     c.semilogy(n, sp, 's-', color=PHA, ms=5, lw=1.3, label='phase: offset scatter ⊕ grid, / dReΦ₀/dz')
+    tw = two_solver()
+    if len(tw):
+        c.semilogy(tw[:, 0], tw[:, 1], 'D', color=GEO, ms=5, label='two independent solvers: |Δz_n|')
     c.axhline(0.003, color=MUTED, lw=0.8, ls=':'); c.text(10.2, 0.0021, 'registered decisiveness\nthreshold (0.003)', fontsize=6.8, color=INK, ha='right', va='top')
     c.axhline(0.3, color=MUTED, lw=0.8, ls=':'); c.text(1.0, 0.42, 'half a spacing: rung unidentifiable', fontsize=6.8, color=INK)
     c.set_xlabel('profile n'); c.set_ylabel('uncertainty of z_n'); c.set_ylim(3e-9, 30); c.set_xlim(0.7, 10.3)
@@ -347,10 +366,17 @@ def fig3():
         if m: S5[float(m.group(1))] = float(m.group(2))
     c.semilogy([-16, -24], [abs(S5[-16.0] - S5[-20.0]), abs(S5[-24.0] - S5[-20.0])], 's', color=DEF, mfc='white', ms=6,
                label='λ₅: |m(s_start) − m(−20)|')
-    sg = np.linspace(-24.5, -14.5, 10); c.semilogy(sg, off[0] * np.exp(sg - ss[0]), ':', color=MUTED, lw=0.9, label='∝ e^{s_start} (neglected local terms)')
+    sg = np.linspace(-21, -14.5, 10); c.semilogy(sg, off[k][-1] * np.exp(sg - ss[k][-1]), ':', color=MUTED, lw=0.9, label='∝ e^{s_start} (neglected local terms)')
     c.annotate('round-off offset,\nλ-independent', (-24, abs(S5[-24.0] - S5[-20.0])), xytext=(-23.6, 3e-8), fontsize=7, color=INK,
                arrowprops=dict(arrowstyle='-', color=MUTED, lw=0.7))
-    c.set_xlabel('origin truncation s_start'); c.set_ylabel('offset in m'); c.set_xlim(-25, -14); c.set_ylim(1e-11, 1e-6)
+    deep6 = []
+    for f in sorted(glob.glob("ipm_nfloor_ss*_lam6.out")):
+        m = re.search(r"s_start=(-?[0-9.]+).*m-2=([-+0-9.e]+)", open(f).read())
+        if m: deep6.append((float(m.group(1)), abs(float(m.group(2)) - S6[-20.0])))
+    if deep6:
+        deep6 = np.array(deep6)
+        c.semilogy(deep6[:, 0], deep6[:, 1], 'o', color=DEF, mfc='white', ms=6, label='λ₆, deep truncation')
+    c.set_xlabel('origin truncation s_start'); c.set_ylabel('offset in m'); c.set_xlim(-31, -14); c.set_ylim(1e-11, 1e-6)
     c.legend(loc='upper left'); title(c, 'c   Origin truncation: deeper is not better')
 
     d = ax[1, 1]
@@ -359,10 +385,11 @@ def fig3():
         for line in open(f):
             m = re.search(r"s(?:s|_start)=(-?[0-9.]+).*?\|R\|=([0-9.e+-]+)", line)
             if m: NF.append((float(m.group(1)), float(m.group(2))))
-    NF.append((-30.0, 1e-11))
+    for f in sorted(glob.glob("ipm_nfloor_ss*_lam6.out")):
+        m = re.search(r"s_start=(-?[0-9.]+).*\|R\|=([0-9.e+-]+)", open(f).read())
+        if m: NF.append((float(m.group(1)), float(m.group(2))))
     NF = np.array(NF)
-    d.semilogy(NF[:-1, 0], NF[:-1, 1], 'o', color=INK, ms=5, label='converged Newton residual')
-    d.semilogy([-30], [1e-11], 'o', color=INK, mfc='white', ms=6, label='s_start = −30 (production log)')
+    d.semilogy(NF[:, 0], NF[:, 1], 'o', color=INK, ms=5, label='converged Newton residual (λ₅, λ₆)')
     d.set_xlabel('origin truncation s_start'); d.set_ylabel('Newton residual floor |R|'); d.set_xlim(-31, -14); d.set_ylim(1e-14, 1e-10)
     d.legend(loc='upper right'); title(d, 'd   The Newton floor rises with depth of the start')
     fig.tight_layout(); fig.savefig("fig_ncs3.png", dpi=200); plt.close(fig); print("saved fig_ncs3.png")
