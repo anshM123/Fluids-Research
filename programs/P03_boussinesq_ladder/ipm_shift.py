@@ -14,7 +14,8 @@ B = IPM(lam, hs=hs, Nb=32, s_sw=12.0, s_start=-20.0, s_min=-120.0 + dl * hs)
 import os
 hs_in = float(os.environ.get('HS_IN', hs))                       # source grid (unshifted) may differ from the target
 Y = transfer(BQLogPolar(lam, hs=hs_in, Nb=32, s_start=-20.0), np.load(f), B)
-Y, info, ok = newton(B, Y, tol=7e-13, maxit=12, verbose=False, fd='central', pert=1e-6)
+tol = float(os.environ.get('NK_TOL', 1.5e-12 if hs < 0.01 else 7e-13))     # the h_s = 0.00625 floor is 5e-13–1.4e-12
+Y, info, ok = newton(B, Y, tol=tol, maxit=12, verbose=False, fd='central', pert=1e-6)
 R, _ = residual(B, Y)
 print(f"z={z:.4f} shift={dl:.3f} hs={hs} src={os.path.basename(f)}: |R|={np.abs(R).max():.1e} m-2={info['m']-2:+.6e} t={time.time()-t0:.0f}s", flush=True)
 np.save(f"ipm_shift_z{z:.4f}_d{dl:.3f}_hs{hs}.npy", Y)
