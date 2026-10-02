@@ -1,4 +1,4 @@
-# A resonance phase locates unstable self-similar singularities beyond an exponential precision wall
+# Phase-based resolution of ill-conditioned singularity ladders in nonlinear fluid models
 
 **Ansh Mishra** (independent researcher) and **Aryan Senthilkumar** (Georgia Institute of Technology).
 

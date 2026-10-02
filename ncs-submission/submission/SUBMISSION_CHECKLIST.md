@@ -20,7 +20,7 @@ The journal accepts initial submissions as PDF, Word or LaTeX. The LaTeX source 
 |---|---|
 | Authors | Ansh Mishra¹ and Aryan Senthilkumar² |
 | Affiliations | ¹ Independent researcher; ² Georgia Institute of Technology, Atlanta, GA, USA |
-| Corresponding author | Ansh Mishra |
+| Corresponding author | Aryan Senthilkumar |
 | Author contributions | A.M. carried out the computational mathematics and physics. A.S. carried out the aerodynamics. |
 | Use of AI tools (Methods) | "AI tools were used continually throughout the development of this project." |
 | Acknowledgements | none (the section is omitted) |
@@ -57,8 +57,7 @@ cd submission    && latexmk -pdf cover_letter.tex  && cd ..
 ## 4. In the submission system
 
 - **Article type:** Article.
-- **Title:** *A resonance phase locates unstable self-similar singularities beyond an exponential precision wall*
-  (12 words).
+- **Title:** *Phase-based resolution of ill-conditioned singularity ladders in nonlinear fluid models* (10 words).
 - **Abstract:** paste from `manuscript/main.tex` (148 words).
 - **Authors:** as in section 2. Enter the corresponding author's e-mail address in the form. ORCIDs are optional.
 - **Preprint:** the system offers to post the submission as a preprint on Research Square, which gives it a DOI.
